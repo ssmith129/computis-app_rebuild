@@ -128,6 +128,15 @@ async function capture(browser, screen) {
   const screenDir = path.join(OUT_DIR, screen.name);
   await ensureDir(screenDir);
 
+  const viewportFile = path.join(screenDir, `${screen.name}-viewport.png`);
+  const fullpageFile = path.join(screenDir, `${screen.name}-fullpage.png`);
+  const hasViewport = await fs.stat(viewportFile).then(() => true).catch(() => false);
+  const hasFullpage = await fs.stat(fullpageFile).then(() => true).catch(() => false);
+  if (hasViewport && hasFullpage) {
+    console.log(`-- ${screen.name}  (skipped, already exists)`);
+    return;
+  }
+
   const page = await browser.newPage();
   await page.setViewport({
     width: VIEWPORT_WIDTH,
@@ -140,29 +149,23 @@ async function capture(browser, screen) {
   await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
   await waitForPageReady(page);
 
-  // Viewport screenshot (1920x1080 logical -> 5760x3240 actual)
-  const viewportPng = await page.screenshot({
-    type: "png",
-    fullPage: false,
-    omitBackground: false,
-  });
-  const viewportTagged = injectPhysChunk(viewportPng);
-  await fs.writeFile(
-    path.join(screenDir, `${screen.name}-viewport.png`),
-    viewportTagged,
-  );
+  if (!hasViewport) {
+    const viewportPng = await page.screenshot({
+      type: "png",
+      fullPage: false,
+      omitBackground: false,
+    });
+    await fs.writeFile(viewportFile, injectPhysChunk(viewportPng));
+  }
 
-  // Full-page screenshot (full scroll height, 1920 logical wide)
-  const fullPng = await page.screenshot({
-    type: "png",
-    fullPage: true,
-    omitBackground: false,
-  });
-  const fullTagged = injectPhysChunk(fullPng);
-  await fs.writeFile(
-    path.join(screenDir, `${screen.name}-fullpage.png`),
-    fullTagged,
-  );
+  if (!hasFullpage) {
+    const fullPng = await page.screenshot({
+      type: "png",
+      fullPage: true,
+      omitBackground: false,
+    });
+    await fs.writeFile(fullpageFile, injectPhysChunk(fullPng));
+  }
 
   await page.close();
 }
