@@ -102,54 +102,56 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
 
       <CardContent className="p-4">
         {/* Header Section */}
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="text-xl leading-none">{wallet.icon}</div>
-            <div className="min-w-0">
+        <div className="flex items-start justify-between gap-2 mb-3">
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <div className="text-xl leading-none flex-shrink-0">
+              {wallet.icon}
+            </div>
+            <div className="min-w-0 flex-1">
               <h3 className="font-semibold text-sm text-gray-900 truncate">
                 {wallet.name}
               </h3>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-xs text-gray-500">{wallet.type}</span>
-                <span className="text-xs text-gray-300">•</span>
-                <span className="text-xs font-mono text-gray-500 truncate">
-                  {wallet.address}
-                </span>
-              </div>
+              <p className="text-xs text-gray-500 truncate mt-0.5">
+                <span>{wallet.type}</span>
+                <span className="text-gray-300 mx-1">•</span>
+                <span className="font-mono">{wallet.address}</span>
+              </p>
             </div>
           </div>
           <div
-            className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs font-medium transition-all ${getStatusColor(wallet.status)}`}
+            className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs font-medium transition-all flex-shrink-0 ${getStatusColor(wallet.status)}`}
+            aria-label={wallet.status}
+            title={wallet.status}
           >
             {getStatusIcon(wallet.status)}
-            <span className="hidden sm:inline">{wallet.status}</span>
+            <span className="hidden lg:inline">{wallet.status}</span>
           </div>
         </div>
 
         {/* Stats Section - Progressive Disclosure */}
         <div
-          className={`grid grid-cols-2 gap-3 overflow-hidden transition-all duration-300 ${isHovered ? "max-h-20 opacity-100 mb-3" : "max-h-0 opacity-0 mb-0"}`}
+          className={`grid grid-cols-2 gap-2 overflow-hidden transition-all duration-300 ${isHovered ? "max-h-24 opacity-100 mb-3" : "max-h-0 opacity-0 mb-0"}`}
         >
-          <div className="bg-gray-50 rounded-lg px-2.5 py-2">
-            <p className="text-xs text-gray-500">Transactions</p>
-            <p className="text-sm font-semibold text-gray-900">
+          <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
+            <p className="text-xs text-gray-500 truncate">Transactions</p>
+            <p className="text-sm font-semibold text-gray-900 truncate">
               {wallet.transactions}
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg px-2.5 py-2">
-            <p className="text-xs text-gray-500">Last Sync</p>
-            <p className="text-sm font-semibold text-gray-900">
+          <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
+            <p className="text-xs text-gray-500 truncate">Last Sync</p>
+            <p className="text-sm font-semibold text-gray-900 truncate">
               {wallet.lastSync}
             </p>
           </div>
         </div>
 
         {/* Action Section */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 text-xs text-gray-600 hover:text-gray-900 px-2 transition-all"
+            className="h-7 text-xs text-gray-600 hover:text-gray-900 px-2 transition-all min-w-0 truncate"
             onClick={(e) => {
               e.stopPropagation();
               toast({ title: `Syncing ${wallet.name}` });
@@ -158,7 +160,7 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
             {wallet.status === "Syncing" ? "Cancel Sync" : "Sync Now"}
           </Button>
           <ChevronRight
-            className={`h-4 w-4 text-gray-400 transition-all duration-300 ${isHovered ? "translate-x-1 text-gray-600" : ""}`}
+            className={`h-4 w-4 text-gray-400 transition-all duration-300 flex-shrink-0 ${isHovered ? "translate-x-1 text-gray-600" : ""}`}
           />
         </div>
       </CardContent>
