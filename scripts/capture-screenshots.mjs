@@ -17,11 +17,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import zlib from "node:zlib";
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:8080";
-const OUT_DIR = path.resolve("Screenshots");
-const VIEWPORT_WIDTH = 1920;
-const VIEWPORT_HEIGHT = 1080;
-const DEVICE_SCALE_FACTOR = 3; // -> 5760x3240 actual pixels
+// CLI args: --width=1920 --height=1080 --out=Screenshots --scale=3 --base=http://localhost:8080
+function parseArg(name, fallback) {
+  const prefix = `--${name}=`;
+  const found = process.argv.find((a) => a.startsWith(prefix));
+  return found ? found.slice(prefix.length) : fallback;
+}
+
+const BASE_URL = parseArg("base", process.env.BASE_URL || "http://localhost:8080");
+const OUT_DIR = path.resolve(parseArg("out", process.env.OUT_DIR || "Screenshots"));
+const VIEWPORT_WIDTH = Number(parseArg("width", process.env.VIEWPORT_WIDTH || 1920));
+const VIEWPORT_HEIGHT = Number(parseArg("height", process.env.VIEWPORT_HEIGHT || 1080));
+const DEVICE_SCALE_FACTOR = Number(parseArg("scale", process.env.DEVICE_SCALE_FACTOR || 3));
 const TARGET_DPI = 300;
 // 1 inch = 0.0254 m, so pixels-per-meter = dpi / 0.0254
 const PIXELS_PER_METER = Math.round(TARGET_DPI / 0.0254); // 11811
