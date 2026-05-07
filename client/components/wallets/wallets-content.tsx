@@ -119,12 +119,12 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
             </div>
           </div>
           <div
-            className={`flex items-center gap-1 px-2 py-1 rounded-full border text-xs font-medium transition-all flex-shrink-0 ${getStatusColor(wallet.status)}`}
+            className={`flex items-center justify-center p-1.5 rounded-full border transition-all flex-shrink-0 ${getStatusColor(wallet.status)}`}
             aria-label={wallet.status}
             title={wallet.status}
           >
             {getStatusIcon(wallet.status)}
-            <span className="hidden lg:inline">{wallet.status}</span>
+            <span className="sr-only">{wallet.status}</span>
           </div>
         </div>
 
