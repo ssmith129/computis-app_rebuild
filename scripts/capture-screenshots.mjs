@@ -12,7 +12,7 @@
  *   node scripts/capture-screenshots.mjs
  *   BASE_URL=http://localhost:8080 node scripts/capture-screenshots.mjs
  */
-import puppeteer from "puppeteer";
+import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import path from "node:path";
 import zlib from "node:zlib";
@@ -137,16 +137,15 @@ async function capture(browser, screen) {
     return;
   }
 
-  const page = await browser.newPage();
-  await page.setViewport({
-    width: VIEWPORT_WIDTH,
-    height: VIEWPORT_HEIGHT,
+  const context = await browser.newContext({
+    viewport: { width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT },
     deviceScaleFactor: DEVICE_SCALE_FACTOR,
   });
+  const page = await context.newPage();
 
   const url = `${BASE_URL}${screen.path}`;
   console.log(`-> ${screen.name}  ${url}`);
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 60_000 });
+  await page.goto(url, { waitUntil: "networkidle", timeout: 60_000 });
   await waitForPageReady(page);
 
   if (!hasViewport) {
@@ -168,11 +167,12 @@ async function capture(browser, screen) {
   }
 
   await page.close();
+  await context.close();
 }
 
 async function main() {
   await ensureDir(OUT_DIR);
-  const browser = await puppeteer.launch({
+  const browser = await chromium.launch({
     headless: true,
     args: [
       "--no-sandbox",
