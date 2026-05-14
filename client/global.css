@@ -589,9 +589,15 @@
   }
 
   .app-content {
-    @apply flex-1 min-h-0 bg-background overflow-y-auto overflow-x-hidden max-w-full box-border;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    /*
+     * IMPORTANT: do NOT add `overflow-y-auto` here.
+     * The fixed header (position: fixed + pt-[3.5rem] on content) is designed
+     * around the *window* being the scroll container. Adding an inner
+     * `overflow-y-auto` here creates a nested scroll context whose parents
+     * are `min-h-screen` (not height-constrained), so the inner scroll never
+     * triggers and the page becomes effectively un-scrollable on production.
+     */
+    @apply flex-1 min-h-0 bg-background overflow-x-hidden max-w-full box-border;
     overscroll-behavior-x: none;
     /* Ensure content doesn't interfere with header/sidebar */
     position: relative;
@@ -784,11 +790,23 @@
     position: relative;
   }
 
-  /* Ensure proper scrolling behavior */
-  .app-layout-right-column > *:not(.header-container) {
+  /*
+   * Ensure proper layout sizing for the right column's children.
+   *
+   * Historical note: an earlier version of this rule applied `overflow: auto`
+   * to every non-header child. That worked when the header used the legacy
+   * `.header-container` class and the column had a constrained height. The
+   * header was later refactored to `.header-container-fixed` (position: fixed,
+   * out of flow) and the right column is now `min-h-screen` (no max-height),
+   * which made the inner `overflow: auto` create a broken scroll container —
+   * the page could not scroll vertically in production.
+   *
+   * The fixed header layout intentionally relies on the *window* as the
+   * scroll container, so we only constrain sizing here, never overflow.
+   */
+  .app-layout-right-column > *:not(.header-container):not(.header-container-fixed) {
     flex: 1;
     min-height: 0;
-    overflow: auto;
   }
 
   /* ============================================
