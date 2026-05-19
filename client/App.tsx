@@ -21,6 +21,7 @@ import MyAccount from "./pages/MyAccount";
 import HelpPage from "./pages/HelpPage";
 import KeyboardShortcuts from "./pages/KeyboardShortcuts";
 import DesignSystemShowcase from "./pages/DesignSystemShowcase";
+import RenderClassificationInsights from "./pages/RenderClassificationInsights";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,10 @@ const App = () => (
           <Route path="/help" element={<HelpPage />} />
           <Route path="/keyboard-shortcuts" element={<KeyboardShortcuts />} />
           <Route path="/design-system" element={<DesignSystemShowcase />} />
+          <Route
+            path="/_render/classification-insights"
+            element={<RenderClassificationInsights />}
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
