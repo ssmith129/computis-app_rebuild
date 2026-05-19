@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Classification Insights — Presentation Asset</title>
+    <meta name="viewport" content="width=720, initial-scale=1" />
+    <style>
+      /* ---- Design tokens (mirrors client/global.css :root) ---- */
+      :root {
+        --background: #f7f7f7;
+        --foreground: #1a1a1a;
+        --card: #ffffff;
+        --card-foreground: #1a1a1a;
+        --border: #e2e8f0;
+        --muted-foreground: #6b7787;
+
+        --success: #16a34a;
+        --success-bg: #dcfce7;
+        --warning: #b45309;
+        --warning-bg: #fef3c7;
+        --error: #ef4444;
+        --error-bg: #fee2e2;
+      }
+
+      /* ---- Reset / base ---- */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+      body {
+        font-family:
+          "Inter",
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        color: var(--card-foreground);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-size: 14px; /* text-sm baseline */
+        line-height: 1.4;
+      }
+
+      /* ---- Frame (matches RenderClassificationInsights container) ---- */
+      .frame {
+        width: 720px;
+        background: var(--card);
+        color: var(--card-foreground);
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      /* ---- ClassificationInsights component layout ---- */
+      .ci-list > * + * {
+        margin-top: 12px; /* space-y-3 */
+      }
+
+      .ci-row {
+        display: flex;
+        align-items: center;
+        gap: 16px; /* gap-4 */
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .ci-label {
+        display: flex;
+        align-items: center;
+        gap: 8px; /* gap-2 */
+        min-width: 140px;
+      }
+
+      .ci-label .icon {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      .ci-label .text {
+        font-size: 14px;
+        font-weight: 500; /* font-medium */
+        color: var(--foreground);
+      }
+
+      .ci-progress {
+        flex: 1 1 0;
+        min-width: 120px;
+      }
+
+      .ci-progress .track {
+        position: relative;
+        height: 8px; /* h-2 */
+        width: 100%;
+        background: var(--border);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+
+      .ci-progress .fill {
+        position: absolute;
+        inset: 0;
+        background: var(--success); /* overridden per-row */
+        border-radius: 9999px;
+        transform-origin: left center;
+      }
+
+      .ci-count {
+        font-size: 14px;
+        color: var(--muted-foreground);
+        min-width: 100px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .ci-action {
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      /* Per-row semantic colors */
+      .ci-row.high .icon {
+        color: var(--success);
+      }
+      .ci-row.high .fill {
+        background: var(--success);
+      }
+      .ci-row.high .ci-action {
+        color: var(--success);
+      }
+
+      .ci-row.medium .icon {
+        color: var(--warning);
+      }
+      .ci-row.medium .fill {
+        background: var(--warning);
+      }
+      .ci-row.medium .ci-action {
+        color: var(--warning);
+      }
+
+      .ci-row.low .icon {
+        color: var(--error);
+      }
+      .ci-row.low .fill {
+        background: var(--error);
+      }
+      .ci-row.low .ci-action {
+        color: var(--error);
+      }
+
+      /* ---- Summary row ---- */
+      .ci-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+      }
+      .ci-summary .label {
+        font-size: 14px;
+        color: var(--muted-foreground);
+      }
+      .ci-summary .value {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--foreground);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="ci-list">
+        <!-- High Confidence -->
+        <div class="ci-row high">
+          <div class="ci-label">
+            <!-- lucide: check-circle -->
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span class="text">High Confidence</span>
+          </div>
+          <div class="ci-progress">
+            <div class="track">
+              <div class="fill" style="transform: translateX(-45%)"></div>
+            </div>
+          </div>
+          <div class="ci-count">61 (55%)</div>
+          <button type="button" class="ci-action">Review</button>
+        </div>
+
+        <!-- Medium Confidence -->
+        <div class="ci-row medium">
+          <div class="ci-label">
+            <!-- lucide: alert-circle -->
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span class="text">Medium Confidence</span>
+          </div>
+          <div class="ci-progress">
+            <div class="track">
+              <div class="fill" style="transform: translateX(-66%)"></div>
+            </div>
+          </div>
+          <div class="ci-count">42 (34%)</div>
+          <button type="button" class="ci-action">Review</button>
+        </div>
+
+        <!-- Low Confidence -->
+        <div class="ci-row low">
+          <div class="ci-label">
+            <!-- lucide: x-circle -->
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="m15 9-6 6" />
+              <path d="m9 9 6 6" />
+            </svg>
+            <span class="text">Low Confidence</span>
+          </div>
+          <div class="ci-progress">
+            <div class="track">
+              <div class="fill" style="transform: translateX(-89%)"></div>
+            </div>
+          </div>
+          <div class="ci-count">14 (11%)</div>
+          <button type="button" class="ci-action">Review</button>
+        </div>
+
+        <!-- Summary -->
+        <div class="ci-summary">
+          <span class="label">Total Classifications</span>
+          <span class="value">117 transactions</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
