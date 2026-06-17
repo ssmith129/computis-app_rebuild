@@ -35,7 +35,9 @@ export function TransactionsContent() {
       <div className="page-titlebar">
         <div className="p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">Transactions</h1>
+            <h1 className="text-display-lg font-bold text-foreground">
+              Transactions
+            </h1>
             <p className="text-muted-foreground">
               Review and manage classified crypto transactions
             </p>
@@ -47,7 +49,7 @@ export function TransactionsContent() {
           {/* Filters */}
           <div className="flex flex-wrap gap-4 mt-5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">
+              <span className="text-body-md text-muted-foreground whitespace-nowrap">
                 Confidence:
               </span>
               {confidenceFilters.map((filter) => {
@@ -72,7 +74,7 @@ export function TransactionsContent() {
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted-foreground whitespace-nowrap">
+              <span className="text-body-md text-muted-foreground whitespace-nowrap">
                 Status:
               </span>
               {statusFilters.map((filter) => (

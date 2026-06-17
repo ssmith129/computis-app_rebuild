@@ -48,7 +48,7 @@ export function ClassificationInsights() {
             {/* Icon and Label */}
             <div className="flex items-center gap-2 min-w-[140px]">
               <IconComponent className={`h-4 w-4 ${item.color}`} />
-              <span className="text-sm font-medium">{item.level}</span>
+              <span className="text-body-md font-medium">{item.level}</span>
             </div>
 
             {/* Progress Bar */}
@@ -57,14 +57,14 @@ export function ClassificationInsights() {
             </div>
 
             {/* Count and Percentage */}
-            <div className="text-sm text-muted-foreground min-w-[100px] text-right">
+            <div className="text-body-md text-muted-foreground min-w-[100px] text-right">
               {item.count} ({item.percentage}%)
             </div>
 
             {/* Primary Action */}
             <Button
               variant="link"
-              className={`${item.actionColor} p-0 h-auto text-sm`}
+              className={`${item.actionColor} p-0 h-auto text-body-md`}
             >
               Review
             </Button>
@@ -74,10 +74,10 @@ export function ClassificationInsights() {
 
       {/* Summary Row */}
       <div className="flex items-center justify-between pt-2 border-t">
-        <span className="text-sm text-muted-foreground">
+        <span className="text-body-md text-muted-foreground">
           Total Classifications
         </span>
-        <span className="text-sm font-medium">117 transactions</span>
+        <span className="text-body-md font-medium">117 transactions</span>
       </div>
     </div>
   );

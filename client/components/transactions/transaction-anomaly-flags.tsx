@@ -49,8 +49,10 @@ export function TransactionAnomalyFlags() {
               <IconComponent className={`h-4 w-4 ${flag.iconColor}`} />
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-medium truncate">{flag.title}</h4>
-              <p className="text-xs text-muted-foreground truncate">
+              <h4 className="text-body-md font-medium truncate">
+                {flag.title}
+              </h4>
+              <p className="text-caption text-muted-foreground truncate">
                 {flag.description}
               </p>
             </div>
@@ -58,7 +60,7 @@ export function TransactionAnomalyFlags() {
               <Button
                 size="sm"
                 variant="link"
-                className="text-primary p-0 h-auto text-sm shrink-0"
+                className="text-primary p-0 h-auto text-body-md shrink-0"
               >
                 {flag.actionLabel}
               </Button>

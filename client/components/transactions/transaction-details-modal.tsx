@@ -124,26 +124,28 @@ export function TransactionDetailsModal({
           <div className="rounded-lg border bg-muted/50 p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-muted-foreground mb-1">
+                <p className="text-body-md text-muted-foreground mb-1">
                   Transaction ID
                 </p>
-                <p className="font-mono text-sm font-medium">
+                <p className="font-mono text-body-md font-medium">
                   {transaction.id}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Date</p>
+                <p className="text-body-md text-muted-foreground mb-1">Date</p>
                 <p className="font-medium">{transaction.date}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Type</p>
+                <p className="text-body-md text-muted-foreground mb-1">Type</p>
                 <div className="flex items-center gap-2">
                   {getTransactionTypeIcon(transaction.type)}
                   <p className="font-medium">{transaction.type}</p>
                 </div>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1">Status</p>
+                <p className="text-body-md text-muted-foreground mb-1">
+                  Status
+                </p>
                 <StatusBadge variant={getStatusVariant(transaction.status)}>
                   {transaction.status}
                 </StatusBadge>
@@ -155,25 +157,27 @@ export function TransactionDetailsModal({
 
           {/* Asset & Amount Information */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Asset Information</h3>
+            <h3 className="text-heading-lg font-semibold mb-4">
+              Asset Information
+            </h3>
             <div className="space-y-4">
               <div className="flex items-start justify-between p-4 rounded-lg border bg-card">
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Asset</p>
+                  <p className="text-body-md text-muted-foreground">Asset</p>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-2xl text-orange-500">
+                    <span className="font-mono text-display-lg text-orange-500">
                       {transaction.icon}
                     </span>
-                    <span className="font-semibold text-lg">
+                    <span className="font-semibold text-heading-lg">
                       {transaction.asset}
                     </span>
                   </div>
                 </div>
                 <div className="text-right space-y-1">
-                  <p className="text-sm text-muted-foreground">Amount</p>
+                  <p className="text-body-md text-muted-foreground">Amount</p>
                   <p
                     className={cn(
-                      "font-mono text-lg font-bold",
+                      "font-mono text-heading-lg font-bold",
                       txIsDebit ? "text-error" : "text-success",
                     )}
                   >
@@ -184,12 +188,12 @@ export function TransactionDetailsModal({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 rounded-lg border bg-card">
-                  <p className="text-sm text-muted-foreground mb-1">
+                  <p className="text-body-md text-muted-foreground mb-1">
                     Fair Market Value (USD)
                   </p>
                   <p
                     className={cn(
-                      "font-mono text-xl font-bold",
+                      "font-mono text-display-sm font-bold",
                       txIsDebit ? "text-error" : "text-success",
                     )}
                   >
@@ -197,10 +201,10 @@ export function TransactionDetailsModal({
                   </p>
                 </div>
                 <div className="p-4 rounded-lg border bg-card">
-                  <p className="text-sm text-muted-foreground mb-1">
+                  <p className="text-body-md text-muted-foreground mb-1">
                     Transaction Hash
                   </p>
-                  <p className="font-mono text-xs text-muted-foreground break-all">
+                  <p className="font-mono text-caption text-muted-foreground break-all">
                     0x{transaction.id}abc...def{transaction.id}
                   </p>
                 </div>
@@ -212,16 +216,18 @@ export function TransactionDetailsModal({
 
           {/* AI Classification */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">AI Classification</h3>
+            <h3 className="text-heading-lg font-semibold mb-4">
+              AI Classification
+            </h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 rounded-lg border bg-card">
                 <div>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-body-md text-muted-foreground mb-2">
                     Classification
                   </p>
                   <Badge
                     className={cn(
-                      "text-sm px-3 py-1 border",
+                      "text-body-md px-3 py-1 border",
                       getClassificationBadgeColor(transaction.aiClassification),
                     )}
                   >
@@ -229,13 +235,13 @@ export function TransactionDetailsModal({
                   </Badge>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-body-md text-muted-foreground mb-2">
                     Confidence Score
                   </p>
                   <div className="flex items-center gap-2">
                     <span
                       className={cn(
-                        "text-2xl font-bold",
+                        "text-display-lg font-bold",
                         getConfidenceColor(transaction.confidence),
                       )}
                     >
@@ -250,7 +256,7 @@ export function TransactionDetailsModal({
 
               {/* Confidence Indicator Bar */}
               <div className="space-y-2">
-                <div className="flex justify-between text-xs text-muted-foreground">
+                <div className="flex justify-between text-caption text-muted-foreground">
                   <span>Low</span>
                   <span>Medium</span>
                   <span>High</span>
@@ -280,12 +286,12 @@ export function TransactionDetailsModal({
                   <div className="flex gap-2">
                     <AlertTriangle className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-warning-text">
+                      <p className="text-body-md font-medium text-warning-text">
                         {transaction.confidence < 40
                           ? "Low Confidence Detection"
                           : "Medium Confidence Detection"}
                       </p>
-                      <p className="text-xs text-warning-text mt-1">
+                      <p className="text-caption text-warning-text mt-1">
                         This transaction may require manual review to ensure
                         accurate classification.
                       </p>
@@ -300,8 +306,10 @@ export function TransactionDetailsModal({
 
           {/* Additional Details */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Additional Details</h3>
-            <div className="space-y-3 text-sm">
+            <h3 className="text-heading-lg font-semibold mb-4">
+              Additional Details
+            </h3>
+            <div className="space-y-3 text-body-md">
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Network</span>
                 <span className="font-medium">

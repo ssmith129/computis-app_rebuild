@@ -250,7 +250,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-0 h-auto font-medium text-xs"
+                  className="p-0 h-auto font-medium text-caption"
                   aria-label="Sort by date"
                 >
                   Date
@@ -300,10 +300,10 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 </TableCell>
                 <TableCell className="asset-column">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-orange-500 text-sm">
+                    <span className="font-mono text-orange-500 text-body-md">
                       {transaction.icon}
                     </span>
-                    <span className="text-sm truncate max-w-[120px] md:max-w-[160px]">
+                    <span className="text-body-md truncate max-w-[120px] md:max-w-[160px]">
                       {transaction.asset}
                     </span>
                   </div>
@@ -318,7 +318,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                   <Badge
                     className={`${getClassificationBadgeColor(
                       transaction.aiClassification,
-                    )} text-xs px-2 py-0.5 whitespace-nowrap`}
+                    )} text-caption px-2 py-0.5 whitespace-nowrap`}
                   >
                     {transaction.aiClassification}
                   </Badge>
@@ -326,7 +326,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 <TableCell className="confidence-column">
                   <div className="flex items-center gap-1.5">
                     <span
-                      className={`font-medium text-sm ${getConfidenceColor(transaction.confidence)}`}
+                      className={`font-medium text-body-md ${getConfidenceColor(transaction.confidence)}`}
                     >
                       {transaction.confidence}%
                     </span>
@@ -413,12 +413,12 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
 
       {/* Table Footer */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-2 py-2 border-t">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-body-md text-muted-foreground">
           Showing {startIndex + 1} of {filteredTransactions.length} transactions
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
+          <span className="text-body-md text-muted-foreground whitespace-nowrap">
             Bulk Actions:
           </span>
           <Button
@@ -476,7 +476,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
             {totalPages > 5 && (
               <span className="text-muted-foreground">...</span>
             )}
-            <span className="text-sm text-muted-foreground ml-2">
+            <span className="text-body-md text-muted-foreground ml-2">
               {totalPages}
             </span>
           </div>

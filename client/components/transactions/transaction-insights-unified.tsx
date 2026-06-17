@@ -117,18 +117,18 @@ export function TransactionInsightsUnified() {
             <div>
               <h3
                 id="classification-heading"
-                className="text-base font-semibold text-foreground leading-none mb-1"
+                className="text-heading-md font-semibold text-foreground leading-none mb-1"
               >
                 AI Classification
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-caption text-muted-foreground">
                 Confidence distribution
               </p>
             </div>
           </div>
           <Badge
             variant="outline"
-            className="text-xs font-semibold px-2.5 py-1"
+            className="text-caption font-semibold px-2.5 py-1"
           >
             117
           </Badge>
@@ -157,10 +157,10 @@ export function TransactionInsightsUnified() {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-sm font-semibold text-foreground leading-tight">
+                    <span className="text-body-md font-semibold text-foreground leading-tight">
                       {item.level}
                     </span>
-                    <span className="text-xs text-muted-foreground leading-tight">
+                    <span className="text-caption text-muted-foreground leading-tight">
                       {item.count} txns
                     </span>
                   </div>
@@ -174,7 +174,7 @@ export function TransactionInsightsUnified() {
                     aria-label={`${item.fullLevel}: ${item.percentage}% of transactions`}
                   />
                   <span
-                    className={`text-sm font-bold tabular-nums ${item.color} min-w-[42px] text-right`}
+                    className={`text-body-md font-bold tabular-nums ${item.color} min-w-[42px] text-right`}
                     aria-label={`${item.percentage} percent`}
                   >
                     {item.percentage}%
@@ -185,7 +185,7 @@ export function TransactionInsightsUnified() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={`${item.actionColor} h-7 px-2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity`}
+                  className={`${item.actionColor} h-7 px-2 text-caption font-medium opacity-0 group-hover:opacity-100 transition-opacity`}
                   aria-label={`Review ${item.fullLevel.toLowerCase()} transactions`}
                 >
                   Review
@@ -197,10 +197,10 @@ export function TransactionInsightsUnified() {
 
         {/* Footer Summary */}
         <div className="mt-5 pt-4 border-t flex items-center justify-between">
-          <span className="text-xs font-medium text-muted-foreground">
+          <span className="text-caption font-medium text-muted-foreground">
             Total Classified
           </span>
-          <span className="text-sm font-bold text-foreground tabular-nums">
+          <span className="text-body-md font-bold text-foreground tabular-nums">
             117 transactions
           </span>
         </div>
@@ -220,11 +220,11 @@ export function TransactionInsightsUnified() {
             <div>
               <h3
                 id="anomaly-heading"
-                className="text-base font-semibold text-foreground leading-none mb-1"
+                className="text-heading-md font-semibold text-foreground leading-none mb-1"
               >
                 Anomaly Flags
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-caption text-muted-foreground">
                 Issues requiring attention
               </p>
             </div>
@@ -233,7 +233,7 @@ export function TransactionInsightsUnified() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-muted-foreground hover:text-foreground h-auto p-0 text-xs font-medium"
+              className="text-muted-foreground hover:text-foreground h-auto p-0 text-caption font-medium"
               aria-label="View all anomaly flags"
             >
               View All →
@@ -272,10 +272,10 @@ export function TransactionInsightsUnified() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-foreground leading-tight mb-0.5">
+                      <h4 className="text-body-md font-bold text-foreground leading-tight mb-0.5">
                         {flag.title}
                       </h4>
-                      <p className="text-xs text-muted-foreground leading-tight">
+                      <p className="text-caption text-muted-foreground leading-tight">
                         {flag.subtitle}
                       </p>
                     </div>
@@ -284,23 +284,23 @@ export function TransactionInsightsUnified() {
                   {/* Metrics Section */}
                   <div className="flex items-center justify-between py-2 px-3 rounded-md bg-muted/50">
                     <div className="flex flex-col items-center flex-1">
-                      <span className="text-xs text-muted-foreground mb-0.5">
+                      <span className="text-caption text-muted-foreground mb-0.5">
                         Count
                       </span>
                       <span
-                        className={`text-xs font-bold ${flag.iconColor} tabular-nums`}
+                        className={`text-caption font-bold ${flag.iconColor} tabular-nums`}
                       >
                         {flag.count}
                       </span>
                     </div>
                     <div className="h-8 w-px bg-border mx-2" />
                     <div className="flex flex-col items-center flex-1">
-                      <span className="text-xs text-muted-foreground mb-0.5">
+                      <span className="text-caption text-muted-foreground mb-0.5">
                         Status
                       </span>
                       <Badge
                         variant="secondary"
-                        className={`text-xs font-semibold ${flag.iconBg} ${flag.iconColor} border-0 px-2`}
+                        className={`text-caption font-semibold ${flag.iconBg} ${flag.iconColor} border-0 px-2`}
                       >
                         {flag.metric}
                       </Badge>
@@ -311,7 +311,7 @@ export function TransactionInsightsUnified() {
                   <div className="mt-auto pt-2 text-center">
                     <Link
                       to="/data-anomaly-detection"
-                      className={`text-sm font-medium ${flag.iconColor} hover:underline transition-all`}
+                      className={`text-body-md font-medium ${flag.iconColor} hover:underline transition-all`}
                       aria-label={`${flag.actionLabel} ${flag.title.toLowerCase()}`}
                     >
                       {flag.actionLabel} →
@@ -331,12 +331,12 @@ export function TransactionInsightsUnified() {
                 className="h-4 w-4 text-orange-600 shrink-0"
                 aria-hidden="true"
               />
-              <span className="text-xs font-medium text-foreground">
+              <span className="text-caption font-medium text-foreground">
                 Active Issues
               </span>
             </div>
             <span
-              className="text-sm font-bold text-orange-600 tabular-nums"
+              className="text-body-md font-bold text-orange-600 tabular-nums"
               aria-label="20 total anomalies"
             >
               20 Total
