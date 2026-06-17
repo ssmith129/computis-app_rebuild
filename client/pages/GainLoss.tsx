@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { GainLossContent } from "@/components/gain-loss/gain-loss-content";
 
 export default function GainLoss() {

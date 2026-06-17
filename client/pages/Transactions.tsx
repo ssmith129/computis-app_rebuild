@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { TransactionsContent } from "@/components/transactions/transactions-content";
 
 export default function Transactions() {

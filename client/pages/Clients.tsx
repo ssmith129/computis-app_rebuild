@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { ClientsContent } from "@/components/clients/clients-content";
 
 export default function Clients() {

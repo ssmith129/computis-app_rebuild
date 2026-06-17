@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { NavItem, NavItemProps } from "./NavItem";
+import { NavItem, NavItemProps } from "./nav-item";
 import { cn } from "@/lib/utils";
 import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
 
