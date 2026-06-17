@@ -57,9 +57,13 @@ const validationChecks = [
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "Passed":
-      return <Badge className="bg-success-bg text-success-text">{status}</Badge>;
+      return (
+        <Badge className="bg-success-bg text-success-text">{status}</Badge>
+      );
     case "Warning":
-      return <Badge className="bg-warning-bg text-warning-text">{status}</Badge>;
+      return (
+        <Badge className="bg-warning-bg text-warning-text">{status}</Badge>
+      );
     case "Failed":
       return <Badge className="bg-error-bg text-error-text">{status}</Badge>;
     default:
@@ -85,7 +89,7 @@ export function ValidationStep({
           <FileText className="h-5 w-5 text-muted-foreground" />
           <div>
             <h3 className="font-medium">{fileName}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               1,247 transactions • 85.4 KB
             </p>
           </div>
@@ -95,7 +99,9 @@ export function ValidationStep({
       {/* Validation Results Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold mb-1">Validation Results</h3>
+          <h3 className="text-heading-lg font-semibold mb-1">
+            Validation Results
+          </h3>
           <div className="flex items-center gap-2">
             {!hasFailed && !hasWarnings && (
               <CheckCircle className="h-4 w-4 text-green-500" />
@@ -104,7 +110,7 @@ export function ValidationStep({
               <AlertTriangle className="h-4 w-4 text-yellow-500" />
             )}
             {hasFailed && <XCircle className="h-4 w-4 text-red-500" />}
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               {hasFailed
                 ? "Validation failed - please fix errors"
                 : hasWarnings
@@ -128,13 +134,15 @@ export function ValidationStep({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <IconComponent className={`h-4 w-4 ${check.color}`} />
-                  <span className="font-medium text-sm">{check.title}</span>
+                  <span className="font-medium text-body-md">
+                    {check.title}
+                  </span>
                 </div>
                 {getStatusBadge(check.status)}
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between text-sm">
+                <div className="flex justify-between text-body-md">
                   <span className="text-muted-foreground">
                     {check.description}
                   </span>
@@ -151,7 +159,7 @@ export function ValidationStep({
 
       {/* Summary and Actions */}
       <div className="pt-4 border-t space-y-4">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-body-md">
           <span className="text-muted-foreground">Overall Status:</span>
           <div className="flex items-center gap-2">
             {!hasFailed && <CheckCircle className="h-4 w-4 text-green-500" />}

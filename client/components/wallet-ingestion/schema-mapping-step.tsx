@@ -117,7 +117,7 @@ export function SchemaMappingStep({
           <FileText className="h-5 w-5 text-muted-foreground" />
           <div>
             <h3 className="font-medium">{fileName}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               Map your CSV columns to our standard schema
             </p>
           </div>
@@ -127,14 +127,14 @@ export function SchemaMappingStep({
       {/* Mapping Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold mb-1">Schema Mapping</h3>
+          <h3 className="text-heading-lg font-semibold mb-1">Schema Mapping</h3>
           <div className="flex items-center gap-2">
             {requiredFieldsMapped ? (
               <CheckCircle className="h-4 w-4 text-green-500" />
             ) : (
               <AlertTriangle className="h-4 w-4 text-yellow-500" />
             )}
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               {requiredFieldsMapped
                 ? "All required fields mapped successfully"
                 : "Please map all required fields to continue"}
@@ -146,7 +146,7 @@ export function SchemaMappingStep({
       {/* Schema Mapping Table */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Column Mapping</CardTitle>
+          <CardTitle className="text-heading-md">Column Mapping</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {detectedColumns.map((column, index) => (
@@ -155,17 +155,17 @@ export function SchemaMappingStep({
                 {/* Original Column */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-sm">
+                    <span className="font-medium text-body-md">
                       {column.original}
                     </span>
                     {column.required && (
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-caption">
                         Required
                       </Badge>
                     )}
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-caption text-muted-foreground">
                       Confidence:
                     </span>
                     {getConfidenceBadge(column.confidence)}
@@ -207,11 +207,11 @@ export function SchemaMappingStep({
       {/* Sample Data Preview */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Sample Data Preview</CardTitle>
+          <CardTitle className="text-heading-md">Sample Data Preview</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <div className="grid grid-cols-4 gap-4 text-xs font-medium text-muted-foreground border-b pb-2">
+            <div className="grid grid-cols-4 gap-4 text-caption font-medium text-muted-foreground border-b pb-2">
               <span>Original</span>
               <span>Mapped</span>
               <span>Sample Value</span>
@@ -220,7 +220,7 @@ export function SchemaMappingStep({
             {detectedColumns.slice(0, 4).map((column) => (
               <div
                 key={column.original}
-                className="grid grid-cols-4 gap-4 text-sm py-2"
+                className="grid grid-cols-4 gap-4 text-body-md py-2"
               >
                 <span className="font-medium">{column.original}</span>
                 <span className="text-muted-foreground">
