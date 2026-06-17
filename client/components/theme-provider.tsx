@@ -27,9 +27,14 @@ function systemPrefersDark(): boolean {
   );
 }
 
-function resolve(theme: Theme): ResolvedTheme {
-  if (theme === "system") return systemPrefersDark() ? "dark" : "light";
+/** Pure resolver (unit-tested): "system" follows the OS preference. */
+export function resolveTheme(theme: Theme, prefersDark: boolean): ResolvedTheme {
+  if (theme === "system") return prefersDark ? "dark" : "light";
   return theme;
+}
+
+function resolve(theme: Theme): ResolvedTheme {
+  return resolveTheme(theme, systemPrefersDark());
 }
 
 function applyToDocument(resolved: ResolvedTheme) {
