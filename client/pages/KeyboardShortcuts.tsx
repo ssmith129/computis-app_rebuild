@@ -315,7 +315,7 @@ export default function KeyboardShortcuts() {
   );
 
   return (
-    <DashboardLayout activeItem="Keyboard Shortcuts">
+    <DashboardLayout>
       <div className="app-content bg-muted">
         {/* Page Header */}
         <div className="page-titlebar">

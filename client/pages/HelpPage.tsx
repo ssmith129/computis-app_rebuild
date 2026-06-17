@@ -98,7 +98,7 @@ export default function HelpPage() {
   ];
 
   return (
-    <DashboardLayout activeItem="Help Page">
+    <DashboardLayout>
       <div className="app-content bg-muted">
         {/* Page Header */}
         <div className="page-titlebar">

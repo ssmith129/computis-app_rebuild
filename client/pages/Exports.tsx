@@ -3,7 +3,7 @@ import { ExportsContent } from "@/components/exports/exports-content";
 
 export default function Exports() {
   return (
-    <AppLayout activeItem="Exports">
+    <AppLayout>
       <ExportsContent />
     </AppLayout>
   );

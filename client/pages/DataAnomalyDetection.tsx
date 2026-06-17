@@ -3,7 +3,7 @@ import { DataAnomalyDetectionContent } from "@/components/data-anomaly-detection
 
 export default function DataAnomalyDetection() {
   return (
-    <AppLayout activeItem="Transactions">
+    <AppLayout>
       <DataAnomalyDetectionContent />
     </AppLayout>
   );

@@ -3,7 +3,7 @@ import { SettingsContent } from "@/components/settings/settings-content";
 
 export default function Settings() {
   return (
-    <AppLayout activeItem="General Settings">
+    <AppLayout>
       <SettingsContent />
     </AppLayout>
   );

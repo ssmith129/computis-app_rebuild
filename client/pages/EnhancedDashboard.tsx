@@ -33,7 +33,7 @@ import {
  */
 export function EnhancedDashboard() {
   return (
-    <DashboardLayout activeItem="Dashboard">
+    <DashboardLayout>
       {/* This content replaces the default DashboardContent */}
       <div className="app-content bg-muted">
         {/* Page Header - Fixed when scrolling */}

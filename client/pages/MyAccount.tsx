@@ -28,7 +28,7 @@ export default function MyAccount() {
   const [pushNotifications, setPushNotifications] = useState(false);
 
   return (
-    <DashboardLayout activeItem="My Account">
+    <DashboardLayout>
       <div className="app-content bg-muted">
         {/* Page Header */}
         <div className="page-titlebar">

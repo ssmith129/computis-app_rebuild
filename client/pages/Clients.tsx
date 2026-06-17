@@ -3,7 +3,7 @@ import { ClientsContent } from "@/components/clients/clients-content";
 
 export default function Clients() {
   return (
-    <AppLayout activeItem="Clients">
+    <AppLayout>
       <ClientsContent />
     </AppLayout>
   );
