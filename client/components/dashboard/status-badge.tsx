@@ -13,13 +13,17 @@ const variantStyles = {
   pending: "bg-info-bg text-info-text border-info/30",
 };
 
-export function StatusBadge({ variant, children, className }: StatusBadgeProps) {
+export function StatusBadge({
+  variant,
+  children,
+  className,
+}: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border",
+        "inline-flex items-center px-2 py-1 rounded-md text-caption font-medium border",
         variantStyles[variant],
-        className
+        className,
       )}
     >
       {children}

@@ -87,7 +87,7 @@ export function DashboardHeader() {
               focus-visible:ring-offset-0
               p-0
               min-w-0
-              text-sm sm:text-base
+              text-body-md sm:text-heading-md
             "
             aria-label="Search"
           />
@@ -123,7 +123,7 @@ export function DashboardHeader() {
                   <User className="h-4 w-4" />
                 </AvatarFallback>
               </Avatar>
-              <span className="text-white font-medium text-sm hidden lg:inline-block">
+              <span className="text-white font-medium text-body-md hidden lg:inline-block">
                 John Smith
               </span>
               <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 text-white hidden lg:inline-block" />

@@ -154,19 +154,19 @@ export function AnimatedPieChart({
       <div className="absolute inset-0 flex items-center justify-center">
         {centerContent || (
           <div className="text-center">
-            <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">
+            <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
               {total.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500">Total</div>
+            <div className="text-caption text-gray-500">Total</div>
           </div>
         )}
       </div>
 
       {/* Active segment tooltip */}
       {activeSegment !== null && (
-        <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm animate-in fade-in-0 zoom-in-95 duration-200 z-10 whitespace-nowrap">
+        <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-caption sm:text-body-md animate-in fade-in-0 zoom-in-95 duration-200 z-10 whitespace-nowrap">
           <div className="font-medium">{segments[activeSegment].label}</div>
-          <div className="text-xs opacity-75">
+          <div className="text-caption opacity-75">
             {segments[activeSegment].value.toLocaleString()} (
             {segments[activeSegment].percentage}%)
           </div>
@@ -212,7 +212,7 @@ export function EnhancedLegend({
               style={{ backgroundColor: item.color }}
             />
             <div className="min-w-0 flex-1">
-              <span className="text-xs sm:text-sm font-medium text-gray-900 truncate block">
+              <span className="text-caption sm:text-body-md font-medium text-gray-900 truncate block">
                 {item.label}
               </span>
               {item.trend && item.trendValue && (
@@ -225,7 +225,7 @@ export function EnhancedLegend({
                   )}
                   <span
                     className={cn(
-                      "text-xs truncate",
+                      "text-caption truncate",
                       item.trend === "up" && "text-success",
                       item.trend === "down" && "text-error",
                       item.trend === "stable" && "text-gray-500",
@@ -238,10 +238,10 @@ export function EnhancedLegend({
             </div>
           </div>
           <div className="text-right flex-shrink-0 ml-2">
-            <div className="text-xs sm:text-sm font-semibold text-gray-900 whitespace-nowrap">
+            <div className="text-caption sm:text-body-md font-semibold text-gray-900 whitespace-nowrap">
               {item.value.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500 whitespace-nowrap">
+            <div className="text-caption text-gray-500 whitespace-nowrap">
               {Math.round(
                 (item.value / data.reduce((sum, d) => sum + d.value, 0)) * 100,
               )}
@@ -330,17 +330,17 @@ export function EnhancedPieChartSections() {
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
             <div className="min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
+              <h3 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 truncate">
                 Gain/Loss Breakdown
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-caption sm:text-body-md text-gray-500">
                 Current tax year performance
               </p>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <Badge
                 variant="secondary"
-                className="bg-success-bg text-success-text text-xs"
+                className="bg-success-bg text-success-text text-caption"
               >
                 <TrendingUp className="h-3 w-3 mr-1" />
                 Net Positive
@@ -367,10 +367,10 @@ export function EnhancedPieChartSections() {
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-green-600">
+                    <div className="text-heading-lg sm:text-display-sm font-bold text-green-600">
                       ${totalGainLoss.toLocaleString()}
                     </div>
-                    <div className="text-xs text-gray-500">Net Gain</div>
+                    <div className="text-caption text-gray-500">Net Gain</div>
                   </div>
                 }
               />
@@ -384,17 +384,17 @@ export function EnhancedPieChartSections() {
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
             <div className="min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
+              <h3 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 truncate">
                 Transaction Status
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-caption sm:text-body-md text-gray-500">
                 Processing pipeline overview
               </p>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <Badge
                 variant="secondary"
-                className="bg-info-bg text-info-text text-xs"
+                className="bg-info-bg text-info-text text-caption"
               >
                 {Math.round(
                   (transactionStatusData[0].value / totalTransactions) * 100,
@@ -423,10 +423,10 @@ export function EnhancedPieChartSections() {
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-gray-900">
+                    <div className="text-heading-lg sm:text-display-sm font-bold text-gray-900">
                       {totalTransactions.toLocaleString()}
                     </div>
-                    <div className="text-xs text-gray-500">Total Txs</div>
+                    <div className="text-caption text-gray-500">Total Txs</div>
                   </div>
                 }
               />

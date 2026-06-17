@@ -29,16 +29,21 @@ export function DashboardCard({
   return (
     <Card className="p-6 bg-white">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
-        <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Card options">
+        <h3 className="text-body-md font-medium text-gray-600">{title}</h3>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-6 w-6"
+          aria-label="Card options"
+        >
           <MoreHorizontal className="h-4 w-4 text-gray-400" />
         </Button>
       </div>
 
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <div className="text-lg font-bold text-gray-900">{value}</div>
-          <div className={`text-xs ${changeColorClass}`}>{change}</div>
+          <div className="text-heading-lg font-bold text-gray-900">{value}</div>
+          <div className={`text-caption ${changeColorClass}`}>{change}</div>
         </div>
 
         <MiniChart data={chartData} color={chartColor} />

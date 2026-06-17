@@ -22,8 +22,15 @@ export function PieChartSections() {
       {/* Txs Status Chart */}
       <Card className="p-6 bg-white">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-gray-900">Txs Status</h3>
-          <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Transaction status options">
+          <h3 className="text-heading-lg font-bold text-gray-900">
+            Txs Status
+          </h3>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6"
+            aria-label="Transaction status options"
+          >
             <MoreHorizontal className="h-4 w-4 text-gray-400" />
           </Button>
         </div>
@@ -39,8 +46,15 @@ export function PieChartSections() {
       {/* Txs Upload Status Chart */}
       <Card className="p-6 bg-white">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-gray-900">Txs Upload Status</h3>
-          <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Upload status options">
+          <h3 className="text-heading-lg font-bold text-gray-900">
+            Txs Upload Status
+          </h3>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6"
+            aria-label="Upload status options"
+          >
             <MoreHorizontal className="h-4 w-4 text-gray-400" />
           </Button>
         </div>

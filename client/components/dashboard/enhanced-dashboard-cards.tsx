@@ -65,7 +65,6 @@ export function EnhancedDashboardCard({
   badge,
   animate = true,
 }: EnhancedDashboardCardProps) {
-
   const changeColorClass = {
     positive: "text-success",
     negative: "text-error",
@@ -84,15 +83,11 @@ export function EnhancedDashboardCard({
     : "bg-card transition-shadow duration-300 hover:shadow-lg cursor-pointer";
 
   const cardContent = (
-    <Card
-      className={cardClassName}
-    >
+    <Card className={cardClassName}>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2 sm:mb-3">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <div
-              className={`p-2 sm:p-3 rounded-xl ${iconBg} flex-shrink-0`}
-            >
+            <div className={`p-2 sm:p-3 rounded-xl ${iconBg} flex-shrink-0`}>
               <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColor}`} />
             </div>
             <div className="min-w-0">
@@ -102,7 +97,7 @@ export function EnhancedDashboardCard({
               {badge && (
                 <Badge
                   variant="secondary"
-                  className={`text-xs ${
+                  className={`text-caption ${
                     badge.variant === "success"
                       ? "bg-success-bg text-success-text"
                       : badge.variant === "warning"
@@ -129,9 +124,7 @@ export function EnhancedDashboardCard({
 
         <div className="space-y-2">
           <div className="space-y-1">
-            <div
-              className="text-display-sm font-bold text-foreground"
-            >
+            <div className="text-display-sm font-bold text-foreground">
               {typeof value === "number" ? value.toLocaleString() : value}
             </div>
             {subtitle && (
@@ -156,7 +149,7 @@ export function EnhancedDashboardCard({
 
           {progress !== undefined && (
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-body-md">
                 <span className="text-muted-foreground">Progress</span>
                 <span className="font-medium">{progress}%</span>
               </div>
@@ -172,7 +165,7 @@ export function EnhancedDashboardCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="w-full text-caption hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 {actionLabel}
                 <ArrowUpRight className="h-3 w-3 ml-1" />
@@ -298,14 +291,14 @@ export function EnhancedDashboardCards() {
           <h2 className="text-heading-sm font-bold text-foreground truncate">
             Key Metrics & Tools
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500">
+          <p className="text-caption sm:text-body-md text-gray-500">
             Overview of your crypto tax preparation status
           </p>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           <Badge
             variant="secondary"
-            className="bg-success-bg text-success-text text-xs"
+            className="bg-success-bg text-success-text text-caption"
           >
             <CheckCircle className="h-3 w-3 mr-1" />
             All Systems Operational
@@ -328,7 +321,7 @@ export function EnhancedDashboardCards() {
                 <h3 className="font-semibold text-gray-900 mb-2">
                   Ready to File?
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-body-md text-gray-600 mb-4">
                   All transactions classified and forms generated
                 </p>
                 <Link to="/exports">
@@ -350,7 +343,7 @@ export function EnhancedDashboardCards() {
                 <h3 className="font-semibold text-gray-900 mb-2">
                   Upload New Data
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-body-md text-gray-600 mb-4">
                   Import transactions from wallets and exchanges
                 </p>
                 <Link to="/wallet-ingestion">

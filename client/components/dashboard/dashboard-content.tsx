@@ -41,7 +41,7 @@ export function DashboardContent() {
               <TabsList className="inline-flex h-11 items-center justify-start rounded-lg bg-gray-100 p-1">
                 <TabsTrigger
                   value="admin"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="Admin view - Full access to all dashboard features"
                 >
                   <Shield className="h-4 w-4" />
@@ -49,7 +49,7 @@ export function DashboardContent() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="client"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="Client view - Limited to client-accessible data"
                 >
                   <Users className="h-4 w-4" />
@@ -57,7 +57,7 @@ export function DashboardContent() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="cpa"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="CPA view - Tax preparer tools and client management"
                 >
                   <Briefcase className="h-4 w-4" />
@@ -86,7 +86,7 @@ export function DashboardContent() {
                       value="overview"
                       className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-body-md text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
@@ -94,7 +94,7 @@ export function DashboardContent() {
                       value="reports"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Reports
                       </span>
                     </TabsTrigger>
@@ -102,7 +102,7 @@ export function DashboardContent() {
                       value="portfolio"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -146,24 +146,22 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             IRS Form 8949
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Capital gains and losses
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Forms Ready:</span>
                           <span className="font-medium">3 of 3</span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Last Updated:</span>
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        View Reports
-                      </Button>
+                      <Button className="w-full mt-4">View Reports</Button>
                     </div>
 
                     <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
@@ -187,19 +185,19 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             Gain/Loss Analysis
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Detailed P&L breakdown
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Net Gain/Loss:</span>
                           <span className="font-medium text-success">
                             +$127,456
                           </span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Tax Liability:</span>
                           <span className="font-medium">$25,491</span>
                         </div>
@@ -230,24 +228,22 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             Export Package
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Ready for filing
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Forms Included:</span>
                           <span className="font-medium">8949, Schedule D</span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">File Size:</span>
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        Download Package
-                      </Button>
+                      <Button className="w-full mt-4">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
@@ -255,20 +251,22 @@ export function DashboardContent() {
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              45.2%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $234,567
                             </div>
                           </div>
@@ -276,13 +274,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              32.1%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $166,234
                             </div>
                           </div>
@@ -290,13 +290,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              22.7%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $117,845
                             </div>
                           </div>
@@ -305,39 +307,39 @@ export function DashboardContent() {
                     </div>
 
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-success">
+                          <span className="text-heading-lg font-bold text-success">
                             +$127,456 (32.4%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-info">
+                          <span className="text-heading-lg font-bold text-info">
                             +$45,234 (11.8%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $391,190
                           </span>
                         </div>
@@ -361,7 +363,7 @@ export function DashboardContent() {
                       value="overview"
                       className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-body-md text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
@@ -369,7 +371,7 @@ export function DashboardContent() {
                       value="portfolio"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -389,20 +391,22 @@ export function DashboardContent() {
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              45.2%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $234,567
                             </div>
                           </div>
@@ -410,13 +414,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              32.1%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $166,234
                             </div>
                           </div>
@@ -424,13 +430,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              22.7%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $117,845
                             </div>
                           </div>
@@ -439,39 +447,39 @@ export function DashboardContent() {
                     </div>
 
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-success">
+                          <span className="text-heading-lg font-bold text-success">
                             +$127,456 (32.4%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-info">
+                          <span className="text-heading-lg font-bold text-info">
                             +$45,234 (11.8%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $391,190
                           </span>
                         </div>
@@ -495,7 +503,7 @@ export function DashboardContent() {
                       value="overview"
                       className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-body-md text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
@@ -503,7 +511,7 @@ export function DashboardContent() {
                       value="reports"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Reports
                       </span>
                     </TabsTrigger>
@@ -511,7 +519,7 @@ export function DashboardContent() {
                       value="portfolio"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -519,7 +527,7 @@ export function DashboardContent() {
                       value="clients"
                       className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-body-md text-gray-500">
                         Client Management
                       </span>
                     </TabsTrigger>
@@ -563,24 +571,22 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             IRS Form 8949
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Capital gains and losses
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Forms Ready:</span>
                           <span className="font-medium">3 of 3</span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Last Updated:</span>
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        View Reports
-                      </Button>
+                      <Button className="w-full mt-4">View Reports</Button>
                     </div>
 
                     <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
@@ -604,19 +610,19 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             Gain/Loss Analysis
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Detailed P&L breakdown
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Net Gain/Loss:</span>
                           <span className="font-medium text-success">
                             +$127,456
                           </span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Tax Liability:</span>
                           <span className="font-medium">$25,491</span>
                         </div>
@@ -647,24 +653,22 @@ export function DashboardContent() {
                           <h3 className="font-semibold text-gray-900">
                             Export Package
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-body-md text-gray-500">
                             Ready for filing
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">Forms Included:</span>
                           <span className="font-medium">8949, Schedule D</span>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-body-md">
                           <span className="text-gray-600">File Size:</span>
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        Download Package
-                      </Button>
+                      <Button className="w-full mt-4">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
@@ -672,20 +676,22 @@ export function DashboardContent() {
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              45.2%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $234,567
                             </div>
                           </div>
@@ -693,13 +699,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              32.1%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $166,234
                             </div>
                           </div>
@@ -707,13 +715,15 @@ export function DashboardContent() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium">
+                            <span className="text-body-md font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
-                            <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-body-md font-semibold">
+                              22.7%
+                            </div>
+                            <div className="text-caption text-gray-500">
                               $117,845
                             </div>
                           </div>
@@ -722,39 +732,39 @@ export function DashboardContent() {
                     </div>
 
                     <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-success">
+                          <span className="text-heading-lg font-bold text-success">
                             +$127,456 (32.4%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
-                          <span className="text-lg font-bold text-info">
+                          <span className="text-heading-lg font-bold text-info">
                             +$45,234 (11.8%)
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-heading-lg font-bold text-gray-900">
                             $391,190
                           </span>
                         </div>
@@ -767,20 +777,22 @@ export function DashboardContent() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div className="bg-gradient-to-br from-info-bg to-info-bg/80 p-6 rounded-lg border border-info/30">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-info-text">
+                        <h4 className="text-body-md font-medium text-info-text">
                           Total Clients
                         </h4>
                         <Users className="h-4 w-4 text-info" />
                       </div>
-                      <p className="text-2xl font-bold text-info-text">47</p>
-                      <p className="text-xs text-info-text mt-1">
+                      <p className="text-display-lg font-bold text-info-text">
+                        47
+                      </p>
+                      <p className="text-caption text-info-text mt-1">
                         +3 this month
                       </p>
                     </div>
 
                     <div className="bg-gradient-to-br from-success-bg to-success-bg/80 p-6 rounded-lg border border-success/30">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-success-text">
+                        <h4 className="text-body-md font-medium text-success-text">
                           Active Returns
                         </h4>
                         <svg
@@ -797,13 +809,17 @@ export function DashboardContent() {
                           />
                         </svg>
                       </div>
-                      <p className="text-2xl font-bold text-success-text">23</p>
-                      <p className="text-xs text-green-700 mt-1">In progress</p>
+                      <p className="text-display-lg font-bold text-success-text">
+                        23
+                      </p>
+                      <p className="text-caption text-green-700 mt-1">
+                        In progress
+                      </p>
                     </div>
 
                     <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-purple-900">
+                        <h4 className="text-body-md font-medium text-purple-900">
                           Pending Review
                         </h4>
                         <svg
@@ -820,15 +836,17 @@ export function DashboardContent() {
                           />
                         </svg>
                       </div>
-                      <p className="text-2xl font-bold text-purple-900">8</p>
-                      <p className="text-xs text-purple-700 mt-1">
+                      <p className="text-display-lg font-bold text-purple-900">
+                        8
+                      </p>
+                      <p className="text-caption text-purple-700 mt-1">
                         Needs attention
                       </p>
                     </div>
 
                     <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border border-orange-200">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-warning-text">
+                        <h4 className="text-body-md font-medium text-warning-text">
                           Completed
                         </h4>
                         <svg
@@ -845,22 +863,24 @@ export function DashboardContent() {
                           />
                         </svg>
                       </div>
-                      <p className="text-2xl font-bold text-warning-text">16</p>
-                      <p className="text-xs text-warning-text mt-1">
+                      <p className="text-display-lg font-bold text-warning-text">
+                        16
+                      </p>
+                      <p className="text-caption text-warning-text mt-1">
                         This tax year
                       </p>
                     </div>
                   </div>
 
                   <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
                       Client Portfolio Overview
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-info-bg rounded-full flex items-center justify-center">
-                            <span className="text-sm font-semibold text-info-text">
+                            <span className="text-body-md font-semibold text-info-text">
                               JD
                             </span>
                           </div>
@@ -868,13 +888,13 @@ export function DashboardContent() {
                             <p className="font-medium text-gray-900">
                               John Doe
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-caption text-gray-500">
                               Portfolio: $518,646
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-caption font-medium rounded">
                             In Review
                           </span>
                         </div>
@@ -883,7 +903,7 @@ export function DashboardContent() {
                       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-success-bg rounded-full flex items-center justify-center">
-                            <span className="text-sm font-semibold text-success-text">
+                            <span className="text-body-md font-semibold text-success-text">
                               AS
                             </span>
                           </div>
@@ -891,13 +911,13 @@ export function DashboardContent() {
                             <p className="font-medium text-gray-900">
                               Alice Smith
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-caption text-gray-500">
                               Portfolio: $1,234,890
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-success-bg text-green-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-success-bg text-green-800 text-caption font-medium rounded">
                             Complete
                           </span>
                         </div>
@@ -906,7 +926,7 @@ export function DashboardContent() {
                       <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-semibold text-purple-900">
+                            <span className="text-body-md font-semibold text-purple-900">
                               BJ
                             </span>
                           </div>
@@ -914,13 +934,13 @@ export function DashboardContent() {
                             <p className="font-medium text-gray-900">
                               Bob Johnson
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-caption text-gray-500">
                               Portfolio: $789,234
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-info-bg text-blue-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-info-bg text-blue-800 text-caption font-medium rounded">
                             In Progress
                           </span>
                         </div>

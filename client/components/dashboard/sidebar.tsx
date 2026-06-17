@@ -142,7 +142,7 @@ export function DashboardSidebar({
                     >
                       <Link to={item.href}>
                         <item.icon className="h-5 w-5" />
-                        <span className="font-semibold text-sm">
+                        <span className="font-semibold text-body-md">
                           {item.title}
                         </span>
                       </Link>
@@ -158,7 +158,7 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-body-md">
                 Reports
                 <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
@@ -182,7 +182,7 @@ export function DashboardSidebar({
                         >
                           <Link to={item.href}>
                             <item.icon className="h-5 w-5" />
-                            <span className="font-semibold text-sm">
+                            <span className="font-semibold text-body-md">
                               {item.title}
                             </span>
                           </Link>
@@ -200,7 +200,7 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-body-md">
                 Settings
                 <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
@@ -224,7 +224,7 @@ export function DashboardSidebar({
                         >
                           <Link to={item.href}>
                             <item.icon className="h-5 w-5" />
-                            <span className="font-semibold text-sm">
+                            <span className="font-semibold text-body-md">
                               {item.title}
                             </span>
                           </Link>
@@ -242,7 +242,7 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-body-md">
                 Help & Account
                 <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
@@ -259,7 +259,7 @@ export function DashboardSidebar({
                       >
                         <Link to={item.href}>
                           <item.icon className="h-5 w-5" />
-                          <span className="font-semibold text-sm">
+                          <span className="font-semibold text-body-md">
                             {item.title}
                           </span>
                         </Link>

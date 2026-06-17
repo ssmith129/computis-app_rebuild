@@ -57,7 +57,9 @@ export function RecentUploads() {
   });
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold text-gray-900">Recent Uploads</h2>
+      <h2 className="text-heading-lg font-bold text-gray-900">
+        Recent Uploads
+      </h2>
 
       <Card className="border border-gray-200 rounded-lg overflow-hidden">
         <Table>
