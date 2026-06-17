@@ -54,7 +54,7 @@ export function EnhancedDashboard() {
           {/* Section 1: Horizontally Scrollable Portfolio Cards */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Portfolio Overview
               </h2>
               <Button variant="outline" size="sm">
@@ -139,7 +139,7 @@ export function EnhancedDashboard() {
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-medium text-gray-600">
+                        <CardTitle className="text-body-md font-medium text-gray-600">
                           {metric.title}
                         </CardTitle>
                         <div
@@ -172,11 +172,11 @@ export function EnhancedDashboard() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-2">
+                      <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900 mb-2">
                         {metric.value}
                       </div>
                       <div
-                        className={`text-sm flex items-center gap-1 ${
+                        className={`text-body-md flex items-center gap-1 ${
                           metric.trend === "up"
                             ? "text-success"
                             : metric.trend === "down"
@@ -202,7 +202,7 @@ export function EnhancedDashboard() {
           {/* Section 2: Responsive Grid for Quick Actions (No horizontal scroll) */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Quick Actions
               </h2>
             </div>
@@ -269,13 +269,13 @@ export function EnhancedDashboard() {
                             }`}
                           />
                         </div>
-                        <CardTitle className="text-base">
+                        <CardTitle className="text-heading-md">
                           {action.title}
                         </CardTitle>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-body-md text-gray-600 mb-4">
                         {action.desc}
                       </p>
                       <Button
@@ -296,7 +296,7 @@ export function EnhancedDashboard() {
           {/* Section 3: Horizontally Scrollable Transactions Table */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Recent Transactions
               </h2>
               <div className="flex gap-2">
@@ -361,7 +361,7 @@ export function EnhancedDashboard() {
 
                     return (
                       <TableRow key={i} className="hover:bg-gray-50">
-                        <TableCell className="font-mono text-xs">
+                        <TableCell className="font-mono text-caption">
                           2024-01-{String(15 + i).padStart(2, "0")}
                           <br />
                           <span className="text-gray-500">
@@ -433,7 +433,7 @@ export function EnhancedDashboard() {
 
           {/* Section 4: Mixed Content - Charts with Horizontal Scrolling */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-heading-lg font-semibold text-gray-900 mb-4">
               Analytics & Insights
             </h2>
 
@@ -464,7 +464,7 @@ export function EnhancedDashboard() {
                           key={i}
                           className="flex flex-col items-center gap-2 min-w-[60px]"
                         >
-                          <div className="text-xs text-gray-600 font-medium">
+                          <div className="text-caption text-gray-600 font-medium">
                             {month}
                           </div>
                           <div
@@ -474,14 +474,14 @@ export function EnhancedDashboard() {
                             style={{ height: `${height}px` }}
                             title={`${month}: $${value.toFixed(0)}`}
                           />
-                          <div className="text-xs font-medium text-center">
+                          <div className="text-caption font-medium text-center">
                             ${(value / 1000).toFixed(1)}k
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="border-t pt-4 text-sm text-gray-600">
+                  <div className="border-t pt-4 text-body-md text-gray-600">
                     Drag or scroll horizontally to view all months
                   </div>
                 </CardContent>
@@ -531,15 +531,15 @@ export function EnhancedDashboard() {
                         className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0"
                       >
                         <div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-body-md text-gray-600">
                             {stat.label}
                           </div>
-                          <div className="text-xs text-gray-400">
+                          <div className="text-caption text-gray-400">
                             {stat.subtext}
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm font-semibold text-gray-900">
+                          <div className="text-body-md font-semibold text-gray-900">
                             {stat.value}
                           </div>
                         </div>

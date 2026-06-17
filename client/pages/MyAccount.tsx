@@ -33,7 +33,9 @@ export default function MyAccount() {
         {/* Page Header */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
-            <h1 className="text-heading-lg font-bold text-foreground">My Account</h1>
+            <h1 className="text-heading-lg font-bold text-foreground">
+              My Account
+            </h1>
             <p className="text-body-md text-muted-foreground mt-1">
               Manage your profile, preferences, and security settings
             </p>
@@ -53,12 +55,12 @@ export default function MyAccount() {
             <CardContent className="space-y-6">
               <div className="flex items-center gap-6">
                 <Avatar className="h-20 w-20 bg-info-bg">
-                  <AvatarFallback className="bg-info-bg text-info text-2xl">
+                  <AvatarFallback className="bg-info-bg text-info text-display-lg">
                     JS
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900">
+                  <h3 className="text-display-sm font-semibold text-gray-900">
                     John Smith
                   </h3>
                   <p className="text-gray-600">Premium User</p>
@@ -193,7 +195,7 @@ export default function MyAccount() {
                 </h4>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-body-md text-gray-600">
                       Add an extra layer of security to your account
                     </p>
                   </div>
@@ -216,8 +218,10 @@ export default function MyAccount() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Email Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">
+                    Email Notifications
+                  </p>
+                  <p className="text-caption text-gray-500">
                     Receive updates via email
                   </p>
                 </div>
@@ -228,8 +232,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Push Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Push Notifications</p>
+                  <p className="text-caption text-gray-500">
                     Receive browser notifications
                   </p>
                 </div>
@@ -240,8 +244,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Weekly Reports</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Weekly Reports</p>
+                  <p className="text-caption text-gray-500">
                     Get weekly summary emails
                   </p>
                 </div>
@@ -249,8 +253,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Security Alerts</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Security Alerts</p>
+                  <p className="text-caption text-gray-500">
                     Alerts for account security events
                   </p>
                 </div>
@@ -271,7 +275,7 @@ export default function MyAccount() {
               <div className="flex items-center justify-between p-4 bg-info-bg rounded-lg">
                 <div>
                   <h4 className="font-medium text-info-text">Pro Plan</h4>
-                  <p className="text-sm text-info-text">
+                  <p className="text-body-md text-info-text">
                     $29.99/month • Next billing: Feb 15, 2024
                   </p>
                 </div>
@@ -282,10 +286,10 @@ export default function MyAccount() {
                 <h4 className="font-medium text-gray-900">Payment Method</h4>
                 <div className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">
+                    <div className="w-8 h-6 bg-blue-600 rounded text-white text-caption flex items-center justify-center">
                       VISA
                     </div>
-                    <span className="text-sm">•••• •••• •••• 4567</span>
+                    <span className="text-body-md">•••• •••• •••• 4567</span>
                   </div>
                   <Button variant="ghost" size="sm">
                     Update

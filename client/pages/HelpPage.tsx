@@ -103,7 +103,9 @@ export default function HelpPage() {
         {/* Page Header */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
-            <h1 className="text-heading-lg font-bold text-foreground">Help Center</h1>
+            <h1 className="text-heading-lg font-bold text-foreground">
+              Help Center
+            </h1>
             <p className="text-body-md text-muted-foreground mt-1">
               Find answers, guides, and get support when you need it
             </p>
@@ -119,7 +121,7 @@ export default function HelpPage() {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <Input
                   placeholder="Search for help articles, guides, or common questions..."
-                  className="pl-10 pr-4 py-3 text-lg"
+                  className="pl-10 pr-4 py-3 text-heading-lg"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -135,7 +137,9 @@ export default function HelpPage() {
                 <h2 className="font-semibold text-gray-900 mb-2">
                   User Guides
                 </h2>
-                <p className="text-sm text-gray-600">Step-by-step tutorials</p>
+                <p className="text-body-md text-gray-600">
+                  Step-by-step tutorials
+                </p>
               </CardContent>
             </Card>
 
@@ -145,7 +149,7 @@ export default function HelpPage() {
                 <h2 className="font-semibold text-gray-900 mb-2">
                   Video Tutorials
                 </h2>
-                <p className="text-sm text-gray-600">Watch and learn</p>
+                <p className="text-body-md text-gray-600">Watch and learn</p>
               </CardContent>
             </Card>
 
@@ -153,7 +157,7 @@ export default function HelpPage() {
               <CardContent className="p-6 text-center">
                 <HelpCircle className="h-8 w-8 text-purple-600 mx-auto mb-3" />
                 <h2 className="font-semibold text-gray-900 mb-2">FAQ</h2>
-                <p className="text-sm text-gray-600">Common questions</p>
+                <p className="text-body-md text-gray-600">Common questions</p>
               </CardContent>
             </Card>
 
@@ -163,7 +167,9 @@ export default function HelpPage() {
                 <h2 className="font-semibold text-gray-900 mb-2">
                   Contact Support
                 </h2>
-                <p className="text-sm text-gray-600">Get personalized help</p>
+                <p className="text-body-md text-gray-600">
+                  Get personalized help
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -187,14 +193,14 @@ export default function HelpPage() {
                       <h4 className="font-medium text-gray-900">
                         {article.title}
                       </h4>
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-caption">
                         {article.category}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-body-md text-gray-600 mb-2">
                       {article.description}
                     </p>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-4 text-caption text-gray-500">
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {article.readTime}
@@ -255,11 +261,11 @@ export default function HelpPage() {
                 <p className="text-gray-600">
                   Get instant help from our support team during business hours.
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-body-md text-gray-500">
                   <CheckCircle className="h-4 w-4 text-success" />
                   <span>Average response time: 2 minutes</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-body-md text-gray-500">
                   <Clock className="h-4 w-4" />
                   <span>Available: Mon-Fri, 9 AM - 6 PM EST</span>
                 </div>
@@ -282,11 +288,11 @@ export default function HelpPage() {
                   Send us a detailed message and we'll get back to you within 24
                   hours.
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-body-md text-gray-500">
                   <CheckCircle className="h-4 w-4 text-success" />
                   <span>Average response time: 4 hours</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-body-md text-gray-500">
                   <Mail className="h-4 w-4" />
                   <span>support@cryptotaxpro.com</span>
                 </div>
@@ -308,24 +314,30 @@ export default function HelpPage() {
                 <div className="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <Video className="h-5 w-5 text-info" />
                   <div>
-                    <p className="font-medium text-sm">Video Library</p>
-                    <p className="text-xs text-gray-500">Watch tutorials</p>
+                    <p className="font-medium text-body-md">Video Library</p>
+                    <p className="text-caption text-gray-500">
+                      Watch tutorials
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <Book className="h-5 w-5 text-success" />
                   <div>
-                    <p className="font-medium text-sm">Knowledge Base</p>
-                    <p className="text-xs text-gray-500">Browse articles</p>
+                    <p className="font-medium text-body-md">Knowledge Base</p>
+                    <p className="text-caption text-gray-500">
+                      Browse articles
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <Users className="h-5 w-5 text-purple-600" />
                   <div>
-                    <p className="font-medium text-sm">Community Forum</p>
-                    <p className="text-xs text-gray-500">Ask the community</p>
+                    <p className="font-medium text-body-md">Community Forum</p>
+                    <p className="text-caption text-gray-500">
+                      Ask the community
+                    </p>
                   </div>
                 </div>
               </div>
