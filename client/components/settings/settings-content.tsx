@@ -87,7 +87,7 @@ export function SettingsContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               General Settings
             </h1>
             <p className="text-muted-foreground">
@@ -361,7 +361,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Email Notifications</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive notifications via email
                       </p>
                     </div>
@@ -375,7 +375,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Push Notifications</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive push notifications in browser
                       </p>
                     </div>
@@ -389,7 +389,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Weekly Reports</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive weekly summary reports
                       </p>
                     </div>
@@ -403,7 +403,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Monthly Reports</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive monthly summary reports
                       </p>
                     </div>
@@ -417,7 +417,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Anomaly Alerts</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Get notified about data anomalies
                       </p>
                     </div>
@@ -453,7 +453,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Two-Factor Authentication</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Add an extra layer of security
                       </p>
                     </div>
@@ -476,7 +476,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>API Access</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Allow API access to your account
                       </p>
                     </div>
@@ -549,7 +549,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Automatic Backups</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Automatically backup your data daily
                       </p>
                     </div>

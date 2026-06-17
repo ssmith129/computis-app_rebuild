@@ -297,10 +297,10 @@ export function UsersManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Active Users
                 </p>
-                <p className="text-3xl font-bold text-success">
+                <p className="text-display-xl font-bold text-success">
                   {activeCount}
                 </p>
               </div>
@@ -314,10 +314,10 @@ export function UsersManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Inactive Users
                 </p>
-                <p className="text-3xl font-bold text-gray-600">
+                <p className="text-display-xl font-bold text-gray-600">
                   {inactiveCount}
                 </p>
               </div>
@@ -331,10 +331,10 @@ export function UsersManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Pending Approvals
                 </p>
-                <p className="text-3xl font-bold text-warning">
+                <p className="text-display-xl font-bold text-warning">
                   {pendingCount}
                 </p>
               </div>
@@ -520,14 +520,16 @@ export function UsersManagement() {
           {selectedUser && (
             <div className="space-y-6 py-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-xl">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-display-sm">
                   {selectedUser.name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">{selectedUser.name}</h3>
+                  <h3 className="text-display-sm font-semibold">
+                    {selectedUser.name}
+                  </h3>
                   <p className="text-muted-foreground">{selectedUser.email}</p>
                 </div>
               </div>
@@ -749,7 +751,7 @@ function UserTableSection({
         <CardContent className="p-0">
           {selectedUsers.length > 0 && (
             <div className="flex items-center justify-between p-4 border-b bg-muted/30">
-              <div className="text-sm font-medium">
+              <div className="text-body-md font-medium">
                 {selectedUsers.length} user{selectedUsers.length > 1 ? "s" : ""}{" "}
                 selected
               </div>
@@ -829,7 +831,7 @@ function UserTableSection({
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-body-md">
                           {user.name
                             .split(" ")
                             .map((n) => n[0])
@@ -837,7 +839,7 @@ function UserTableSection({
                         </div>
                         <div>
                           <div className="font-medium">{user.name}</div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-body-md text-muted-foreground">
                             {user.department}
                           </div>
                         </div>

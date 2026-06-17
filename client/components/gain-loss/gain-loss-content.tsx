@@ -158,7 +158,7 @@ export function GainLossContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               Gain/Loss Report
             </h1>
             <p className="text-muted-foreground">
@@ -213,11 +213,13 @@ export function GainLossContent() {
               <div className="flex items-center justify-between">
                 <div>
                   <div
-                    className={`text-2xl font-bold font-mono tabular-nums ${getGainLossColor(netGainLoss)}`}
+                    className={`text-display-lg font-bold font-mono tabular-nums ${getGainLossColor(netGainLoss)}`}
                   >
                     ${Math.abs(netGainLoss).toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Net Gain/Loss</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Net Gain/Loss
+                  </p>
                 </div>
                 {getGainLossIcon(netGainLoss)}
               </div>
@@ -228,10 +230,12 @@ export function GainLossContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums text-success">
+                  <div className="text-display-lg font-bold font-mono tabular-nums text-success">
                     ${totalGains.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Total Gains</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Total Gains
+                  </p>
                 </div>
                 <TrendingUp className="h-5 w-5 text-success" />
               </div>
@@ -242,10 +246,12 @@ export function GainLossContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums text-error">
+                  <div className="text-display-lg font-bold font-mono tabular-nums text-error">
                     ${Math.abs(totalLosses).toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Total Losses</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Total Losses
+                  </p>
                 </div>
                 <TrendingDown className="h-5 w-5 text-error" />
               </div>
@@ -256,8 +262,12 @@ export function GainLossContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">{totalTransactions}</div>
-                  <p className="text-sm text-muted-foreground">Transactions</p>
+                  <div className="text-display-lg font-bold font-mono tabular-nums">
+                    {totalTransactions}
+                  </div>
+                  <p className="text-body-md text-muted-foreground">
+                    Transactions
+                  </p>
                 </div>
                 <FileText className="h-5 w-5 text-info" />
               </div>
@@ -270,14 +280,14 @@ export function GainLossContent() {
           <Card>
             <CardHeader>
               <CardTitle>Short-term Capital Gains/Losses</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-body-md text-muted-foreground">
                 Assets held 1 year or less
               </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Net Short-term</span>
+                  <span className="text-body-md">Net Short-term</span>
                   <span
                     className={`font-bold ${getGainLossColor(shortTermNet)}`}
                   >
@@ -288,7 +298,7 @@ export function GainLossContent() {
                   value={(Math.abs(shortTermNet) / Math.abs(netGainLoss)) * 100}
                   className="h-2"
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   {(
                     (Math.abs(shortTermNet) / Math.abs(netGainLoss)) *
                     100
@@ -302,14 +312,14 @@ export function GainLossContent() {
           <Card>
             <CardHeader>
               <CardTitle>Long-term Capital Gains/Losses</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-body-md text-muted-foreground">
                 Assets held more than 1 year
               </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Net Long-term</span>
+                  <span className="text-body-md">Net Long-term</span>
                   <span
                     className={`font-bold ${getGainLossColor(longTermNet)}`}
                   >
@@ -320,7 +330,7 @@ export function GainLossContent() {
                   value={(Math.abs(longTermNet) / Math.abs(netGainLoss)) * 100}
                   className="h-2"
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   {(
                     (Math.abs(longTermNet) / Math.abs(netGainLoss)) *
                     100
@@ -359,13 +369,13 @@ export function GainLossContent() {
                         <TableCell>
                           <div className="flex items-center gap-2">
                             <div className="w-8 h-8 rounded-full bg-info-bg flex items-center justify-center">
-                              <span className="text-xs font-bold text-info">
+                              <span className="text-caption font-bold text-info">
                                 {item.symbol}
                               </span>
                             </div>
                             <div>
                               <div className="font-medium">{item.asset}</div>
-                              <div className="text-sm text-muted-foreground">
+                              <div className="text-body-md text-muted-foreground">
                                 {item.symbol}
                               </div>
                             </div>
@@ -478,8 +488,8 @@ export function GainLossContent() {
                 <h4 className="font-medium text-info-text">
                   Short-term Tax Rate
                 </h4>
-                <p className="text-2xl font-bold text-info">22-37%</p>
-                <p className="text-sm text-info-text">
+                <p className="text-display-lg font-bold text-info">22-37%</p>
+                <p className="text-body-md text-info-text">
                   Taxed as ordinary income
                 </p>
               </div>
@@ -487,15 +497,19 @@ export function GainLossContent() {
                 <h4 className="font-medium text-success-text">
                   Long-term Tax Rate
                 </h4>
-                <p className="text-2xl font-bold text-success">0-20%</p>
-                <p className="text-sm text-success-text">Preferential tax rates</p>
+                <p className="text-display-lg font-bold text-success">0-20%</p>
+                <p className="text-body-md text-success-text">
+                  Preferential tax rates
+                </p>
               </div>
               <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
                 <h4 className="font-medium text-purple-900">
                   Net Investment Income
                 </h4>
-                <p className="text-2xl font-bold text-purple-600">3.8%</p>
-                <p className="text-sm text-purple-700">
+                <p className="text-display-lg font-bold text-purple-600">
+                  3.8%
+                </p>
+                <p className="text-body-md text-purple-700">
                   Additional tax may apply
                 </p>
               </div>

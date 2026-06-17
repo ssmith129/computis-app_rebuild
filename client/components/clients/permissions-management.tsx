@@ -482,8 +482,10 @@ export function PermissionsManagement() {
                         <Shield className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">{role.name}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="font-semibold text-heading-lg">
+                          {role.name}
+                        </h3>
+                        <p className="text-body-md text-muted-foreground">
                           {role.description}
                         </p>
                       </div>
@@ -492,7 +494,7 @@ export function PermissionsManagement() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-body-md text-muted-foreground">
                       Users with this role
                     </span>
                     <Badge
@@ -503,7 +505,7 @@ export function PermissionsManagement() {
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-body-md text-muted-foreground">
                       Total Permissions
                     </span>
                     <span className="font-semibold">
@@ -571,7 +573,7 @@ export function PermissionsManagement() {
           <Card>
             <CardHeader>
               <CardTitle>Role Permissions Matrix</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-body-md text-muted-foreground">
                 View and compare permissions across all roles
               </p>
             </CardHeader>
@@ -612,7 +614,7 @@ export function PermissionsManagement() {
                                   <div className="font-medium">
                                     {permission.name}
                                   </div>
-                                  <div className="text-sm text-muted-foreground">
+                                  <div className="text-body-md text-muted-foreground">
                                     {permission.description}
                                   </div>
                                 </div>
@@ -652,7 +654,7 @@ export function PermissionsManagement() {
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle>Permission Change History</CardTitle>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-body-md text-muted-foreground mt-1">
                     Track all permission and role changes
                   </p>
                 </div>
@@ -681,7 +683,7 @@ export function PermissionsManagement() {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-xs">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-caption">
                             {entry.user
                               .split(" ")
                               .map((n) => n[0])
@@ -725,7 +727,9 @@ export function PermissionsManagement() {
                   <Shield className="h-8 w-8" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">{selectedRole.name}</h3>
+                  <h3 className="text-display-sm font-semibold">
+                    {selectedRole.name}
+                  </h3>
                   <p className="text-muted-foreground">
                     {selectedRole.description}
                   </p>
@@ -734,26 +738,28 @@ export function PermissionsManagement() {
               <div className="grid grid-cols-3 gap-4">
                 <Card>
                   <CardContent className="p-4">
-                    <p className="text-sm text-muted-foreground">Users</p>
-                    <p className="text-2xl font-bold">
+                    <p className="text-body-md text-muted-foreground">Users</p>
+                    <p className="text-display-lg font-bold">
                       {selectedRole.userCount}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4">
-                    <p className="text-sm text-muted-foreground">Created</p>
-                    <p className="text-lg font-medium">
+                    <p className="text-body-md text-muted-foreground">
+                      Created
+                    </p>
+                    <p className="text-heading-lg font-medium">
                       {selectedRole.createdDate}
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-body-md text-muted-foreground">
                       Last Modified
                     </p>
-                    <p className="text-lg font-medium">
+                    <p className="text-heading-lg font-medium">
                       {selectedRole.lastModified}
                     </p>
                   </CardContent>
@@ -764,7 +770,7 @@ export function PermissionsManagement() {
                 {Object.entries(permissionCategories).map(
                   ([category, permissions]) => (
                     <div key={category} className="space-y-2">
-                      <h5 className="font-medium text-sm text-muted-foreground">
+                      <h5 className="font-medium text-body-md text-muted-foreground">
                         {category}
                       </h5>
                       <div className="grid grid-cols-2 gap-2">
@@ -774,10 +780,10 @@ export function PermissionsManagement() {
                             className="flex items-center justify-between p-3 rounded-lg border"
                           >
                             <div>
-                              <div className="font-medium text-sm">
+                              <div className="font-medium text-body-md">
                                 {permission.name}
                               </div>
-                              <div className="text-xs text-muted-foreground">
+                              <div className="text-caption text-muted-foreground">
                                 {permission.description}
                               </div>
                             </div>
@@ -928,10 +934,10 @@ export function PermissionsManagement() {
                                 }
                               />
                               <div>
-                                <div className="font-medium text-sm">
+                                <div className="font-medium text-body-md">
                                   {permission.name}
                                 </div>
-                                <div className="text-xs text-muted-foreground">
+                                <div className="text-caption text-muted-foreground">
                                   {permission.description}
                                 </div>
                               </div>
@@ -1011,7 +1017,7 @@ export function PermissionsManagement() {
               <Label>Selected Users ({selectedUsers.length})</Label>
               <div className="border rounded-lg p-4 min-h-[100px] max-h-[200px] overflow-y-auto">
                 {selectedUsers.length === 0 ? (
-                  <p className="text-sm text-muted-foreground text-center py-4">
+                  <p className="text-body-md text-muted-foreground text-center py-4">
                     No users selected
                   </p>
                 ) : (
@@ -1021,7 +1027,7 @@ export function PermissionsManagement() {
                         key={userId}
                         className="flex items-center justify-between p-2 rounded-lg bg-muted"
                       >
-                        <span className="text-sm">User {userId}</span>
+                        <span className="text-body-md">User {userId}</span>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -1042,7 +1048,7 @@ export function PermissionsManagement() {
             </div>
             <div className="flex items-start gap-2 p-3 rounded-lg bg-info-bg border border-info/30">
               <AlertCircle className="h-5 w-5 text-info mt-0.5" />
-              <div className="text-sm text-info-text">
+              <div className="text-body-md text-info-text">
                 <p className="font-medium">Note:</p>
                 <p>
                   Bulk role assignment will override existing roles for selected

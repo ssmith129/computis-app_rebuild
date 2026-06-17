@@ -362,10 +362,10 @@ export function TaxEntitiesManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Total Entities
                 </p>
-                <p className="text-3xl font-bold text-info">
+                <p className="text-display-xl font-bold text-info">
                   {mockTaxEntities.length}
                 </p>
               </div>
@@ -379,10 +379,10 @@ export function TaxEntitiesManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Active
                 </p>
-                <p className="text-3xl font-bold text-success">
+                <p className="text-display-xl font-bold text-success">
                   {activeCount}
                 </p>
               </div>
@@ -396,10 +396,10 @@ export function TaxEntitiesManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   In Progress
                 </p>
-                <p className="text-3xl font-bold text-info">
+                <p className="text-display-xl font-bold text-info">
                   {inProgressCount}
                 </p>
               </div>
@@ -413,10 +413,10 @@ export function TaxEntitiesManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Archived
                 </p>
-                <p className="text-3xl font-bold text-warning">
+                <p className="text-display-xl font-bold text-warning">
                   {archivedCount}
                 </p>
               </div>
@@ -486,7 +486,7 @@ export function TaxEntitiesManagement() {
         <CardContent className="p-0">
           {selectedEntities.length > 0 && (
             <div className="flex items-center justify-between p-4 border-b bg-muted/30">
-              <div className="text-sm font-medium">
+              <div className="text-body-md font-medium">
                 {selectedEntities.length}{" "}
                 {selectedEntities.length > 1 ? "entities" : "entity"} selected
               </div>
@@ -554,13 +554,13 @@ export function TaxEntitiesManagement() {
                         </div>
                         <div>
                           <div className="font-medium">{entity.entityName}</div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-body-md text-muted-foreground">
                             Last modified: {entity.lastModified}
                           </div>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="font-mono text-sm">
+                    <TableCell className="font-mono text-body-md">
                       {entity.taxId}
                     </TableCell>
                     <TableCell>
@@ -658,7 +658,7 @@ export function TaxEntitiesManagement() {
                   }
                 />
                 {validationErrors.entityName && (
-                  <p className="text-sm text-error">
+                  <p className="text-body-md text-error">
                     {validationErrors.entityName}
                   </p>
                 )}
@@ -677,7 +677,7 @@ export function TaxEntitiesManagement() {
                   className={validationErrors.taxId ? "border-red-500" : ""}
                 />
                 {validationErrors.taxId && (
-                  <p className="text-sm text-error">
+                  <p className="text-body-md text-error">
                     {validationErrors.taxId}
                   </p>
                 )}
@@ -740,7 +740,7 @@ export function TaxEntitiesManagement() {
                   className={validationErrors.client ? "border-red-500" : ""}
                 />
                 {validationErrors.client && (
-                  <p className="text-sm text-error">
+                  <p className="text-body-md text-error">
                     {validationErrors.client}
                   </p>
                 )}
@@ -883,7 +883,7 @@ export function TaxEntitiesManagement() {
                   <Building2 className="h-8 w-8 text-info" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">
+                  <h3 className="text-display-sm font-semibold">
                     {selectedEntity.entityName}
                   </h3>
                   <p className="text-muted-foreground">
@@ -924,8 +924,10 @@ export function TaxEntitiesManagement() {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-muted-foreground">Wallets</p>
-                        <p className="text-2xl font-bold font-mono tabular-nums">
+                        <p className="text-body-md text-muted-foreground">
+                          Wallets
+                        </p>
+                        <p className="text-display-lg font-bold font-mono tabular-nums">
                           {selectedEntity.walletCount}
                         </p>
                       </div>
@@ -937,10 +939,10 @@ export function TaxEntitiesManagement() {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-body-md text-muted-foreground">
                           Transactions
                         </p>
-                        <p className="text-2xl font-bold font-mono tabular-nums">
+                        <p className="text-display-lg font-bold font-mono tabular-nums">
                           {selectedEntity.transactionCount.toLocaleString()}
                         </p>
                       </div>

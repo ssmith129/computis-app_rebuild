@@ -188,7 +188,9 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Active":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="bg-success-bg text-success-text border-0">
+          {status}
+        </Badge>
       );
     case "Pending":
       return (
@@ -310,7 +312,7 @@ export function ClientsContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               Client Management
             </h1>
             <p className="text-muted-foreground">
@@ -368,32 +370,32 @@ export function ClientsContent() {
 
             {/* Filter Bar */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted-foreground">View:</span>
-              <Button variant="default" size="sm" className="h-8 text-xs">
+              <span className="text-body-md text-muted-foreground">View:</span>
+              <Button variant="default" size="sm" className="h-8 text-caption">
                 All Clients
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Firms
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Individuals
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Status:
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Active
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Pending
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Archived
               </Button>
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-xs text-blue-600 hover:text-blue-700 p-0 ml-auto"
+                className="h-8 text-caption text-blue-600 hover:text-blue-700 p-0 ml-auto"
                 onClick={() => toast({ title: "Activity log coming soon" })}
               >
                 View Activity Log
@@ -405,7 +407,7 @@ export function ClientsContent() {
               <CardContent className="p-0">
                 {selectedClients.length > 0 && (
                   <div className="flex items-center justify-between p-4 border-b bg-muted/30">
-                    <div className="text-sm">
+                    <div className="text-body-md">
                       {selectedClients.length} selected
                     </div>
                     <div className="flex gap-2">
@@ -524,7 +526,7 @@ export function ClientsContent() {
 
                 {/* Pagination */}
                 <div className="flex items-center justify-between p-4 border-t">
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-body-md text-muted-foreground">
                     Showing 5 of 12 clients
                   </div>
                   <div className="flex items-center gap-2">
@@ -589,7 +591,7 @@ export function ClientsContent() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle>Team Members with Access</CardTitle>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <p className="text-body-md text-muted-foreground mt-1">
                       Manage team access and permissions for this client
                     </p>
                   </div>
@@ -614,12 +616,12 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-body-md">
                             SC
                           </div>
                           <div>
                             <div className="font-medium">Sarah Chen</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               sarah.chen@cpa.com
                             </div>
                           </div>
@@ -669,12 +671,12 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white font-semibold text-body-md">
                             DW
                           </div>
                           <div>
                             <div className="font-medium">David Wong</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               david.wong@cpa.com
                             </div>
                           </div>
@@ -724,12 +726,12 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-semibold text-body-md">
                             JP
                           </div>
                           <div>
                             <div className="font-medium">James Park</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               james.park@acmefund.com
                             </div>
                           </div>
@@ -789,26 +791,26 @@ export function ClientsContent() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="p-4 rounded-lg border bg-info-bg dark:bg-info-bg/30">
-                    <div className="text-2xl font-semibold text-info dark:text-info">
+                    <div className="text-display-lg font-semibold text-info dark:text-info">
                       2
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="text-body-md text-muted-foreground mt-1">
                       Full Access Members
                     </div>
                   </div>
                   <div className="p-4 rounded-lg border bg-warning-bg dark:bg-warning-bg/30">
-                    <div className="text-2xl font-semibold text-warning dark:text-warning">
+                    <div className="text-display-lg font-semibold text-warning dark:text-warning">
                       1
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="text-body-md text-muted-foreground mt-1">
                       Limited Access Members
                     </div>
                   </div>
                   <div className="p-4 rounded-lg border bg-success-bg dark:bg-success-bg/30">
-                    <div className="text-2xl font-semibold text-success dark:text-success">
+                    <div className="text-display-lg font-semibold text-success dark:text-success">
                       3
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="text-body-md text-muted-foreground mt-1">
                       Total Team Members
                     </div>
                   </div>
@@ -821,14 +823,16 @@ export function ClientsContent() {
             <Card>
               <CardHeader>
                 <CardTitle>Client Configuration</CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-body-md text-muted-foreground mt-1">
                   Manage client-specific settings and preferences
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* General Settings */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold">General Settings</h3>
+                  <h3 className="text-body-md font-semibold">
+                    General Settings
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="client-name">Client Name</Label>
@@ -869,14 +873,14 @@ export function ClientsContent() {
 
                 {/* Tax Settings */}
                 <div className="space-y-4 pt-6 border-t">
-                  <h3 className="text-sm font-semibold">Tax Settings</h3>
+                  <h3 className="text-body-md font-semibold">Tax Settings</h3>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="font-medium text-body-md">
                           Enable Auto-Classification
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Automatically classify transactions using AI
                         </div>
                       </div>
@@ -884,10 +888,10 @@ export function ClientsContent() {
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="font-medium text-body-md">
                           Require CPA Approval
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           All classifications must be approved by a CPA
                         </div>
                       </div>
@@ -895,10 +899,10 @@ export function ClientsContent() {
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="font-medium text-body-md">
                           Track Cost Basis
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Automatically track cost basis for all assets
                         </div>
                       </div>
@@ -906,10 +910,10 @@ export function ClientsContent() {
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="font-medium text-body-md">
                           Generate Audit Trails
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Create detailed audit logs for all actions
                         </div>
                       </div>
@@ -920,12 +924,14 @@ export function ClientsContent() {
 
                 {/* Notification Settings */}
                 <div className="space-y-4 pt-6 border-t">
-                  <h3 className="text-sm font-semibold">Notifications</h3>
+                  <h3 className="text-body-md font-semibold">Notifications</h3>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">Email Alerts</div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="font-medium text-body-md">
+                          Email Alerts
+                        </div>
+                        <div className="text-caption text-muted-foreground">
                           Send email notifications for important events
                         </div>
                       </div>
@@ -933,10 +939,10 @@ export function ClientsContent() {
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="font-medium text-body-md">
                           Weekly Reports
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Receive weekly summary reports via email
                         </div>
                       </div>
@@ -961,15 +967,17 @@ export function ClientsContent() {
                 <CardTitle className="text-error dark:text-error">
                   Danger Zone
                 </CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-body-md text-muted-foreground mt-1">
                   Irreversible actions that affect this client
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
                   <div>
-                    <div className="font-medium text-sm">Archive Client</div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="font-medium text-body-md">
+                      Archive Client
+                    </div>
+                    <div className="text-caption text-muted-foreground">
                       Move this client to archived status
                     </div>
                   </div>
@@ -982,8 +990,10 @@ export function ClientsContent() {
                 </div>
                 <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
                   <div>
-                    <div className="font-medium text-sm">Delete Client</div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="font-medium text-body-md">
+                      Delete Client
+                    </div>
+                    <div className="text-caption text-muted-foreground">
                       Permanently delete this client and all associated data
                     </div>
                   </div>
@@ -997,7 +1007,9 @@ export function ClientsContent() {
         {/* Roles & Permissions Section */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Roles & Permissions</h2>
+            <h2 className="text-heading-lg font-semibold">
+              Roles & Permissions
+            </h2>
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
               <Plus className="h-4 w-4 mr-2" />
               Create Role
@@ -1031,7 +1043,7 @@ export function ClientsContent() {
                       </div>
                       <div>
                         <h3 className="font-semibold">{role.name}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-body-md text-muted-foreground">
                           {role.description}
                         </p>
                       </div>
@@ -1044,19 +1056,21 @@ export function ClientsContent() {
                 <CardContent className="space-y-3">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Client Management</span>
+                      <span className="text-body-md">Client Management</span>
                       {getPermissionIcon(role.permissions.clientManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">User Management</span>
+                      <span className="text-body-md">User Management</span>
                       {getPermissionIcon(role.permissions.userManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Tax Entity Management</span>
+                      <span className="text-body-md">
+                        Tax Entity Management
+                      </span>
                       {getPermissionIcon(role.permissions.taxEntityManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">
+                      <span className="text-body-md">
                         Transaction Classification
                       </span>
                       {getPermissionIcon(
@@ -1064,12 +1078,12 @@ export function ClientsContent() {
                       )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Report Generation</span>
+                      <span className="text-body-md">Report Generation</span>
                       {getPermissionIcon(role.permissions.reportGeneration)}
                     </div>
                   </div>
                   <div className="pt-3 border-t">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-body-md text-muted-foreground">
                       {role.users} users with this role
                     </p>
                   </div>
@@ -1154,7 +1168,9 @@ export function ClientsContent() {
                 }}
                 placeholder="Enter client name"
               />
-              {formError && <p className="text-sm text-red-600">{formError}</p>}
+              {formError && (
+                <p className="text-body-md text-red-600">{formError}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Type</Label>
@@ -1195,7 +1211,7 @@ export function ClientsContent() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete selected clients?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>
@@ -1213,7 +1229,7 @@ export function ClientsContent() {
           <AlertDialogHeader>
             <AlertDialogTitle>Export selected clients?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             A CSV will be generated for download.
           </p>
           <AlertDialogFooter>

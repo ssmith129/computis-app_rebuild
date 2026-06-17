@@ -97,7 +97,9 @@ export function PreferencesContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">Preferences</h1>
+            <h1 className="text-display-lg font-bold text-foreground">
+              Preferences
+            </h1>
             <p className="text-muted-foreground">
               Customize your application experience
             </p>
@@ -198,7 +200,7 @@ export function PreferencesContent() {
                         <div
                           className={`w-6 h-6 rounded-full ${scheme.color}`}
                         />
-                        <span className="text-sm font-medium">
+                        <span className="text-body-md font-medium">
                           {scheme.label}
                         </span>
                       </button>
@@ -243,7 +245,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Animations</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Enable smooth transitions and animations
                       </p>
                     </div>
@@ -257,7 +259,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Reduced Motion</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Minimize motion for accessibility
                       </p>
                     </div>
@@ -347,7 +349,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Show Grid Lines</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Display grid lines in tables
                       </p>
                     </div>
@@ -361,7 +363,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Compact Mode</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Use compact spacing throughout the app
                       </p>
                     </div>
@@ -399,7 +401,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Auto Save</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Automatically save changes
                       </p>
                     </div>
@@ -413,7 +415,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Auto Refresh</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Automatically refresh data
                       </p>
                     </div>
@@ -427,7 +429,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Confirm Actions</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Show confirmation dialogs for destructive actions
                       </p>
                     </div>
@@ -441,7 +443,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Sound Effects</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Play sounds for notifications and actions
                       </p>
                     </div>
@@ -550,7 +552,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Screen Reader Support</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Enable screen reader optimizations
                       </p>
                     </div>
@@ -564,7 +566,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>High Contrast Mode</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Increase contrast for better visibility
                       </p>
                     </div>
@@ -578,7 +580,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Focus Indicators</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Show visible focus indicators
                       </p>
                     </div>
@@ -592,7 +594,7 @@ export function PreferencesContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Keyboard Navigation</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Enable full keyboard navigation
                       </p>
                     </div>
@@ -612,7 +614,7 @@ export function PreferencesContent() {
                   <h4 className="font-medium text-blue-900 mb-2">
                     Keyboard Shortcuts
                   </h4>
-                  <div className="space-y-2 text-sm text-blue-800">
+                  <div className="space-y-2 text-body-md text-blue-800">
                     <div className="flex justify-between">
                       <span>Open search</span>
                       <kbd className="px-2 py-1 bg-info-bg rounded">

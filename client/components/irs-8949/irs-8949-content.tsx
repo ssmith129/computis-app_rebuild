@@ -124,7 +124,9 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Verified":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="bg-success-bg text-success-text border-0">
+          {status}
+        </Badge>
       );
     case "Pending Review":
       return (
@@ -198,7 +200,7 @@ export function Irs8949Content() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               IRS Form 8949
             </h1>
             <p className="text-muted-foreground">
@@ -251,10 +253,10 @@ export function Irs8949Content() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-info" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="text-display-lg font-bold font-mono tabular-nums">
                     ${totalProceeds.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-md text-muted-foreground">
                     Total Proceeds
                   </p>
                 </div>
@@ -266,10 +268,10 @@ export function Irs8949Content() {
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-warning" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="text-display-lg font-bold font-mono tabular-nums">
                     ${totalCostBasis.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-md text-muted-foreground">
                     Total Cost Basis
                   </p>
                 </div>
@@ -284,11 +286,13 @@ export function Irs8949Content() {
                 />
                 <div>
                   <div
-                    className={`text-2xl font-bold font-mono tabular-nums ${getGainLossColor(totalGainLoss)}`}
+                    className={`text-display-lg font-bold font-mono tabular-nums ${getGainLossColor(totalGainLoss)}`}
                   >
                     ${totalGainLoss.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Net Gain/Loss</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Net Gain/Loss
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -298,10 +302,12 @@ export function Irs8949Content() {
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4 text-purple-600" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="text-display-lg font-bold font-mono tabular-nums">
                     {filteredData.length}
                   </div>
-                  <p className="text-sm text-muted-foreground">Transactions</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Transactions
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -311,7 +317,7 @@ export function Irs8949Content() {
         {/* Filter Controls */}
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Type:</span>
+            <span className="text-body-md text-muted-foreground">Type:</span>
             <Button
               variant={filterType === "All" ? "default" : "outline"}
               size="sm"
@@ -336,7 +342,7 @@ export function Irs8949Content() {
           </div>
           {selectedTransactions.length > 0 && (
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
+              <span className="text-body-md text-muted-foreground">
                 {selectedTransactions.length} selected
               </span>
               <Button variant="outline" size="sm">
@@ -355,7 +361,7 @@ export function Irs8949Content() {
                 <CardTitle>
                   Part I - Short-term Capital Gains and Losses
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   Assets held one year or less
                 </p>
               </CardHeader>
@@ -469,7 +475,7 @@ export function Irs8949Content() {
                 <CardTitle>
                   Part II - Long-term Capital Gains and Losses
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   Assets held more than one year
                 </p>
               </CardHeader>
@@ -582,7 +588,7 @@ export function Irs8949Content() {
         <Card>
           <CardHeader>
             <CardTitle>Form Generation</CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               Generate IRS Form 8949 for tax filing
             </p>
           </CardHeader>
@@ -611,7 +617,7 @@ export function Irs8949Content() {
                   <h4 className="font-medium text-info-text">
                     Ready for Filing
                   </h4>
-                  <p className="text-sm text-info-text">
+                  <p className="text-body-md text-info-text">
                     All transactions have been verified and are ready for tax
                     filing. Total net gain: ${totalGainLoss.toLocaleString()}
                   </p>
@@ -666,7 +672,7 @@ export function Irs8949Content() {
             <DialogTitle>Transaction Details</DialogTitle>
           </DialogHeader>
           {viewTxn && (
-            <div className="space-y-2 text-sm">
+            <div className="space-y-2 text-body-md">
               <div>
                 <span className="text-muted-foreground">Date:</span>{" "}
                 {viewTxn.date}
@@ -767,7 +773,7 @@ export function Irs8949Content() {
           <AlertDialogHeader>
             <AlertDialogTitle>Remove transaction?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>
