@@ -35,7 +35,7 @@ export function EnhancedDashboard() {
   return (
     <DashboardLayout activeItem="Dashboard">
       {/* This content replaces the default DashboardContent */}
-      <div className="app-content bg-gray-50">
+      <div className="app-content bg-muted">
         {/* Page Header - Fixed when scrolling */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
@@ -54,7 +54,7 @@ export function EnhancedDashboard() {
           {/* Section 1: Horizontally Scrollable Portfolio Cards */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-foreground">
                 Portfolio Overview
               </h2>
               <Button variant="outline" size="sm">
@@ -139,7 +139,7 @@ export function EnhancedDashboard() {
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-medium text-gray-600">
+                        <CardTitle className="text-sm font-medium text-muted-foreground">
                           {metric.title}
                         </CardTitle>
                         <div
@@ -151,7 +151,7 @@ export function EnhancedDashboard() {
                                 : metric.color === "red"
                                   ? "bg-error-bg"
                                   : metric.color === "purple"
-                                    ? "bg-purple-100"
+                                    ? "bg-category-purple-bg"
                                     : "bg-muted"
                           }`}
                         >
@@ -164,7 +164,7 @@ export function EnhancedDashboard() {
                                   : metric.color === "red"
                                     ? "text-error"
                                     : metric.color === "purple"
-                                      ? "text-purple-600"
+                                      ? "text-category-purple"
                                       : "text-muted-foreground"
                             }`}
                           />
@@ -172,7 +172,7 @@ export function EnhancedDashboard() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-2">
+                      <div className="text-2xl font-bold font-mono tabular-nums text-foreground mb-2">
                         {metric.value}
                       </div>
                       <div
@@ -202,7 +202,7 @@ export function EnhancedDashboard() {
           {/* Section 2: Responsive Grid for Quick Actions (No horizontal scroll) */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-foreground">
                 Quick Actions
               </h2>
             </div>
@@ -253,7 +253,7 @@ export function EnhancedDashboard() {
                               : action.color === "green"
                                 ? "bg-success-bg group-hover:bg-success-bg/80"
                                 : action.color === "purple"
-                                  ? "bg-purple-100 group-hover:bg-purple-200"
+                                  ? "bg-category-purple-bg group-hover:bg-category-purple-bg"
                                   : "bg-warning-bg group-hover:bg-warning-bg/80"
                           }`}
                         >
@@ -264,7 +264,7 @@ export function EnhancedDashboard() {
                                 : action.color === "green"
                                   ? "text-success"
                                   : action.color === "purple"
-                                    ? "text-purple-600"
+                                    ? "text-category-purple"
                                     : "text-warning"
                             }`}
                           />
@@ -275,7 +275,7 @@ export function EnhancedDashboard() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-muted-foreground mb-4">
                         {action.desc}
                       </p>
                       <Button
@@ -296,7 +296,7 @@ export function EnhancedDashboard() {
           {/* Section 3: Horizontally Scrollable Transactions Table */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-foreground">
                 Recent Transactions
               </h2>
               <div className="flex gap-2">
@@ -360,11 +360,11 @@ export function EnhancedDashboard() {
                     const gainLoss = (Math.random() - 0.5) * 1000;
 
                     return (
-                      <TableRow key={i} className="hover:bg-gray-50">
+                      <TableRow key={i} className="hover:bg-muted">
                         <TableCell className="font-mono text-xs">
                           2024-01-{String(15 + i).padStart(2, "0")}
                           <br />
-                          <span className="text-gray-500">
+                          <span className="text-muted-foreground">
                             14:
                             {String(Math.floor(Math.random() * 60)).padStart(
                               2,
@@ -408,7 +408,7 @@ export function EnhancedDashboard() {
                         </TableCell>
                         <TableCell
                           className={`font-mono font-semibold ${
-                            gainLoss > 0 ? "text-green-600" : "text-red-600"
+                            gainLoss > 0 ? "text-success" : "text-error"
                           }`}
                         >
                           {gainLoss > 0 ? "+" : ""}${gainLoss.toFixed(2)}
@@ -433,7 +433,7 @@ export function EnhancedDashboard() {
 
           {/* Section 4: Mixed Content - Charts with Horizontal Scrolling */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               Analytics & Insights
             </h2>
 
@@ -464,12 +464,12 @@ export function EnhancedDashboard() {
                           key={i}
                           className="flex flex-col items-center gap-2 min-w-[60px]"
                         >
-                          <div className="text-xs text-gray-600 font-medium">
+                          <div className="text-xs text-muted-foreground font-medium">
                             {month}
                           </div>
                           <div
                             className={`w-8 rounded transition-colors hover:opacity-80 ${
-                              i === 11 ? "bg-blue-500" : "bg-gray-300"
+                              i === 11 ? "bg-chart-blue" : "bg-border"
                             }`}
                             style={{ height: `${height}px` }}
                             title={`${month}: $${value.toFixed(0)}`}
@@ -481,7 +481,7 @@ export function EnhancedDashboard() {
                       );
                     })}
                   </div>
-                  <div className="border-t pt-4 text-sm text-gray-600">
+                  <div className="border-t pt-4 text-sm text-muted-foreground">
                     Drag or scroll horizontally to view all months
                   </div>
                 </CardContent>
@@ -528,18 +528,18 @@ export function EnhancedDashboard() {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0"
+                        className="flex justify-between items-center py-2 border-b border-border last:border-0"
                       >
                         <div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-muted-foreground">
                             {stat.label}
                           </div>
-                          <div className="text-xs text-gray-400">
+                          <div className="text-xs text-muted-foreground">
                             {stat.subtext}
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm font-semibold text-gray-900">
+                          <div className="text-sm font-semibold text-foreground">
                             {stat.value}
                           </div>
                         </div>

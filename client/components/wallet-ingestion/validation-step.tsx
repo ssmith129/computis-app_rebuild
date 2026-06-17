@@ -57,9 +57,13 @@ const validationChecks = [
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "Passed":
-      return <Badge className="bg-success-bg text-success-text">{status}</Badge>;
+      return (
+        <Badge className="bg-success-bg text-success-text">{status}</Badge>
+      );
     case "Warning":
-      return <Badge className="bg-warning-bg text-warning-text">{status}</Badge>;
+      return (
+        <Badge className="bg-warning-bg text-warning-text">{status}</Badge>
+      );
     case "Failed":
       return <Badge className="bg-error-bg text-error-text">{status}</Badge>;
     default:
@@ -98,12 +102,12 @@ export function ValidationStep({
           <h3 className="text-lg font-semibold mb-1">Validation Results</h3>
           <div className="flex items-center gap-2">
             {!hasFailed && !hasWarnings && (
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <CheckCircle className="h-4 w-4 text-success" />
             )}
             {hasWarnings && !hasFailed && (
-              <AlertTriangle className="h-4 w-4 text-yellow-500" />
+              <AlertTriangle className="h-4 w-4 text-warning" />
             )}
-            {hasFailed && <XCircle className="h-4 w-4 text-red-500" />}
+            {hasFailed && <XCircle className="h-4 w-4 text-error" />}
             <p className="text-sm text-muted-foreground">
               {hasFailed
                 ? "Validation failed - please fix errors"
@@ -154,10 +158,10 @@ export function ValidationStep({
         <div className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Overall Status:</span>
           <div className="flex items-center gap-2">
-            {!hasFailed && <CheckCircle className="h-4 w-4 text-green-500" />}
-            {hasFailed && <XCircle className="h-4 w-4 text-red-500" />}
+            {!hasFailed && <CheckCircle className="h-4 w-4 text-success" />}
+            {hasFailed && <XCircle className="h-4 w-4 text-error" />}
             <span
-              className={`font-medium ${hasFailed ? "text-red-600" : "text-green-600"}`}
+              className={`font-medium ${hasFailed ? "text-error" : "text-success"}`}
             >
               {hasFailed ? "Validation Failed" : "Ready for Schema Mapping"}
             </span>

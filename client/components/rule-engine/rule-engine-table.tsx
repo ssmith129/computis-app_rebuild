@@ -79,7 +79,7 @@ const initialRules = [
     lastRun: "2023-10-24",
     affectedTransactions: 42,
     status: "Active",
-    typeColor: "bg-purple-100 text-purple-800",
+    typeColor: "bg-category-purple-bg text-category-purple-fg",
   },
   {
     id: "4",

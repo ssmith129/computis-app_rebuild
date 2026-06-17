@@ -93,11 +93,11 @@ export function SchemaMappingStep({
   const getConfidenceBadge = (confidence: string) => {
     switch (confidence) {
       case "high":
-        return <Badge className="bg-green-100 text-green-800">High</Badge>;
+        return <Badge className="bg-success-bg text-success">High</Badge>;
       case "medium":
-        return <Badge className="bg-yellow-100 text-yellow-800">Medium</Badge>;
+        return <Badge className="bg-warning-bg text-warning">Medium</Badge>;
       case "low":
-        return <Badge className="bg-red-100 text-red-800">Low</Badge>;
+        return <Badge className="bg-error-bg text-error">Low</Badge>;
       default:
         return <Badge variant="outline">{confidence}</Badge>;
     }
@@ -130,9 +130,9 @@ export function SchemaMappingStep({
           <h3 className="text-lg font-semibold mb-1">Schema Mapping</h3>
           <div className="flex items-center gap-2">
             {requiredFieldsMapped ? (
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <CheckCircle className="h-4 w-4 text-success" />
             ) : (
-              <AlertTriangle className="h-4 w-4 text-yellow-500" />
+              <AlertTriangle className="h-4 w-4 text-warning" />
             )}
             <p className="text-sm text-muted-foreground">
               {requiredFieldsMapped
@@ -235,9 +235,9 @@ export function SchemaMappingStep({
                 <div>
                   {mappings[column.original] &&
                   mappings[column.original] !== "ignore" ? (
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-success" />
                   ) : (
-                    <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                    <AlertTriangle className="h-4 w-4 text-warning" />
                   )}
                 </div>
               </div>

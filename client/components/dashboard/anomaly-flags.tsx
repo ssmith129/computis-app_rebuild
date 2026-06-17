@@ -23,7 +23,7 @@ const anomalyFlags: AnomalyFlag[] = [
     secondaryAction: "Dismiss",
   },
   {
-    type: "warning", 
+    type: "warning",
     icon: DollarSign,
     title: "Missing FMV Data",
     description: "3 transactions missing accurate pricing",
@@ -34,9 +34,10 @@ const anomalyFlags: AnomalyFlag[] = [
   {
     type: "info",
     icon: GitBranch,
-    title: "Classification Conflict", 
+    title: "Classification Conflict",
     description: "Rule conflict detected in 2 transactions",
-    details: "Multiple rules are trying to classify the same transactions differently.",
+    details:
+      "Multiple rules are trying to classify the same transactions differently.",
     primaryAction: "Resolve",
     secondaryAction: "Dismiss",
   },
@@ -58,7 +59,7 @@ export function AnomalyFlags() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-gray-900">Anomaly Flags</h2>
+        <h2 className="text-lg font-bold text-foreground">Anomaly Flags</h2>
         <Button variant="link" className="text-primary p-0 h-auto">
           View All
         </Button>
@@ -66,7 +67,7 @@ export function AnomalyFlags() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {anomalyFlags.map((flag, index) => (
-          <Card key={index} className="p-4 border border-gray-200 shadow-sm">
+          <Card key={index} className="p-4 border border-border shadow-sm">
             <div className="space-y-3">
               {/* Header with icon and title */}
               <div className="flex items-start gap-3">
@@ -74,21 +75,33 @@ export function AnomalyFlags() {
                   <flag.icon className={`h-4 w-4 ${iconColors[flag.type]}`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-gray-900 text-sm">{flag.title}</h3>
-                  <p className="text-sm text-gray-500 mt-0.5">{flag.description}</p>
+                  <h3 className="font-medium text-foreground text-sm">
+                    {flag.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-0.5">
+                    {flag.description}
+                  </p>
                 </div>
               </div>
 
               {/* Details */}
-              <p className="text-sm text-gray-700 leading-relaxed">{flag.details}</p>
+              <p className="text-sm text-foreground leading-relaxed">
+                {flag.details}
+              </p>
 
               {/* Actions */}
               <div className="flex items-center justify-between pt-1">
-                <Button variant="link" className="text-primary p-0 h-auto text-sm">
+                <Button
+                  variant="link"
+                  className="text-primary p-0 h-auto text-sm"
+                >
                   {flag.primaryAction}
                 </Button>
                 {flag.secondaryAction && (
-                  <Button variant="link" className="text-gray-400 p-0 h-auto text-sm">
+                  <Button
+                    variant="link"
+                    className="text-muted-foreground p-0 h-auto text-sm"
+                  >
                     {flag.secondaryAction}
                   </Button>
                 )}

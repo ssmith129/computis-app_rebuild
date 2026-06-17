@@ -215,7 +215,7 @@ export function TransactionInsightsUnified() {
         <div className="flex items-center justify-between mb-5 pb-4 border-b">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-warning-bg">
-              <Flag className="h-5 w-5 text-orange-600" aria-hidden="true" />
+              <Flag className="h-5 w-5 text-chart-orange" aria-hidden="true" />
             </div>
             <div>
               <h3
@@ -325,10 +325,10 @@ export function TransactionInsightsUnified() {
 
         {/* Footer Summary */}
         <div className="mt-5 pt-4 border-t">
-          <div className="flex items-center justify-between p-3 rounded-lg bg-orange-50 border-l-4 border-orange-500">
+          <div className="flex items-center justify-between p-3 rounded-lg bg-warning-bg border-l-4 border-chart-orange">
             <div className="flex items-center gap-2">
               <AlertTriangle
-                className="h-4 w-4 text-orange-600 shrink-0"
+                className="h-4 w-4 text-chart-orange shrink-0"
                 aria-hidden="true"
               />
               <span className="text-xs font-medium text-foreground">
@@ -336,7 +336,7 @@ export function TransactionInsightsUnified() {
               </span>
             </div>
             <span
-              className="text-sm font-bold text-orange-600 tabular-nums"
+              className="text-sm font-bold text-chart-orange tabular-nums"
               aria-label="20 total anomalies"
             >
               20 Total

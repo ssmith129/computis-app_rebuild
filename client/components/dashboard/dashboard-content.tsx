@@ -20,7 +20,7 @@ export function DashboardContent() {
   };
 
   return (
-    <div className="app-content bg-gray-50">
+    <div className="app-content bg-muted">
       {/* Page Header */}
       <div className="page-titlebar">
         <div className="flex flex-col p-4 sm:p-6 text-left">
@@ -38,10 +38,10 @@ export function DashboardContent() {
               onValueChange={handleRoleChange}
               className="w-full"
             >
-              <TabsList className="inline-flex h-11 items-center justify-start rounded-lg bg-gray-100 p-1">
+              <TabsList className="inline-flex h-11 items-center justify-start rounded-lg bg-muted p-1">
                 <TabsTrigger
                   value="admin"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                   aria-label="Admin view - Full access to all dashboard features"
                 >
                   <Shield className="h-4 w-4" />
@@ -49,7 +49,7 @@ export function DashboardContent() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="client"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                   aria-label="Client view - Limited to client-accessible data"
                 >
                   <Users className="h-4 w-4" />
@@ -57,7 +57,7 @@ export function DashboardContent() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="cpa"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
                   aria-label="CPA view - Tax preparer tools and client management"
                 >
                   <Briefcase className="h-4 w-4" />
@@ -78,31 +78,31 @@ export function DashboardContent() {
           <TabsContent value="admin" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="bg-white rounded-lg border border-border">
               <Tabs defaultValue="overview" className="w-full">
-                <div className="border-b border-gray-200 px-6">
+                <div className="border-b border-border px-6">
                   <TabsList className="h-auto p-0 bg-transparent border-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-sm text-foreground">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="reports"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Reports
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -125,7 +125,7 @@ export function DashboardContent() {
                   className="p-6 mt-0 space-y-6 no-h-scroll"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-info-bg rounded-lg">
                           <svg
@@ -143,30 +143,32 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             IRS Form 8949
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Capital gains and losses
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Forms Ready:</span>
+                          <span className="text-muted-foreground">
+                            Forms Ready:
+                          </span>
                           <span className="font-medium">3 of 3</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Last Updated:</span>
+                          <span className="text-muted-foreground">
+                            Last Updated:
+                          </span>
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        View Reports
-                      </Button>
+                      <Button className="w-full mt-4">View Reports</Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-success-bg rounded-lg">
                           <svg
@@ -184,23 +186,27 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             Gain/Loss Analysis
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Detailed P&L breakdown
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Net Gain/Loss:</span>
+                          <span className="text-muted-foreground">
+                            Net Gain/Loss:
+                          </span>
                           <span className="font-medium text-success">
                             +$127,456
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Tax Liability:</span>
+                          <span className="text-muted-foreground">
+                            Tax Liability:
+                          </span>
                           <span className="font-medium">$25,491</span>
                         </div>
                       </div>
@@ -209,11 +215,11 @@ export function DashboardContent() {
                       </Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-purple-100 rounded-lg">
+                        <div className="p-2 bg-category-purple-bg rounded-lg">
                           <svg
-                            className="h-6 w-6 text-purple-600"
+                            className="h-6 w-6 text-category-purple"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -227,76 +233,78 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             Export Package
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Ready for filing
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Forms Included:</span>
+                          <span className="text-muted-foreground">
+                            Forms Included:
+                          </span>
                           <span className="font-medium">8949, Schedule D</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">File Size:</span>
+                          <span className="text-muted-foreground">
+                            File Size:
+                          </span>
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        Download Package
-                      </Button>
+                      <Button className="w-full mt-4">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-orange rounded-full"></div>
                             <span className="text-sm font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $234,567
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-blue rounded-full"></div>
                             <span className="text-sm font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $166,234
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-success rounded-full"></div>
                             <span className="text-sm font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $117,845
                             </div>
                           </div>
@@ -304,21 +312,21 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Unrealized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-success">
@@ -326,7 +334,7 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Realized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-info">
@@ -334,10 +342,10 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $391,190
                           </span>
                         </div>
@@ -353,23 +361,23 @@ export function DashboardContent() {
           <TabsContent value="client" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="bg-white rounded-lg border border-border">
               <Tabs defaultValue="overview" className="w-full">
-                <div className="border-b border-gray-200 px-6">
+                <div className="border-b border-border px-6">
                   <TabsList className="h-auto p-0 bg-transparent border-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-sm text-foreground">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -388,49 +396,49 @@ export function DashboardContent() {
 
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-orange rounded-full"></div>
                             <span className="text-sm font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $234,567
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-blue rounded-full"></div>
                             <span className="text-sm font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $166,234
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-success rounded-full"></div>
                             <span className="text-sm font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $117,845
                             </div>
                           </div>
@@ -438,21 +446,21 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Unrealized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-success">
@@ -460,7 +468,7 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Realized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-info">
@@ -468,10 +476,10 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $391,190
                           </span>
                         </div>
@@ -487,39 +495,39 @@ export function DashboardContent() {
           <TabsContent value="cpa" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="bg-white rounded-lg border border-border">
               <Tabs defaultValue="overview" className="w-full">
-                <div className="border-b border-gray-200 px-6">
+                <div className="border-b border-border px-6">
                   <TabsList className="h-auto p-0 bg-transparent border-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-900">
+                      <span className="font-semibold text-sm text-foreground">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="reports"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Reports
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Portfolio
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="clients"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-primary rounded-none"
                     >
-                      <span className="font-semibold text-sm text-gray-500">
+                      <span className="font-semibold text-sm text-muted-foreground">
                         Client Management
                       </span>
                     </TabsTrigger>
@@ -542,7 +550,7 @@ export function DashboardContent() {
                   className="p-6 mt-0 space-y-6 no-h-scroll"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-info-bg rounded-lg">
                           <svg
@@ -560,30 +568,32 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             IRS Form 8949
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Capital gains and losses
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Forms Ready:</span>
+                          <span className="text-muted-foreground">
+                            Forms Ready:
+                          </span>
                           <span className="font-medium">3 of 3</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Last Updated:</span>
+                          <span className="text-muted-foreground">
+                            Last Updated:
+                          </span>
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        View Reports
-                      </Button>
+                      <Button className="w-full mt-4">View Reports</Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="p-2 bg-success-bg rounded-lg">
                           <svg
@@ -601,23 +611,27 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             Gain/Loss Analysis
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Detailed P&L breakdown
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Net Gain/Loss:</span>
+                          <span className="text-muted-foreground">
+                            Net Gain/Loss:
+                          </span>
                           <span className="font-medium text-success">
                             +$127,456
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Tax Liability:</span>
+                          <span className="text-muted-foreground">
+                            Tax Liability:
+                          </span>
                           <span className="font-medium">$25,491</span>
                         </div>
                       </div>
@@ -626,11 +640,11 @@ export function DashboardContent() {
                       </Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
+                    <div className="bg-white p-6 rounded-lg border border-border hover:shadow-lg transition-shadow">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-purple-100 rounded-lg">
+                        <div className="p-2 bg-category-purple-bg rounded-lg">
                           <svg
-                            className="h-6 w-6 text-purple-600"
+                            className="h-6 w-6 text-category-purple"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -644,76 +658,78 @@ export function DashboardContent() {
                           </svg>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900">
+                          <h3 className="font-semibold text-foreground">
                             Export Package
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             Ready for filing
                           </p>
                         </div>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Forms Included:</span>
+                          <span className="text-muted-foreground">
+                            Forms Included:
+                          </span>
                           <span className="font-medium">8949, Schedule D</span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">File Size:</span>
+                          <span className="text-muted-foreground">
+                            File Size:
+                          </span>
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">
-                        Download Package
-                      </Button>
+                      <Button className="w-full mt-4">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
 
                 <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-orange rounded-full"></div>
                             <span className="text-sm font-medium">
                               Bitcoin (BTC)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">45.2%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $234,567
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-chart-blue rounded-full"></div>
                             <span className="text-sm font-medium">
                               Ethereum (ETH)
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">32.1%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $166,234
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="w-4 h-4 bg-success rounded-full"></div>
                             <span className="text-sm font-medium">
                               Other Assets
                             </span>
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-semibold">22.7%</div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               $117,845
                             </div>
                           </div>
@@ -721,21 +737,21 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    <div className="bg-white p-6 rounded-lg border border-border">
+                      <h3 className="text-lg font-semibold text-foreground mb-4">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Total Portfolio Value
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $518,646
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Unrealized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-success">
@@ -743,7 +759,7 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Realized Gain/Loss
                           </span>
                           <span className="text-lg font-bold text-info">
@@ -751,10 +767,10 @@ export function DashboardContent() {
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-muted-foreground">
                             Cost Basis
                           </span>
-                          <span className="text-lg font-bold text-gray-900">
+                          <span className="text-lg font-bold text-foreground">
                             $391,190
                           </span>
                         </div>
@@ -798,16 +814,16 @@ export function DashboardContent() {
                         </svg>
                       </div>
                       <p className="text-2xl font-bold text-success-text">23</p>
-                      <p className="text-xs text-green-700 mt-1">In progress</p>
+                      <p className="text-xs text-success mt-1">In progress</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
+                    <div className="bg-gradient-to-br from-category-purple-bg to-category-purple-bg p-6 rounded-lg border border-category-purple">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-sm font-medium text-purple-900">
+                        <h4 className="text-sm font-medium text-category-purple-fg">
                           Pending Review
                         </h4>
                         <svg
-                          className="h-4 w-4 text-purple-600"
+                          className="h-4 w-4 text-category-purple"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -820,13 +836,15 @@ export function DashboardContent() {
                           />
                         </svg>
                       </div>
-                      <p className="text-2xl font-bold text-purple-900">8</p>
-                      <p className="text-xs text-purple-700 mt-1">
+                      <p className="text-2xl font-bold text-category-purple-fg">
+                        8
+                      </p>
+                      <p className="text-xs text-category-purple-fg mt-1">
                         Needs attention
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border border-orange-200">
+                    <div className="bg-gradient-to-br from-warning-bg to-warning-bg p-6 rounded-lg border border-warning">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="text-sm font-medium text-warning-text">
                           Completed
@@ -852,12 +870,12 @@ export function DashboardContent() {
                     </div>
                   </div>
 
-                  <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  <div className="bg-white p-6 rounded-lg border border-border">
+                    <h3 className="text-lg font-semibold text-foreground mb-4">
                       Client Portfolio Overview
                     </h3>
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-info-bg rounded-full flex items-center justify-center">
                             <span className="text-sm font-semibold text-info-text">
@@ -865,22 +883,22 @@ export function DashboardContent() {
                             </span>
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-foreground">
                               John Doe
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-muted-foreground">
                               Portfolio: $518,646
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-warning-bg text-warning text-xs font-medium rounded">
                             In Review
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 bg-success-bg rounded-full flex items-center justify-center">
                             <span className="text-sm font-semibold text-success-text">
@@ -888,39 +906,39 @@ export function DashboardContent() {
                             </span>
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-foreground">
                               Alice Smith
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-muted-foreground">
                               Portfolio: $1,234,890
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-success-bg text-green-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-success-bg text-success text-xs font-medium rounded">
                             Complete
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex items-center justify-between p-3 bg-muted rounded-lg hover:bg-muted transition-colors cursor-pointer">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-semibold text-purple-900">
+                          <div className="w-10 h-10 bg-category-purple-bg rounded-full flex items-center justify-center">
+                            <span className="text-sm font-semibold text-category-purple-fg">
                               BJ
                             </span>
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">
+                            <p className="font-medium text-foreground">
                               Bob Johnson
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-muted-foreground">
                               Portfolio: $789,234
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-info-bg text-blue-800 text-xs font-medium rounded">
+                          <span className="px-2 py-1 bg-info-bg text-info-text text-xs font-medium rounded">
                             In Progress
                           </span>
                         </div>

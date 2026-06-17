@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StatusBadge } from "@/components/dashboard/status-badge";
+import { AssetSymbol } from "@/components/ui/asset-symbol";
 import {
   Tooltip,
   TooltipContent,
@@ -166,11 +167,11 @@ const getClassificationBadgeColor = (classification: string) => {
     case "Expense":
       return "bg-error-bg text-error-text";
     case "Transfer":
-      return "bg-purple-100 text-purple-800";
+      return "bg-category-purple-bg text-category-purple-fg";
     case "Unclassified":
-      return "bg-gray-100 text-gray-800";
+      return "bg-muted text-foreground";
     default:
-      return "bg-gray-100 text-gray-800";
+      return "bg-muted text-foreground";
   }
 };
 
@@ -300,9 +301,10 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 </TableCell>
                 <TableCell className="asset-column">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-orange-500 text-sm">
-                      {transaction.icon}
-                    </span>
+                    <AssetSymbol
+                      symbol={transaction.icon}
+                      className="text-sm"
+                    />
                     <span className="text-sm truncate max-w-[120px] md:max-w-[160px]">
                       {transaction.asset}
                     </span>
@@ -332,7 +334,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                     </span>
                     {transaction.confidence < 40 && (
                       <AlertTriangle
-                        className="h-3 w-3 text-red-500"
+                        className="h-3 w-3 text-error"
                         aria-label="Low confidence"
                       />
                     )}
@@ -351,7 +353,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-green-100 hover:text-green-600"
+                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-success-bg hover:text-success"
                             onClick={() =>
                               toast({ title: "Transaction confirmed" })
                             }
@@ -370,7 +372,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-yellow-100 hover:text-yellow-600"
+                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-warning-bg hover:text-warning"
                             onClick={() =>
                               toast({ title: "Transaction flagged" })
                             }
@@ -389,7 +391,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-red-100 hover:text-red-600"
+                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-error-bg hover:text-error"
                             onClick={() =>
                               toast({ title: "Transaction rejected" })
                             }

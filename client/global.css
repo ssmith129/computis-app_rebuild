@@ -57,6 +57,19 @@
     --info-bg: 199 89% 94%; /* #E0F2FE */
     --info-text: 201 96% 26%; /* #075985 */
 
+    /* Pending — distinct from info (blue): amber/gold "in progress" (AA) */
+    --pending: 38 92% 40%; /* #C2820A */
+    --pending-bg: 45 93% 90%; /* #FBEFC9 */
+    --pending-foreground: 35 91% 24%; /* #75490A - AA on --pending-bg */
+
+    /* Categorical accent — purple (decorative category, e.g. transaction type) */
+    --category-purple: 271 81% 56%; /* #9333EA */
+    --category-purple-bg: 269 100% 95%; /* #F3E8FF */
+    --category-purple-foreground: 273 67% 39%; /* #6B21A8 - AA on -bg */
+
+    /* Crypto asset glyph color (tokenized; was raw orange-500) */
+    --asset-symbol: 25 95% 45%; /* #E06A00 */
+
     /* Neutral/Muted */
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;

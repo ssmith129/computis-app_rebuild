@@ -124,7 +124,9 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Verified":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="bg-success-bg text-success-text border-0">
+          {status}
+        </Badge>
       );
     case "Pending Review":
       return (
@@ -280,7 +282,7 @@ export function Irs8949Content() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <DollarSign
-                  className={`h-4 w-4 ${totalGainLoss >= 0 ? "text-green-600" : "text-red-600"}`}
+                  className={`h-4 w-4 ${totalGainLoss >= 0 ? "text-success" : "text-error"}`}
                 />
                 <div>
                   <div
@@ -296,7 +298,7 @@ export function Irs8949Content() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-purple-600" />
+                <FileText className="h-4 w-4 text-category-purple" />
                 <div>
                   <div className="text-2xl font-bold font-mono tabular-nums">
                     {filteredData.length}

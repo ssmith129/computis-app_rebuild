@@ -164,14 +164,15 @@ const getIconComponent = (type: string) => {
 
 const getIconClass = (icon: string) => {
   const classes = {
-    classify: "bg-blue-500/20 text-blue-400",
-    accept: "bg-green-500/20 text-green-400",
-    view: "bg-purple-500/20 text-purple-400",
-    export: "bg-purple-500/20 text-purple-400",
-    override: "bg-yellow-500/20 text-yellow-400",
+    classify: "bg-chart-blue/20 text-info",
+    accept: "bg-success/20 text-success",
+    view: "bg-category-purple/20 text-category-purple",
+    export: "bg-category-purple/20 text-category-purple",
+    override: "bg-warning/20 text-warning",
   };
   return (
-    classes[icon as keyof typeof classes] || "bg-gray-500/20 text-gray-400"
+    classes[icon as keyof typeof classes] ||
+    "bg-muted-foreground/20 text-muted-foreground"
   );
 };
 
@@ -258,7 +259,7 @@ export function AuditTrailDrawer({
                     </span>
                     <span className="font-medium text-sm">{entry.action}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-blue-400 mb-2">
+                  <div className="flex items-center gap-1 text-xs text-info mb-2">
                     <User className="h-3 w-3" />
                     <span>{entry.user}</span>
                   </div>

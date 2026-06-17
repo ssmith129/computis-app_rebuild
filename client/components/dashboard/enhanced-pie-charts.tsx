@@ -154,17 +154,17 @@ export function AnimatedPieChart({
       <div className="absolute inset-0 flex items-center justify-center">
         {centerContent || (
           <div className="text-center">
-            <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">
+            <div className="text-2xl font-bold font-mono tabular-nums text-foreground">
               {total.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500">Total</div>
+            <div className="text-xs text-muted-foreground">Total</div>
           </div>
         )}
       </div>
 
       {/* Active segment tooltip */}
       {activeSegment !== null && (
-        <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm animate-in fade-in-0 zoom-in-95 duration-200 z-10 whitespace-nowrap">
+        <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-foreground text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm animate-in fade-in-0 zoom-in-95 duration-200 z-10 whitespace-nowrap">
           <div className="font-medium">{segments[activeSegment].label}</div>
           <div className="text-xs opacity-75">
             {segments[activeSegment].value.toLocaleString()} (
@@ -197,8 +197,8 @@ export function EnhancedLegend({
           key={index}
           className={cn(
             "flex items-center justify-between p-2 sm:p-3 rounded-lg transition-all duration-200 min-w-0",
-            interactive && "hover:bg-gray-50 cursor-pointer",
-            hoveredItem === index && "bg-gray-50 shadow-sm",
+            interactive && "hover:bg-muted cursor-pointer",
+            hoveredItem === index && "bg-muted shadow-sm",
           )}
           onMouseEnter={() => interactive && setHoveredItem(index)}
           onMouseLeave={() => interactive && setHoveredItem(null)}
@@ -212,23 +212,23 @@ export function EnhancedLegend({
               style={{ backgroundColor: item.color }}
             />
             <div className="min-w-0 flex-1">
-              <span className="text-xs sm:text-sm font-medium text-gray-900 truncate block">
+              <span className="text-xs sm:text-sm font-medium text-foreground truncate block">
                 {item.label}
               </span>
               {item.trend && item.trendValue && (
                 <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
                   {item.trend === "up" && (
-                    <TrendingUp className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-green-500 flex-shrink-0" />
+                    <TrendingUp className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-success flex-shrink-0" />
                   )}
                   {item.trend === "down" && (
-                    <TrendingDown className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-red-500 flex-shrink-0" />
+                    <TrendingDown className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-error flex-shrink-0" />
                   )}
                   <span
                     className={cn(
                       "text-xs truncate",
                       item.trend === "up" && "text-success",
                       item.trend === "down" && "text-error",
-                      item.trend === "stable" && "text-gray-500",
+                      item.trend === "stable" && "text-muted-foreground",
                     )}
                   >
                     {item.trendValue}
@@ -238,10 +238,10 @@ export function EnhancedLegend({
             </div>
           </div>
           <div className="text-right flex-shrink-0 ml-2">
-            <div className="text-xs sm:text-sm font-semibold text-gray-900 whitespace-nowrap">
+            <div className="text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">
               {item.value.toLocaleString()}
             </div>
-            <div className="text-xs text-gray-500 whitespace-nowrap">
+            <div className="text-xs text-muted-foreground whitespace-nowrap">
               {Math.round(
                 (item.value / data.reduce((sum, d) => sum + d.value, 0)) * 100,
               )}
@@ -330,10 +330,10 @@ export function EnhancedPieChartSections() {
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
             <div className="min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
+              <h3 className="text-base sm:text-lg font-bold text-foreground truncate">
                 Gain/Loss Breakdown
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Current tax year performance
               </p>
             </div>
@@ -351,7 +351,7 @@ export function EnhancedPieChartSections() {
                 className="h-6 w-6 hidden sm:flex"
                 aria-label="Gain/loss chart options"
               >
-                <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
               </Button>
             </div>
           </div>
@@ -367,10 +367,12 @@ export function EnhancedPieChartSections() {
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-green-600">
+                    <div className="text-lg sm:text-xl font-bold text-success">
                       ${totalGainLoss.toLocaleString()}
                     </div>
-                    <div className="text-xs text-gray-500">Net Gain</div>
+                    <div className="text-xs text-muted-foreground">
+                      Net Gain
+                    </div>
                   </div>
                 }
               />
@@ -384,10 +386,10 @@ export function EnhancedPieChartSections() {
         <CardContent className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
             <div className="min-w-0">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 truncate">
+              <h3 className="text-base sm:text-lg font-bold text-foreground truncate">
                 Transaction Status
               </h3>
-              <p className="text-xs sm:text-sm text-gray-500">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Processing pipeline overview
               </p>
             </div>
@@ -407,7 +409,7 @@ export function EnhancedPieChartSections() {
                 className="h-6 w-6 hidden sm:flex"
                 aria-label="Transaction status chart options"
               >
-                <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
               </Button>
             </div>
           </div>
@@ -423,10 +425,12 @@ export function EnhancedPieChartSections() {
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-gray-900">
+                    <div className="text-lg sm:text-xl font-bold text-foreground">
                       {totalTransactions.toLocaleString()}
                     </div>
-                    <div className="text-xs text-gray-500">Total Txs</div>
+                    <div className="text-xs text-muted-foreground">
+                      Total Txs
+                    </div>
                   </div>
                 }
               />

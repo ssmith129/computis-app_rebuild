@@ -153,7 +153,7 @@ type SortDirection = "asc" | "desc";
 const getStatusBadge = (status: User["status"]) => {
   const variants = {
     Active: "bg-success-bg text-success-text border-0",
-    Inactive: "bg-gray-100 text-gray-700 border-0",
+    Inactive: "bg-muted text-foreground border-0",
     Pending: "bg-warning-bg text-warning-text border-0",
   };
   const icons = {
@@ -174,11 +174,11 @@ const getStatusBadge = (status: User["status"]) => {
 const getRoleBadge = (role: string) => {
   const variants: Record<string, string> = {
     Administrator: "bg-info-bg text-info-text border-0",
-    "Tax Preparer": "bg-purple-100 text-purple-700 border-0",
+    "Tax Preparer": "bg-category-purple-bg text-category-purple-fg border-0",
     "Client User": "bg-cyan-100 text-cyan-700 border-0",
   };
   return (
-    <Badge className={variants[role] || "bg-gray-100 text-gray-700 border-0"}>
+    <Badge className={variants[role] || "bg-muted text-foreground border-0"}>
       {role}
     </Badge>
   );
@@ -300,9 +300,7 @@ export function UsersManagement() {
                 <p className="text-sm font-medium text-muted-foreground">
                   Active Users
                 </p>
-                <p className="text-3xl font-bold text-success">
-                  {activeCount}
-                </p>
+                <p className="text-3xl font-bold text-success">{activeCount}</p>
               </div>
               <div className="p-3 bg-success-bg rounded-lg">
                 <UserCheck className="h-6 w-6 text-success" />
@@ -317,12 +315,12 @@ export function UsersManagement() {
                 <p className="text-sm font-medium text-muted-foreground">
                   Inactive Users
                 </p>
-                <p className="text-3xl font-bold text-gray-600">
+                <p className="text-3xl font-bold text-muted-foreground">
                   {inactiveCount}
                 </p>
               </div>
-              <div className="p-3 bg-gray-100 rounded-lg">
-                <UserX className="h-6 w-6 text-gray-600" />
+              <div className="p-3 bg-muted rounded-lg">
+                <UserX className="h-6 w-6 text-muted-foreground" />
               </div>
             </div>
           </CardContent>
@@ -440,7 +438,7 @@ export function UsersManagement() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">
-                  Full Name <span className="text-red-500">*</span>
+                  Full Name <span className="text-error">*</span>
                 </Label>
                 <Input
                   id="name"
@@ -451,7 +449,7 @@ export function UsersManagement() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">
-                  Email Address <span className="text-red-500">*</span>
+                  Email Address <span className="text-error">*</span>
                 </Label>
                 <Input
                   id="email"
@@ -520,7 +518,7 @@ export function UsersManagement() {
           {selectedUser && (
             <div className="space-y-6 py-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-xl">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-category-purple flex items-center justify-center text-white font-semibold text-xl">
                   {selectedUser.name
                     .split(" ")
                     .map((n) => n[0])
@@ -829,7 +827,7 @@ function UserTableSection({
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-category-purple flex items-center justify-center text-white font-semibold text-sm">
                           {user.name
                             .split(" ")
                             .map((n) => n[0])

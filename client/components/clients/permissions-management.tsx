@@ -341,11 +341,11 @@ const getPermissionIcon = (allowed: boolean) => {
 const getRoleColor = (color: string) => {
   const colors: Record<string, string> = {
     blue: "bg-info-bg text-info-text",
-    purple: "bg-purple-100 text-purple-700",
+    purple: "bg-category-purple-bg text-category-purple-fg",
     green: "bg-success-bg text-success-text",
     orange: "bg-warning-bg text-warning-text",
   };
-  return colors[color] || "bg-gray-100 text-gray-700";
+  return colors[color] || "bg-muted text-foreground";
 };
 
 export function PermissionsManagement() {
@@ -624,11 +624,11 @@ export function PermissionsManagement() {
                                 >
                                   {role.permissions[permission.id] ? (
                                     <div className="flex justify-center">
-                                      <Check className="h-5 w-5 text-green-600" />
+                                      <Check className="h-5 w-5 text-success" />
                                     </div>
                                   ) : (
                                     <div className="flex justify-center">
-                                      <X className="h-5 w-5 text-red-400" />
+                                      <X className="h-5 w-5 text-error" />
                                     </div>
                                   )}
                                 </TableCell>
@@ -681,7 +681,7 @@ export function PermissionsManagement() {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-xs">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-category-purple flex items-center justify-center text-white font-semibold text-xs">
                             {entry.user
                               .split(" ")
                               .map((n) => n[0])
@@ -694,7 +694,7 @@ export function PermissionsManagement() {
                         <Badge variant="secondary">{entry.action}</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-purple-100 text-purple-700 border-0">
+                        <Badge className="bg-category-purple-bg text-category-purple-fg border-0">
                           {entry.role}
                         </Badge>
                       </TableCell>
@@ -840,7 +840,7 @@ export function PermissionsManagement() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="role-name">
-                  Role Name <span className="text-red-500">*</span>
+                  Role Name <span className="text-error">*</span>
                 </Label>
                 <Input
                   id="role-name"
@@ -937,7 +937,7 @@ export function PermissionsManagement() {
                               </div>
                             </div>
                             {newRolePermissions[permission.id] ? (
-                              <Badge className="bg-green-100 text-green-700 border-0">
+                              <Badge className="bg-success-bg text-success border-0">
                                 <Check className="h-3 w-3 mr-1" />
                                 Enabled
                               </Badge>
@@ -1081,7 +1081,7 @@ export function PermissionsManagement() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteRole}
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-error hover:bg-error"
             >
               Delete Role
             </AlertDialogAction>

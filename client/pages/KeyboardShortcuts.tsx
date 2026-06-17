@@ -281,11 +281,11 @@ export default function KeyboardShortcuts() {
     <div className="flex items-center gap-1">
       {keys.map((key, index) => (
         <span key={index} className="flex items-center gap-1">
-          <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg shadow-sm">
+          <kbd className="px-2 py-1 text-xs font-semibold text-foreground bg-muted border border-border rounded-lg shadow-sm">
             {key}
           </kbd>
           {index < keys.length - 1 && (
-            <span className="text-gray-400 text-xs">+</span>
+            <span className="text-muted-foreground text-xs">+</span>
           )}
         </span>
       ))}
@@ -294,7 +294,7 @@ export default function KeyboardShortcuts() {
 
   return (
     <DashboardLayout activeItem="Keyboard Shortcuts">
-      <div className="app-content bg-gray-50">
+      <div className="app-content bg-muted">
         {/* Page Header */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
@@ -316,7 +316,7 @@ export default function KeyboardShortcuts() {
               <Card>
                 <CardContent className="p-4">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       placeholder="Search shortcuts..."
                       className="pl-10"
@@ -341,8 +341,10 @@ export default function KeyboardShortcuts() {
                       key={platform.platform}
                       className="flex items-center justify-between text-sm"
                     >
-                      <span className="text-gray-600">{platform.platform}</span>
-                      <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded">
+                      <span className="text-muted-foreground">
+                        {platform.platform}
+                      </span>
+                      <kbd className="px-2 py-1 text-xs font-semibold text-foreground bg-muted border border-border rounded">
                         {platform.modifier}
                       </kbd>
                     </div>
@@ -367,7 +369,7 @@ export default function KeyboardShortcuts() {
                             : category.color === "green"
                               ? "bg-success-bg"
                               : category.color === "purple"
-                                ? "bg-purple-100"
+                                ? "bg-category-purple-bg"
                                 : category.color === "orange"
                                   ? "bg-warning-bg"
                                   : category.color === "red"
@@ -382,7 +384,7 @@ export default function KeyboardShortcuts() {
                               : category.color === "green"
                                 ? "text-success"
                                 : category.color === "purple"
-                                  ? "text-purple-600"
+                                  ? "text-category-purple"
                                   : category.color === "orange"
                                     ? "text-warning"
                                     : category.color === "red"
@@ -402,13 +404,13 @@ export default function KeyboardShortcuts() {
                       {category.shortcuts.map((shortcut, index) => (
                         <div
                           key={index}
-                          className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                          className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted transition-colors"
                         >
                           <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm text-gray-900 mb-1">
+                            <div className="font-medium text-sm text-foreground mb-1">
                               {shortcut.description}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               {shortcut.action}
                             </div>
                           </div>
@@ -435,27 +437,27 @@ export default function KeyboardShortcuts() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <h4 className="font-medium text-gray-900">
+                  <h4 className="font-medium text-foreground">
                     💡 Power User Tips
                   </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>
                       • Hold{" "}
-                      <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
+                      <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
                         Ctrl
                       </kbd>{" "}
                       while clicking to select multiple items
                     </li>
                     <li>
                       • Use{" "}
-                      <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
+                      <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
                         Tab
                       </kbd>{" "}
                       to navigate through forms quickly
                     </li>
                     <li>
                       • Press{" "}
-                      <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
+                      <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
                         ?
                       </kbd>{" "}
                       on any page to see relevant shortcuts
@@ -466,16 +468,16 @@ export default function KeyboardShortcuts() {
                   </ul>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="font-medium text-gray-900">
+                  <h4 className="font-medium text-foreground">
                     ⚙️ Customization
                   </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Shortcuts can be customized in Settings</li>
                     <li>• Some shortcuts are context-sensitive</li>
                     <li>• Tooltips show shortcuts for interactive elements</li>
                     <li>
                       • Press{" "}
-                      <kbd className="px-1 py-0.5 bg-gray-100 rounded text-xs">
+                      <kbd className="px-1 py-0.5 bg-muted rounded text-xs">
                         Esc
                       </kbd>{" "}
                       to cancel most actions
@@ -501,7 +503,7 @@ export default function KeyboardShortcuts() {
           {/* Search Results Info */}
           {searchQuery && (
             <div className="text-center py-4">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 {filteredCategories.reduce(
                   (total, cat) => total + cat.shortcuts.length,
                   0,

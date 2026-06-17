@@ -15,38 +15,38 @@ const issues = [
     id: "missing-fmv",
     type: "High",
     icon: AlertTriangle,
-    iconColor: "text-red-500",
+    iconColor: "text-error",
     issueType: "Missing FMV",
     description: "3 transactions missing accurate pricing data",
     affectedTransactions: "BTC",
     date: "Aug 14, 2022",
     severity: "High",
-    action: "Fix Now"
+    action: "Fix Now",
   },
   {
     id: "unclassified",
-    type: "Medium", 
+    type: "Medium",
     icon: Info,
-    iconColor: "text-blue-500",
+    iconColor: "text-info",
     issueType: "Unclassified Transactions",
     description: "12 transactions need classification",
     affectedTransactions: "USDC",
     date: "Multiple",
     severity: "Medium",
-    action: "Classify"
+    action: "Classify",
   },
   {
     id: "low-confidence",
     type: "Low",
     icon: AlertCircle,
-    iconColor: "text-yellow-500",
+    iconColor: "text-warning",
     issueType: "Low AI Confidence",
     description: "5 transactions with low AI confidence",
     affectedTransactions: "ETH",
-    date: "Multiple", 
+    date: "Multiple",
     severity: "Low",
-    action: "Review"
-  }
+    action: "Review",
+  },
 ];
 
 const getSeverityBadge = (severity: string) => {
@@ -54,7 +54,9 @@ const getSeverityBadge = (severity: string) => {
     case "High":
       return <Badge className="bg-error-bg text-error-text">{severity}</Badge>;
     case "Medium":
-      return <Badge className="bg-warning-bg text-warning-text">{severity}</Badge>;
+      return (
+        <Badge className="bg-warning-bg text-warning-text">{severity}</Badge>
+      );
     case "Low":
       return <Badge className="bg-info-bg text-info-text">{severity}</Badge>;
     default:
@@ -68,7 +70,9 @@ export function IssuesTable() {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold">Issues Requiring Attention</h3>
-          <p className="text-sm text-muted-foreground">Review these issues before exporting</p>
+          <p className="text-sm text-muted-foreground">
+            Review these issues before exporting
+          </p>
         </div>
       </div>
 
@@ -107,13 +111,13 @@ export function IssuesTable() {
                       </span>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    {getSeverityBadge(issue.severity)}
-                  </TableCell>
+                  <TableCell>{getSeverityBadge(issue.severity)}</TableCell>
                   <TableCell>
                     <Button
                       size="sm"
-                      variant={issue.severity === "High" ? "default" : "outline"}
+                      variant={
+                        issue.severity === "High" ? "default" : "outline"
+                      }
                     >
                       {issue.action}
                     </Button>

@@ -102,13 +102,14 @@ const quickActions = [
     title: "Update FMV",
     description: "Fix calculations",
     icon: RotateCcw,
-    color: "text-amber-600 bg-amber-50 hover:bg-amber-100",
+    color: "text-warning bg-warning-bg hover:bg-warning-bg",
   },
   {
     title: "Export",
     description: "CSV or PDF",
     icon: Download,
-    color: "text-purple-600 bg-purple-50 hover:bg-purple-100",
+    color:
+      "text-category-purple bg-category-purple-bg hover:bg-category-purple-bg",
   },
 ];
 
@@ -117,11 +118,11 @@ const getPriorityStyles = (priority: string) => {
     case "High":
       return "bg-error-bg text-error-text border-error/30";
     case "Medium":
-      return "bg-amber-50 text-amber-700 border-amber-200";
+      return "bg-warning-bg text-warning border-warning";
     case "Low":
       return "bg-info-bg text-info-text border-info/30";
     default:
-      return "bg-gray-50 text-gray-700 border-gray-200";
+      return "bg-muted text-foreground border-border";
   }
 };
 
@@ -134,7 +135,7 @@ const getStatusStyles = (status: string) => {
     case "Resolved":
       return "bg-success-bg text-success-text border-success/30";
     default:
-      return "bg-gray-50 text-gray-700 border-gray-200";
+      return "bg-muted text-foreground border-border";
   }
 };
 
@@ -193,10 +194,10 @@ export function AnomalyIssueDetails({
                 <TrendingUp className="h-5 w-5 text-error" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
                   Volume Spike Details
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   15 transactions • Bitcoin (BTC)
                 </p>
               </div>
@@ -209,7 +210,7 @@ export function AnomalyIssueDetails({
               variant="outline"
               size="sm"
               onClick={handleIgnore}
-              className="h-9 border-gray-300 hover:bg-gray-50"
+              className="h-9 border-border hover:bg-muted"
             >
               <XCircle className="h-4 w-4 mr-2" />
               Ignore Issue
@@ -240,32 +241,32 @@ export function AnomalyIssueDetails({
       <div className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
           {/* Issue Information Card - 25% on desktop */}
-          <Card className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <Card className="border-border shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
-                <AlertCircle className="h-4 w-4 text-gray-600" />
+              <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
+                <AlertCircle className="h-4 w-4 text-muted-foreground" />
                 Issue Information
               </CardTitle>
             </CardHeader>
             <CardContent className="px-5 pb-5 space-y-3">
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                   Type
                 </div>
-                <div className="text-sm font-semibold text-gray-900">
+                <div className="text-sm font-semibold text-foreground">
                   {issueData.type}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                   Detected
                 </div>
-                <div className="text-sm text-gray-700">
+                <div className="text-sm text-foreground">
                   {issueData.detected}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                   Priority
                 </div>
                 <Badge
@@ -275,7 +276,7 @@ export function AnomalyIssueDetails({
                 </Badge>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                   Status
                 </div>
                 <Badge
@@ -284,16 +285,16 @@ export function AnomalyIssueDetails({
                   {issueData.status}
                 </Badge>
               </div>
-              <div className="pt-2 border-t border-gray-100">
+              <div className="pt-2 border-t border-border">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-500">Affected</div>
-                  <div className="text-sm font-semibold text-gray-900">
+                  <div className="text-xs text-muted-foreground">Affected</div>
+                  <div className="text-sm font-semibold text-foreground">
                     {issueData.affected}
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <div className="text-xs text-gray-500">Asset</div>
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-xs text-muted-foreground">Asset</div>
+                  <div className="text-sm font-medium text-foreground">
                     {issueData.asset}
                   </div>
                 </div>
@@ -302,43 +303,43 @@ export function AnomalyIssueDetails({
           </Card>
 
           {/* AI Recommendation Card - 25% on desktop */}
-          <Card className="border-blue-200 shadow-sm bg-gradient-to-br from-blue-50 to-white hover:shadow-md transition-shadow">
+          <Card className="border-info shadow-sm bg-gradient-to-br from-info-bg to-white hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
+              <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-primary" />
                 AI Recommendation
               </CardTitle>
             </CardHeader>
             <CardContent className="px-5 pb-5 space-y-4">
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="text-xs font-medium text-muted-foreground mb-1.5">
                   Analysis
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   {issueData.description}
                 </p>
               </div>
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="text-xs font-medium text-muted-foreground mb-1.5">
                   Suggested Action
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed">
                   {issueData.suggestion}
                 </p>
               </div>
-              <div className="pt-3 border-t border-blue-100">
+              <div className="pt-3 border-t border-info">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-600">
+                  <span className="text-xs font-medium text-muted-foreground">
                     Confidence Score
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full bg-success rounded-full transition-all"
                         style={{ width: `${issueData.confidence}%` }}
                       />
                     </div>
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-sm font-bold text-foreground">
                       {issueData.confidence}%
                     </span>
                   </div>
@@ -348,9 +349,9 @@ export function AnomalyIssueDetails({
           </Card>
 
           {/* Quick Actions Card - 50% on desktop, spans 2 columns */}
-          <Card className="md:col-span-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <Card className="md:col-span-2 border-border shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Quick Actions
               </CardTitle>
             </CardHeader>
@@ -361,7 +362,7 @@ export function AnomalyIssueDetails({
                   return (
                     <button
                       key={index}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 transition-all hover:scale-105 hover:shadow-md ${action.color.split(" ")[1]} ${action.color.split(" ")[2]}`}
+                      className={`flex flex-col items-center gap-2 p-4 rounded-lg border border-border transition-all hover:scale-105 hover:shadow-md ${action.color.split(" ")[1]} ${action.color.split(" ")[2]}`}
                       onClick={() =>
                         toast({ title: `${action.title} initiated` })
                       }
@@ -371,10 +372,10 @@ export function AnomalyIssueDetails({
                         className={`h-5 w-5 ${action.color.split(" ")[0]}`}
                       />
                       <div className="text-center">
-                        <div className="text-xs font-semibold text-gray-900">
+                        <div className="text-xs font-semibold text-foreground">
                           {action.title}
                         </div>
-                        <div className="text-xs text-gray-500 mt-0.5">
+                        <div className="text-xs text-muted-foreground mt-0.5">
                           {action.description}
                         </div>
                       </div>
@@ -387,14 +388,14 @@ export function AnomalyIssueDetails({
         </div>
 
         {/* Affected Transactions - Full Width */}
-        <Card className="border-gray-200 shadow-sm">
-          <CardHeader className="px-5 py-4 border-b border-gray-200">
+        <Card className="border-border shadow-sm">
+          <CardHeader className="px-5 py-4 border-b border-border">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-base font-semibold text-gray-900">
+                <CardTitle className="text-base font-semibold text-foreground">
                   Affected Transactions
                 </CardTitle>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Showing {paginatedTransactions.length} of{" "}
                   {affectedTransactions.length} transactions
                 </p>
@@ -409,23 +410,23 @@ export function AnomalyIssueDetails({
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-gray-50">
-                    <TableHead className="text-xs font-semibold text-gray-600 px-5">
+                  <TableRow className="bg-muted">
+                    <TableHead className="text-xs font-semibold text-muted-foreground px-5">
                       Date
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-xs font-semibold text-muted-foreground">
                       Type
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-xs font-semibold text-muted-foreground">
                       Amount
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-xs font-semibold text-muted-foreground">
                       FMV (USD)
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-xs font-semibold text-muted-foreground">
                       Classification
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600 text-right px-5">
+                    <TableHead className="text-xs font-semibold text-muted-foreground text-right px-5">
                       Actions
                     </TableHead>
                   </TableRow>
@@ -434,9 +435,9 @@ export function AnomalyIssueDetails({
                   {paginatedTransactions.map((transaction) => (
                     <TableRow
                       key={transaction.id}
-                      className="hover:bg-gray-50 transition-colors"
+                      className="hover:bg-muted transition-colors"
                     >
-                      <TableCell className="font-medium text-sm text-gray-900 px-5">
+                      <TableCell className="font-medium text-sm text-foreground px-5">
                         {transaction.date}
                       </TableCell>
                       <TableCell>
@@ -444,7 +445,7 @@ export function AnomalyIssueDetails({
                           {transaction.type}
                         </Badge>
                       </TableCell>
-                      <TableCell className="font-mono text-sm font-semibold text-gray-900">
+                      <TableCell className="font-mono text-sm font-semibold text-foreground">
                         {transaction.amount}
                       </TableCell>
                       <TableCell>
@@ -461,10 +462,10 @@ export function AnomalyIssueDetails({
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0 hover:bg-gray-100"
+                          className="h-8 w-8 p-0 hover:bg-muted"
                           aria-label="View transaction details"
                         >
-                          <ExternalLink className="h-4 w-4 text-gray-600" />
+                          <ExternalLink className="h-4 w-4 text-muted-foreground" />
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -474,7 +475,7 @@ export function AnomalyIssueDetails({
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between px-5 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-between px-5 py-4 border-t border-border">
               <Button
                 variant="outline"
                 size="sm"

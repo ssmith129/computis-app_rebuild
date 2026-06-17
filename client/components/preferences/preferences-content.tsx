@@ -84,11 +84,11 @@ export function PreferencesContent() {
   };
 
   const colorSchemes = [
-    { value: "blue", label: "Blue", color: "bg-blue-500" },
-    { value: "green", label: "Green", color: "bg-green-500" },
-    { value: "purple", label: "Purple", color: "bg-purple-500" },
-    { value: "orange", label: "Orange", color: "bg-orange-500" },
-    { value: "red", label: "Red", color: "bg-red-500" },
+    { value: "blue", label: "Blue", color: "bg-chart-blue" },
+    { value: "green", label: "Green", color: "bg-success" },
+    { value: "purple", label: "Purple", color: "bg-category-purple" },
+    { value: "orange", label: "Orange", color: "bg-chart-orange" },
+    { value: "red", label: "Red", color: "bg-error" },
   ];
 
   return (
@@ -608,11 +608,11 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h4 className="font-medium text-blue-900 mb-2">
+                <div className="p-4 bg-info-bg rounded-lg border border-info">
+                  <h4 className="font-medium text-info-text mb-2">
                     Keyboard Shortcuts
                   </h4>
-                  <div className="space-y-2 text-sm text-blue-800">
+                  <div className="space-y-2 text-sm text-info-text">
                     <div className="flex justify-between">
                       <span>Open search</span>
                       <kbd className="px-2 py-1 bg-info-bg rounded">

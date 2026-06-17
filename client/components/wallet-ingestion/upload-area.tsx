@@ -21,20 +21,26 @@ export function UploadArea() {
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
-    
+
     const files = Array.from(e.dataTransfer.files).filter(
-      file => file.type === "text/csv" || file.name.endsWith(".csv") || file.name.endsWith(".xlsx")
+      (file) =>
+        file.type === "text/csv" ||
+        file.name.endsWith(".csv") ||
+        file.name.endsWith(".xlsx"),
     );
-    
-    setUploadedFiles(prev => [...prev, ...files]);
+
+    setUploadedFiles((prev) => [...prev, ...files]);
   }, []);
 
-  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
-      setUploadedFiles(prev => [...prev, ...files]);
-    }
-  }, []);
+  const handleFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+        const files = Array.from(e.target.files);
+        setUploadedFiles((prev) => [...prev, ...files]);
+      }
+    },
+    [],
+  );
 
   return (
     <Card className="border border-border">
@@ -50,9 +56,12 @@ export function UploadArea() {
 
           {/* Title */}
           <div>
-            <h2 className="text-xl font-bold text-foreground">Upload CSV Files</h2>
+            <h2 className="text-xl font-bold text-foreground">
+              Upload CSV Files
+            </h2>
             <p className="text-muted-foreground mt-2">
-              Drag and drop your exchange or wallet CSV files here, or click to browse your files
+              Drag and drop your exchange or wallet CSV files here, or click to
+              browse your files
             </p>
           </div>
 
@@ -60,9 +69,9 @@ export function UploadArea() {
           <div
             className={cn(
               "border-2 border-dashed rounded-lg p-8 transition-colors",
-              isDragOver 
-                ? "border-blue-400 bg-blue-50" 
-                : "border-border bg-background"
+              isDragOver
+                ? "border-info bg-info-bg"
+                : "border-border bg-background",
             )}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
@@ -82,7 +91,7 @@ export function UploadArea() {
               </div>
               <div className="flex justify-center">
                 <label htmlFor="file-upload">
-                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                  <Button className="bg-warning hover:bg-warning text-black">
                     Select Files
                   </Button>
                   <input
@@ -101,10 +110,15 @@ export function UploadArea() {
           {/* Uploaded Files */}
           {uploadedFiles.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-medium text-foreground mb-3">Selected Files:</h3>
+              <h3 className="text-sm font-medium text-foreground mb-3">
+                Selected Files:
+              </h3>
               <div className="space-y-2">
                 {uploadedFiles.map((file, index) => (
-                  <div key={index} className="flex items-center justify-between bg-muted p-2 rounded">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between bg-muted p-2 rounded"
+                  >
                     <div className="flex items-center gap-2">
                       <FileSpreadsheet className="w-4 h-4" />
                       <span className="text-sm">{file.name}</span>

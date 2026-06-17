@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { StatusBadge } from "@/components/dashboard/status-badge";
+import { AssetSymbol } from "@/components/ui/asset-symbol";
 import { Separator } from "@/components/ui/separator";
 import {
   AlertTriangle,
@@ -66,11 +67,11 @@ const getClassificationBadgeColor = (classification: string) => {
     case "Expense":
       return "bg-error-bg text-error-text border-error/30";
     case "Transfer":
-      return "bg-purple-100 text-purple-800 border-purple-200";
+      return "bg-category-purple-bg text-category-purple-fg border-category-purple";
     case "Unclassified":
-      return "bg-gray-100 text-gray-800 border-gray-200";
+      return "bg-muted text-foreground border-border";
     default:
-      return "bg-gray-100 text-gray-800 border-gray-200";
+      return "bg-muted text-foreground border-border";
   }
 };
 
@@ -84,7 +85,7 @@ const getTransactionTypeIcon = (type: string) => {
     case "merge":
       return <RefreshCw className="h-5 w-5 text-info" />;
     default:
-      return <RefreshCw className="h-5 w-5 text-gray-600" />;
+      return <RefreshCw className="h-5 w-5 text-muted-foreground" />;
   }
 };
 
@@ -161,9 +162,10 @@ export function TransactionDetailsModal({
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Asset</p>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-2xl text-orange-500">
-                      {transaction.icon}
-                    </span>
+                    <AssetSymbol
+                      symbol={transaction.icon}
+                      className="text-2xl"
+                    />
                     <span className="font-semibold text-lg">
                       {transaction.asset}
                     </span>

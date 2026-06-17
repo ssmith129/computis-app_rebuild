@@ -23,21 +23,26 @@ export function DashboardCard({
   const changeColorClass = {
     positive: "text-success",
     negative: "text-error",
-    neutral: "text-gray-500",
+    neutral: "text-muted-foreground",
   }[changeType];
 
   return (
     <Card className="p-6 bg-white">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-medium text-gray-600">{title}</h3>
-        <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Card options">
-          <MoreHorizontal className="h-4 w-4 text-gray-400" />
+        <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-6 w-6"
+          aria-label="Card options"
+        >
+          <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
         </Button>
       </div>
 
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <div className="text-lg font-bold text-gray-900">{value}</div>
+          <div className="text-lg font-bold text-foreground">{value}</div>
           <div className={`text-xs ${changeColorClass}`}>{change}</div>
         </div>
 

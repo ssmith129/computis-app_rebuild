@@ -8,7 +8,7 @@ interface ChartBarProps {
 
 const colorMap = {
   blue: "bg-chart-blue",
-  green: "bg-chart-green", 
+  green: "bg-chart-green",
   orange: "bg-chart-orange",
   yellow: "bg-chart-yellow",
   cyan: "bg-chart-cyan",
@@ -18,11 +18,7 @@ const colorMap = {
 export function ChartBar({ height, color, className }: ChartBarProps) {
   return (
     <div
-      className={cn(
-        "w-[5px] chart-bar rounded-sm",
-        colorMap[color],
-        className
-      )}
+      className={cn("w-[5px] chart-bar rounded-sm", colorMap[color], className)}
       style={{ height: `${height}px` }}
     />
   );
@@ -37,7 +33,7 @@ interface MiniChartProps {
 export function MiniChart({ data, color, className }: MiniChartProps) {
   const maxValue = Math.max(...data);
   const maxHeight = 48; // 48px max height
-  
+
   return (
     <div className={cn("flex items-end gap-1.5 h-14 p-1", className)}>
       {data.map((value, index) => (

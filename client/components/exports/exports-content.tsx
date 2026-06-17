@@ -93,7 +93,7 @@ export function ExportsContent() {
               </Button>
               <Button
                 size="sm"
-                className="bg-yellow-500 hover:bg-yellow-600 text-white"
+                className="bg-warning hover:bg-warning text-white"
                 onClick={handleGenerate}
                 disabled={generating}
               >

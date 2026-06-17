@@ -11,24 +11,24 @@ interface AnimatedChartBarProps {
 
 const colorMap = {
   blue: {
-    bg: "bg-blue-500",
+    bg: "bg-chart-blue",
     glow: "shadow-blue-500/50",
     hover: "bg-primary",
   },
   green: {
-    bg: "bg-green-500",
+    bg: "bg-success",
     glow: "shadow-green-500/50",
-    hover: "bg-green-600",
+    hover: "bg-success",
   },
   orange: {
-    bg: "bg-orange-500",
+    bg: "bg-chart-orange",
     glow: "shadow-orange-500/50",
-    hover: "bg-orange-600",
+    hover: "bg-chart-orange",
   },
   yellow: {
-    bg: "bg-yellow-500",
+    bg: "bg-warning",
     glow: "shadow-yellow-500/50",
-    hover: "bg-yellow-600",
+    hover: "bg-warning",
   },
   cyan: {
     bg: "bg-cyan-500",
@@ -36,14 +36,14 @@ const colorMap = {
     hover: "bg-cyan-600",
   },
   red: {
-    bg: "bg-red-500",
+    bg: "bg-error",
     glow: "shadow-red-500/50",
-    hover: "bg-red-600",
+    hover: "bg-error",
   },
   purple: {
-    bg: "bg-purple-500",
+    bg: "bg-category-purple",
     glow: "shadow-purple-500/50",
-    hover: "bg-purple-600",
+    hover: "bg-category-purple",
   },
 };
 
@@ -152,7 +152,7 @@ export function AnimatedMiniChart({
             {/* Tooltip */}
             {showTooltip && activeBar === index && (
               <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10 animate-in fade-in-0 zoom-in-95 duration-200 pointer-events-none">
-                <div className="bg-gray-900 text-white text-xs rounded-lg px-2 py-1 whitespace-nowrap">
+                <div className="bg-foreground text-white text-xs rounded-lg px-2 py-1 whitespace-nowrap">
                   {item.value.toLocaleString()}
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
                 </div>
@@ -165,7 +165,7 @@ export function AnimatedMiniChart({
       {/* Animated baseline */}
       <div
         className={cn(
-          "h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent opacity-50 transition-opacity duration-300",
+          "h-[1px] bg-gradient-to-r from-transparent via-border to-transparent opacity-50 transition-opacity duration-300",
           animate && "opacity-100",
         )}
       />

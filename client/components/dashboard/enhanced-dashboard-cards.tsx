@@ -65,11 +65,10 @@ export function EnhancedDashboardCard({
   badge,
   animate = true,
 }: EnhancedDashboardCardProps) {
-
   const changeColorClass = {
     positive: "text-success",
     negative: "text-error",
-    neutral: "text-gray-500",
+    neutral: "text-muted-foreground",
   }[changeType];
 
   const statusColors = {
@@ -84,15 +83,11 @@ export function EnhancedDashboardCard({
     : "bg-card transition-shadow duration-300 hover:shadow-lg cursor-pointer";
 
   const cardContent = (
-    <Card
-      className={cardClassName}
-    >
+    <Card className={cardClassName}>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2 sm:mb-3">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <div
-              className={`p-2 sm:p-3 rounded-xl ${iconBg} flex-shrink-0`}
-            >
+            <div className={`p-2 sm:p-3 rounded-xl ${iconBg} flex-shrink-0`}>
               <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColor}`} />
             </div>
             <div className="min-w-0">
@@ -129,9 +124,7 @@ export function EnhancedDashboardCard({
 
         <div className="space-y-2">
           <div className="space-y-1">
-            <div
-              className="text-display-sm font-bold text-foreground"
-            >
+            <div className="text-display-sm font-bold text-foreground">
               {typeof value === "number" ? value.toLocaleString() : value}
             </div>
             {subtitle && (
@@ -252,8 +245,8 @@ export function EnhancedDashboardCards() {
       change: "+2 new this week",
       changeType: "positive" as const,
       icon: Users,
-      iconColor: "text-purple-600",
-      iconBg: "bg-purple-100",
+      iconColor: "text-category-purple",
+      iconBg: "bg-category-purple-bg",
       chartData: [12, 19, 15, 22, 18, 24, 21, 25, 23, 24],
       chartColor: "purple" as const,
       actionLabel: "Manage Clients",
@@ -298,7 +291,7 @@ export function EnhancedDashboardCards() {
           <h2 className="text-heading-sm font-bold text-foreground truncate">
             Key Metrics & Tools
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Overview of your crypto tax preparation status
           </p>
         </div>
@@ -325,10 +318,10 @@ export function EnhancedDashboardCards() {
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-semibold text-foreground mb-2">
                   Ready to File?
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   All transactions classified and forms generated
                 </p>
                 <Link to="/exports">
@@ -347,10 +340,10 @@ export function EnhancedDashboardCards() {
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="font-semibold text-foreground mb-2">
                   Upload New Data
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-muted-foreground mb-4">
                   Import transactions from wallets and exchanges
                 </p>
                 <Link to="/wallet-ingestion">

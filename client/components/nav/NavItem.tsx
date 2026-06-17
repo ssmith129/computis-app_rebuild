@@ -1,6 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 export interface NavItemProps {
@@ -11,7 +16,13 @@ export interface NavItemProps {
   onClick?: () => void;
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ to, label, icon: Icon, collapsed = false, onClick }) => {
+export const NavItem: React.FC<NavItemProps> = ({
+  to,
+  label,
+  icon: Icon,
+  collapsed = false,
+  onClick,
+}) => {
   const location = useLocation();
   const active = location.pathname === to;
 

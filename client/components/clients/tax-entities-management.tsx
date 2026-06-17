@@ -190,7 +190,7 @@ const jurisdictions = [
 const getStatusBadge = (status: TaxEntity["status"]) => {
   const variants = {
     Active: "bg-success-bg text-success-text border-0",
-    Inactive: "bg-gray-100 text-gray-700 border-0",
+    Inactive: "bg-muted text-foreground border-0",
     Archived: "bg-warning-bg text-warning-text border-0",
     "In Progress": "bg-info-bg text-info-text border-0",
   };
@@ -214,7 +214,7 @@ const getEntityTypeBadge = (type: string) => {
   const color =
     type === "Individual"
       ? "bg-cyan-100 text-cyan-700"
-      : "bg-purple-100 text-purple-700";
+      : "bg-category-purple-bg text-category-purple-fg";
   return <Badge className={`${color} border-0`}>{type}</Badge>;
 };
 
@@ -382,9 +382,7 @@ export function TaxEntitiesManagement() {
                 <p className="text-sm font-medium text-muted-foreground">
                   Active
                 </p>
-                <p className="text-3xl font-bold text-success">
-                  {activeCount}
-                </p>
+                <p className="text-3xl font-bold text-success">{activeCount}</p>
               </div>
               <div className="p-3 bg-success-bg rounded-lg">
                 <CheckCircle2 className="h-6 w-6 text-success" />
@@ -653,9 +651,7 @@ export function TaxEntitiesManagement() {
                     setFormData({ ...formData, entityName: e.target.value })
                   }
                   placeholder="Acme Corp 2023"
-                  className={
-                    validationErrors.entityName ? "border-red-500" : ""
-                  }
+                  className={validationErrors.entityName ? "border-error" : ""}
                 />
                 {validationErrors.entityName && (
                   <p className="text-sm text-error">
@@ -674,12 +670,10 @@ export function TaxEntitiesManagement() {
                     setFormData({ ...formData, taxId: e.target.value })
                   }
                   placeholder="XX-XXXXXXX"
-                  className={validationErrors.taxId ? "border-red-500" : ""}
+                  className={validationErrors.taxId ? "border-error" : ""}
                 />
                 {validationErrors.taxId && (
-                  <p className="text-sm text-error">
-                    {validationErrors.taxId}
-                  </p>
+                  <p className="text-sm text-error">{validationErrors.taxId}</p>
                 )}
               </div>
             </div>
@@ -737,7 +731,7 @@ export function TaxEntitiesManagement() {
                     setFormData({ ...formData, client: e.target.value })
                   }
                   placeholder="Select or enter client name"
-                  className={validationErrors.client ? "border-red-500" : ""}
+                  className={validationErrors.client ? "border-error" : ""}
                 />
                 {validationErrors.client && (
                   <p className="text-sm text-error">
@@ -794,9 +788,7 @@ export function TaxEntitiesManagement() {
                   onChange={(e) =>
                     setFormData({ ...formData, entityName: e.target.value })
                   }
-                  className={
-                    validationErrors.entityName ? "border-red-500" : ""
-                  }
+                  className={validationErrors.entityName ? "border-error" : ""}
                 />
               </div>
               <div className="space-y-2">
@@ -809,7 +801,7 @@ export function TaxEntitiesManagement() {
                   onChange={(e) =>
                     setFormData({ ...formData, taxId: e.target.value })
                   }
-                  className={validationErrors.taxId ? "border-red-500" : ""}
+                  className={validationErrors.taxId ? "border-error" : ""}
                 />
               </div>
             </div>
@@ -944,7 +936,7 @@ export function TaxEntitiesManagement() {
                           {selectedEntity.transactionCount.toLocaleString()}
                         </p>
                       </div>
-                      <FileText className="h-6 w-6 text-green-600" />
+                      <FileText className="h-6 w-6 text-success" />
                     </div>
                   </CardContent>
                 </Card>
@@ -984,7 +976,7 @@ export function TaxEntitiesManagement() {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteEntities}
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-error hover:bg-error"
             >
               Delete
             </AlertDialogAction>
