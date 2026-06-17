@@ -118,7 +118,7 @@ export function AnimatedPieChart({
           cy={centerY}
           r={radius}
           fill="none"
-          stroke="#f1f5f9"
+          stroke="hsl(var(--gray-100))"
           strokeWidth={strokeWidth}
         />
 

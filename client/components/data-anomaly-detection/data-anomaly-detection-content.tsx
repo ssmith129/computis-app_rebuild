@@ -227,7 +227,7 @@ export function DataAnomalyDetectionContent() {
             </Button>
             <Button
               size="sm"
-              className="bg-[#0B5DEA] hover:bg-[#0B5DEA]/90 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
               onClick={() => setConfirmResolveOpen(true)}
             >
               <CheckCircle className="h-4 w-4 mr-2" />

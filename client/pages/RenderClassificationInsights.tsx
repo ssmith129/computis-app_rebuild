@@ -24,7 +24,7 @@ export default function RenderClassificationInsights() {
           padding: 32,
           borderRadius: 12,
           boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-          background: "#FFFFFF",
+          background: "hsl(var(--card))",
         }}
       >
         <ClassificationInsights />

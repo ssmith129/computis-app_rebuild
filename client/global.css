@@ -155,13 +155,13 @@
     --chart-red: 0 84% 60%;
 
     /* Chart colors (hex — for SVG/canvas where HSL isn't practical) */
-    --chart-processed: #0F65E5;
-    --chart-source: #F5D462;
-    --chart-archived: #F87700;
-    --chart-ignored: #F24040;
-    --chart-success: #00A624;
-    --chart-warning-hex: #F87700;
-    --chart-failed: #F24040;
+    --chart-processed: #0f65e5;
+    --chart-source: #f5d462;
+    --chart-archived: #f87700;
+    --chart-ignored: #f24040;
+    --chart-success: #00a624;
+    --chart-warning-hex: #f87700;
+    --chart-failed: #f24040;
     --chart-classified: #10b981;
     --chart-pending: #f59e0b;
     --chart-long-term-gains: #10b981;
@@ -197,46 +197,112 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Surfaces */
+    --background: 222 47% 8%;
+    --foreground: 0 0% 95%;
+    --card: 222 40% 11%;
+    --card-foreground: 0 0% 95%;
+    --popover: 222 40% 11%;
+    --popover-foreground: 0 0% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    /* Primary */
+    --primary: 218 91% 60%;
+    --primary-hover: 218 91% 66%;
+    --primary-light: 218 60% 22%;
+    --primary-foreground: 0 0% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    /* Secondary */
+    --secondary: 217 19% 20%;
+    --secondary-hover: 217 19% 27%;
+    --secondary-foreground: 0 0% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Accent (gold) */
+    --accent: 45 90% 58%;
+    --accent-light: 45 40% 22%;
+    --accent-foreground: 0 0% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Status — Success */
+    --success: 142 70% 45%;
+    --success-bg: 142 50% 16%;
+    --success-text: 138 76% 80%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Status — Warning */
+    --warning: 38 92% 55%;
+    --warning-bg: 32 60% 18%;
+    --warning-text: 48 96% 80%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Status — Error */
+    --error: 0 84% 65%;
+    --error-bg: 0 50% 18%;
+    --error-text: 0 86% 85%;
 
-    /* Sidebar dimensions (same as light mode) */
-    --sidebar-width: 16rem;
-    --sidebar-width-mobile: 18rem;
-    --sidebar-width-icon: 3rem;
+    /* Status — Info */
+    --info: 201 90% 55%;
+    --info-bg: 201 60% 16%;
+    --info-text: 199 89% 82%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muted */
+    --muted: 217 19% 20%;
+    --muted-foreground: 215 16% 65%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    /* Destructive */
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & inputs */
+    --border: 217 19% 24%;
+    --border-strong: 217 19% 34%;
+    --input: 217 19% 24%;
+    --ring: 218 91% 60%;
+
+    /* Overlay */
+    --overlay: 0 0% 0% / 0.85;
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 217 19% 18%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 217 19% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217 19% 22%;
+    --sidebar-ring: 218 91% 60%;
+    --sidebar-muted: 0 0% 55%;
+
+    /* Chart palette (HSL) */
+    --chart-blue: 218 91% 62%;
+    --chart-green: 142 70% 48%;
+    --chart-orange: 32 95% 58%;
+    --chart-yellow: 48 96% 60%;
+    --chart-cyan: 188 86% 60%;
+    --chart-red: 0 84% 66%;
+
+    /* Chart palette (hex tokens) */
+    --chart-processed: #3b82f6;
+    --chart-source: #f8de7e;
+    --chart-archived: #fb923c;
+    --chart-ignored: #f87171;
+    --chart-success: #22c55e;
+    --chart-warning-hex: #fb923c;
+    --chart-failed: #f87171;
+    --chart-classified: #34d399;
+    --chart-pending: #fbbf24;
+    --chart-long-term-gains: #34d399;
+    --chart-short-term-gains: #60a5fa;
+    --chart-realized-losses: #f87171;
+    --chart-neutral: #9ca3af;
+
+    /* Gray scale — reversed */
+    --gray-50: 222 84% 5%;
+    --gray-100: 215 28% 17%;
+    --gray-200: 217 19% 27%;
+    --gray-300: 215 14% 34%;
+    --gray-400: 220 9% 46%;
+    --gray-500: 215 20% 65%;
+    --gray-600: 213 27% 84%;
+    --gray-700: 214 32% 91%;
+    --gray-800: 210 40% 96%;
+    --gray-900: 210 40% 98%;
   }
 }
 
@@ -812,7 +878,8 @@
    * The fixed header layout intentionally relies on the *window* as the
    * scroll container, so we only constrain sizing here, never overflow.
    */
-  .app-layout-right-column > *:not(.header-container):not(.header-container-fixed) {
+  .app-layout-right-column
+    > *:not(.header-container):not(.header-container-fixed) {
     flex: 1;
     min-height: 0;
   }
@@ -953,7 +1020,10 @@
   }
 
   /* Reset heading sizes so tokens control them exclusively */
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-size: inherit !important;
   }
 
