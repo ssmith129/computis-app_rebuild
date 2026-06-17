@@ -45,6 +45,24 @@ export function sortTransactions(
   });
 }
 
+export type TableViewState = "loading" | "error" | "empty" | "data";
+
+/**
+ * Decide which surface the table should show. Precedence: loading > error >
+ * empty (zero rows) > data. Extracted so the zero-row branch is unit-testable
+ * without rendering the whole table.
+ */
+export function getTableViewState(opts: {
+  isLoading?: boolean;
+  isError?: boolean;
+  rowCount: number;
+}): TableViewState {
+  if (opts.isLoading) return "loading";
+  if (opts.isError) return "error";
+  if (opts.rowCount === 0) return "empty";
+  return "data";
+}
+
 /**
  * 1-based inclusive range of items shown on the current page.
  * e.g. page 2 of 25-per-page over 60 items -> { start: 26, end: 50 }.

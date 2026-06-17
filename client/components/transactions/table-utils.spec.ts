@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { sortTransactions, paginationRange } from "./table-utils";
+import {
+  sortTransactions,
+  paginationRange,
+  getTableViewState,
+} from "./table-utils";
 import type { Transaction } from "./transaction-details-modal";
 
 const tx = (over: Partial<Transaction>): Transaction => ({
@@ -71,6 +75,24 @@ describe("sortTransactions", () => {
       "a",
     ]);
     expect(list.map((t) => t.id)).toEqual(original); // input untouched
+  });
+});
+
+describe("getTableViewState", () => {
+  it("shows the empty state when there are zero rows", () => {
+    expect(getTableViewState({ rowCount: 0 })).toBe("empty");
+  });
+
+  it("shows data when there are rows", () => {
+    expect(getTableViewState({ rowCount: 5 })).toBe("data");
+  });
+
+  it("prioritizes loading, then error, over empty", () => {
+    expect(getTableViewState({ isLoading: true, rowCount: 0 })).toBe("loading");
+    expect(getTableViewState({ isError: true, rowCount: 0 })).toBe("error");
+    expect(
+      getTableViewState({ isLoading: true, isError: true, rowCount: 5 }),
+    ).toBe("loading");
   });
 });
 

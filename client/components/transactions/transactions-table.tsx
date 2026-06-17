@@ -12,13 +12,21 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { AssetSymbol } from "@/components/ui/asset-symbol";
+import { Link } from "react-router-dom";
 import { ConfidenceIndicator } from "./confidence-indicator";
 import {
   sortTransactions,
   paginationRange,
+  getTableViewState,
   type SortKey,
   type SortDir,
 } from "./table-utils";
+import {
+  TableLoadingSkeleton,
+  EmptyState,
+  ErrorState,
+} from "@/components/ui/loading-states";
+import { Inbox } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -57,6 +65,14 @@ interface TransactionsTableProps {
     confidence: string;
     status: string;
   };
+  /**
+   * Async surface hooks. Data is currently mock/synchronous [ASSUMED]; these
+   * are wired so a real TanStack Query layer can drive loading/error without
+   * further surgery. The empty state is reachable today (filtered to zero).
+   */
+  isLoading?: boolean;
+  isError?: boolean;
+  onRetry?: () => void;
 }
 
 const mockTransactions: Transaction[] = [
@@ -182,7 +198,12 @@ const getClassificationBadgeColor = (classification: string) => {
   }
 };
 
-export function TransactionsTable({ filters }: TransactionsTableProps) {
+export function TransactionsTable({
+  filters,
+  isLoading,
+  isError,
+  onRetry,
+}: TransactionsTableProps) {
   const [selectedTransactions, setSelectedTransactions] = useState<string[]>(
     [],
   );
@@ -318,6 +339,12 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
     filteredTransactions.length,
   );
 
+  const viewState = getTableViewState({
+    isLoading,
+    isError,
+    rowCount: filteredTransactions.length,
+  });
+
   // After acting from the modal, advance to the next unreviewed transaction
   // (in current sort order) or close if none remain.
   const advanceOrClose = (currentId: string) => {
@@ -377,274 +404,312 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
 
   return (
     <div className="space-y-4">
-      {/* Table */}
-      <div className="responsive-table-container">
-        <Table className="responsive-transactions-table">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="checkbox-column">
-                <Checkbox
-                  checked={
-                    selectedTransactions.length ===
-                      displayedTransactions.length &&
-                    displayedTransactions.length > 0
-                  }
-                  onCheckedChange={handleSelectAll}
-                  aria-label="Select all transactions"
-                />
-              </TableHead>
-              <TableHead className="view-column">View</TableHead>
-              <TableHead
-                className="date-column"
-                aria-sort={ariaSortFor("date")}
-              >
-                {renderSortButton("date", "Date")}
-              </TableHead>
-              <TableHead
-                className="type-column"
-                aria-sort={ariaSortFor("type")}
-              >
-                {renderSortButton("type", "Type")}
-              </TableHead>
-              <TableHead
-                className="asset-column"
-                aria-sort={ariaSortFor("asset")}
-              >
-                {renderSortButton("asset", "Asset")}
-              </TableHead>
-              <TableHead
-                className="amount-column"
-                aria-sort={ariaSortFor("amount")}
-              >
-                {renderSortButton("amount", "Amount")}
-              </TableHead>
-              <TableHead className="fmv-column">FMV (USD)</TableHead>
-              <TableHead className="classification-column">
-                AI Classification
-              </TableHead>
-              <TableHead
-                className="confidence-column"
-                aria-sort={ariaSortFor("confidence")}
-              >
-                {renderSortButton("confidence", "Confidence")}
-              </TableHead>
-              <TableHead
-                className="status-column"
-                aria-sort={ariaSortFor("status")}
-              >
-                {renderSortButton("status", "Status")}
-              </TableHead>
-              <TableHead className="actions-column">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {displayedTransactions.map((transaction) => (
-              <TableRow key={transaction.id} className="table-row-responsive">
-                <TableCell className="checkbox-column">
-                  <Checkbox
-                    checked={selectedTransactions.includes(transaction.id)}
-                    onCheckedChange={(checked) =>
-                      handleSelectTransaction(transaction.id, !!checked)
-                    }
-                    aria-label={`Select transaction ${transaction.id}`}
-                  />
-                </TableCell>
-                <TableCell className="view-column">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="touch-target h-9 w-9 md:h-7 md:w-7 p-0"
-                    onClick={() => handleViewDetails(transaction)}
-                    aria-label={`View details for transaction ${transaction.id}`}
-                  >
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                </TableCell>
-                <TableCell className="date-column">
-                  {transaction.date}
-                </TableCell>
-                <TableCell className="type-column">
-                  {transaction.type}
-                </TableCell>
-                <TableCell className="asset-column">
-                  <div className="flex items-center gap-1.5">
-                    <AssetSymbol
-                      symbol={transaction.icon}
-                      className="text-sm"
+      {viewState === "loading" && (
+        <div className="responsive-table-container">
+          <TableLoadingSkeleton rows={8} columns={11} />
+        </div>
+      )}
+
+      {viewState === "error" && (
+        <ErrorState
+          title="Couldn't load transactions"
+          description="There was a problem loading your transactions. Please try again."
+          onRetry={onRetry}
+        />
+      )}
+
+      {viewState === "empty" && (
+        <EmptyState
+          icon={Inbox}
+          title="No transactions yet"
+          description="No transactions yet — import a wallet to begin."
+          action={
+            <Button asChild>
+              <Link to="/wallet-ingestion">Import a wallet</Link>
+            </Button>
+          }
+        />
+      )}
+
+      {viewState === "data" && (
+        <>
+          {/* Table */}
+          <div className="responsive-table-container">
+            <Table className="responsive-transactions-table">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="checkbox-column">
+                    <Checkbox
+                      checked={
+                        selectedTransactions.length ===
+                          displayedTransactions.length &&
+                        displayedTransactions.length > 0
+                      }
+                      onCheckedChange={handleSelectAll}
+                      aria-label="Select all transactions"
                     />
-                    <span className="text-sm truncate max-w-[120px] md:max-w-[160px]">
-                      {transaction.asset}
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="amount-column">
-                  {transaction.amount}
-                </TableCell>
-                <TableCell className="fmv-column">
-                  {transaction.fmvUsd}
-                </TableCell>
-                <TableCell className="classification-column">
-                  <Badge
-                    className={`${getClassificationBadgeColor(
-                      transaction.aiClassification,
-                    )} text-xs px-2 py-0.5 whitespace-nowrap`}
+                  </TableHead>
+                  <TableHead className="view-column">View</TableHead>
+                  <TableHead
+                    className="date-column"
+                    aria-sort={ariaSortFor("date")}
                   >
-                    {transaction.aiClassification}
-                  </Badge>
-                </TableCell>
-                <TableCell className="confidence-column">
-                  <ConfidenceIndicator confidence={transaction.confidence} />
-                </TableCell>
-                <TableCell className="status-column">
-                  <StatusBadge variant={getStatusVariant(transaction.status)}>
-                    {transaction.status}
-                  </StatusBadge>
-                </TableCell>
-                <TableCell className="actions-column">
-                  <TooltipProvider>
-                    <div className="flex items-center gap-0.5 md:gap-1">
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-success-bg hover:text-success"
-                            onClick={() => confirmTx(transaction.id)}
-                            aria-label={`Confirm transaction ${transaction.id}`}
-                          >
-                            <Check className="h-4 w-4 md:h-3.5 md:w-3.5" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Confirm</p>
-                        </TooltipContent>
-                      </Tooltip>
+                    {renderSortButton("date", "Date")}
+                  </TableHead>
+                  <TableHead
+                    className="type-column"
+                    aria-sort={ariaSortFor("type")}
+                  >
+                    {renderSortButton("type", "Type")}
+                  </TableHead>
+                  <TableHead
+                    className="asset-column"
+                    aria-sort={ariaSortFor("asset")}
+                  >
+                    {renderSortButton("asset", "Asset")}
+                  </TableHead>
+                  <TableHead
+                    className="amount-column"
+                    aria-sort={ariaSortFor("amount")}
+                  >
+                    {renderSortButton("amount", "Amount")}
+                  </TableHead>
+                  <TableHead className="fmv-column">FMV (USD)</TableHead>
+                  <TableHead className="classification-column">
+                    AI Classification
+                  </TableHead>
+                  <TableHead
+                    className="confidence-column"
+                    aria-sort={ariaSortFor("confidence")}
+                  >
+                    {renderSortButton("confidence", "Confidence")}
+                  </TableHead>
+                  <TableHead
+                    className="status-column"
+                    aria-sort={ariaSortFor("status")}
+                  >
+                    {renderSortButton("status", "Status")}
+                  </TableHead>
+                  <TableHead className="actions-column">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {displayedTransactions.map((transaction) => (
+                  <TableRow
+                    key={transaction.id}
+                    className="table-row-responsive"
+                  >
+                    <TableCell className="checkbox-column">
+                      <Checkbox
+                        checked={selectedTransactions.includes(transaction.id)}
+                        onCheckedChange={(checked) =>
+                          handleSelectTransaction(transaction.id, !!checked)
+                        }
+                        aria-label={`Select transaction ${transaction.id}`}
+                      />
+                    </TableCell>
+                    <TableCell className="view-column">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="touch-target h-9 w-9 md:h-7 md:w-7 p-0"
+                        onClick={() => handleViewDetails(transaction)}
+                        aria-label={`View details for transaction ${transaction.id}`}
+                      >
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                    </TableCell>
+                    <TableCell className="date-column">
+                      {transaction.date}
+                    </TableCell>
+                    <TableCell className="type-column">
+                      {transaction.type}
+                    </TableCell>
+                    <TableCell className="asset-column">
+                      <div className="flex items-center gap-1.5">
+                        <AssetSymbol
+                          symbol={transaction.icon}
+                          className="text-sm"
+                        />
+                        <span className="text-sm truncate max-w-[120px] md:max-w-[160px]">
+                          {transaction.asset}
+                        </span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="amount-column">
+                      {transaction.amount}
+                    </TableCell>
+                    <TableCell className="fmv-column">
+                      {transaction.fmvUsd}
+                    </TableCell>
+                    <TableCell className="classification-column">
+                      <Badge
+                        className={`${getClassificationBadgeColor(
+                          transaction.aiClassification,
+                        )} text-xs px-2 py-0.5 whitespace-nowrap`}
+                      >
+                        {transaction.aiClassification}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="confidence-column">
+                      <ConfidenceIndicator
+                        confidence={transaction.confidence}
+                      />
+                    </TableCell>
+                    <TableCell className="status-column">
+                      <StatusBadge
+                        variant={getStatusVariant(transaction.status)}
+                      >
+                        {transaction.status}
+                      </StatusBadge>
+                    </TableCell>
+                    <TableCell className="actions-column">
+                      <TooltipProvider>
+                        <div className="flex items-center gap-0.5 md:gap-1">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-success-bg hover:text-success"
+                                onClick={() => confirmTx(transaction.id)}
+                                aria-label={`Confirm transaction ${transaction.id}`}
+                              >
+                                <Check className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Confirm</p>
+                            </TooltipContent>
+                          </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-warning-bg hover:text-warning"
-                            onClick={() => flagTx(transaction.id)}
-                            aria-label={`Flag transaction ${transaction.id}`}
-                          >
-                            <Flag className="h-4 w-4 md:h-3.5 md:w-3.5" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Flag</p>
-                        </TooltipContent>
-                      </Tooltip>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-warning-bg hover:text-warning"
+                                onClick={() => flagTx(transaction.id)}
+                                aria-label={`Flag transaction ${transaction.id}`}
+                              >
+                                <Flag className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Flag</p>
+                            </TooltipContent>
+                          </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-error-bg hover:text-error"
-                            onClick={() => rejectTx(transaction.id)}
-                            aria-label={`Reject transaction ${transaction.id}`}
-                          >
-                            <X className="h-4 w-4 md:h-3.5 md:w-3.5" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Reject</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  </TooltipProvider>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Table Footer */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-2 py-2 border-t">
-        <div className="text-sm text-muted-foreground">
-          Showing {range.start}–{range.end} of {filteredTransactions.length}{" "}
-          transactions
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm text-muted-foreground whitespace-nowrap">
-            Bulk Actions:
-          </span>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={selectedTransactions.length === 0}
-            onClick={handleBulkConfirm}
-          >
-            Accept All
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={selectedTransactions.length === 0}
-            onClick={() => toast({ title: "Apply tags coming soon" })}
-          >
-            Tag
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={selectedTransactions.length === 0}
-            onClick={() => toast({ title: "Export started" })}
-          >
-            Export
-          </Button>
-        </div>
-
-        {/* Pagination */}
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-            disabled={currentPage === 1}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-
-          <div className="flex items-center gap-1">
-            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              const page = i + 1;
-              return (
-                <Button
-                  key={page}
-                  variant={currentPage === page ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setCurrentPage(page)}
-                  className="w-8 h-8 p-0"
-                >
-                  {page}
-                </Button>
-              );
-            })}
-            {totalPages > 5 && (
-              <span className="text-muted-foreground">...</span>
-            )}
-            <span className="text-sm text-muted-foreground ml-2">
-              {totalPages}
-            </span>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-error-bg hover:text-error"
+                                onClick={() => rejectTx(transaction.id)}
+                                aria-label={`Reject transaction ${transaction.id}`}
+                              >
+                                <X className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Reject</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
+                      </TooltipProvider>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-            }
-            disabled={currentPage === totalPages}
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+          {/* Table Footer */}
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-2 py-2 border-t">
+            <div className="text-sm text-muted-foreground">
+              Showing {range.start}–{range.end} of {filteredTransactions.length}{" "}
+              transactions
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm text-muted-foreground whitespace-nowrap">
+                Bulk Actions:
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={selectedTransactions.length === 0}
+                onClick={handleBulkConfirm}
+              >
+                Accept All
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={selectedTransactions.length === 0}
+                onClick={() => toast({ title: "Apply tags coming soon" })}
+              >
+                Tag
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={selectedTransactions.length === 0}
+                onClick={() => toast({ title: "Export started" })}
+              >
+                Export
+              </Button>
+            </div>
+
+            {/* Pagination */}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+
+              <div className="flex items-center gap-1">
+                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                  const page = i + 1;
+                  return (
+                    <Button
+                      key={page}
+                      variant={currentPage === page ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setCurrentPage(page)}
+                      className="w-8 h-8 p-0"
+                    >
+                      {page}
+                    </Button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <span className="text-muted-foreground">...</span>
+                )}
+                <span className="text-sm text-muted-foreground ml-2">
+                  {totalPages}
+                </span>
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                }
+                disabled={currentPage === totalPages}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Transaction Details Modal */}
       <TransactionDetailsModal

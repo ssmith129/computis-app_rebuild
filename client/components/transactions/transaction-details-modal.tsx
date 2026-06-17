@@ -38,6 +38,10 @@ export const CLASSIFICATION_OPTIONS = [
   "Unclassified",
 ] as const;
 
+// Placeholder for ledger fields we do not have. Never fabricate on-chain data
+// in a tax/audit system of record — a blank is correct, a wrong value is not.
+const EM_DASH = "—";
+
 export interface Transaction {
   id: string;
   date: string;
@@ -49,6 +53,14 @@ export interface Transaction {
   confidence: number;
   status: string;
   icon: string;
+  /**
+   * On-chain ledger fields. [DATA NEEDED] — populated only when the backend
+   * provides them (see shared/api.ts). Absent => rendered as an em-dash, never
+   * a computed/fabricated value.
+   */
+  gasFee?: string;
+  blockNumber?: number;
+  confirmations?: number;
 }
 
 interface TransactionDetailsModalProps {
@@ -377,19 +389,27 @@ export function TransactionDetailsModal({
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Gas Fee</span>
-                <span className="font-medium font-mono">$2.45</span>
+                <span className="font-medium font-mono">
+                  {transaction.gasFee ?? EM_DASH}
+                </span>
               </div>
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Block Number</span>
                 <span className="font-medium font-mono">
-                  {15000000 + parseInt(transaction.id) * 1000}
+                  {transaction.blockNumber != null
+                    ? transaction.blockNumber.toLocaleString()
+                    : EM_DASH}
                 </span>
               </div>
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Confirmations</span>
-                <span className="font-medium">12,543</span>
+                <span className="font-medium">
+                  {transaction.confirmations != null
+                    ? transaction.confirmations.toLocaleString()
+                    : EM_DASH}
+                </span>
               </div>
             </div>
           </div>
