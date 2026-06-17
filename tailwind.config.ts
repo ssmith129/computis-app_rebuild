@@ -72,6 +72,17 @@ export default {
           bg: "hsl(var(--info-bg))",
           text: "hsl(var(--info-text))",
         },
+        pending: {
+          DEFAULT: "hsl(var(--pending))",
+          bg: "hsl(var(--pending-bg))",
+          foreground: "hsl(var(--pending-foreground))",
+        },
+        category: {
+          purple: "hsl(var(--category-purple))",
+          "purple-bg": "hsl(var(--category-purple-bg))",
+          "purple-fg": "hsl(var(--category-purple-foreground))",
+        },
+        asset: "hsl(var(--asset-symbol))",
         overlay: "hsl(var(--overlay))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

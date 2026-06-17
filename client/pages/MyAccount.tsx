@@ -28,12 +28,14 @@ export default function MyAccount() {
   const [pushNotifications, setPushNotifications] = useState(false);
 
   return (
-    <DashboardLayout activeItem="My Account">
-      <div className="app-content bg-gray-50">
+    <DashboardLayout>
+      <div className="app-content bg-muted">
         {/* Page Header */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
-            <h1 className="text-heading-lg font-bold text-foreground">My Account</h1>
+            <h1 className="text-heading-lg font-bold text-foreground">
+              My Account
+            </h1>
             <p className="text-body-md text-muted-foreground mt-1">
               Manage your profile, preferences, and security settings
             </p>
@@ -58,10 +60,10 @@ export default function MyAccount() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900">
+                  <h3 className="text-xl font-semibold text-foreground">
                     John Smith
                   </h3>
-                  <p className="text-gray-600">Premium User</p>
+                  <p className="text-muted-foreground">Premium User</p>
                   <div className="flex gap-2 mt-2">
                     <Badge variant="default">Verified</Badge>
                     <Badge variant="secondary">Pro Plan</Badge>
@@ -84,7 +86,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <div className="flex">
-                    <Mail className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Mail className="h-4 w-4 text-muted-foreground mt-3 mr-3" />
                     <Input
                       id="email"
                       type="email"
@@ -96,7 +98,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone</Label>
                   <div className="flex">
-                    <Phone className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Phone className="h-4 w-4 text-muted-foreground mt-3 mr-3" />
                     <Input
                       id="phone"
                       type="tel"
@@ -108,7 +110,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="location">Location</Label>
                   <div className="flex">
-                    <MapPin className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <MapPin className="h-4 w-4 text-muted-foreground mt-3 mr-3" />
                     <Input
                       id="location"
                       defaultValue="New York, NY"
@@ -119,7 +121,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="joined">Member Since</Label>
                   <div className="flex">
-                    <Calendar className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Calendar className="h-4 w-4 text-muted-foreground mt-3 mr-3" />
                     <Input
                       id="joined"
                       defaultValue="January 2023"
@@ -188,12 +190,12 @@ export default function MyAccount() {
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="font-medium text-gray-900">
+                <h4 className="font-medium text-foreground">
                   Two-Factor Authentication
                 </h4>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-muted-foreground">
                       Add an extra layer of security to your account
                     </p>
                   </div>
@@ -217,7 +219,7 @@ export default function MyAccount() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium">Email Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Receive updates via email
                   </p>
                 </div>
@@ -229,7 +231,7 @@ export default function MyAccount() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium">Push Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Receive browser notifications
                   </p>
                 </div>
@@ -241,7 +243,7 @@ export default function MyAccount() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium">Weekly Reports</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Get weekly summary emails
                   </p>
                 </div>
@@ -250,7 +252,7 @@ export default function MyAccount() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="text-sm font-medium">Security Alerts</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Alerts for account security events
                   </p>
                 </div>
@@ -279,10 +281,10 @@ export default function MyAccount() {
               </div>
 
               <div className="space-y-2">
-                <h4 className="font-medium text-gray-900">Payment Method</h4>
+                <h4 className="font-medium text-foreground">Payment Method</h4>
                 <div className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">
+                    <div className="w-8 h-6 bg-primary rounded text-white text-xs flex items-center justify-center">
                       VISA
                     </div>
                     <span className="text-sm">•••• •••• •••• 4567</span>

@@ -78,7 +78,7 @@ const mockClients = [
     status: "Active",
     lastActivity: "Yesterday, 3:45 PM",
     icon: Building2,
-    color: "text-purple-600",
+    color: "text-category-purple",
   },
   {
     id: "3",
@@ -188,7 +188,9 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Active":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="bg-success-bg text-success-text border-0">
+          {status}
+        </Badge>
       );
     case "Pending":
       return (
@@ -198,7 +200,7 @@ const getStatusBadge = (status: string) => {
       );
     case "Archived":
       return (
-        <Badge className="bg-gray-100 text-gray-700 border-0">{status}</Badge>
+        <Badge className="bg-muted text-foreground border-0">{status}</Badge>
       );
     case "In Progress":
       return (
@@ -280,7 +282,7 @@ export function ClientsContent() {
         status: "Active",
         lastActivity: "Just now",
         icon: newClientType === "Firm" ? Building2 : User,
-        color: newClientType === "Firm" ? "text-blue-600" : "text-green-600",
+        color: newClientType === "Firm" ? "text-primary" : "text-success",
       },
       ...clients,
     ]);
@@ -327,7 +329,7 @@ export function ClientsContent() {
               Filters
             </Button>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
               onClick={() => setAddOpen(true)}
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -393,7 +395,7 @@ export function ClientsContent() {
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-xs text-blue-600 hover:text-blue-700 p-0 ml-auto"
+                className="h-8 text-xs text-primary hover:text-primary p-0 ml-auto"
                 onClick={() => toast({ title: "Activity log coming soon" })}
               >
                 View Activity Log
@@ -593,7 +595,7 @@ export function ClientsContent() {
                       Manage team access and permissions for this client
                     </p>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
                     <Plus className="h-4 w-4 mr-2" />
                     Add Member
                   </Button>
@@ -614,7 +616,7 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-category-purple flex items-center justify-center text-white font-semibold text-sm">
                             SC
                           </div>
                           <div>
@@ -626,7 +628,7 @@ export function ClientsContent() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-blue-100 text-blue-700 border-0">
+                        <Badge className="bg-info-bg text-primary border-0">
                           Senior CPA
                         </Badge>
                       </TableCell>
@@ -634,7 +636,7 @@ export function ClientsContent() {
                         2 hours ago
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-green-100 text-green-700 border-0">
+                        <Badge className="bg-success-bg text-success border-0">
                           Full Access
                         </Badge>
                       </TableCell>
@@ -669,7 +671,7 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-error flex items-center justify-center text-white font-semibold text-sm">
                             DW
                           </div>
                           <div>
@@ -681,7 +683,7 @@ export function ClientsContent() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-purple-100 text-purple-700 border-0">
+                        <Badge className="bg-category-purple-bg text-category-purple-fg border-0">
                           Managing Partner
                         </Badge>
                       </TableCell>
@@ -689,7 +691,7 @@ export function ClientsContent() {
                         1 day ago
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-green-100 text-green-700 border-0">
+                        <Badge className="bg-success-bg text-success border-0">
                           Full Access
                         </Badge>
                       </TableCell>
@@ -736,7 +738,7 @@ export function ClientsContent() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-gray-100 text-gray-700 border-0">
+                        <Badge className="bg-muted text-foreground border-0">
                           Client
                         </Badge>
                       </TableCell>
@@ -948,7 +950,7 @@ export function ClientsContent() {
                 {/* Save Actions */}
                 <div className="flex justify-end gap-3 pt-6 border-t">
                   <Button variant="outline">Cancel</Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
                     Save Changes
                   </Button>
                 </div>
@@ -966,7 +968,7 @@ export function ClientsContent() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
+                <div className="flex items-center justify-between p-4 rounded-lg border border-error dark:border-error bg-error-bg dark:bg-error/30">
                   <div>
                     <div className="font-medium text-sm">Archive Client</div>
                     <div className="text-xs text-muted-foreground">
@@ -975,12 +977,12 @@ export function ClientsContent() {
                   </div>
                   <Button
                     variant="outline"
-                    className="border-red-200 text-red-600 hover:bg-red-100"
+                    className="border-error text-error hover:bg-error-bg"
                   >
                     Archive
                   </Button>
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
+                <div className="flex items-center justify-between p-4 rounded-lg border border-error dark:border-error bg-error-bg dark:bg-error/30">
                   <div>
                     <div className="font-medium text-sm">Delete Client</div>
                     <div className="text-xs text-muted-foreground">
@@ -998,7 +1000,7 @@ export function ClientsContent() {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Roles & Permissions</h2>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
               <Plus className="h-4 w-4 mr-2" />
               Create Role
             </Button>
@@ -1016,7 +1018,7 @@ export function ClientsContent() {
                             ? "bg-info-bg"
                             : role.color === "green"
                               ? "bg-success-bg"
-                              : "bg-purple-100"
+                              : "bg-category-purple-bg"
                         }`}
                       >
                         <UserCheck
@@ -1025,7 +1027,7 @@ export function ClientsContent() {
                               ? "text-info"
                               : role.color === "green"
                                 ? "text-success"
-                                : "text-purple-600"
+                                : "text-category-purple"
                           }`}
                         />
                       </div>
@@ -1154,7 +1156,7 @@ export function ClientsContent() {
                 }}
                 placeholder="Enter client name"
               />
-              {formError && <p className="text-sm text-red-600">{formError}</p>}
+              {formError && <p className="text-sm text-error">{formError}</p>}
             </div>
             <div className="space-y-2">
               <Label>Type</Label>

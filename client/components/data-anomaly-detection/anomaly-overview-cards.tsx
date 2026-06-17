@@ -42,10 +42,10 @@ const anomalyTypes = [
     description: "Transactions that may be duplicated",
     count: 5,
     status: "3 since last week",
-    statusColor: "bg-purple-100 text-purple-700",
-    iconColor: "text-purple-500",
+    statusColor: "bg-category-purple-bg text-category-purple-fg",
+    iconColor: "text-category-purple",
     icon: Copy,
-    borderColor: "border-purple-200",
+    borderColor: "border-category-purple",
   },
 ];
 

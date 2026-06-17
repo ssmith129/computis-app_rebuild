@@ -34,7 +34,7 @@ export function ScrollingLayoutDemo() {
   const [navOpen, setNavOpen] = React.useState(true);
 
   return (
-    <ScrollableLayout className="bg-gray-50">
+    <ScrollableLayout className="bg-muted">
       {/* Fixed Header */}
       <FixedHeader>
         <div className="flex items-center justify-between p-4">
@@ -113,9 +113,9 @@ export function ScrollingLayoutDemo() {
         className="pt-[72px]"
       >
         {/* Page Title */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-1">
+        <div className="sticky top-0 z-10 bg-white border-b border-border px-6 py-4">
+          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
+          <p className="text-muted-foreground mt-1">
             View your portfolio metrics and recent activity
           </p>
         </div>
@@ -124,7 +124,7 @@ export function ScrollingLayoutDemo() {
         <div className="p-4 sm:p-6 space-y-8">
           {/* Section 1: Horizontally Scrollable Cards */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               Portfolio Overview
             </h2>
             <ScrollableCards gap="1.5rem">
@@ -150,12 +150,12 @@ export function ScrollingLayoutDemo() {
                   className="flex-shrink-0"
                 >
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">
+                    <CardTitle className="text-sm font-medium text-muted-foreground">
                       {metric.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-1">
+                    <div className="text-2xl font-bold font-mono tabular-nums text-foreground mb-1">
                       {metric.value}
                     </div>
                     <div
@@ -177,7 +177,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 2: Responsive Grid (No horizontal scroll) */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               Quick Actions
             </h2>
             <ResponsiveGrid minCardWidth="250px" gap="1.5rem">
@@ -204,7 +204,9 @@ export function ScrollingLayoutDemo() {
                     <CardTitle className="text-base">{action.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600 mb-4">{action.desc}</p>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {action.desc}
+                    </p>
                     <Button className="w-full">Get Started</Button>
                   </CardContent>
                 </Card>
@@ -214,7 +216,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 3: Horizontally Scrollable Table */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               Recent Transactions
             </h2>
             <ScrollableTable>
@@ -237,7 +239,7 @@ export function ScrollingLayoutDemo() {
                     <TableRow key={i}>
                       <TableCell>2024-01-{15 + i}</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
+                        <span className="px-2 py-1 bg-info-bg text-info-text rounded text-xs">
                           Buy
                         </span>
                       </TableCell>
@@ -247,7 +249,7 @@ export function ScrollingLayoutDemo() {
                       <TableCell>$1,130.75</TableCell>
                       <TableCell>Coinbase</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
+                        <span className="px-2 py-1 bg-success-bg text-success rounded text-xs">
                           Complete
                         </span>
                       </TableCell>
@@ -265,7 +267,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 4: Mixed Content */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-lg font-semibold text-foreground mb-4">
               Analytics
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -281,13 +283,13 @@ export function ScrollingLayoutDemo() {
                   >
                     {Array.from({ length: 12 }, (_, i) => (
                       <div key={i} className="flex flex-col items-center gap-2">
-                        <div className="text-xs text-gray-600">
+                        <div className="text-xs text-muted-foreground">
                           {new Date(2024, i, 1).toLocaleDateString("en", {
                             month: "short",
                           })}
                         </div>
                         <div
-                          className="bg-blue-500 w-8 rounded"
+                          className="bg-chart-blue w-8 rounded"
                           style={{ height: `${Math.random() * 100 + 20}px` }}
                         />
                         <div className="text-xs font-medium">
@@ -307,19 +309,25 @@ export function ScrollingLayoutDemo() {
                 <CardContent>
                   <div className="space-y-4">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Total Trades</span>
+                      <span className="text-muted-foreground">
+                        Total Trades
+                      </span>
                       <span className="font-medium">1,234</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Avg Trade Size</span>
+                      <span className="text-muted-foreground">
+                        Avg Trade Size
+                      </span>
                       <span className="font-medium">$2,456</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Success Rate</span>
-                      <span className="font-medium text-green-600">85.3%</span>
+                      <span className="text-muted-foreground">
+                        Success Rate
+                      </span>
+                      <span className="font-medium text-success">85.3%</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Best Asset</span>
+                      <span className="text-muted-foreground">Best Asset</span>
                       <span className="font-medium">ETH (+45%)</span>
                     </div>
                   </div>

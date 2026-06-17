@@ -3,7 +3,7 @@ import { TransactionsContent } from "@/components/transactions/transactions-cont
 
 export default function Transactions() {
   return (
-    <AppLayout activeItem="Transactions">
+    <AppLayout>
       <TransactionsContent />
     </AppLayout>
   );

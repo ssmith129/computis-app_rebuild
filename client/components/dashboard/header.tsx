@@ -82,7 +82,7 @@ export function DashboardHeader() {
               bg-transparent
               border-none
               text-white
-              placeholder:text-gray-300
+              placeholder:text-muted-foreground
               focus-visible:ring-0
               focus-visible:ring-offset-0
               p-0
@@ -118,8 +118,8 @@ export function DashboardHeader() {
               aria-label="User menu"
               aria-haspopup="menu"
             >
-              <Avatar className="h-8 w-8 sm:h-9 sm:w-9 bg-gray-400">
-                <AvatarFallback className="bg-gray-400 text-white">
+              <Avatar className="h-8 w-8 sm:h-9 sm:w-9 bg-muted-foreground">
+                <AvatarFallback className="bg-muted-foreground text-white">
                   <User className="h-4 w-4" />
                 </AvatarFallback>
               </Avatar>

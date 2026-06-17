@@ -12,7 +12,10 @@ const tabs = [
   { id: "review", label: "Review & Import" },
 ];
 
-export function WalletIngestionTabs({ activeTab, onTabChange }: WalletIngestionTabsProps) {
+export function WalletIngestionTabs({
+  activeTab,
+  onTabChange,
+}: WalletIngestionTabsProps) {
   return (
     <div className="flex space-x-6 border-b border-border">
       {tabs.map((tab) => (
@@ -22,8 +25,8 @@ export function WalletIngestionTabs({ activeTab, onTabChange }: WalletIngestionT
           className={cn(
             "px-4 py-2 text-sm font-medium border-b-2 transition-colors",
             activeTab === tab.id
-              ? "border-yellow-400 text-foreground"
-              : "border-transparent text-muted-foreground hover:text-foreground"
+              ? "border-primary text-foreground"
+              : "border-transparent text-muted-foreground hover:text-foreground",
           )}
         >
           {tab.label}

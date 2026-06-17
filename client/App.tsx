@@ -3,6 +3,7 @@ import "./global.css";
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
@@ -28,38 +29,40 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route
-            path="/data-anomaly-detection"
-            element={<DataAnomalyDetection />}
-          />
-          <Route path="/wallets" element={<Wallets />} />
-          <Route path="/wallet-ingestion" element={<WalletIngestion />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/irs-8949" element={<Irs8949 />} />
-          <Route path="/gain-loss" element={<GainLoss />} />
-          <Route path="/exports" element={<Exports />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/preferences" element={<Preferences />} />
-          <Route path="/rule-engine" element={<RuleEngine />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/help" element={<HelpPage />} />
-          <Route path="/keyboard-shortcuts" element={<KeyboardShortcuts />} />
-          <Route path="/design-system" element={<DesignSystemShowcase />} />
-          <Route
-            path="/_render/classification-insights"
-            element={<RenderClassificationInsights />}
-          />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="system">
+      <TooltipProvider>
+        <Toaster />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route
+              path="/data-anomaly-detection"
+              element={<DataAnomalyDetection />}
+            />
+            <Route path="/wallets" element={<Wallets />} />
+            <Route path="/wallet-ingestion" element={<WalletIngestion />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/irs-8949" element={<Irs8949 />} />
+            <Route path="/gain-loss" element={<GainLoss />} />
+            <Route path="/exports" element={<Exports />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/preferences" element={<Preferences />} />
+            <Route path="/rule-engine" element={<RuleEngine />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/keyboard-shortcuts" element={<KeyboardShortcuts />} />
+            <Route path="/design-system" element={<DesignSystemShowcase />} />
+            <Route
+              path="/_render/classification-insights"
+              element={<RenderClassificationInsights />}
+            />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

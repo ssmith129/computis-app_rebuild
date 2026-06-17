@@ -256,7 +256,9 @@ export function GainLossContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">{totalTransactions}</div>
+                  <div className="text-2xl font-bold font-mono tabular-nums">
+                    {totalTransactions}
+                  </div>
                   <p className="text-sm text-muted-foreground">Transactions</p>
                 </div>
                 <FileText className="h-5 w-5 text-info" />
@@ -488,14 +490,16 @@ export function GainLossContent() {
                   Long-term Tax Rate
                 </h4>
                 <p className="text-2xl font-bold text-success">0-20%</p>
-                <p className="text-sm text-success-text">Preferential tax rates</p>
+                <p className="text-sm text-success-text">
+                  Preferential tax rates
+                </p>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-                <h4 className="font-medium text-purple-900">
+              <div className="p-4 bg-category-purple-bg rounded-lg border border-category-purple">
+                <h4 className="font-medium text-category-purple-fg">
                   Net Investment Income
                 </h4>
-                <p className="text-2xl font-bold text-purple-600">3.8%</p>
-                <p className="text-sm text-purple-700">
+                <p className="text-2xl font-bold text-category-purple">3.8%</p>
+                <p className="text-sm text-category-purple-fg">
                   Additional tax may apply
                 </p>
               </div>

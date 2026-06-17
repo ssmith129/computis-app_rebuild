@@ -12,6 +12,30 @@ While the starter comes with a express server, only create endpoint when strictl
 - **Testing**: Vitest
 - **UI**: Radix UI + TailwindCSS 3 + Lucide React icons
 
+## Token enforcement (no raw Tailwind palette literals)
+
+Color, in app code, comes from **semantic design tokens** defined in
+`client/global.css` (e.g. `--primary`, `--success`, `--warning`, `--error`,
+`--muted-foreground`, `--accent`, `--pending`). Components must use the
+matching Tailwind utilities (`bg-primary`, `text-error`, `border-border`, …),
+**never** raw palette literals like `bg-blue-600` or `text-red-500`.
+
+This is enforced by ESLint (`eslint.config.js`, run via `pnpm lint`). A
+`no-restricted-syntax` rule fails the build on any class string matching:
+
+```
+/(bg|text|border|ring|from|to|via)-(blue|red|green|yellow|orange|amber|purple|gray|slate|zinc|neutral|stone)-[0-9]{2,3}/
+```
+
+inside `client/components/**` and `client/pages/**`.
+
+- **Scope:** application code only. `client/components/ui/**` (the shadcn/Radix
+  primitives) is exempt because a primitive may occasionally need a raw value —
+  prefer none, and keep that exemption shrinking.
+- **CI:** run `pnpm lint` alongside `pnpm typecheck`. Both must pass.
+- **Adding a new color?** Add a token to `global.css` (AA-checked) and reference
+  it through a utility — do not bypass the system with a literal.
+
 ## Project Structure
 
 ```

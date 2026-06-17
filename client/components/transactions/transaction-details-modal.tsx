@@ -1,19 +1,46 @@
+import { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { StatusBadge } from "@/components/dashboard/status-badge";
+import { AssetSymbol } from "@/components/ui/asset-symbol";
+import { ConfidenceIndicator } from "./confidence-indicator";
 import { Separator } from "@/components/ui/separator";
 import {
   AlertTriangle,
   ArrowDownLeft,
   ArrowUpRight,
   RefreshCw,
+  Check,
+  Flag,
+  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export const CLASSIFICATION_OPTIONS = [
+  "Income",
+  "Trade",
+  "Expense",
+  "Transfer",
+  "Unclassified",
+] as const;
+
+// Placeholder for ledger fields we do not have. Never fabricate on-chain data
+// in a tax/audit system of record — a blank is correct, a wrong value is not.
+const EM_DASH = "—";
 
 export interface Transaction {
   id: string;
@@ -26,19 +53,29 @@ export interface Transaction {
   confidence: number;
   status: string;
   icon: string;
+  /**
+   * On-chain ledger fields. [DATA NEEDED] — populated only when the backend
+   * provides them (see shared/api.ts). Absent => rendered as an em-dash, never
+   * a computed/fabricated value.
+   */
+  gasFee?: string;
+  blockNumber?: number;
+  confirmations?: number;
 }
 
 interface TransactionDetailsModalProps {
   transaction: Transaction | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /**
+   * Decision-surface actions. The same handlers back the row actions, so the
+   * modal and the table row stay in sync. Each receives the transaction id.
+   */
+  onConfirm?: (id: string) => void;
+  onFlag?: (id: string) => void;
+  onReject?: (id: string) => void;
+  onReclassify?: (id: string, classification: string) => void;
 }
-
-const getConfidenceColor = (confidence: number) => {
-  if (confidence >= 70) return "text-success";
-  if (confidence >= 40) return "text-warning";
-  return "text-error";
-};
 
 const getStatusVariant = (
   status: string,
@@ -49,6 +86,8 @@ const getStatusVariant = (
     case "Suggested":
       return "warning";
     case "Flagged":
+      return "error";
+    case "Rejected":
       return "error";
     case "Pending":
       return "pending";
@@ -66,11 +105,11 @@ const getClassificationBadgeColor = (classification: string) => {
     case "Expense":
       return "bg-error-bg text-error-text border-error/30";
     case "Transfer":
-      return "bg-purple-100 text-purple-800 border-purple-200";
+      return "bg-category-purple-bg text-category-purple-fg border-category-purple";
     case "Unclassified":
-      return "bg-gray-100 text-gray-800 border-gray-200";
+      return "bg-muted text-foreground border-border";
     default:
-      return "bg-gray-100 text-gray-800 border-gray-200";
+      return "bg-muted text-foreground border-border";
   }
 };
 
@@ -84,7 +123,7 @@ const getTransactionTypeIcon = (type: string) => {
     case "merge":
       return <RefreshCw className="h-5 w-5 text-info" />;
     default:
-      return <RefreshCw className="h-5 w-5 text-gray-600" />;
+      return <RefreshCw className="h-5 w-5 text-muted-foreground" />;
   }
 };
 
@@ -96,7 +135,47 @@ export function TransactionDetailsModal({
   transaction,
   open,
   onOpenChange,
+  onConfirm,
+  onFlag,
+  onReject,
+  onReclassify,
 }: TransactionDetailsModalProps) {
+  const id = transaction?.id;
+
+  // Dialog-scoped keyboard shortcuts: C = Confirm, F = Flag, R = Reject.
+  // Ignored while typing in a field. Documented on /keyboard-shortcuts.
+  useEffect(() => {
+    if (!open || !id) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const el = e.target as HTMLElement | null;
+      const tag = el?.tagName;
+      if (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT" ||
+        el?.isContentEditable
+      )
+        return;
+      switch (e.key.toLowerCase()) {
+        case "c":
+          onConfirm?.(id);
+          break;
+        case "f":
+          onFlag?.(id);
+          break;
+        case "r":
+          onReject?.(id);
+          break;
+        default:
+          return;
+      }
+      e.preventDefault();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [open, id, onConfirm, onFlag, onReject]);
+
   if (!transaction) return null;
 
   const txIsDebit = isDebit(transaction.type);
@@ -161,9 +240,10 @@ export function TransactionDetailsModal({
                 <div className="space-y-1">
                   <p className="text-sm text-muted-foreground">Asset</p>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-2xl text-orange-500">
-                      {transaction.icon}
-                    </span>
+                    <AssetSymbol
+                      symbol={transaction.icon}
+                      className="text-2xl"
+                    />
                     <span className="font-semibold text-lg">
                       {transaction.asset}
                     </span>
@@ -232,19 +312,11 @@ export function TransactionDetailsModal({
                   <p className="text-sm text-muted-foreground mb-2">
                     Confidence Score
                   </p>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        "text-2xl font-bold",
-                        getConfidenceColor(transaction.confidence),
-                      )}
-                    >
-                      {transaction.confidence}%
-                    </span>
-                    {transaction.confidence < 40 && (
-                      <AlertTriangle className="h-5 w-5 text-error" />
-                    )}
-                  </div>
+                  <ConfidenceIndicator
+                    confidence={transaction.confidence}
+                    size="lg"
+                    className="justify-end"
+                  />
                 </div>
               </div>
 
@@ -317,23 +389,77 @@ export function TransactionDetailsModal({
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Gas Fee</span>
-                <span className="font-medium font-mono">$2.45</span>
+                <span className="font-medium font-mono">
+                  {transaction.gasFee ?? EM_DASH}
+                </span>
               </div>
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Block Number</span>
                 <span className="font-medium font-mono">
-                  {15000000 + parseInt(transaction.id) * 1000}
+                  {transaction.blockNumber != null
+                    ? transaction.blockNumber.toLocaleString()
+                    : EM_DASH}
                 </span>
               </div>
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Confirmations</span>
-                <span className="font-medium">12,543</span>
+                <span className="font-medium">
+                  {transaction.confirmations != null
+                    ? transaction.confirmations.toLocaleString()
+                    : EM_DASH}
+                </span>
               </div>
             </div>
           </div>
         </div>
+
+        <DialogFooter className="flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground whitespace-nowrap">
+              Reclassify
+            </span>
+            <Select
+              value={transaction.aiClassification}
+              onValueChange={(value) => onReclassify?.(transaction.id, value)}
+            >
+              <SelectTrigger
+                className="w-[180px]"
+                aria-label="Reclassify transaction"
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {CLASSIFICATION_OPTIONS.map((opt) => (
+                  <SelectItem key={opt} value={opt}>
+                    {opt}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="success"
+              onClick={() => onConfirm?.(transaction.id)}
+            >
+              <Check className="h-4 w-4" />
+              Confirm <kbd className="ml-1 text-xs opacity-70">C</kbd>
+            </Button>
+            <Button variant="warning" onClick={() => onFlag?.(transaction.id)}>
+              <Flag className="h-4 w-4" />
+              Flag <kbd className="ml-1 text-xs opacity-70">F</kbd>
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => onReject?.(transaction.id)}
+            >
+              <X className="h-4 w-4" />
+              Reject <kbd className="ml-1 text-xs opacity-70">R</kbd>
+            </Button>
+          </div>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );

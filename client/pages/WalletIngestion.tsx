@@ -3,7 +3,7 @@ import { WalletIngestionContent } from "@/components/wallet-ingestion/wallet-ing
 
 export default function WalletIngestion() {
   return (
-    <AppLayout activeItem="Wallets and Exchanges">
+    <AppLayout>
       <WalletIngestionContent />
     </AppLayout>
   );

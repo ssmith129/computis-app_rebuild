@@ -53,7 +53,9 @@ const recentExports = [
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "Complete":
-      return <Badge className="bg-success-bg text-success-text">{status}</Badge>;
+      return (
+        <Badge className="bg-success-bg text-success-text">{status}</Badge>
+      );
     case "Processing":
       return <Badge className="bg-info-bg text-info-text">{status}</Badge>;
     case "Failed":
@@ -66,7 +68,11 @@ const getStatusBadge = (status: string) => {
 const getExportTypeBadge = (type: string) => {
   switch (type) {
     case "CSV":
-      return <Badge className="bg-purple-100 text-purple-800">{type}</Badge>;
+      return (
+        <Badge className="bg-category-purple-bg text-category-purple-fg">
+          {type}
+        </Badge>
+      );
     case "IRS 8949":
       return <Badge className="bg-info-bg text-info-text">{type}</Badge>;
     case "QBO":

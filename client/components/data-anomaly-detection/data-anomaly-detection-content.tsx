@@ -91,7 +91,7 @@ const initialIssues: AnomalyIssue[] = [
     id: "potential-duplicate-1",
     type: "Potential Duplicate",
     icon: Copy,
-    iconColor: "text-purple-500",
+    iconColor: "text-category-purple",
     description: "Same amount BTC transactions within 30 seconds",
     dateDetected: "Oct 22, 2023",
     affectedTransactions: 2,
@@ -284,7 +284,7 @@ export function DataAnomalyDetectionContent() {
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-xs text-blue-600 hover:text-blue-700 p-0"
+                className="h-8 text-xs text-primary hover:text-primary p-0"
                 onClick={() => toast({ title: "Audit trail coming soon" })}
               >
                 View Audit Trail

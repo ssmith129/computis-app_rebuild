@@ -14,6 +14,7 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTheme, type Theme } from "@/components/theme-provider";
 import {
   Save,
   Palette,
@@ -36,6 +37,7 @@ import {
 export function PreferencesContent() {
   const [activeTab, setActiveTab] = useState("appearance");
   const [isLoading, setIsLoading] = useState(false);
+  const { theme, setTheme } = useTheme();
   const [preferences, setPreferences] = useState({
     // Appearance
     theme: "system",
@@ -84,11 +86,11 @@ export function PreferencesContent() {
   };
 
   const colorSchemes = [
-    { value: "blue", label: "Blue", color: "bg-blue-500" },
-    { value: "green", label: "Green", color: "bg-green-500" },
-    { value: "purple", label: "Purple", color: "bg-purple-500" },
-    { value: "orange", label: "Orange", color: "bg-orange-500" },
-    { value: "red", label: "Red", color: "bg-red-500" },
+    { value: "blue", label: "Blue", color: "bg-chart-blue" },
+    { value: "green", label: "Green", color: "bg-success" },
+    { value: "purple", label: "Purple", color: "bg-category-purple" },
+    { value: "orange", label: "Orange", color: "bg-chart-orange" },
+    { value: "red", label: "Red", color: "bg-error" },
   ];
 
   return (
@@ -147,8 +149,8 @@ export function PreferencesContent() {
                 <div className="space-y-3">
                   <Label>Theme</Label>
                   <RadioGroup
-                    value={preferences.theme}
-                    onValueChange={(value) => updatePreference("theme", value)}
+                    value={theme}
+                    onValueChange={(value) => setTheme(value as Theme)}
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="light" id="light" />
@@ -160,11 +162,20 @@ export function PreferencesContent() {
                         Light
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="dark" id="dark" />
-                      <Label htmlFor="dark" className="flex items-center gap-2">
+                    {/* Dark is gated: full dark-mode visual coverage is not yet
+                        complete (status surfaces, charts, and some literals are
+                        not dark-tuned), so we don't ship a half-dark UI. */}
+                    <div className="flex items-center space-x-2 opacity-60">
+                      <RadioGroupItem value="dark" id="dark" disabled />
+                      <Label
+                        htmlFor="dark"
+                        className="flex items-center gap-2 cursor-not-allowed"
+                      >
                         <Moon className="h-4 w-4" />
                         Dark
+                        <span className="text-xs text-muted-foreground">
+                          (coming soon)
+                        </span>
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -608,11 +619,11 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h4 className="font-medium text-blue-900 mb-2">
+                <div className="p-4 bg-info-bg rounded-lg border border-info">
+                  <h4 className="font-medium text-info-text mb-2">
                     Keyboard Shortcuts
                   </h4>
-                  <div className="space-y-2 text-sm text-blue-800">
+                  <div className="space-y-2 text-sm text-info-text">
                     <div className="flex justify-between">
                       <span>Open search</span>
                       <kbd className="px-2 py-1 bg-info-bg rounded">

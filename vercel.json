@@ -1,10 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build:client",
+  "buildCommand": "pnpm run build:client",
   "outputDirectory": "dist/spa",
-  "installCommand": "npm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "framework": "vite",
-  "devCommand": "npm run dev",
+  "devCommand": "pnpm dev",
   "functions": {
     "api/**/*.ts": {
       "maxDuration": 10

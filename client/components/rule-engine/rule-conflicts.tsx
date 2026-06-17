@@ -30,26 +30,26 @@ const ruleConflicts = [
 const getAlertStyles = (type: string) => {
   switch (type) {
     case "error":
-      return "border-red-200 bg-red-50 text-red-800";
+      return "border-error bg-error-bg text-error";
     case "warning":
-      return "border-yellow-200 bg-yellow-50 text-yellow-800";
+      return "border-warning bg-warning-bg text-warning";
     case "info":
-      return "border-blue-200 bg-blue-50 text-blue-800";
+      return "border-info bg-info-bg text-info-text";
     default:
-      return "border-gray-200 bg-gray-50 text-gray-800";
+      return "border-border bg-muted text-foreground";
   }
 };
 
 const getIconColor = (type: string) => {
   switch (type) {
     case "error":
-      return "text-red-500";
+      return "text-error";
     case "warning":
-      return "text-yellow-500";
+      return "text-warning";
     case "info":
-      return "text-blue-500";
+      return "text-info";
     default:
-      return "text-gray-500";
+      return "text-muted-foreground";
   }
 };
 

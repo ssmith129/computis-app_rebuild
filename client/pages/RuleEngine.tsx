@@ -3,7 +3,7 @@ import { RuleEngineContent } from "@/components/rule-engine/rule-engine-content"
 
 export default function RuleEngine() {
   return (
-    <AppLayout activeItem="Rule Engine">
+    <AppLayout>
       <RuleEngineContent />
     </AppLayout>
   );

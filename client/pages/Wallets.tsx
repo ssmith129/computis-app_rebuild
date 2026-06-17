@@ -3,7 +3,7 @@ import { WalletsContent } from "@/components/wallets/wallets-content";
 
 export default function Wallets() {
   return (
-    <AppLayout activeItem="Wallets and Exchanges">
+    <AppLayout>
       <WalletsContent />
     </AppLayout>
   );

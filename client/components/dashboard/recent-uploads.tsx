@@ -57,28 +57,28 @@ export function RecentUploads() {
   });
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold text-gray-900">Recent Uploads</h2>
+      <h2 className="text-lg font-bold text-foreground">Recent Uploads</h2>
 
-      <Card className="border border-gray-200 rounded-lg overflow-hidden">
+      <Card className="border border-border rounded-lg overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50 border-b border-gray-200">
-              <TableHead className="text-gray-500 font-medium">
+            <TableRow className="bg-muted border-b border-border">
+              <TableHead className="text-muted-foreground font-medium">
                 File Name
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="text-muted-foreground font-medium">
                 Exchange/Wallet
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="text-muted-foreground font-medium">
                 Uploaded
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="text-muted-foreground font-medium">
                 Status
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="text-muted-foreground font-medium">
                 Transactions
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="text-muted-foreground font-medium">
                 Actions
               </TableHead>
             </TableRow>
@@ -87,21 +87,21 @@ export function RecentUploads() {
             {uploadsData.map((upload, index) => (
               <TableRow
                 key={index}
-                className="border-b border-gray-100 hover:bg-gray-50"
+                className="border-b border-border hover:bg-muted"
               >
                 <TableCell className="py-3">
                   <div className="flex items-center gap-3">
-                    <FileText className="h-4 w-4 text-gray-400" />
-                    <span className="font-medium text-gray-900">
+                    <FileText className="h-4 w-4 text-muted-foreground" />
+                    <span className="font-medium text-foreground">
                       {upload.fileName}
                     </span>
                   </div>
                 </TableCell>
                 <TableCell className="py-3">
-                  <span className="text-gray-900">{upload.exchange}</span>
+                  <span className="text-foreground">{upload.exchange}</span>
                 </TableCell>
                 <TableCell className="py-3">
-                  <span className="text-gray-900">{upload.uploaded}</span>
+                  <span className="text-foreground">{upload.uploaded}</span>
                 </TableCell>
                 <TableCell className="py-3">
                   <StatusBadge variant={upload.status}>
@@ -109,7 +109,7 @@ export function RecentUploads() {
                   </StatusBadge>
                 </TableCell>
                 <TableCell className="py-3">
-                  <span className="text-gray-900">{upload.transactions}</span>
+                  <span className="text-foreground">{upload.transactions}</span>
                 </TableCell>
                 <TableCell className="py-3">
                   <div className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export function RecentUploads() {
                       aria-label="Preview upload"
                       {...previewLongPress}
                     >
-                      <Eye className="h-4 w-4 text-gray-400" />
+                      <Eye className="h-4 w-4 text-muted-foreground" />
                     </Button>
                     <Button
                       variant="ghost"
@@ -128,7 +128,7 @@ export function RecentUploads() {
                       className="h-11 w-11 touch-target"
                       aria-label="Download upload"
                     >
-                      <Download className="h-4 w-4 text-gray-400" />
+                      <Download className="h-4 w-4 text-muted-foreground" />
                     </Button>
                     <Button
                       variant="ghost"
@@ -136,7 +136,7 @@ export function RecentUploads() {
                       className="h-11 w-11 touch-target"
                       aria-label="More options"
                     >
-                      <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                      <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
                     </Button>
                   </div>
                 </TableCell>

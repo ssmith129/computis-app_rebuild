@@ -10,16 +10,20 @@ const variantStyles = {
   success: "bg-success-bg text-success-text border-success/30",
   warning: "bg-warning-bg text-warning-text border-warning/30",
   error: "bg-error-bg text-error-text border-error/30",
-  pending: "bg-info-bg text-info-text border-info/30",
+  pending: "bg-pending-bg text-pending-foreground border-pending/30",
 };
 
-export function StatusBadge({ variant, children, className }: StatusBadgeProps) {
+export function StatusBadge({
+  variant,
+  children,
+  className,
+}: StatusBadgeProps) {
   return (
     <span
       className={cn(
         "inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border",
         variantStyles[variant],
-        className
+        className,
       )}
     >
       {children}

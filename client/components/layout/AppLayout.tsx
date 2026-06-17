@@ -10,14 +10,13 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 interface AppLayoutProps {
   children: ReactNode;
-  activeItem?: string;
 }
 
 /**
  * Inner layout component that can access SidebarContext.
  * Adjusts the fixed header width/offset based on sidebar collapsed vs expanded state.
  */
-function AppLayoutInner({ children, activeItem }: AppLayoutProps) {
+function AppLayoutInner({ children }: AppLayoutProps) {
   const { state } = useSidebar();
   const isMobile = useIsMobile();
   const isCollapsed = state === "collapsed";
@@ -36,7 +35,7 @@ function AppLayoutInner({ children, activeItem }: AppLayoutProps) {
 
   return (
     <div className="app-layout-grid min-h-screen w-full max-w-full overflow-x-clip box-border">
-      <DashboardSidebar activeItem={activeItem} />
+      <DashboardSidebar />
 
       <div className="app-layout-right-column flex flex-col min-h-screen min-w-0 max-w-full overflow-x-clip">
         {/* Fixed Header - dynamically adjusts left/width based on sidebar state */}
@@ -93,10 +92,10 @@ function AppLayoutInner({ children, activeItem }: AppLayoutProps) {
  * └─────────────────────────────┘
  * (Sidebar becomes overlay sheet)
  */
-export function AppLayout({ children, activeItem }: AppLayoutProps) {
+export function AppLayout({ children }: AppLayoutProps) {
   return (
     <SidebarProvider defaultOpen={true}>
-      <AppLayoutInner activeItem={activeItem}>{children}</AppLayoutInner>
+      <AppLayoutInner>{children}</AppLayoutInner>
     </SidebarProvider>
   );
 }

@@ -155,7 +155,7 @@ export function ReviewImportStep({
         <div>
           <h3 className="text-lg font-semibold mb-1">Review & Import</h3>
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
+            <CheckCircle className="h-4 w-4 text-success" />
             <p className="text-sm text-muted-foreground">
               Data validated and mapped successfully
             </p>
@@ -171,21 +171,29 @@ export function ReviewImportStep({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-green-600">1,247</div>
+              <div className="text-2xl font-bold font-mono tabular-nums text-success">
+                1,247
+              </div>
               <div className="text-sm text-muted-foreground">
                 Total Transactions
               </div>
             </div>
             <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-blue-600">8</div>
+              <div className="text-2xl font-bold font-mono tabular-nums text-primary">
+                8
+              </div>
               <div className="text-sm text-muted-foreground">Assets</div>
             </div>
             <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-purple-600">4</div>
+              <div className="text-2xl font-bold font-mono tabular-nums text-category-purple">
+                4
+              </div>
               <div className="text-sm text-muted-foreground">Exchanges</div>
             </div>
             <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-orange-600">365</div>
+              <div className="text-2xl font-bold font-mono tabular-nums text-chart-orange">
+                365
+              </div>
               <div className="text-sm text-muted-foreground">Days Range</div>
             </div>
           </div>

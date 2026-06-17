@@ -10,7 +10,7 @@ import {
   TrendingUp,
   Download,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -35,7 +35,15 @@ import {
 import { helpAccountMenuItems } from "@/components/dashboard/menu-config";
 import { SidebarToggleButton } from "@/components/dashboard/sidebar-toggle-button";
 
-const mainNavItems = [
+interface NavConfigItem {
+  title: string;
+  icon: typeof BarChart3;
+  href: string;
+  /** Extra paths (e.g. sub-flows) that should also mark this item active. */
+  match?: string[];
+}
+
+const mainNavItems: NavConfigItem[] = [
   {
     title: "Dashboard",
     icon: BarChart3,
@@ -45,11 +53,13 @@ const mainNavItems = [
     title: "Transactions",
     icon: ArrowLeftRight,
     href: "/transactions",
+    match: ["/data-anomaly-detection"],
   },
   {
     title: "Wallets and Exchanges",
     icon: Wallet,
     href: "/wallets",
+    match: ["/wallet-ingestion"],
   },
   {
     title: "Clients",
@@ -94,15 +104,25 @@ const settingsItems = [
   },
 ];
 
-interface DashboardSidebarProps {
-  activeItem?: string;
+/**
+ * Active state is derived from the current route (useLocation), not a string
+ * prop — so renaming a label can't silently desync the highlight, and nested
+ * routes resolve to the right parent.
+ */
+function useIsItemActive() {
+  const { pathname } = useLocation();
+  return (item: { href: string; match?: string[] }) => {
+    // Exact-only for the dashboard root, otherwise it would match everything.
+    if (item.href === "/") return pathname === "/";
+    const paths = [item.href, ...(item.match ?? [])];
+    return paths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  };
 }
 
-export function DashboardSidebar({
-  activeItem = "Dashboard",
-}: DashboardSidebarProps) {
+export function DashboardSidebar() {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
+  const isItemActive = useIsItemActive();
 
   return (
     <Sidebar className="bg-sidebar border-r border-sidebar" collapsible="icon">
@@ -127,7 +147,7 @@ export function DashboardSidebar({
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNavItems.map((item) => {
-                const isActive = activeItem === item.title;
+                const isActive = isItemActive(item);
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
@@ -167,7 +187,7 @@ export function DashboardSidebar({
               <SidebarGroupContent>
                 <SidebarMenu>
                   {reportsItems.map((item) => {
-                    const isActive = activeItem === item.title;
+                    const isActive = isItemActive(item);
                     return (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
@@ -209,7 +229,7 @@ export function DashboardSidebar({
               <SidebarGroupContent>
                 <SidebarMenu>
                   {settingsItems.map((item) => {
-                    const isActive = activeItem === item.title;
+                    const isActive = isItemActive(item);
                     return (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
@@ -250,22 +270,30 @@ export function DashboardSidebar({
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {helpAccountMenuItems.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        asChild
-                        tooltip={item.title}
-                        className="text-sidebar-muted hover:bg-sidebar-accent hover:text-white"
-                      >
-                        <Link to={item.href}>
-                          <item.icon className="h-5 w-5" />
-                          <span className="font-semibold text-sm">
-                            {item.title}
-                          </span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
+                  {helpAccountMenuItems.map((item) => {
+                    const isActive = isItemActive(item);
+                    return (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive}
+                          tooltip={item.title}
+                          className={`${
+                            isActive
+                              ? "bg-sidebar-accent text-white"
+                              : "text-sidebar-muted hover:bg-sidebar-accent hover:text-white"
+                          }`}
+                        >
+                          <Link to={item.href}>
+                            <item.icon className="h-5 w-5" />
+                            <span className="font-semibold text-sm">
+                              {item.title}
+                            </span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
                 </SidebarMenu>
               </SidebarGroupContent>
             </CollapsibleContent>
