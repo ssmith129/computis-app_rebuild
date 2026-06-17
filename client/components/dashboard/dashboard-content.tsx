@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { EnhancedDashboardCards } from "./enhanced-dashboard-cards";
 import { RecentUploads } from "./recent-uploads";
 import { EnhancedPieChartSections } from "./enhanced-pie-charts";
@@ -31,40 +32,40 @@ export function DashboardContent() {
             View all your key metrics and data here
           </p>
 
-          {/* Role View Selector */}
+          {/* Role View Selector — header segmented control (single tab row below) */}
           <div className="mt-4">
-            <Tabs
+            <ToggleGroup
+              type="single"
               value={roleView}
-              onValueChange={handleRoleChange}
-              className="w-full"
+              onValueChange={(value) => value && handleRoleChange(value)}
+              className="inline-flex h-11 items-center justify-start rounded-lg bg-muted p-1"
+              aria-label="Dashboard role view"
             >
-              <TabsList className="inline-flex h-11 items-center justify-start rounded-lg bg-muted p-1">
-                <TabsTrigger
-                  value="admin"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                  aria-label="Admin view - Full access to all dashboard features"
-                >
-                  <Shield className="h-4 w-4" />
-                  <span>Admin</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="client"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                  aria-label="Client view - Limited to client-accessible data"
-                >
-                  <Users className="h-4 w-4" />
-                  <span>Client</span>
-                </TabsTrigger>
-                <TabsTrigger
-                  value="cpa"
-                  className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                  aria-label="CPA view - Tax preparer tools and client management"
-                >
-                  <Briefcase className="h-4 w-4" />
-                  <span>CPA</span>
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
+              <ToggleGroupItem
+                value="admin"
+                className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-sm"
+                aria-label="Admin view - Full access to all dashboard features"
+              >
+                <Shield className="h-4 w-4" />
+                <span>Admin</span>
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="client"
+                className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-sm"
+                aria-label="Client view - Limited to client-accessible data"
+              >
+                <Users className="h-4 w-4" />
+                <span>Client</span>
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="cpa"
+                className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-sm"
+                aria-label="CPA view - Tax preparer tools and client management"
+              >
+                <Briefcase className="h-4 w-4" />
+                <span>CPA</span>
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
         </div>
       </div>

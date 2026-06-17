@@ -253,6 +253,28 @@ export default function KeyboardShortcuts() {
         },
       ],
     },
+    {
+      title: "Transaction Review",
+      icon: MousePointer,
+      color: "green",
+      shortcuts: [
+        {
+          keys: ["C"],
+          description: "Confirm Transaction",
+          action: "Confirm the open transaction (detail modal)",
+        },
+        {
+          keys: ["F"],
+          description: "Flag Transaction",
+          action: "Flag the open transaction (detail modal)",
+        },
+        {
+          keys: ["R"],
+          description: "Reject Transaction",
+          action: "Reject the open transaction (detail modal)",
+        },
+      ],
+    },
   ];
 
   const platformShortcuts = [

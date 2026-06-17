@@ -44,10 +44,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 import {
   TransactionDetailsModal,
   type Transaction,
 } from "./transaction-details-modal";
+
+const REVIEWED_STATUSES = ["Confirmed", "Flagged", "Rejected"];
 
 interface TransactionsTableProps {
   filters: {
@@ -153,6 +156,8 @@ const getStatusVariant = (
       return "warning";
     case "Flagged":
       return "error";
+    case "Rejected":
+      return "error";
     case "Pending":
       return "pending";
     default:
@@ -187,7 +192,48 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey | null>(null);
   const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [transactions, setTransactions] =
+    useState<Transaction[]>(mockTransactions);
   const itemsPerPage = 25;
+
+  // Apply a patch to a set of transactions and surface a count + working Undo
+  // toast. The snapshot makes the mutation reversible.
+  const applyAction = (
+    ids: string[],
+    patch: Partial<Transaction>,
+    verb: string,
+  ) => {
+    if (ids.length === 0) return;
+    const snapshot = transactions;
+    setTransactions((prev) =>
+      prev.map((t) => (ids.includes(t.id) ? { ...t, ...patch } : t)),
+    );
+    const n = ids.length;
+    toast({
+      title: `${n} transaction${n === 1 ? "" : "s"} ${verb}`,
+      action: (
+        <ToastAction
+          altText="Undo last action"
+          onClick={() => setTransactions(snapshot)}
+        >
+          Undo
+        </ToastAction>
+      ),
+    });
+  };
+
+  const confirmTx = (id: string) =>
+    applyAction([id], { status: "Confirmed" }, "confirmed");
+  const flagTx = (id: string) =>
+    applyAction([id], { status: "Flagged" }, "flagged");
+  const rejectTx = (id: string) =>
+    applyAction([id], { status: "Rejected" }, "rejected");
+  const reclassifyTx = (id: string, classification: string) =>
+    applyAction(
+      [id],
+      { aiClassification: classification },
+      `reclassified to ${classification}`,
+    );
 
   // Cycle a column through asc -> desc -> unsorted.
   const handleSort = (key: SortKey) => {
@@ -240,7 +286,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
     setIsModalOpen(true);
   };
 
-  const filteredTransactions = mockTransactions.filter((transaction) => {
+  const filteredTransactions = transactions.filter((transaction) => {
     const confidenceMatch =
       filters.confidence === "All" ||
       (filters.confidence === "High" && transaction.confidence >= 70) ||
@@ -271,6 +317,47 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
     itemsPerPage,
     filteredTransactions.length,
   );
+
+  // After acting from the modal, advance to the next unreviewed transaction
+  // (in current sort order) or close if none remain.
+  const advanceOrClose = (currentId: string) => {
+    const idx = sortedTransactions.findIndex((t) => t.id === currentId);
+    const next = sortedTransactions
+      .slice(idx + 1)
+      .find((t) => !REVIEWED_STATUSES.includes(t.status));
+    if (next) {
+      setSelectedTransaction(next);
+    } else {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleModalConfirm = (id: string) => {
+    confirmTx(id);
+    advanceOrClose(id);
+  };
+  const handleModalFlag = (id: string) => {
+    flagTx(id);
+    advanceOrClose(id);
+  };
+  const handleModalReject = (id: string) => {
+    rejectTx(id);
+    advanceOrClose(id);
+  };
+
+  const handleBulkConfirm = () => {
+    applyAction(
+      [...selectedTransactions],
+      { status: "Confirmed" },
+      "confirmed",
+    );
+    setSelectedTransactions([]);
+  };
+
+  // Keep the modal's content in sync with the latest state.
+  const modalTransaction =
+    transactions.find((t) => t.id === selectedTransaction?.id) ??
+    selectedTransaction;
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
@@ -422,9 +509,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                             variant="ghost"
                             size="sm"
                             className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-success-bg hover:text-success"
-                            onClick={() =>
-                              toast({ title: "Transaction confirmed" })
-                            }
+                            onClick={() => confirmTx(transaction.id)}
                             aria-label={`Confirm transaction ${transaction.id}`}
                           >
                             <Check className="h-4 w-4 md:h-3.5 md:w-3.5" />
@@ -441,9 +526,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                             variant="ghost"
                             size="sm"
                             className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-warning-bg hover:text-warning"
-                            onClick={() =>
-                              toast({ title: "Transaction flagged" })
-                            }
+                            onClick={() => flagTx(transaction.id)}
                             aria-label={`Flag transaction ${transaction.id}`}
                           >
                             <Flag className="h-4 w-4 md:h-3.5 md:w-3.5" />
@@ -460,9 +543,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                             variant="ghost"
                             size="sm"
                             className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-error-bg hover:text-error"
-                            onClick={() =>
-                              toast({ title: "Transaction rejected" })
-                            }
+                            onClick={() => rejectTx(transaction.id)}
                             aria-label={`Reject transaction ${transaction.id}`}
                           >
                             <X className="h-4 w-4 md:h-3.5 md:w-3.5" />
@@ -496,7 +577,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
             variant="outline"
             size="sm"
             disabled={selectedTransactions.length === 0}
-            onClick={() => toast({ title: "Accepted selected" })}
+            onClick={handleBulkConfirm}
           >
             Accept All
           </Button>
@@ -567,9 +648,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
 
       {/* Transaction Details Modal */}
       <TransactionDetailsModal
-        transaction={selectedTransaction}
+        transaction={modalTransaction}
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
+        onConfirm={handleModalConfirm}
+        onFlag={handleModalFlag}
+        onReject={handleModalReject}
+        onReclassify={reclassifyTx}
       />
     </div>
   );
