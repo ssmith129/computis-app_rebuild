@@ -21,11 +21,11 @@ const issues = [
     affectedTransactions: "BTC",
     date: "Aug 14, 2022",
     severity: "High",
-    action: "Fix Now"
+    action: "Fix Now",
   },
   {
     id: "unclassified",
-    type: "Medium", 
+    type: "Medium",
     icon: Info,
     iconColor: "text-blue-500",
     issueType: "Unclassified Transactions",
@@ -33,7 +33,7 @@ const issues = [
     affectedTransactions: "USDC",
     date: "Multiple",
     severity: "Medium",
-    action: "Classify"
+    action: "Classify",
   },
   {
     id: "low-confidence",
@@ -43,10 +43,10 @@ const issues = [
     issueType: "Low AI Confidence",
     description: "5 transactions with low AI confidence",
     affectedTransactions: "ETH",
-    date: "Multiple", 
+    date: "Multiple",
     severity: "Low",
-    action: "Review"
-  }
+    action: "Review",
+  },
 ];
 
 const getSeverityBadge = (severity: string) => {
@@ -54,7 +54,9 @@ const getSeverityBadge = (severity: string) => {
     case "High":
       return <Badge className="bg-error-bg text-error-text">{severity}</Badge>;
     case "Medium":
-      return <Badge className="bg-warning-bg text-warning-text">{severity}</Badge>;
+      return (
+        <Badge className="bg-warning-bg text-warning-text">{severity}</Badge>
+      );
     case "Low":
       return <Badge className="bg-info-bg text-info-text">{severity}</Badge>;
     default:
@@ -67,8 +69,12 @@ export function IssuesTable() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold">Issues Requiring Attention</h3>
-          <p className="text-sm text-muted-foreground">Review these issues before exporting</p>
+          <h3 className="text-heading-lg font-semibold">
+            Issues Requiring Attention
+          </h3>
+          <p className="text-body-md text-muted-foreground">
+            Review these issues before exporting
+          </p>
         </div>
       </div>
 
@@ -90,7 +96,7 @@ export function IssuesTable() {
                 <TableRow key={issue.id}>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <IconComponent className={`h-4 w-4 ${issue.iconColor}`} />
+                      <IconComponent className={`size-4 ${issue.iconColor}`} />
                       <span className="font-medium">{issue.issueType}</span>
                     </div>
                   </TableCell>
@@ -102,18 +108,18 @@ export function IssuesTable() {
                       <Badge variant="outline" className="font-mono">
                         {issue.affectedTransactions}
                       </Badge>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-body-md text-muted-foreground">
                         {issue.date}
                       </span>
                     </div>
                   </TableCell>
-                  <TableCell>
-                    {getSeverityBadge(issue.severity)}
-                  </TableCell>
+                  <TableCell>{getSeverityBadge(issue.severity)}</TableCell>
                   <TableCell>
                     <Button
                       size="sm"
-                      variant={issue.severity === "High" ? "default" : "outline"}
+                      variant={
+                        issue.severity === "High" ? "default" : "outline"
+                      }
                     >
                       {issue.action}
                     </Button>
@@ -126,10 +132,10 @@ export function IssuesTable() {
       </div>
 
       {issues.length === 0 && (
-        <div className="text-center py-8">
-          <AlertCircle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="text-lg font-medium mb-2">No Issues Found</h3>
-          <p className="text-sm text-muted-foreground">
+        <div className="py-8 text-center">
+          <AlertCircle className="mx-auto mb-4 size-12 text-muted-foreground" />
+          <h3 className="mb-2 text-heading-lg font-medium">No Issues Found</h3>
+          <p className="text-body-md text-muted-foreground">
             All your data is ready for export.
           </p>
         </div>

@@ -115,11 +115,11 @@ export const responsiveSpacing = {
 
 // Responsive text utilities
 export const responsiveText = {
-  pageTitle: "text-xl sm:text-2xl font-bold",
-  sectionTitle: "text-lg sm:text-xl font-semibold",
-  cardTitle: "text-base sm:text-lg font-medium",
-  body: "text-sm sm:text-base",
-  caption: "text-xs sm:text-sm text-muted-foreground",
+  pageTitle: "text-display-sm sm:text-display-lg font-bold",
+  sectionTitle: "text-heading-lg sm:text-display-sm font-semibold",
+  cardTitle: "text-heading-md sm:text-heading-lg font-medium",
+  body: "text-body-md sm:text-heading-md",
+  caption: "text-caption sm:text-body-md text-muted-foreground",
 } as const;
 
 // Container utilities for responsive layouts
@@ -151,9 +151,9 @@ export function getResponsiveTableClasses(
 ) {
   const baseClasses = "w-full overflow-auto";
   const densityClasses = {
-    compact: "text-xs sm:text-sm",
-    comfortable: "text-sm",
-    spacious: "text-sm sm:text-base",
+    compact: "text-caption sm:text-body-md",
+    comfortable: "text-body-md",
+    spacious: "text-body-md sm:text-heading-md",
   };
 
   return `${baseClasses} ${densityClasses[density]}`;
@@ -218,12 +218,14 @@ export function getResponsiveTextSize(
   const length = content.length;
 
   if (context === "title") {
-    return length > 50 ? "text-lg sm:text-xl" : "text-xl sm:text-2xl";
+    return length > 50
+      ? "text-heading-lg sm:text-display-sm"
+      : "text-display-sm sm:text-display-lg";
   }
 
   if (context === "body") {
-    return "text-sm sm:text-base";
+    return "text-body-md sm:text-heading-md";
   }
 
-  return "text-xs sm:text-sm";
+  return "text-caption sm:text-body-md";
 }

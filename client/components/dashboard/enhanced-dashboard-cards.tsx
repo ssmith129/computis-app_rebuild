@@ -4,13 +4,13 @@ import {
   TrendingDown,
   AlertTriangle,
   CheckCircle,
-  Clock,
   Users,
   FileText,
   Settings,
   DollarSign,
   Activity,
   ArrowUpRight,
+  type LucideIcon,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ interface EnhancedDashboardCardProps {
   subtitle?: string;
   change?: string;
   changeType?: "positive" | "negative" | "neutral";
-  icon: any;
+  icon: LucideIcon;
   iconColor: string;
   iconBg: string;
   chartData?: number[];
@@ -56,16 +56,12 @@ export function EnhancedDashboardCard({
   icon: Icon,
   iconColor,
   iconBg,
-  chartData,
-  chartColor = "blue",
   progress,
   status,
   actionLabel,
   actionLink,
   badge,
-  animate = true,
 }: EnhancedDashboardCardProps) {
-
   const changeColorClass = {
     positive: "text-success",
     negative: "text-error",
@@ -84,25 +80,21 @@ export function EnhancedDashboardCard({
     : "bg-card transition-shadow duration-300 hover:shadow-lg cursor-pointer";
 
   const cardContent = (
-    <Card
-      className={cardClassName}
-    >
+    <Card className={cardClassName}>
       <CardContent className="p-3 sm:p-4">
-        <div className="flex items-start justify-between mb-2 sm:mb-3">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <div
-              className={`p-2 sm:p-3 rounded-xl ${iconBg} flex-shrink-0`}
-            >
-              <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColor}`} />
+        <div className="mb-2 flex items-start justify-between sm:mb-3">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <div className={`rounded-xl p-2 sm:p-3 ${iconBg} shrink-0`}>
+              <Icon className={`size-5 sm:size-6 ${iconColor}`} />
             </div>
             <div className="min-w-0">
-              <h3 className="text-overline font-medium text-muted-foreground mb-1 truncate">
+              <h3 className="mb-1 truncate text-overline font-medium text-muted-foreground">
                 {title}
               </h3>
               {badge && (
                 <Badge
                   variant="secondary"
-                  className={`text-xs ${
+                  className={`text-caption ${
                     badge.variant === "success"
                       ? "bg-success-bg text-success-text"
                       : badge.variant === "warning"
@@ -120,34 +112,32 @@ export function EnhancedDashboardCard({
           <Button
             variant="ghost"
             size="icon"
-            className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="size-6 opacity-0 transition-opacity group-hover:opacity-100"
             aria-label="Card options"
           >
-            <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+            <MoreHorizontal className="size-4 text-muted-foreground" />
           </Button>
         </div>
 
         <div className="space-y-2">
           <div className="space-y-1">
-            <div
-              className="text-display-sm font-bold text-foreground"
-            >
+            <div className="text-display-sm font-bold text-foreground">
               {typeof value === "number" ? value.toLocaleString() : value}
             </div>
             {subtitle && (
-              <div className="text-caption text-muted-foreground truncate">
+              <div className="truncate text-caption text-muted-foreground">
                 {subtitle}
               </div>
             )}
             {change && (
               <div
-                className={`text-caption flex items-center gap-1 ${changeColorClass}`}
+                className={`flex items-center gap-1 text-caption ${changeColorClass}`}
               >
                 {changeType === "positive" && (
-                  <TrendingUp className="h-3 w-3 flex-shrink-0" />
+                  <TrendingUp className="size-3 shrink-0" />
                 )}
                 {changeType === "negative" && (
-                  <TrendingDown className="h-3 w-3 flex-shrink-0" />
+                  <TrendingDown className="size-3 shrink-0" />
                 )}
                 <span className="truncate">{change}</span>
               </div>
@@ -156,7 +146,7 @@ export function EnhancedDashboardCard({
 
           {progress !== undefined && (
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-body-md">
                 <span className="text-muted-foreground">Progress</span>
                 <span className="font-medium">{progress}%</span>
               </div>
@@ -172,10 +162,10 @@ export function EnhancedDashboardCard({
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
+                className="w-full text-caption transition-colors hover:bg-primary hover:text-primary-foreground"
               >
                 {actionLabel}
-                <ArrowUpRight className="h-3 w-3 ml-1" />
+                <ArrowUpRight className="ml-1 size-3" />
               </Button>
             </div>
           )}
@@ -186,7 +176,7 @@ export function EnhancedDashboardCard({
 
   if (actionLink) {
     return (
-      <Link to={actionLink} className="block group">
+      <Link to={actionLink} className="group block">
         {cardContent}
       </Link>
     );
@@ -292,49 +282,49 @@ export function EnhancedDashboardCards() {
   ];
 
   return (
-    <div className="space-y-4 sm:space-y-6 w-full max-w-full overflow-hidden">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+    <div className="w-full max-w-full space-y-4 overflow-hidden sm:space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div className="min-w-0">
-          <h2 className="text-heading-sm font-bold text-foreground truncate">
+          <h2 className="truncate text-heading-sm font-bold text-foreground">
             Key Metrics & Tools
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500">
+          <p className="text-caption text-gray-500 sm:text-body-md">
             Overview of your crypto tax preparation status
           </p>
         </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex shrink-0 items-center gap-2">
           <Badge
             variant="secondary"
-            className="bg-success-bg text-success-text text-xs"
+            className="bg-success-bg text-caption text-success-text"
           >
-            <CheckCircle className="h-3 w-3 mr-1" />
+            <CheckCircle className="mr-1 size-3" />
             All Systems Operational
           </Badge>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {cardsData.map((card, index) => (
           <EnhancedDashboardCard key={index} {...card} />
         ))}
       </div>
 
       {/* Quick Action Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 sm:mt-8">
-        <Card className="p-6 bg-gradient-to-r from-info-bg to-indigo-50 border-info/30 hover:shadow-lg transition-all duration-300">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2">
+        <Card className="border-info/30 bg-gradient-to-r from-info-bg to-indigo-50 p-6 transition-all duration-300 hover:shadow-lg">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="mb-2 font-semibold text-gray-900">
                   Ready to File?
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="mb-4 text-body-md text-gray-600">
                   All transactions classified and forms generated
                 </p>
                 <Link to="/exports">
                   <Button className="bg-primary hover:bg-primary-hover">
                     Generate Tax Package
-                    <ArrowUpRight className="h-4 w-4 ml-2" />
+                    <ArrowUpRight className="ml-2 size-4" />
                   </Button>
                 </Link>
               </div>
@@ -343,14 +333,14 @@ export function EnhancedDashboardCards() {
           </CardContent>
         </Card>
 
-        <Card className="p-6 bg-gradient-to-r from-success-bg to-emerald-50 border-success/30 hover:shadow-lg transition-all duration-300">
+        <Card className="border-success/30 bg-gradient-to-r from-success-bg to-emerald-50 p-6 transition-all duration-300 hover:shadow-lg">
           <CardContent className="p-0">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-semibold text-gray-900 mb-2">
+                <h3 className="mb-2 font-semibold text-gray-900">
                   Upload New Data
                 </h3>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="mb-4 text-body-md text-gray-600">
                   Import transactions from wallets and exchanges
                 </p>
                 <Link to="/wallet-ingestion">
@@ -359,7 +349,7 @@ export function EnhancedDashboardCards() {
                     className="border-success text-success hover:bg-success hover:text-white"
                   >
                     Upload Transactions
-                    <ArrowUpRight className="h-4 w-4 ml-2" />
+                    <ArrowUpRight className="ml-2 size-4" />
                   </Button>
                 </Link>
               </div>

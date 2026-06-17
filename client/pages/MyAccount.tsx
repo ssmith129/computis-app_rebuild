@@ -33,36 +33,38 @@ export default function MyAccount() {
         {/* Page Header */}
         <div className="page-titlebar">
           <div className="flex flex-col p-6 text-left">
-            <h1 className="text-heading-lg font-bold text-foreground">My Account</h1>
-            <p className="text-body-md text-muted-foreground mt-1">
+            <h1 className="text-heading-lg font-bold text-foreground">
+              My Account
+            </h1>
+            <p className="mt-1 text-body-md text-muted-foreground">
               Manage your profile, preferences, and security settings
             </p>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="p-4 sm:p-6 space-y-6 no-h-scroll">
+        <div className="no-h-scroll space-y-6 p-4 sm:p-6">
           {/* Profile Overview */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
+                <User className="size-5" />
                 Profile Information
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center gap-6">
-                <Avatar className="h-20 w-20 bg-info-bg">
-                  <AvatarFallback className="bg-info-bg text-info text-2xl">
+                <Avatar className="size-20 bg-info-bg">
+                  <AvatarFallback className="bg-info-bg text-display-lg text-info">
                     JS
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900">
+                  <h3 className="text-display-sm font-semibold text-gray-900">
                     John Smith
                   </h3>
                   <p className="text-gray-600">Premium User</p>
-                  <div className="flex gap-2 mt-2">
+                  <div className="mt-2 flex gap-2">
                     <Badge variant="default">Verified</Badge>
                     <Badge variant="secondary">Pro Plan</Badge>
                   </div>
@@ -72,7 +74,7 @@ export default function MyAccount() {
 
               <Separator />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
                   <Input id="firstName" defaultValue="John" />
@@ -84,7 +86,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <div className="flex">
-                    <Mail className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Mail className="mr-3 mt-3 size-4 text-gray-400" />
                     <Input
                       id="email"
                       type="email"
@@ -96,7 +98,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone</Label>
                   <div className="flex">
-                    <Phone className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Phone className="mr-3 mt-3 size-4 text-gray-400" />
                     <Input
                       id="phone"
                       type="tel"
@@ -108,7 +110,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="location">Location</Label>
                   <div className="flex">
-                    <MapPin className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <MapPin className="mr-3 mt-3 size-4 text-gray-400" />
                     <Input
                       id="location"
                       defaultValue="New York, NY"
@@ -119,7 +121,7 @@ export default function MyAccount() {
                 <div className="space-y-2">
                   <Label htmlFor="joined">Member Since</Label>
                   <div className="flex">
-                    <Calendar className="h-4 w-4 text-gray-400 mt-3 mr-3" />
+                    <Calendar className="mr-3 mt-3 size-4 text-gray-400" />
                     <Input
                       id="joined"
                       defaultValue="January 2023"
@@ -136,7 +138,7 @@ export default function MyAccount() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5" />
+                <Shield className="size-5" />
                 Security & Privacy
               </CardTitle>
             </CardHeader>
@@ -155,13 +157,13 @@ export default function MyAccount() {
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 h-auto"
+                        className="absolute right-2 top-1/2 h-auto -translate-y-1/2 p-1"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className="h-4 w-4" />
+                          <EyeOff className="size-4" />
                         ) : (
-                          <Eye className="h-4 w-4" />
+                          <Eye className="size-4" />
                         )}
                       </Button>
                     </div>
@@ -193,7 +195,7 @@ export default function MyAccount() {
                 </h4>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-body-md text-gray-600">
                       Add an extra layer of security to your account
                     </p>
                   </div>
@@ -209,15 +211,17 @@ export default function MyAccount() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Bell className="h-5 w-5" />
+                <Bell className="size-5" />
                 Notification Preferences
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Email Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">
+                    Email Notifications
+                  </p>
+                  <p className="text-caption text-gray-500">
                     Receive updates via email
                   </p>
                 </div>
@@ -228,8 +232,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Push Notifications</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Push Notifications</p>
+                  <p className="text-caption text-gray-500">
                     Receive browser notifications
                   </p>
                 </div>
@@ -240,8 +244,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Weekly Reports</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Weekly Reports</p>
+                  <p className="text-caption text-gray-500">
                     Get weekly summary emails
                   </p>
                 </div>
@@ -249,8 +253,8 @@ export default function MyAccount() {
               </div>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium">Security Alerts</p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-body-md font-medium">Security Alerts</p>
+                  <p className="text-caption text-gray-500">
                     Alerts for account security events
                   </p>
                 </div>
@@ -263,15 +267,15 @@ export default function MyAccount() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <CreditCard className="h-5 w-5" />
+                <CreditCard className="size-5" />
                 Billing & Subscription
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-info-bg rounded-lg">
+              <div className="flex items-center justify-between rounded-lg bg-info-bg p-4">
                 <div>
                   <h4 className="font-medium text-info-text">Pro Plan</h4>
-                  <p className="text-sm text-info-text">
+                  <p className="text-body-md text-info-text">
                     $29.99/month • Next billing: Feb 15, 2024
                   </p>
                 </div>
@@ -280,12 +284,12 @@ export default function MyAccount() {
 
               <div className="space-y-2">
                 <h4 className="font-medium text-gray-900">Payment Method</h4>
-                <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center justify-between rounded-lg border p-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">
+                    <div className="flex h-6 w-8 items-center justify-center rounded bg-blue-600 text-caption text-white">
                       VISA
                     </div>
-                    <span className="text-sm">•••• •••• •••• 4567</span>
+                    <span className="text-body-md">•••• •••• •••• 4567</span>
                   </div>
                   <Button variant="ghost" size="sm">
                     Update
@@ -295,7 +299,7 @@ export default function MyAccount() {
 
               <div className="flex gap-2">
                 <Button variant="outline" className="flex-1">
-                  <Download className="h-4 w-4 mr-2" />
+                  <Download className="mr-2 size-4" />
                   Download Invoice
                 </Button>
                 <Button variant="outline" className="flex-1">

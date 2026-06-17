@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -30,7 +30,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Plus,
   Search,
   Filter,
   ArrowUpDown,
@@ -157,9 +156,9 @@ const getStatusBadge = (status: User["status"]) => {
     Pending: "bg-warning-bg text-warning-text border-0",
   };
   const icons = {
-    Active: <UserCheck className="h-3 w-3 mr-1" />,
-    Inactive: <UserX className="h-3 w-3 mr-1" />,
-    Pending: <Clock className="h-3 w-3 mr-1" />,
+    Active: <UserCheck className="mr-1 size-3" />,
+    Inactive: <UserX className="mr-1 size-3" />,
+    Pending: <Clock className="mr-1 size-3" />,
   };
   return (
     <Badge className={variants[status]}>
@@ -178,7 +177,7 @@ const getRoleBadge = (role: string) => {
     "Client User": "bg-cyan-100 text-cyan-700 border-0",
   };
   return (
-    <Badge className={variants[role] || "bg-gray-100 text-gray-700 border-0"}>
+    <Badge className={variants[role] || "border-0 bg-gray-100 text-gray-700"}>
       {role}
     </Badge>
   );
@@ -206,7 +205,7 @@ export function UsersManagement() {
   const [newUserPhone, setNewUserPhone] = useState("");
 
   const filteredAndSortedUsers = useMemo(() => {
-    let filtered = mockUsers.filter((user) => {
+    const filtered = mockUsers.filter((user) => {
       const matchesSearch =
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase());
@@ -292,20 +291,20 @@ export function UsersManagement() {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Active Users
                 </p>
-                <p className="text-3xl font-bold text-success">
+                <p className="text-display-xl font-bold text-success">
                   {activeCount}
                 </p>
               </div>
-              <div className="p-3 bg-success-bg rounded-lg">
-                <UserCheck className="h-6 w-6 text-success" />
+              <div className="rounded-lg bg-success-bg p-3">
+                <UserCheck className="size-6 text-success" />
               </div>
             </div>
           </CardContent>
@@ -314,15 +313,15 @@ export function UsersManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Inactive Users
                 </p>
-                <p className="text-3xl font-bold text-gray-600">
+                <p className="text-display-xl font-bold text-gray-600">
                   {inactiveCount}
                 </p>
               </div>
-              <div className="p-3 bg-gray-100 rounded-lg">
-                <UserX className="h-6 w-6 text-gray-600" />
+              <div className="rounded-lg bg-gray-100 p-3">
+                <UserX className="size-6 text-gray-600" />
               </div>
             </div>
           </CardContent>
@@ -331,15 +330,15 @@ export function UsersManagement() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-body-md font-medium text-muted-foreground">
                   Pending Approvals
                 </p>
-                <p className="text-3xl font-bold text-warning">
+                <p className="text-display-xl font-bold text-warning">
                   {pendingCount}
                 </p>
               </div>
-              <div className="p-3 bg-warning-bg rounded-lg">
-                <Clock className="h-6 w-6 text-warning" />
+              <div className="rounded-lg bg-warning-bg p-3">
+                <Clock className="size-6 text-warning" />
               </div>
             </div>
           </CardContent>
@@ -361,16 +360,16 @@ export function UsersManagement() {
             </TabsTrigger>
           </TabsList>
           <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-blue-600 text-white hover:bg-blue-700"
             onClick={() => setAddUserOpen(true)}
           >
-            <UserPlus className="h-4 w-4 mr-2" />
+            <UserPlus className="mr-2 size-4" />
             Add User
           </Button>
         </div>
 
         <div className="mt-6">
-          <TabsContent value="active" className="space-y-4 mt-0">
+          <TabsContent value="active" className="mt-0 space-y-4">
             <UserTableSection
               users={filteredAndSortedUsers}
               searchTerm={searchTerm}
@@ -388,7 +387,7 @@ export function UsersManagement() {
             />
           </TabsContent>
 
-          <TabsContent value="inactive" className="space-y-4 mt-0">
+          <TabsContent value="inactive" className="mt-0 space-y-4">
             <UserTableSection
               users={filteredAndSortedUsers}
               searchTerm={searchTerm}
@@ -406,7 +405,7 @@ export function UsersManagement() {
             />
           </TabsContent>
 
-          <TabsContent value="pending" className="space-y-4 mt-0">
+          <TabsContent value="pending" className="mt-0 space-y-4">
             <UserTableSection
               users={filteredAndSortedUsers}
               searchTerm={searchTerm}
@@ -502,9 +501,9 @@ export function UsersManagement() {
             </Button>
             <Button
               onClick={handleAddUser}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              <Mail className="h-4 w-4 mr-2" />
+              <Mail className="mr-2 size-4" />
               Send Invitation
             </Button>
           </DialogFooter>
@@ -520,14 +519,16 @@ export function UsersManagement() {
           {selectedUser && (
             <div className="space-y-6 py-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-xl">
+                <div className="flex size-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-display-sm font-semibold text-white">
                   {selectedUser.name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">{selectedUser.name}</h3>
+                  <h3 className="text-display-sm font-semibold">
+                    {selectedUser.name}
+                  </h3>
                   <p className="text-muted-foreground">{selectedUser.email}</p>
                 </div>
               </div>
@@ -570,9 +571,9 @@ export function UsersManagement() {
                 setViewUserOpen(false);
                 if (selectedUser) handleEditUser(selectedUser);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              <Edit2 className="h-4 w-4 mr-2" />
+              <Edit2 className="mr-2 size-4" />
               Edit User
             </Button>
           </DialogFooter>
@@ -655,7 +656,7 @@ export function UsersManagement() {
                 toast({ title: "User updated successfully" });
                 setEditUserOpen(false);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
               Save Changes
             </Button>
@@ -692,8 +693,6 @@ function UserTableSection({
   handleSelectAll,
   handleSelectUser,
   handleSort,
-  sortField,
-  sortDirection,
   handleViewUser,
   handleEditUser,
 }: UserTableSectionProps) {
@@ -701,19 +700,19 @@ function UserTableSection({
     <Button
       variant="ghost"
       size="sm"
-      className="h-8 -ml-3"
+      className="-ml-3 h-8"
       onClick={() => handleSort(field)}
     >
-      <ArrowUpDown className="h-4 w-4" />
+      <ArrowUpDown className="size-4" />
     </Button>
   );
 
   return (
     <>
       {/* Search and Filter Bar */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by name or email..."
             value={searchTerm}
@@ -724,7 +723,7 @@ function UserTableSection({
         <div className="flex gap-2">
           <Select value={filterRole} onValueChange={setFilterRole}>
             <SelectTrigger className="w-select-default">
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -738,7 +737,7 @@ function UserTableSection({
             variant="outline"
             onClick={() => toast({ title: "Export started" })}
           >
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="mr-2 size-4" />
             Export
           </Button>
         </div>
@@ -748,8 +747,8 @@ function UserTableSection({
       <Card>
         <CardContent className="p-0">
           {selectedUsers.length > 0 && (
-            <div className="flex items-center justify-between p-4 border-b bg-muted/30">
-              <div className="text-sm font-medium">
+            <div className="flex items-center justify-between border-b bg-muted/30 p-4">
+              <div className="text-body-md font-medium">
                 {selectedUsers.length} user{selectedUsers.length > 1 ? "s" : ""}{" "}
                 selected
               </div>
@@ -758,7 +757,7 @@ function UserTableSection({
                   Bulk Edit
                 </Button>
                 <Button variant="destructive" size="sm">
-                  <Trash2 className="h-4 w-4 mr-2" />
+                  <Trash2 className="mr-2 size-4" />
                   Delete
                 </Button>
               </div>
@@ -813,7 +812,7 @@ function UserTableSection({
                 <TableRow>
                   <TableCell
                     colSpan={7}
-                    className="text-center py-8 text-muted-foreground"
+                    className="py-8 text-center text-muted-foreground"
                   >
                     No users found
                   </TableCell>
@@ -829,7 +828,7 @@ function UserTableSection({
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-body-md font-semibold text-white">
                           {user.name
                             .split(" ")
                             .map((n) => n[0])
@@ -837,7 +836,7 @@ function UserTableSection({
                         </div>
                         <div>
                           <div className="font-medium">{user.name}</div>
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-body-md text-muted-foreground">
                             {user.department}
                           </div>
                         </div>
@@ -857,31 +856,31 @@ function UserTableSection({
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0"
+                            className="size-8 p-0"
                           >
-                            <MoreHorizontal className="h-4 w-4" />
+                            <MoreHorizontal className="size-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem
                             onClick={() => handleViewUser(user)}
                           >
-                            <Eye className="mr-2 h-4 w-4" />
+                            <Eye className="mr-2 size-4" />
                             View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onClick={() => handleEditUser(user)}
                           >
-                            <Edit2 className="mr-2 h-4 w-4" />
+                            <Edit2 className="mr-2 size-4" />
                             Edit User
                           </DropdownMenuItem>
                           <DropdownMenuItem>
-                            <Shield className="mr-2 h-4 w-4" />
+                            <Shield className="mr-2 size-4" />
                             Manage Permissions
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem className="text-error">
-                            <Trash2 className="mr-2 h-4 w-4" />
+                            <Trash2 className="mr-2 size-4" />
                             Delete User
                           </DropdownMenuItem>
                         </DropdownMenuContent>

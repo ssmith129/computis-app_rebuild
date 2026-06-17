@@ -44,17 +44,17 @@ export function ScrollingLayoutDemo() {
               variant="ghost"
               size="icon"
               onClick={() => setNavOpen(!navOpen)}
-              className="lg:hidden text-white hover:bg-white/10"
+              className="text-white hover:bg-white/10 lg:hidden"
               aria-label="Toggle navigation"
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="size-5" />
             </Button>
-            <div className="flex items-center bg-white/10 rounded-lg px-3 py-2 max-w-md w-full">
-              <Search className="h-4 w-4 text-white/70 mr-2" />
+            <div className="flex w-full max-w-md items-center rounded-lg bg-white/10 px-3 py-2">
+              <Search className="mr-2 size-4 text-white/70" />
               <input
                 type="text"
                 placeholder="Search..."
-                className="bg-transparent text-white placeholder:text-white/70 border-none outline-none flex-1"
+                className="flex-1 border-none bg-transparent text-white outline-none placeholder:text-white/70"
               />
             </div>
           </div>
@@ -67,7 +67,7 @@ export function ScrollingLayoutDemo() {
               className="text-white hover:bg-white/10"
               aria-label="Notifications"
             >
-              <Bell className="h-5 w-5" />
+              <Bell className="size-5" />
             </Button>
             <Button
               variant="ghost"
@@ -75,7 +75,7 @@ export function ScrollingLayoutDemo() {
               className="text-white hover:bg-white/10"
               aria-label="User profile"
             >
-              <User className="h-5 w-5" />
+              <User className="size-5" />
             </Button>
           </div>
         </div>
@@ -84,7 +84,9 @@ export function ScrollingLayoutDemo() {
       {/* Fixed Navigation */}
       <FixedNavigation isOpen={navOpen}>
         <div className="p-4">
-          <div className="text-white font-bold text-lg mb-6">CryptoTax Pro</div>
+          <div className="mb-6 text-heading-lg font-bold text-white">
+            CryptoTax Pro
+          </div>
           <nav className="space-y-2">
             {[
               "Dashboard",
@@ -96,7 +98,7 @@ export function ScrollingLayoutDemo() {
               <a
                 key={item}
                 href="#"
-                className="block px-3 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                className="block rounded-lg px-3 py-2 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {item}
               </a>
@@ -113,18 +115,18 @@ export function ScrollingLayoutDemo() {
         className="pt-[72px]"
       >
         {/* Page Title */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-1">
+        <div className="sticky top-0 z-10 border-b border-gray-200 bg-white px-6 py-4">
+          <h1 className="text-display-lg font-bold text-gray-900">Dashboard</h1>
+          <p className="mt-1 text-gray-600">
             View your portfolio metrics and recent activity
           </p>
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6 space-y-8">
+        <div className="space-y-8 p-4 sm:p-6">
           {/* Section 1: Horizontally Scrollable Cards */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="mb-4 text-heading-lg font-semibold text-gray-900">
               Portfolio Overview
             </h2>
             <ScrollableCards gap="1.5rem">
@@ -144,22 +146,18 @@ export function ScrollingLayoutDemo() {
                 { title: "Cost Basis", value: "$85,234", change: "0%" },
                 { title: "Transactions", value: "1,234", change: "+45" },
               ].map((metric, index) => (
-                <EnhancedCard
-                  key={index}
-                  minWidth="280px"
-                  className="flex-shrink-0"
-                >
+                <EnhancedCard key={index} minWidth="280px" className="shrink-0">
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">
+                    <CardTitle className="text-body-md font-medium text-gray-600">
                       {metric.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-1">
+                    <div className="mb-1 font-mono text-display-lg font-bold tabular-nums text-gray-900">
                       {metric.value}
                     </div>
                     <div
-                      className={`text-sm ${
+                      className={`text-body-md ${
                         metric.change.startsWith("+")
                           ? "text-success"
                           : metric.change.startsWith("-")
@@ -177,7 +175,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 2: Responsive Grid (No horizontal scroll) */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="mb-4 text-heading-lg font-semibold text-gray-900">
               Quick Actions
             </h2>
             <ResponsiveGrid minCardWidth="250px" gap="1.5rem">
@@ -199,12 +197,16 @@ export function ScrollingLayoutDemo() {
                   desc: "Download reports and summaries",
                 },
               ].map((action, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
+                <Card key={index} className="transition-shadow hover:shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-base">{action.title}</CardTitle>
+                    <CardTitle className="text-heading-md">
+                      {action.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600 mb-4">{action.desc}</p>
+                    <p className="mb-4 text-body-md text-gray-600">
+                      {action.desc}
+                    </p>
                     <Button className="w-full">Get Started</Button>
                   </CardContent>
                 </Card>
@@ -214,22 +216,22 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 3: Horizontally Scrollable Table */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="mb-4 text-heading-lg font-semibold text-gray-900">
               Recent Transactions
             </h2>
             <ScrollableTable>
               <Table scrollable={true} minWidth="800px">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[120px]">Date</TableHead>
-                    <TableHead className="w-[100px]">Type</TableHead>
-                    <TableHead className="w-[120px]">Asset</TableHead>
-                    <TableHead className="w-[120px]">Amount</TableHead>
-                    <TableHead className="w-[120px]">Price</TableHead>
-                    <TableHead className="w-[120px]">Value</TableHead>
-                    <TableHead className="w-[120px]">Exchange</TableHead>
-                    <TableHead className="w-[100px]">Status</TableHead>
-                    <TableHead className="w-[100px]">Actions</TableHead>
+                    <TableHead className="w-table-md">Date</TableHead>
+                    <TableHead className="w-table-sm">Type</TableHead>
+                    <TableHead className="w-table-md">Asset</TableHead>
+                    <TableHead className="w-table-md">Amount</TableHead>
+                    <TableHead className="w-table-md">Price</TableHead>
+                    <TableHead className="w-table-md">Value</TableHead>
+                    <TableHead className="w-table-md">Exchange</TableHead>
+                    <TableHead className="w-table-sm">Status</TableHead>
+                    <TableHead className="w-table-sm">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -237,7 +239,7 @@ export function ScrollingLayoutDemo() {
                     <TableRow key={i}>
                       <TableCell>2024-01-{15 + i}</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
+                        <span className="rounded bg-blue-100 px-2 py-1 text-caption text-blue-800">
                           Buy
                         </span>
                       </TableCell>
@@ -247,7 +249,7 @@ export function ScrollingLayoutDemo() {
                       <TableCell>$1,130.75</TableCell>
                       <TableCell>Coinbase</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
+                        <span className="rounded bg-green-100 px-2 py-1 text-caption text-green-800">
                           Complete
                         </span>
                       </TableCell>
@@ -265,10 +267,10 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 4: Mixed Content */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="mb-4 text-heading-lg font-semibold text-gray-900">
               Analytics
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {/* Left: Chart card with horizontal scrolling content */}
               <EnhancedCard scrollable={true} minWidth="400px">
                 <CardHeader>
@@ -281,16 +283,16 @@ export function ScrollingLayoutDemo() {
                   >
                     {Array.from({ length: 12 }, (_, i) => (
                       <div key={i} className="flex flex-col items-center gap-2">
-                        <div className="text-xs text-gray-600">
+                        <div className="text-caption text-gray-600">
                           {new Date(2024, i, 1).toLocaleDateString("en", {
                             month: "short",
                           })}
                         </div>
                         <div
-                          className="bg-blue-500 w-8 rounded"
+                          className="w-8 rounded bg-blue-500"
                           style={{ height: `${Math.random() * 100 + 20}px` }}
                         />
-                        <div className="text-xs font-medium">
+                        <div className="text-caption font-medium">
                           ${(Math.random() * 50000 + 20000).toFixed(0)}
                         </div>
                       </div>

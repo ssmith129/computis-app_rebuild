@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -31,11 +30,8 @@ import {
   Download,
   TrendingUp,
   TrendingDown,
-  DollarSign,
   Calendar,
   Filter,
-  BarChart3,
-  PieChart,
   FileText,
   ArrowUpRight,
   ArrowDownRight,
@@ -105,9 +101,9 @@ const getGainLossColor = (amount: number) => {
 };
 
 const getGainLossIcon = (amount: number) => {
-  if (amount > 0) return <ArrowUpRight className="h-4 w-4 text-success" />;
-  if (amount < 0) return <ArrowDownRight className="h-4 w-4 text-error" />;
-  return <Equal className="h-4 w-4 text-muted-foreground" />;
+  if (amount > 0) return <ArrowUpRight className="size-4 text-success" />;
+  if (amount < 0) return <ArrowDownRight className="size-4 text-error" />;
+  return <Equal className="size-4 text-muted-foreground" />;
 };
 
 const getGainLossBackground = (amount: number) => {
@@ -158,7 +154,7 @@ export function GainLossContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               Gain/Loss Report
             </h1>
             <p className="text-muted-foreground">
@@ -181,11 +177,11 @@ export function GainLossContent() {
               size="sm"
               onClick={() => setFiltersOpen(true)}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               Filters
             </Button>
             <Button onClick={() => toast({ title: "Report exported" })}>
-              <Download className="h-4 w-4 mr-2" />
+              <Download className="mr-2 size-4" />
               Export Report
             </Button>
           </div>
@@ -205,49 +201,55 @@ export function GainLossContent() {
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Key Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
           <Card className={getGainLossBackground(netGainLoss)}>
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <div
-                    className={`text-2xl font-bold font-mono tabular-nums ${getGainLossColor(netGainLoss)}`}
+                    className={`font-mono text-display-lg font-bold tabular-nums ${getGainLossColor(netGainLoss)}`}
                   >
                     ${Math.abs(netGainLoss).toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Net Gain/Loss</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Net Gain/Loss
+                  </p>
                 </div>
                 {getGainLossIcon(netGainLoss)}
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-success-bg border-success/30">
+          <Card className="border-success/30 bg-success-bg">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums text-success">
+                  <div className="font-mono text-display-lg font-bold tabular-nums text-success">
                     ${totalGains.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Total Gains</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Total Gains
+                  </p>
                 </div>
-                <TrendingUp className="h-5 w-5 text-success" />
+                <TrendingUp className="size-5 text-success" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-error-bg border-error/30">
+          <Card className="border-error/30 bg-error-bg">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums text-error">
+                  <div className="font-mono text-display-lg font-bold tabular-nums text-error">
                     ${Math.abs(totalLosses).toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Total Losses</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Total Losses
+                  </p>
                 </div>
-                <TrendingDown className="h-5 w-5 text-error" />
+                <TrendingDown className="size-5 text-error" />
               </div>
             </CardContent>
           </Card>
@@ -256,28 +258,32 @@ export function GainLossContent() {
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">{totalTransactions}</div>
-                  <p className="text-sm text-muted-foreground">Transactions</p>
+                  <div className="font-mono text-display-lg font-bold tabular-nums">
+                    {totalTransactions}
+                  </div>
+                  <p className="text-body-md text-muted-foreground">
+                    Transactions
+                  </p>
                 </div>
-                <FileText className="h-5 w-5 text-info" />
+                <FileText className="size-5 text-info" />
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Short-term vs Long-term */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle>Short-term Capital Gains/Losses</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-body-md text-muted-foreground">
                 Assets held 1 year or less
               </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Net Short-term</span>
+                  <span className="text-body-md">Net Short-term</span>
                   <span
                     className={`font-bold ${getGainLossColor(shortTermNet)}`}
                   >
@@ -288,7 +294,7 @@ export function GainLossContent() {
                   value={(Math.abs(shortTermNet) / Math.abs(netGainLoss)) * 100}
                   className="h-2"
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   {(
                     (Math.abs(shortTermNet) / Math.abs(netGainLoss)) *
                     100
@@ -302,14 +308,14 @@ export function GainLossContent() {
           <Card>
             <CardHeader>
               <CardTitle>Long-term Capital Gains/Losses</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-body-md text-muted-foreground">
                 Assets held more than 1 year
               </p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Net Long-term</span>
+                  <span className="text-body-md">Net Long-term</span>
                   <span
                     className={`font-bold ${getGainLossColor(longTermNet)}`}
                   >
@@ -320,7 +326,7 @@ export function GainLossContent() {
                   value={(Math.abs(longTermNet) / Math.abs(netGainLoss)) * 100}
                   className="h-2"
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   {(
                     (Math.abs(longTermNet) / Math.abs(netGainLoss)) *
                     100
@@ -358,14 +364,14 @@ export function GainLossContent() {
                       <TableRow key={item.symbol}>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-info-bg flex items-center justify-center">
-                              <span className="text-xs font-bold text-info">
+                            <div className="flex size-8 items-center justify-center rounded-full bg-info-bg">
+                              <span className="text-caption font-bold text-info">
                                 {item.symbol}
                               </span>
                             </div>
                             <div>
                               <div className="font-medium">{item.asset}</div>
-                              <div className="text-sm text-muted-foreground">
+                              <div className="text-body-md text-muted-foreground">
                                 {item.symbol}
                               </div>
                             </div>
@@ -473,29 +479,33 @@ export function GainLossContent() {
             <CardTitle>Tax Implications Summary</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-info-bg rounded-lg border border-info/30">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="rounded-lg border border-info/30 bg-info-bg p-4">
                 <h4 className="font-medium text-info-text">
                   Short-term Tax Rate
                 </h4>
-                <p className="text-2xl font-bold text-info">22-37%</p>
-                <p className="text-sm text-info-text">
+                <p className="text-display-lg font-bold text-info">22-37%</p>
+                <p className="text-body-md text-info-text">
                   Taxed as ordinary income
                 </p>
               </div>
-              <div className="p-4 bg-success-bg rounded-lg border border-success/30">
+              <div className="rounded-lg border border-success/30 bg-success-bg p-4">
                 <h4 className="font-medium text-success-text">
                   Long-term Tax Rate
                 </h4>
-                <p className="text-2xl font-bold text-success">0-20%</p>
-                <p className="text-sm text-success-text">Preferential tax rates</p>
+                <p className="text-display-lg font-bold text-success">0-20%</p>
+                <p className="text-body-md text-success-text">
+                  Preferential tax rates
+                </p>
               </div>
-              <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <div className="rounded-lg border border-purple-200 bg-purple-50 p-4">
                 <h4 className="font-medium text-purple-900">
                   Net Investment Income
                 </h4>
-                <p className="text-2xl font-bold text-purple-600">3.8%</p>
-                <p className="text-sm text-purple-700">
+                <p className="text-display-lg font-bold text-purple-600">
+                  3.8%
+                </p>
+                <p className="text-body-md text-purple-700">
                   Additional tax may apply
                 </p>
               </div>
@@ -503,21 +513,21 @@ export function GainLossContent() {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Button onClick={() => toast({ title: "Report exported" })}>
-                <Download className="h-4 w-4 mr-2" />
+                <Download className="mr-2 size-4" />
                 Download Tax Summary
               </Button>
               <Button
                 variant="outline"
                 onClick={() => toast({ title: "Report exported" })}
               >
-                <FileText className="h-4 w-4 mr-2" />
+                <FileText className="mr-2 size-4" />
                 Generate Schedule D
               </Button>
               <Button
                 variant="outline"
                 onClick={() => toast({ title: "Report exported" })}
               >
-                <Calendar className="h-4 w-4 mr-2" />
+                <Calendar className="mr-2 size-4" />
                 Tax Planning Report
               </Button>
             </div>

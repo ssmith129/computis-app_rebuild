@@ -51,23 +51,23 @@ const anomalyTypes = [
 
 export function AnomalyOverviewCards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {anomalyTypes.map((anomaly) => {
         const IconComponent = anomaly.icon;
         return (
           <Card
             key={anomaly.id}
-            className={`${anomaly.borderColor} hover:shadow-lg transition-shadow cursor-pointer`}
+            className={`${anomaly.borderColor} cursor-pointer transition-shadow hover:shadow-lg`}
           >
             <CardContent className="p-6">
-              <div className="flex items-start justify-between mb-4">
+              <div className="mb-4 flex items-start justify-between">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`p-2 rounded-lg bg-background border ${anomaly.borderColor}`}
+                    className={`rounded-lg border bg-background p-2 ${anomaly.borderColor}`}
                   >
-                    <IconComponent className={`h-5 w-5 ${anomaly.iconColor}`} />
+                    <IconComponent className={`size-5 ${anomaly.iconColor}`} />
                   </div>
-                  <div className="text-3xl font-bold text-foreground">
+                  <div className="text-display-xl font-bold text-foreground">
                     {anomaly.count}
                   </div>
                 </div>
@@ -77,12 +77,12 @@ export function AnomalyOverviewCards() {
                 <h3 className="font-semibold text-foreground">
                   {anomaly.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   {anomaly.description}
                 </p>
                 <Badge
                   variant="secondary"
-                  className={`text-xs ${anomaly.statusColor} border-0`}
+                  className={`text-caption ${anomaly.statusColor} border-0`}
                 >
                   {anomaly.status}
                 </Badge>

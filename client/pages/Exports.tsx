@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { ExportsContent } from "@/components/exports/exports-content";
 
 export default function Exports() {

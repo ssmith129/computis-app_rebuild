@@ -30,23 +30,22 @@ export function DashboardHeader() {
       className="
         app-header
         flex
-        items-center
-        justify-between
-        gap-2 sm:gap-3
-        px-2 sm:px-3
-        py-2
-        flex-shrink-0
-        min-h-[3.5rem]
-        overflow-x-hidden
+        min-h-14
         w-full
+        shrink-0 items-center
+        justify-between gap-2
+        overflow-x-hidden
+        p-2
+        sm:gap-3
+        sm:px-3
       "
       role="banner"
       aria-label="Main navigation header"
     >
       {/* Left side: mobile hamburger + search */}
-      <div className="flex items-center gap-2 flex-1 min-w-0">
+      <div className="flex min-w-0 flex-1 items-center gap-2">
         {/* Mobile-only hamburger toggle */}
-        <div className="md:hidden shrink-0">
+        <div className="shrink-0 md:hidden">
           <SidebarToggleButton />
         </div>
 
@@ -54,40 +53,40 @@ export function DashboardHeader() {
         <div
           className="
             flex
-            items-center
-            bg-sidebar-accent
-            rounded-md
-            px-2 sm:px-2.5
-            py-1.5
-            flex-1
+            h-10
             min-w-0
             max-w-header-sm
+            flex-1 items-center
+            rounded-md
+            bg-sidebar-accent
+            px-2
+            py-1.5
+            transition-all
+            duration-200
             sm:max-w-header-md
+            sm:px-2.5
             md:max-w-sm
             lg:max-w-md
             xl:max-w-lg
-            h-10
-            transition-all
-            duration-200
           "
           role="search"
         >
           <Search
-            className="h-4 w-4 sm:h-5 sm:w-5 text-white shrink-0 mr-2 sm:mr-3"
+            className="mr-2 size-4 shrink-0 text-white sm:mr-3 sm:size-5"
             aria-hidden="true"
           />
           <Input
             placeholder="Search..."
             className="
-              bg-transparent
+              min-w-0
               border-none
+              bg-transparent
+              p-0
+              text-body-md
               text-white
               placeholder:text-gray-300
               focus-visible:ring-0
-              focus-visible:ring-offset-0
-              p-0
-              min-w-0
-              text-sm sm:text-base
+              focus-visible:ring-offset-0 sm:text-heading-md
             "
             aria-label="Search"
           />
@@ -95,7 +94,7 @@ export function DashboardHeader() {
       </div>
 
       {/* Right Side - Notifications and User Profile */}
-      <div className="flex items-center gap-2 sm:gap-3 lg:gap-6 shrink-0">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-6">
         <NotificationsDropdown />
 
         <DropdownMenu>
@@ -104,29 +103,29 @@ export function DashboardHeader() {
               type="button"
               className="
                 flex
-                items-center
-                gap-1 sm:gap-2
+                shrink-0
+                items-center gap-1
+                rounded-md
+                transition-all
+                hover:opacity-80
                 focus:outline-none
                 focus-visible:ring-2
                 focus-visible:ring-ring
                 focus-visible:ring-offset-2
-                rounded-md
-                shrink-0
-                transition-all
-                hover:opacity-80
+                sm:gap-2
               "
               aria-label="User menu"
               aria-haspopup="menu"
             >
-              <Avatar className="h-8 w-8 sm:h-9 sm:w-9 bg-gray-400">
+              <Avatar className="size-8 bg-gray-400 sm:size-9">
                 <AvatarFallback className="bg-gray-400 text-white">
-                  <User className="h-4 w-4" />
+                  <User className="size-4" />
                 </AvatarFallback>
               </Avatar>
-              <span className="text-white font-medium text-sm hidden lg:inline-block">
+              <span className="hidden text-body-md font-medium text-white lg:inline-block">
                 John Smith
               </span>
-              <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4 text-white hidden lg:inline-block" />
+              <ChevronDown className="hidden size-3 text-white sm:size-4 lg:inline-block" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -141,7 +140,7 @@ export function DashboardHeader() {
                 asChild
               >
                 <Link to={item.href} className="flex items-center">
-                  <item.icon className="mr-2 h-4 w-4" aria-hidden="true" />
+                  <item.icon className="mr-2 size-4" aria-hidden="true" />
                   <span>{item.title}</span>
                 </Link>
               </DropdownMenuItem>

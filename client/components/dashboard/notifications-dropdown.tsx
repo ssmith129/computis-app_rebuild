@@ -1,5 +1,14 @@
 import React from "react";
-import { Bell, CheckCircle2, AlertCircle, Info, UserPlus, Download, Clock, XCircle } from "lucide-react";
+import {
+  Bell,
+  CheckCircle2,
+  AlertCircle,
+  Info,
+  UserPlus,
+  Download,
+  Clock,
+  XCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,7 +21,14 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
-export type NotificationType = "success" | "warning" | "info" | "user" | "export" | "error" | "time";
+export type NotificationType =
+  | "success"
+  | "warning"
+  | "info"
+  | "user"
+  | "export"
+  | "error"
+  | "time";
 
 export interface NotificationItem {
   id: string;
@@ -23,7 +39,10 @@ export interface NotificationItem {
   type?: NotificationType;
 }
 
-const typeIconMap: Record<NotificationType, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+const typeIconMap: Record<
+  NotificationType,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   success: CheckCircle2,
   warning: AlertCircle,
   info: Info,
@@ -74,7 +93,11 @@ export interface NotificationsDropdownProps {
   onMarkAllRead?: () => void;
 }
 
-export function NotificationsDropdown({ items = demoNotifications, onItemClick, onMarkAllRead }: NotificationsDropdownProps) {
+export function NotificationsDropdown({
+  items = demoNotifications,
+  onItemClick,
+  onMarkAllRead,
+}: NotificationsDropdownProps) {
   const [data, setData] = React.useState<NotificationItem[]>(items);
 
   const unreadCount = data.filter((n) => !n.read).length;
@@ -85,7 +108,9 @@ export function NotificationsDropdown({ items = demoNotifications, onItemClick, 
   };
 
   const handleClick = (item: NotificationItem) => {
-    setData((prev) => prev.map((n) => (n.id === item.id ? { ...n, read: true } : n)));
+    setData((prev) =>
+      prev.map((n) => (n.id === item.id ? { ...n, read: true } : n)),
+    );
     onItemClick?.(item);
   };
 
@@ -98,19 +123,22 @@ export function NotificationsDropdown({ items = demoNotifications, onItemClick, 
           className="relative text-white hover:bg-sidebar-accent"
           aria-label="Open notifications"
         >
-          <Bell className="h-5 w-5" />
+          <Bell className="size-5" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 min-w-4 px-1 flex items-center justify-center">
+            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-caption text-white">
               {unreadCount}
             </span>
           )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-96 p-0">
-        <DropdownMenuLabel className="flex items-center justify-between py-3 px-3">
+        <DropdownMenuLabel className="flex items-center justify-between p-3">
           <span className="font-semibold">Notifications</span>
           {unreadCount > 0 && (
-            <button onClick={markAllRead} className="text-xs text-primary hover:underline">
+            <button
+              onClick={markAllRead}
+              className="text-caption text-primary hover:underline"
+            >
               Mark all as read
             </button>
           )}
@@ -119,7 +147,9 @@ export function NotificationsDropdown({ items = demoNotifications, onItemClick, 
         <ScrollArea className="max-h-80">
           <div className="py-1">
             {data.length === 0 ? (
-              <div className="px-3 py-6 text-sm text-muted-foreground">You're all caught up.</div>
+              <div className="px-3 py-6 text-body-md text-muted-foreground">
+                You're all caught up.
+              </div>
             ) : (
               data.map((n) => {
                 const Icon = typeIconMap[n.type || "info"];
@@ -133,19 +163,23 @@ export function NotificationsDropdown({ items = demoNotifications, onItemClick, 
                     onClick={() => handleClick(n)}
                   >
                     <div className="relative">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="size-5" />
                       {!n.read && (
-                        <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-primary" />
+                        <span className="absolute -right-1 -top-1 size-2 rounded-full bg-primary" />
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium truncate">{n.title}</div>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-body-md font-medium">
+                        {n.title}
+                      </div>
                       {n.description && (
-                        <div className="text-xs text-muted-foreground line-clamp-2">
+                        <div className="line-clamp-2 text-caption text-muted-foreground">
                           {n.description}
                         </div>
                       )}
-                      <div className="mt-1 text-[11px] text-muted-foreground">{n.time}</div>
+                      <div className="mt-1 text-[11px] text-muted-foreground">
+                        {n.time}
+                      </div>
                     </div>
                   </DropdownMenuItem>
                 );
@@ -154,11 +188,16 @@ export function NotificationsDropdown({ items = demoNotifications, onItemClick, 
           </div>
         </ScrollArea>
         <DropdownMenuSeparator />
-        <div className="flex items-center justify-between py-2 px-3">
-          <Button variant="ghost" size="sm" onClick={markAllRead} className="text-xs">
+        <div className="flex items-center justify-between px-3 py-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={markAllRead}
+            className="text-caption"
+          >
             Mark all read
           </Button>
-          <Button variant="ghost" size="sm" className="text-xs">
+          <Button variant="ghost" size="sm" className="text-caption">
             View all
           </Button>
         </div>

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { toast } from "@/hooks/use-toast";
 import {
   Plus,
@@ -62,13 +61,13 @@ const mockWallets = [
 const getStatusIcon = (status: string) => {
   switch (status) {
     case "Connected":
-      return <CheckCircle className="h-3.5 w-3.5 text-success" />;
+      return <CheckCircle className="size-3.5 text-success" />;
     case "Syncing":
-      return <Clock className="h-3.5 w-3.5 text-info animate-pulse" />;
+      return <Clock className="size-3.5 animate-pulse text-info" />;
     case "Error":
-      return <AlertCircle className="h-3.5 w-3.5 text-error" />;
+      return <AlertCircle className="size-3.5 text-error" />;
     default:
-      return <Clock className="h-3.5 w-3.5 text-gray-500" />;
+      return <Clock className="size-3.5 text-gray-500" />;
   }
 };
 
@@ -90,36 +89,36 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
 
   return (
     <Card
-      className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] cursor-pointer border border-gray-200"
+      className="group relative cursor-pointer overflow-hidden border border-gray-200 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => toast({ title: `Opening ${wallet.name}` })}
     >
       {/* Gradient Background Accent */}
       <div
-        className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${wallet.color} transition-all duration-300 ${isHovered ? "h-2" : "h-1"}`}
+        className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${wallet.color} transition-all duration-300 ${isHovered ? "h-2" : "h-1"}`}
       />
 
       <CardContent className="p-4">
         {/* Header Section */}
-        <div className="flex items-start justify-between gap-2 mb-3">
-          <div className="flex items-center gap-2.5 min-w-0 flex-1">
-            <div className="text-xl leading-none flex-shrink-0">
+        <div className="mb-3 flex items-start justify-between gap-2">
+          <div className="flex min-w-0 flex-1 items-center gap-2.5">
+            <div className="shrink-0 text-display-sm leading-none">
               {wallet.icon}
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="font-semibold text-sm text-gray-900 truncate">
+              <h3 className="truncate text-body-md font-semibold text-gray-900">
                 {wallet.name}
               </h3>
-              <p className="text-xs text-gray-500 truncate mt-0.5">
+              <p className="mt-0.5 truncate text-caption text-gray-500">
                 <span>{wallet.type}</span>
-                <span className="text-gray-300 mx-1">•</span>
+                <span className="mx-1 text-gray-300">•</span>
                 <span className="font-mono">{wallet.address}</span>
               </p>
             </div>
           </div>
           <div
-            className={`flex items-center justify-center p-1.5 rounded-full border transition-all flex-shrink-0 ${getStatusColor(wallet.status)}`}
+            className={`flex shrink-0 items-center justify-center rounded-full border p-1.5 transition-all ${getStatusColor(wallet.status)}`}
             aria-label={wallet.status}
             title={wallet.status}
           >
@@ -130,17 +129,17 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
 
         {/* Stats Section - Progressive Disclosure */}
         <div
-          className={`grid grid-cols-2 gap-2 overflow-hidden transition-all duration-300 ${isHovered ? "max-h-24 opacity-100 mb-3" : "max-h-0 opacity-0 mb-0"}`}
+          className={`grid grid-cols-2 gap-2 overflow-hidden transition-all duration-300 ${isHovered ? "mb-3 max-h-24 opacity-100" : "mb-0 max-h-0 opacity-0"}`}
         >
-          <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
-            <p className="text-xs text-gray-500 truncate">Transactions</p>
-            <p className="text-sm font-semibold text-gray-900 truncate">
+          <div className="min-w-0 rounded-lg bg-gray-50 px-2.5 py-2">
+            <p className="truncate text-caption text-gray-500">Transactions</p>
+            <p className="truncate text-body-md font-semibold text-gray-900">
               {wallet.transactions}
             </p>
           </div>
-          <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
-            <p className="text-xs text-gray-500 truncate">Last Sync</p>
-            <p className="text-sm font-semibold text-gray-900 truncate">
+          <div className="min-w-0 rounded-lg bg-gray-50 px-2.5 py-2">
+            <p className="truncate text-caption text-gray-500">Last Sync</p>
+            <p className="truncate text-body-md font-semibold text-gray-900">
               {wallet.lastSync}
             </p>
           </div>
@@ -151,7 +150,7 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 text-xs text-gray-600 hover:text-gray-900 px-2 transition-all min-w-0 truncate"
+            className="h-7 min-w-0 truncate px-2 text-caption text-gray-600 transition-all hover:text-gray-900"
             onClick={(e) => {
               e.stopPropagation();
               toast({ title: `Syncing ${wallet.name}` });
@@ -160,7 +159,7 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
             {wallet.status === "Syncing" ? "Cancel Sync" : "Sync Now"}
           </Button>
           <ChevronRight
-            className={`h-4 w-4 text-gray-400 transition-all duration-300 flex-shrink-0 ${isHovered ? "translate-x-1 text-gray-600" : ""}`}
+            className={`size-4 shrink-0 text-gray-400 transition-all duration-300 ${isHovered ? "translate-x-1 text-gray-600" : ""}`}
           />
         </div>
       </CardContent>
@@ -177,78 +176,86 @@ export function WalletsContent() {
             <h1 className="text-heading-lg font-bold text-foreground">
               Wallets and Exchanges
             </h1>
-            <p className="text-body-md text-muted-foreground mt-1">
+            <p className="mt-1 text-body-md text-muted-foreground">
               Connect and manage your crypto wallets and exchange accounts
             </p>
           </div>
           <div className="flex items-center gap-3">
             <Button asChild>
               <Link to="/wallet-ingestion">
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="mr-2 size-4" />
                 Add Wallet
               </Link>
             </Button>
             <Button variant="outline" asChild>
               <Link to="/wallet-ingestion">
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="mr-2 size-4" />
                 Add Exchange
               </Link>
             </Button>
           </div>
         </div>
       </div>
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">4</div>
-              <p className="text-sm text-gray-500">Connected Sources</p>
+              <div className="font-mono text-display-lg font-bold tabular-nums text-gray-900">
+                4
+              </div>
+              <p className="text-body-md text-gray-500">Connected Sources</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">521</div>
-              <p className="text-sm text-gray-500">Total Transactions</p>
+              <div className="font-mono text-display-lg font-bold tabular-nums text-gray-900">
+                521
+              </div>
+              <p className="text-body-md text-gray-500">Total Transactions</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">3</div>
-              <p className="text-sm text-gray-500">Active Syncing</p>
+              <div className="font-mono text-display-lg font-bold tabular-nums text-gray-900">
+                3
+              </div>
+              <p className="text-body-md text-gray-500">Active Syncing</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">1h</div>
-              <p className="text-sm text-gray-500">Last Sync</p>
+              <div className="font-mono text-display-lg font-bold tabular-nums text-gray-900">
+                1h
+              </div>
+              <p className="text-body-md text-gray-500">Last Sync</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Wallets and Exchanges Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {mockWallets.map((wallet) => (
             <WalletCard key={wallet.id} wallet={wallet} />
           ))}
 
           {/* Add New Card */}
           <Link to="/wallet-ingestion" className="group">
-            <Card className="h-full border-2 border-dashed border-gray-300 hover:border-gray-400 transition-all duration-300 hover:shadow-md bg-gray-50/50 hover:bg-gray-50">
-              <CardContent className="flex flex-col items-center justify-center p-6 text-center h-full min-h-[140px]">
-                <div className="bg-white rounded-full p-3 mb-3 shadow-sm group-hover:shadow transition-shadow">
-                  <Plus className="h-5 w-5 text-gray-600 group-hover:text-gray-900 transition-colors" />
+            <Card className="h-full border-2 border-dashed border-gray-300 bg-gray-50/50 transition-all duration-300 hover:border-gray-400 hover:bg-gray-50 hover:shadow-md">
+              <CardContent className="flex h-full min-h-[140px] flex-col items-center justify-center p-6 text-center">
+                <div className="mb-3 rounded-full bg-white p-3 shadow-sm transition-shadow group-hover:shadow">
+                  <Plus className="size-5 text-gray-600 transition-colors group-hover:text-gray-900" />
                 </div>
-                <h3 className="font-semibold text-sm text-gray-900 mb-1">
+                <h3 className="mb-1 text-body-md font-semibold text-gray-900">
                   Add New Connection
                 </h3>
-                <p className="text-xs text-gray-500 mb-3">
+                <p className="mb-3 text-caption text-gray-500">
                   Connect wallet or exchange
                 </p>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-7 text-xs border-gray-300 hover:border-gray-400"
+                  className="h-7 border-gray-300 text-caption hover:border-gray-400"
                 >
                   Get Started
                 </Button>
@@ -260,57 +267,57 @@ export function WalletsContent() {
         {/* Recent Activity */}
         <Card className="border-gray-200">
           <CardContent className="p-4">
-            <h3 className="font-semibold text-base text-gray-900 mb-4">
+            <h3 className="mb-4 text-heading-md font-semibold text-gray-900">
               Recent Sync Activity
             </h3>
             <div className="space-y-3">
-              <div className="flex items-center justify-between py-2 border-b border-gray-100">
+              <div className="flex items-center justify-between border-b border-gray-100 py-2">
                 <div className="flex items-center gap-3">
-                  <div className="bg-success-bg rounded-full p-1.5">
-                    <CheckCircle className="h-3.5 w-3.5 text-success" />
+                  <div className="rounded-full bg-success-bg p-1.5">
+                    <CheckCircle className="size-3.5 text-success" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       Coinbase Pro sync completed
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       15 new transactions imported
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">1 hour ago</span>
+                <span className="text-caption text-gray-400">1 hour ago</span>
               </div>
-              <div className="flex items-center justify-between py-2 border-b border-gray-100">
+              <div className="flex items-center justify-between border-b border-gray-100 py-2">
                 <div className="flex items-center gap-3">
-                  <div className="bg-info-bg rounded-full p-1.5">
-                    <Clock className="h-3.5 w-3.5 text-blue-600 animate-pulse" />
+                  <div className="rounded-full bg-info-bg p-1.5">
+                    <Clock className="size-3.5 animate-pulse text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       Binance sync in progress
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       Fetching recent transactions...
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">2 hours ago</span>
+                <span className="text-caption text-gray-400">2 hours ago</span>
               </div>
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center gap-3">
-                  <div className="bg-success-bg rounded-full p-1.5">
-                    <CheckCircle className="h-3.5 w-3.5 text-success" />
+                  <div className="rounded-full bg-success-bg p-1.5">
+                    <CheckCircle className="size-3.5 text-success" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       MetaMask wallet connected
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       42 transactions imported
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">3 hours ago</span>
+                <span className="text-caption text-gray-400">3 hours ago</span>
               </div>
             </div>
           </CardContent>

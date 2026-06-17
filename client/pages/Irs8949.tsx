@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { Irs8949Content } from "@/components/irs-8949/irs-8949-content";
 
 export default function Irs8949() {

@@ -18,13 +18,20 @@ const uploadStatusData = [
 
 export function PieChartSections() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       {/* Txs Status Chart */}
-      <Card className="p-6 bg-white">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-gray-900">Txs Status</h3>
-          <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Transaction status options">
-            <MoreHorizontal className="h-4 w-4 text-gray-400" />
+      <Card className="bg-white p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-heading-lg font-bold text-gray-900">
+            Txs Status
+          </h3>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-6"
+            aria-label="Transaction status options"
+          >
+            <MoreHorizontal className="size-4 text-gray-400" />
           </Button>
         </div>
 
@@ -37,11 +44,18 @@ export function PieChartSections() {
       </Card>
 
       {/* Txs Upload Status Chart */}
-      <Card className="p-6 bg-white">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-bold text-gray-900">Txs Upload Status</h3>
-          <Button variant="ghost" size="icon" className="h-6 w-6" aria-label="Upload status options">
-            <MoreHorizontal className="h-4 w-4 text-gray-400" />
+      <Card className="bg-white p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-heading-lg font-bold text-gray-900">
+            Txs Upload Status
+          </h3>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-6"
+            aria-label="Upload status options"
+          >
+            <MoreHorizontal className="size-4 text-gray-400" />
           </Button>
         </div>
 

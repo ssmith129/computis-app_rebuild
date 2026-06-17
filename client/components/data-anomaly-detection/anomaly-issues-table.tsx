@@ -10,14 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  TrendingUp,
-  DollarSign,
-  AlertTriangle,
-  Copy,
-  Eye,
-  MoreHorizontal,
-} from "lucide-react";
+import { TrendingUp, Eye, MoreHorizontal, type LucideIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,14 +21,14 @@ import {
 export type AnomalyIssue = {
   id: string;
   type: string;
-  icon: any;
+  icon: LucideIcon;
   iconColor: string;
   description: string;
   dateDetected: string;
   affectedTransactions: number;
   priority: "High" | "Medium" | "Low";
   priorityColor: string;
-  status: "Open" | "In Progress" | "Resolved";
+  status: "Open" | "In Progress" | "Resolved" | "Ignored";
   statusColor: string;
 };
 
@@ -81,7 +74,7 @@ export function AnomalyIssuesTable({
 
   const handleIgnore = (issueId: string) => {
     onUpdateIssue(issueId, {
-      status: "Ignored" as any,
+      status: "Ignored",
       statusColor: "bg-muted text-muted-foreground",
     });
   };
@@ -89,11 +82,11 @@ export function AnomalyIssuesTable({
   return (
     <div className="space-y-4">
       {/* Table Header with Search */}
-      <div className="p-6 border-b border-border">
+      <div className="border-b border-border p-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Detected Issues</h3>
+          <h3 className="text-heading-lg font-semibold">Detected Issues</h3>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-body-md text-muted-foreground">
               Search Issues...
             </span>
           </div>
@@ -129,7 +122,7 @@ export function AnomalyIssuesTable({
               return (
                 <TableRow
                   key={issue.id}
-                  className="hover:bg-muted/50 cursor-pointer"
+                  className="cursor-pointer hover:bg-muted/50"
                   onClick={() => handleRowClick(issue.id)}
                 >
                   <TableCell onClick={(e) => e.stopPropagation()}>
@@ -141,7 +134,7 @@ export function AnomalyIssuesTable({
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <IconComponent className={`h-4 w-4 ${issue.iconColor}`} />
+                      <IconComponent className={`size-4 ${issue.iconColor}`} />
                       <span className="font-medium">{issue.type}</span>
                     </div>
                   </TableCell>
@@ -172,20 +165,20 @@ export function AnomalyIssuesTable({
                         variant="ghost"
                         size="sm"
                         onClick={() => onSelectIssue(issue.id)}
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                         aria-label="View details"
                       >
-                        <Eye className="h-4 w-4" />
+                        <Eye className="size-4" />
                       </Button>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0"
+                            className="size-8 p-0"
                             aria-label="More actions"
                           >
-                            <MoreHorizontal className="h-4 w-4" />
+                            <MoreHorizontal className="size-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
@@ -217,7 +210,7 @@ export function AnomalyIssuesTable({
 
       {/* Pagination */}
       <div className="flex items-center justify-between px-6 pb-4">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-body-md text-muted-foreground">
           Showing {issues.length > 0 ? `1-${Math.min(5, issues.length)}` : 0} of{" "}
           {issues.length} issues
         </div>
@@ -226,17 +219,17 @@ export function AnomalyIssuesTable({
             Previous
           </Button>
           <div className="flex gap-1">
-            <Button variant="default" size="sm" className="h-8 w-8 p-0">
+            <Button variant="default" size="sm" className="size-8 p-0">
               1
             </Button>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+            <Button variant="outline" size="sm" className="size-8 p-0">
               2
             </Button>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+            <Button variant="outline" size="sm" className="size-8 p-0">
               3
             </Button>
             <span className="flex items-center px-2">...</span>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+            <Button variant="outline" size="sm" className="size-8 p-0">
               6
             </Button>
           </div>

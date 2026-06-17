@@ -42,8 +42,6 @@ import {
   Edit2,
   Check,
   X,
-  ChevronRight,
-  AlertTriangle,
   Building,
   UserCheck,
 } from "lucide-react";
@@ -188,21 +186,23 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Active":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="border-0 bg-success-bg text-success-text">
+          {status}
+        </Badge>
       );
     case "Pending":
       return (
-        <Badge className="bg-warning-bg text-warning-text border-0">
+        <Badge className="border-0 bg-warning-bg text-warning-text">
           {status}
         </Badge>
       );
     case "Archived":
       return (
-        <Badge className="bg-gray-100 text-gray-700 border-0">{status}</Badge>
+        <Badge className="border-0 bg-gray-100 text-gray-700">{status}</Badge>
       );
     case "In Progress":
       return (
-        <Badge className="bg-info-bg text-info-text border-0">{status}</Badge>
+        <Badge className="border-0 bg-info-bg text-info-text">{status}</Badge>
       );
     default:
       return <Badge variant="outline">{status}</Badge>;
@@ -211,14 +211,10 @@ const getStatusBadge = (status: string) => {
 
 const getPermissionIcon = (allowed: boolean) => {
   return allowed ? (
-    <Check className="h-4 w-4 text-success" />
+    <Check className="size-4 text-success" />
   ) : (
-    <X className="h-4 w-4 text-error" />
+    <X className="size-4 text-error" />
   );
-};
-
-const getPermissionColor = (allowed: boolean) => {
-  return allowed ? "text-success" : "text-error";
 };
 
 export function ClientsContent() {
@@ -310,7 +306,7 @@ export function ClientsContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               Client Management
             </h1>
             <p className="text-muted-foreground">
@@ -323,14 +319,14 @@ export function ClientsContent() {
               size="sm"
               onClick={() => toast({ title: "Filters coming soon" })}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               Filters
             </Button>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
               onClick={() => setAddOpen(true)}
             >
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="mr-2 size-4" />
               Add Client
             </Button>
           </div>
@@ -352,48 +348,48 @@ export function ClientsContent() {
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="clients" className="space-y-6">
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 max-w-md"
+                className="max-w-md pl-10"
               />
             </div>
 
             {/* Filter Bar */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted-foreground">View:</span>
-              <Button variant="default" size="sm" className="h-8 text-xs">
+              <span className="text-body-md text-muted-foreground">View:</span>
+              <Button variant="default" size="sm" className="h-8 text-caption">
                 All Clients
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Firms
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Individuals
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Status:
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Active
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Pending
               </Button>
-              <Button variant="ghost" size="sm" className="h-8 text-xs">
+              <Button variant="ghost" size="sm" className="h-8 text-caption">
                 Archived
               </Button>
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-xs text-blue-600 hover:text-blue-700 p-0 ml-auto"
+                className="ml-auto h-8 p-0 text-caption text-blue-600 hover:text-blue-700"
                 onClick={() => toast({ title: "Activity log coming soon" })}
               >
                 View Activity Log
@@ -404,8 +400,8 @@ export function ClientsContent() {
             <Card>
               <CardContent className="p-0">
                 {selectedClients.length > 0 && (
-                  <div className="flex items-center justify-between p-4 border-b bg-muted/30">
-                    <div className="text-sm">
+                  <div className="flex items-center justify-between border-b bg-muted/30 p-4">
+                    <div className="text-body-md">
                       {selectedClients.length} selected
                     </div>
                     <div className="flex gap-2">
@@ -462,10 +458,10 @@ export function ClientsContent() {
                           <TableCell>
                             <div className="flex items-center gap-3">
                               <div
-                                className={`p-2 rounded-lg ${client.type === "Firm" ? "bg-info-bg" : "bg-success-bg"}`}
+                                className={`rounded-lg p-2 ${client.type === "Firm" ? "bg-info-bg" : "bg-success-bg"}`}
                               >
                                 <IconComponent
-                                  className={`h-4 w-4 ${client.color}`}
+                                  className={`size-4 ${client.color}`}
                                 />
                               </div>
                               <span className="font-medium">{client.name}</span>
@@ -495,22 +491,22 @@ export function ClientsContent() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-8 w-8 p-0"
+                                  className="size-8 p-0"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <MoreHorizontal className="size-4" />
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
                                 <DropdownMenuItem>
-                                  <Edit2 className="mr-2 h-4 w-4" />
+                                  <Edit2 className="mr-2 size-4" />
                                   Edit Client
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                  <Users className="mr-2 h-4 w-4" />
+                                  <Users className="mr-2 size-4" />
                                   Manage Users
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                  <Building className="mr-2 h-4 w-4" />
+                                  <Building className="mr-2 size-4" />
                                   Tax Entities
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
@@ -523,8 +519,8 @@ export function ClientsContent() {
                 </Table>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-between p-4 border-t">
-                  <div className="text-sm text-muted-foreground">
+                <div className="flex items-center justify-between border-t p-4">
+                  <div className="text-body-md text-muted-foreground">
                     Showing 5 of 12 clients
                   </div>
                   <div className="flex items-center gap-2">
@@ -535,21 +531,21 @@ export function ClientsContent() {
                       <Button
                         variant="default"
                         size="sm"
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                       >
                         1
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                       >
                         2
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                       >
                         3
                       </Button>
@@ -557,7 +553,7 @@ export function ClientsContent() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                       >
                         7
                       </Button>
@@ -589,12 +585,12 @@ export function ClientsContent() {
                 <div className="flex items-center justify-between">
                   <div>
                     <CardTitle>Team Members with Access</CardTitle>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <p className="mt-1 text-body-md text-muted-foreground">
                       Manage team access and permissions for this client
                     </p>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                    <Plus className="h-4 w-4 mr-2" />
+                  <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                    <Plus className="mr-2 size-4" />
                     Add Member
                   </Button>
                 </div>
@@ -614,19 +610,19 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-body-md font-semibold text-white">
                             SC
                           </div>
                           <div>
                             <div className="font-medium">Sarah Chen</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               sarah.chen@cpa.com
                             </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-blue-100 text-blue-700 border-0">
+                        <Badge className="border-0 bg-blue-100 text-blue-700">
                           Senior CPA
                         </Badge>
                       </TableCell>
@@ -634,7 +630,7 @@ export function ClientsContent() {
                         2 hours ago
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-green-100 text-green-700 border-0">
+                        <Badge className="border-0 bg-green-100 text-green-700">
                           Full Access
                         </Badge>
                       </TableCell>
@@ -644,22 +640,22 @@ export function ClientsContent() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0"
+                              className="size-8 p-0"
                             >
-                              <MoreHorizontal className="h-4 w-4" />
+                              <MoreHorizontal className="size-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>
-                              <Edit2 className="mr-2 h-4 w-4" />
+                              <Edit2 className="mr-2 size-4" />
                               Edit Permissions
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                              <Users className="mr-2 h-4 w-4" />
+                              <Users className="mr-2 size-4" />
                               View Activity
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-error">
-                              <X className="mr-2 h-4 w-4" />
+                              <X className="mr-2 size-4" />
                               Remove Access
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -669,19 +665,19 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-red-500 text-body-md font-semibold text-white">
                             DW
                           </div>
                           <div>
                             <div className="font-medium">David Wong</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               david.wong@cpa.com
                             </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-purple-100 text-purple-700 border-0">
+                        <Badge className="border-0 bg-purple-100 text-purple-700">
                           Managing Partner
                         </Badge>
                       </TableCell>
@@ -689,7 +685,7 @@ export function ClientsContent() {
                         1 day ago
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-green-100 text-green-700 border-0">
+                        <Badge className="border-0 bg-green-100 text-green-700">
                           Full Access
                         </Badge>
                       </TableCell>
@@ -699,22 +695,22 @@ export function ClientsContent() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0"
+                              className="size-8 p-0"
                             >
-                              <MoreHorizontal className="h-4 w-4" />
+                              <MoreHorizontal className="size-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>
-                              <Edit2 className="mr-2 h-4 w-4" />
+                              <Edit2 className="mr-2 size-4" />
                               Edit Permissions
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                              <Users className="mr-2 h-4 w-4" />
+                              <Users className="mr-2 size-4" />
                               View Activity
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-error">
-                              <X className="mr-2 h-4 w-4" />
+                              <X className="mr-2 size-4" />
                               Remove Access
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -724,19 +720,19 @@ export function ClientsContent() {
                     <TableRow>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 text-body-md font-semibold text-white">
                             JP
                           </div>
                           <div>
                             <div className="font-medium">James Park</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-body-md text-muted-foreground">
                               james.park@acmefund.com
                             </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-gray-100 text-gray-700 border-0">
+                        <Badge className="border-0 bg-gray-100 text-gray-700">
                           Client
                         </Badge>
                       </TableCell>
@@ -744,7 +740,7 @@ export function ClientsContent() {
                         3 days ago
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-warning-bg text-warning-text border-0">
+                        <Badge className="border-0 bg-warning-bg text-warning-text">
                           View Only
                         </Badge>
                       </TableCell>
@@ -754,22 +750,22 @@ export function ClientsContent() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="h-8 w-8 p-0"
+                              className="size-8 p-0"
                             >
-                              <MoreHorizontal className="h-4 w-4" />
+                              <MoreHorizontal className="size-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem>
-                              <Edit2 className="mr-2 h-4 w-4" />
+                              <Edit2 className="mr-2 size-4" />
                               Edit Permissions
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                              <Users className="mr-2 h-4 w-4" />
+                              <Users className="mr-2 size-4" />
                               View Activity
                             </DropdownMenuItem>
                             <DropdownMenuItem className="text-error">
-                              <X className="mr-2 h-4 w-4" />
+                              <X className="mr-2 size-4" />
                               Remove Access
                             </DropdownMenuItem>
                           </DropdownMenuContent>
@@ -787,28 +783,28 @@ export function ClientsContent() {
                 <CardTitle>Access Level Summary</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-lg border bg-info-bg dark:bg-info-bg/30">
-                    <div className="text-2xl font-semibold text-info dark:text-info">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div className="rounded-lg border bg-info-bg p-4 dark:bg-info-bg/30">
+                    <div className="text-display-lg font-semibold text-info dark:text-info">
                       2
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="mt-1 text-body-md text-muted-foreground">
                       Full Access Members
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg border bg-warning-bg dark:bg-warning-bg/30">
-                    <div className="text-2xl font-semibold text-warning dark:text-warning">
+                  <div className="rounded-lg border bg-warning-bg p-4 dark:bg-warning-bg/30">
+                    <div className="text-display-lg font-semibold text-warning dark:text-warning">
                       1
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="mt-1 text-body-md text-muted-foreground">
                       Limited Access Members
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg border bg-success-bg dark:bg-success-bg/30">
-                    <div className="text-2xl font-semibold text-success dark:text-success">
+                  <div className="rounded-lg border bg-success-bg p-4 dark:bg-success-bg/30">
+                    <div className="text-display-lg font-semibold text-success dark:text-success">
                       3
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
+                    <div className="mt-1 text-body-md text-muted-foreground">
                       Total Team Members
                     </div>
                   </div>
@@ -821,15 +817,17 @@ export function ClientsContent() {
             <Card>
               <CardHeader>
                 <CardTitle>Client Configuration</CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="mt-1 text-body-md text-muted-foreground">
                   Manage client-specific settings and preferences
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* General Settings */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold">General Settings</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <h3 className="text-body-md font-semibold">
+                    General Settings
+                  </h3>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="client-name">Client Name</Label>
                       <Input
@@ -868,48 +866,48 @@ export function ClientsContent() {
                 </div>
 
                 {/* Tax Settings */}
-                <div className="space-y-4 pt-6 border-t">
-                  <h3 className="text-sm font-semibold">Tax Settings</h3>
+                <div className="space-y-4 border-t pt-6">
+                  <h3 className="text-body-md font-semibold">Tax Settings</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="text-body-md font-medium">
                           Enable Auto-Classification
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Automatically classify transactions using AI
                         </div>
                       </div>
                       <Checkbox defaultChecked />
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="text-body-md font-medium">
                           Require CPA Approval
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           All classifications must be approved by a CPA
                         </div>
                       </div>
                       <Checkbox defaultChecked />
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="text-body-md font-medium">
                           Track Cost Basis
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Automatically track cost basis for all assets
                         </div>
                       </div>
                       <Checkbox defaultChecked />
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="text-body-md font-medium">
                           Generate Audit Trails
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Create detailed audit logs for all actions
                         </div>
                       </div>
@@ -919,24 +917,26 @@ export function ClientsContent() {
                 </div>
 
                 {/* Notification Settings */}
-                <div className="space-y-4 pt-6 border-t">
-                  <h3 className="text-sm font-semibold">Notifications</h3>
+                <div className="space-y-4 border-t pt-6">
+                  <h3 className="text-body-md font-semibold">Notifications</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">Email Alerts</div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-body-md font-medium">
+                          Email Alerts
+                        </div>
+                        <div className="text-caption text-muted-foreground">
                           Send email notifications for important events
                         </div>
                       </div>
                       <Checkbox defaultChecked />
                     </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg border">
+                    <div className="flex items-center justify-between rounded-lg border p-3">
                       <div>
-                        <div className="font-medium text-sm">
+                        <div className="text-body-md font-medium">
                           Weekly Reports
                         </div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-caption text-muted-foreground">
                           Receive weekly summary reports via email
                         </div>
                       </div>
@@ -946,9 +946,9 @@ export function ClientsContent() {
                 </div>
 
                 {/* Save Actions */}
-                <div className="flex justify-end gap-3 pt-6 border-t">
+                <div className="flex justify-end gap-3 border-t pt-6">
                   <Button variant="outline">Cancel</Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-blue-600 text-white hover:bg-blue-700">
                     Save Changes
                   </Button>
                 </div>
@@ -961,15 +961,17 @@ export function ClientsContent() {
                 <CardTitle className="text-error dark:text-error">
                   Danger Zone
                 </CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="mt-1 text-body-md text-muted-foreground">
                   Irreversible actions that affect this client
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
+                <div className="flex items-center justify-between rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900 dark:bg-red-950/30">
                   <div>
-                    <div className="font-medium text-sm">Archive Client</div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-body-md font-medium">
+                      Archive Client
+                    </div>
+                    <div className="text-caption text-muted-foreground">
                       Move this client to archived status
                     </div>
                   </div>
@@ -980,10 +982,12 @@ export function ClientsContent() {
                     Archive
                   </Button>
                 </div>
-                <div className="flex items-center justify-between p-4 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30">
+                <div className="flex items-center justify-between rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900 dark:bg-red-950/30">
                   <div>
-                    <div className="font-medium text-sm">Delete Client</div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-body-md font-medium">
+                      Delete Client
+                    </div>
+                    <div className="text-caption text-muted-foreground">
                       Permanently delete this client and all associated data
                     </div>
                   </div>
@@ -997,21 +1001,23 @@ export function ClientsContent() {
         {/* Roles & Permissions Section */}
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Roles & Permissions</h2>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Plus className="h-4 w-4 mr-2" />
+            <h2 className="text-heading-lg font-semibold">
+              Roles & Permissions
+            </h2>
+            <Button className="bg-blue-600 text-white hover:bg-blue-700">
+              <Plus className="mr-2 size-4" />
               Create Role
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {roles.map((role, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="transition-shadow hover:shadow-lg">
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div
-                        className={`p-2 rounded-lg ${
+                        className={`rounded-lg p-2 ${
                           role.color === "blue"
                             ? "bg-info-bg"
                             : role.color === "green"
@@ -1020,7 +1026,7 @@ export function ClientsContent() {
                         }`}
                       >
                         <UserCheck
-                          className={`h-5 w-5 ${
+                          className={`size-5 ${
                             role.color === "blue"
                               ? "text-info"
                               : role.color === "green"
@@ -1031,32 +1037,34 @@ export function ClientsContent() {
                       </div>
                       <div>
                         <h3 className="font-semibold">{role.name}</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-body-md text-muted-foreground">
                           {role.description}
                         </p>
                       </div>
                     </div>
                     <Button variant="ghost" size="sm">
-                      <Edit2 className="h-4 w-4" />
+                      <Edit2 className="size-4" />
                     </Button>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Client Management</span>
+                      <span className="text-body-md">Client Management</span>
                       {getPermissionIcon(role.permissions.clientManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">User Management</span>
+                      <span className="text-body-md">User Management</span>
                       {getPermissionIcon(role.permissions.userManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Tax Entity Management</span>
+                      <span className="text-body-md">
+                        Tax Entity Management
+                      </span>
                       {getPermissionIcon(role.permissions.taxEntityManagement)}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">
+                      <span className="text-body-md">
                         Transaction Classification
                       </span>
                       {getPermissionIcon(
@@ -1064,12 +1072,12 @@ export function ClientsContent() {
                       )}
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm">Report Generation</span>
+                      <span className="text-body-md">Report Generation</span>
                       {getPermissionIcon(role.permissions.reportGeneration)}
                     </div>
                   </div>
-                  <div className="pt-3 border-t">
-                    <p className="text-sm text-muted-foreground">
+                  <div className="border-t pt-3">
+                    <p className="text-body-md text-muted-foreground">
                       {role.users} users with this role
                     </p>
                   </div>
@@ -1107,7 +1115,7 @@ export function ClientsContent() {
                   <TableRow key={index}>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <Building className="h-4 w-4 text-info" />
+                        <Building className="size-4 text-info" />
                         <span className="font-medium">{entity.name}</span>
                       </div>
                     </TableCell>
@@ -1115,7 +1123,7 @@ export function ClientsContent() {
                     <TableCell>
                       <Badge
                         variant="secondary"
-                        className="bg-info-bg text-info-text border-0"
+                        className="border-0 bg-info-bg text-info-text"
                       >
                         {entity.type}
                       </Badge>
@@ -1124,8 +1132,8 @@ export function ClientsContent() {
                     <TableCell>{entity.wallets}</TableCell>
                     <TableCell>{getStatusBadge(entity.status)}</TableCell>
                     <TableCell>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                        <MoreHorizontal className="h-4 w-4" />
+                      <Button variant="ghost" size="sm" className="size-8 p-0">
+                        <MoreHorizontal className="size-4" />
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -1154,7 +1162,9 @@ export function ClientsContent() {
                 }}
                 placeholder="Enter client name"
               />
-              {formError && <p className="text-sm text-red-600">{formError}</p>}
+              {formError && (
+                <p className="text-body-md text-red-600">{formError}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Type</Label>
@@ -1195,7 +1205,7 @@ export function ClientsContent() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete selected clients?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>
@@ -1213,7 +1223,7 @@ export function ClientsContent() {
           <AlertDialogHeader>
             <AlertDialogTitle>Export selected clients?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             A CSV will be generated for download.
           </p>
           <AlertDialogFooter>

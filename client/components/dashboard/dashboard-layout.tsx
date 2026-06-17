@@ -1,16 +1,19 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { type ReactNode } from "react";
+import { AppLayout } from "@/components/layout/app-layout";
 import { DashboardContent } from "./dashboard-content";
 
 interface DashboardLayoutProps {
   activeItem?: string;
+  children?: ReactNode;
 }
 
 export function DashboardLayout({
   activeItem = "Dashboard",
+  children,
 }: DashboardLayoutProps) {
   return (
     <AppLayout activeItem={activeItem}>
-      <DashboardContent />
+      {children ?? <DashboardContent />}
     </AppLayout>
   );
 }

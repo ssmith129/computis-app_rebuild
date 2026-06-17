@@ -201,7 +201,7 @@ export function DataAnomalyDetectionContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               Data Anomaly Detection
             </h1>
             <p className="text-muted-foreground">
@@ -214,7 +214,7 @@ export function DataAnomalyDetectionContent() {
               size="sm"
               onClick={() => setFiltersOpen(true)}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               Filters
             </Button>
             <Button
@@ -222,15 +222,15 @@ export function DataAnomalyDetectionContent() {
               size="sm"
               onClick={() => setAlertsOpen(true)}
             >
-              <Settings className="h-4 w-4 mr-2" />
+              <Settings className="mr-2 size-4" />
               Alert Settings
             </Button>
             <Button
               size="sm"
-              className="bg-[#0B5DEA] hover:bg-[#0B5DEA]/90 text-white"
+              className="bg-primary text-primary-foreground hover:bg-primary-hover"
               onClick={() => setConfirmResolveOpen(true)}
             >
-              <CheckCircle className="h-4 w-4 mr-2" />
+              <CheckCircle className="mr-2 size-4" />
               Resolve All
             </Button>
           </div>
@@ -240,7 +240,7 @@ export function DataAnomalyDetectionContent() {
         <div className="px-6 pb-4">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">View:</span>
+              <span className="text-body-md text-muted-foreground">View:</span>
               <div className="flex gap-1">
                 {(["All Issues", "High Priority", "Resolved"] as const).map(
                   (filter) => (
@@ -249,7 +249,7 @@ export function DataAnomalyDetectionContent() {
                       variant={viewFilter === filter ? "default" : "ghost"}
                       size="sm"
                       onClick={() => setViewFilter(filter)}
-                      className="h-8 text-xs"
+                      className="h-8 text-caption"
                     >
                       {filter}
                     </Button>
@@ -258,7 +258,7 @@ export function DataAnomalyDetectionContent() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
+              <span className="text-body-md text-muted-foreground">
                 Time Period:
               </span>
               <div className="flex gap-1">
@@ -272,7 +272,7 @@ export function DataAnomalyDetectionContent() {
                         setTimePeriod(tp);
                         toast({ title: `Filter applied: ${tp}` });
                       }}
-                      className="h-8 text-xs"
+                      className="h-8 text-caption"
                     >
                       {tp}
                     </Button>
@@ -284,7 +284,7 @@ export function DataAnomalyDetectionContent() {
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-xs text-blue-600 hover:text-blue-700 p-0"
+                className="h-8 p-0 text-caption text-blue-600 hover:text-blue-700"
                 onClick={() => toast({ title: "Audit trail coming soon" })}
               >
                 View Audit Trail
@@ -295,7 +295,7 @@ export function DataAnomalyDetectionContent() {
       </div>
 
       {/* Main Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Overview Cards */}
         <AnomalyOverviewCards />
 
@@ -322,7 +322,7 @@ export function DataAnomalyDetectionContent() {
               <Label htmlFor="priority">Priority</Label>
               <Select
                 value={priority}
-                onValueChange={(v: any) => setPriority(v)}
+                onValueChange={(v) => setPriority(v as typeof priority)}
               >
                 <SelectTrigger id="priority">
                   <SelectValue placeholder="Select priority" />
@@ -337,7 +337,10 @@ export function DataAnomalyDetectionContent() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="status">Status</Label>
-              <Select value={status} onValueChange={(v: any) => setStatus(v)}>
+              <Select
+                value={status}
+                onValueChange={(v) => setStatus(v as typeof status)}
+              >
                 <SelectTrigger id="status">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
@@ -353,7 +356,7 @@ export function DataAnomalyDetectionContent() {
               <Label htmlFor="issueType">Issue Type</Label>
               <Select
                 value={issueType}
-                onValueChange={(v: any) => setIssueType(v)}
+                onValueChange={(v) => setIssueType(v as typeof issueType)}
               >
                 <SelectTrigger id="issueType">
                   <SelectValue placeholder="Select type" />
@@ -403,7 +406,7 @@ export function DataAnomalyDetectionContent() {
             <div className="flex items-center justify-between">
               <div className="space-y-1">
                 <Label htmlFor="email-alerts">Email Alerts</Label>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-caption text-muted-foreground">
                   Receive email notifications for new anomalies
                 </p>
               </div>
@@ -418,7 +421,7 @@ export function DataAnomalyDetectionContent() {
                 max={100}
                 defaultValue={50}
               />
-              <p className="text-xs text-muted-foreground">
+              <p className="text-caption text-muted-foreground">
                 Minimum change required to trigger an alert
               </p>
             </div>
@@ -448,7 +451,7 @@ export function DataAnomalyDetectionContent() {
           <AlertDialogHeader>
             <AlertDialogTitle>Resolve all issues?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This will mark all detected issues as resolved. You can undo
             individually later.
           </p>

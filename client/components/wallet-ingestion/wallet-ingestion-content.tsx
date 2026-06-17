@@ -87,11 +87,11 @@ export function WalletIngestionContent() {
           <div className="flex items-center gap-4">
             <Button variant="outline" size="icon" asChild>
               <Link to="/wallets">
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="size-4" />
               </Link>
             </Button>
             <div className="space-y-1">
-              <h1 className="text-2xl font-bold text-foreground">
+              <h1 className="text-display-lg font-bold text-foreground">
                 Wallet Ingestion
               </h1>
               <p className="text-muted-foreground">
@@ -100,7 +100,7 @@ export function WalletIngestionContent() {
             </div>
           </div>
           <Button variant="outline" size="sm">
-            <HelpCircle className="h-4 w-4 mr-2" />
+            <HelpCircle className="mr-2 size-4" />
             Help
           </Button>
         </div>
@@ -116,7 +116,7 @@ export function WalletIngestionContent() {
 
       {/* Content */}
       <div className="p-6">
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="mx-auto max-w-4xl space-y-6">
           {activeTab === "upload" && (
             <>
               <UploadArea />

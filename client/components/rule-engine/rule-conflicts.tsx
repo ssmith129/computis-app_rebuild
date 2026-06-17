@@ -55,31 +55,39 @@ const getIconColor = (type: string) => {
 
 export function RuleConflicts() {
   return (
-    <div className="flex flex-col md:flex-row gap-4">
+    <div className="flex flex-col gap-4 md:flex-row">
       {ruleConflicts.map((conflict) => {
         const IconComponent = conflict.icon;
         return (
           <Alert
             key={conflict.id}
-            className={`${getAlertStyles(conflict.type)} flex-1 min-w-0`}
+            className={`${getAlertStyles(conflict.type)} min-w-0 flex-1`}
           >
             <div className="flex items-start gap-3">
               <IconComponent
-                className={`h-5 w-5 mt-0.5 shrink-0 ${getIconColor(conflict.type)}`}
+                className={`mt-0.5 size-5 shrink-0 ${getIconColor(conflict.type)}`}
               />
-              <div className="flex-1 min-w-0 space-y-2">
+              <div className="min-w-0 flex-1 space-y-2">
                 <div>
                   <h4 className="font-medium">{conflict.title}</h4>
-                  <AlertDescription className="text-sm">
+                  <AlertDescription className="text-body-md">
                     {conflict.description}
                   </AlertDescription>
                 </div>
-                <p className="text-xs opacity-80">{conflict.details}</p>
+                <p className="text-caption opacity-80">{conflict.details}</p>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <Button size="sm" variant="outline" className="h-7 text-xs">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-7 text-caption"
+                  >
                     {conflict.actionLabel}
                   </Button>
-                  <Button size="sm" variant="ghost" className="h-7 text-xs">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-7 text-caption"
+                  >
                     {conflict.dismissLabel}
                   </Button>
                 </div>
@@ -87,9 +95,9 @@ export function RuleConflicts() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-6 w-6 p-0 shrink-0 opacity-50 hover:opacity-100"
+                className="size-6 shrink-0 p-0 opacity-50 hover:opacity-100"
               >
-                <X className="h-3 w-3" />
+                <X className="size-3" />
               </Button>
             </div>
           </Alert>
@@ -98,10 +106,12 @@ export function RuleConflicts() {
 
       {/* Empty State if no conflicts */}
       {ruleConflicts.length === 0 && (
-        <div className="text-center py-8 flex-1">
-          <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="text-lg font-medium mb-2">No Rule Conflicts</h3>
-          <p className="text-sm text-muted-foreground">
+        <div className="flex-1 py-8 text-center">
+          <Users className="mx-auto mb-4 size-12 text-muted-foreground" />
+          <h3 className="mb-2 text-heading-lg font-medium">
+            No Rule Conflicts
+          </h3>
+          <p className="text-body-md text-muted-foreground">
             All your rules are working together without conflicts.
           </p>
         </div>

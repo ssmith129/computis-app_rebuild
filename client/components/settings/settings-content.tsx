@@ -12,16 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import {
   Save,
   User,
   Building,
-  Globe,
   Shield,
   Bell,
-  CreditCard,
   Database,
   Settings as SettingsIcon,
   Key,
@@ -29,7 +26,6 @@ import {
   Upload,
   RefreshCw,
   AlertTriangle,
-  CheckCircle,
   Info,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -70,14 +66,17 @@ export function SettingsContent() {
     exportFormat: "CSV",
   });
 
-  const handleSave = async (section: string) => {
+  const handleSave = async () => {
     setIsLoading(true);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
   };
 
-  const updateSetting = (key: string, value: any) => {
+  const updateSetting = <K extends keyof typeof settings>(
+    key: K,
+    value: (typeof settings)[K],
+  ) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -87,7 +86,7 @@ export function SettingsContent() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               General Settings
             </h1>
             <p className="text-muted-foreground">
@@ -96,15 +95,11 @@ export function SettingsContent() {
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm">
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <RefreshCw className="mr-2 size-4" />
               Reset to Defaults
             </Button>
-            <Button
-              size="sm"
-              onClick={() => handleSave("all")}
-              disabled={isLoading}
-            >
-              <Save className="h-4 w-4 mr-2" />
+            <Button size="sm" onClick={() => handleSave()} disabled={isLoading}>
+              <Save className="mr-2 size-4" />
               {isLoading ? "Saving..." : "Save All"}
             </Button>
           </div>
@@ -125,19 +120,19 @@ export function SettingsContent() {
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="account" className="space-y-6">
             {/* Personal Information */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <User className="h-5 w-5" />
+                  <User className="size-5" />
                   Personal Information
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
                     <Input
@@ -176,11 +171,8 @@ export function SettingsContent() {
                     />
                   </div>
                 </div>
-                <Button
-                  onClick={() => handleSave("personal")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Personal Info
                 </Button>
               </CardContent>
@@ -190,7 +182,7 @@ export function SettingsContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Building className="h-5 w-5" />
+                  <Building className="size-5" />
                   Organization Information
                 </CardTitle>
               </CardHeader>
@@ -229,11 +221,8 @@ export function SettingsContent() {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button
-                  onClick={() => handleSave("organization")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Organization Info
                 </Button>
               </CardContent>
@@ -245,12 +234,12 @@ export function SettingsContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <SettingsIcon className="h-5 w-5" />
+                  <SettingsIcon className="size-5" />
                   Tax Calculation Preferences
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="defaultCurrency">Default Currency</Label>
                     <Select
@@ -337,11 +326,8 @@ export function SettingsContent() {
                     </Select>
                   </div>
                 </div>
-                <Button
-                  onClick={() => handleSave("preferences")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Preferences
                 </Button>
               </CardContent>
@@ -352,7 +338,7 @@ export function SettingsContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Bell className="h-5 w-5" />
+                  <Bell className="size-5" />
                   Notification Preferences
                 </CardTitle>
               </CardHeader>
@@ -361,7 +347,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Email Notifications</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive notifications via email
                       </p>
                     </div>
@@ -375,7 +361,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Push Notifications</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive push notifications in browser
                       </p>
                     </div>
@@ -389,7 +375,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Weekly Reports</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive weekly summary reports
                       </p>
                     </div>
@@ -403,7 +389,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Monthly Reports</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Receive monthly summary reports
                       </p>
                     </div>
@@ -417,7 +403,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Anomaly Alerts</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Get notified about data anomalies
                       </p>
                     </div>
@@ -429,11 +415,8 @@ export function SettingsContent() {
                     />
                   </div>
                 </div>
-                <Button
-                  onClick={() => handleSave("notifications")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Notification Settings
                 </Button>
               </CardContent>
@@ -444,7 +427,7 @@ export function SettingsContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Shield className="h-5 w-5" />
+                  <Shield className="size-5" />
                   Security Settings
                 </CardTitle>
               </CardHeader>
@@ -453,7 +436,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Two-Factor Authentication</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Add an extra layer of security
                       </p>
                     </div>
@@ -476,7 +459,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>API Access</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Allow API access to your account
                       </p>
                     </div>
@@ -511,25 +494,22 @@ export function SettingsContent() {
                   </div>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t">
+                <div className="space-y-4 border-t pt-4">
                   <h4 className="font-medium">Password Management</h4>
                   <div className="flex gap-4">
                     <Button variant="outline">
-                      <Key className="h-4 w-4 mr-2" />
+                      <Key className="mr-2 size-4" />
                       Change Password
                     </Button>
                     <Button variant="outline">
-                      <Download className="h-4 w-4 mr-2" />
+                      <Download className="mr-2 size-4" />
                       Download API Keys
                     </Button>
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => handleSave("security")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Security Settings
                 </Button>
               </CardContent>
@@ -540,7 +520,7 @@ export function SettingsContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Database className="h-5 w-5" />
+                  <Database className="size-5" />
                   Data Management
                 </CardTitle>
               </CardHeader>
@@ -549,7 +529,7 @@ export function SettingsContent() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label>Automatic Backups</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-body-md text-muted-foreground">
                         Automatically backup your data daily
                       </p>
                     </div>
@@ -603,37 +583,37 @@ export function SettingsContent() {
                   </div>
                 </div>
 
-                <div className="space-y-4 pt-4 border-t">
+                <div className="space-y-4 border-t pt-4">
                   <h4 className="font-medium">Data Operations</h4>
                   <div className="flex flex-wrap gap-4">
                     <Button variant="outline">
-                      <Download className="h-4 w-4 mr-2" />
+                      <Download className="mr-2 size-4" />
                       Export All Data
                     </Button>
                     <Button variant="outline">
-                      <Upload className="h-4 w-4 mr-2" />
+                      <Upload className="mr-2 size-4" />
                       Import Data
                     </Button>
                     <Button
                       variant="outline"
                       className="text-error hover:text-error/80"
                     >
-                      <AlertTriangle className="h-4 w-4 mr-2" />
+                      <AlertTriangle className="mr-2 size-4" />
                       Delete All Data
                     </Button>
                   </div>
                 </div>
 
                 <Alert>
-                  <Info className="h-4 w-4" />
+                  <Info className="size-4" />
                   <AlertDescription>
                     We recommend keeping data for at least 7 years for tax
                     compliance purposes.
                   </AlertDescription>
                 </Alert>
 
-                <Button onClick={() => handleSave("data")} disabled={isLoading}>
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Data Settings
                 </Button>
               </CardContent>

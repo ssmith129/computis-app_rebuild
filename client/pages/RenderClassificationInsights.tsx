@@ -13,7 +13,7 @@ export default function RenderClassificationInsights() {
   return (
     <div
       id="render-root"
-      className="min-h-screen w-full flex items-center justify-center bg-transparent font-sans"
+      className="flex min-h-screen w-full items-center justify-center bg-transparent font-sans"
       style={{ padding: 0 }}
     >
       <div
@@ -24,7 +24,7 @@ export default function RenderClassificationInsights() {
           padding: 32,
           borderRadius: 12,
           boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-          background: "#FFFFFF",
+          background: "hsl(var(--card))",
         }}
       >
         <ClassificationInsights />

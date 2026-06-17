@@ -5,14 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  FileText,
-  CheckCircle,
-  AlertTriangle,
-  Upload,
-  Clock,
-  Database,
-} from "lucide-react";
+import { FileText, CheckCircle, Upload, Clock, Database } from "lucide-react";
 
 interface ReviewImportStepProps {
   fileName: string;
@@ -138,12 +131,12 @@ export function ReviewImportStep({
   return (
     <div className="space-y-6">
       {/* File Info Header */}
-      <div className="bg-muted/50 rounded-lg p-4">
+      <div className="rounded-lg bg-muted/50 p-4">
         <div className="flex items-center gap-3">
-          <FileText className="h-5 w-5 text-muted-foreground" />
+          <FileText className="size-5 text-muted-foreground" />
           <div>
             <h3 className="font-medium">{fileName}</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               Ready for import • 1,247 transactions
             </p>
           </div>
@@ -153,10 +146,12 @@ export function ReviewImportStep({
       {/* Review Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold mb-1">Review & Import</h3>
+          <h3 className="mb-1 text-heading-lg font-semibold">
+            Review & Import
+          </h3>
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
-            <p className="text-sm text-muted-foreground">
+            <CheckCircle className="size-4 text-green-500" />
+            <p className="text-body-md text-muted-foreground">
               Data validated and mapped successfully
             </p>
           </div>
@@ -166,27 +161,39 @@ export function ReviewImportStep({
       {/* Import Summary */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Import Summary</CardTitle>
+          <CardTitle className="text-heading-md">Import Summary</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-green-600">1,247</div>
-              <div className="text-sm text-muted-foreground">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-green-600">
+                1,247
+              </div>
+              <div className="text-body-md text-muted-foreground">
                 Total Transactions
               </div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-blue-600">8</div>
-              <div className="text-sm text-muted-foreground">Assets</div>
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-blue-600">
+                8
+              </div>
+              <div className="text-body-md text-muted-foreground">Assets</div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-purple-600">4</div>
-              <div className="text-sm text-muted-foreground">Exchanges</div>
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-purple-600">
+                4
+              </div>
+              <div className="text-body-md text-muted-foreground">
+                Exchanges
+              </div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-2xl font-bold font-mono tabular-nums text-orange-600">365</div>
-              <div className="text-sm text-muted-foreground">Days Range</div>
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-orange-600">
+                365
+              </div>
+              <div className="text-body-md text-muted-foreground">
+                Days Range
+              </div>
             </div>
           </div>
         </CardContent>
@@ -195,11 +202,11 @@ export function ReviewImportStep({
       {/* Sample Data Preview */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Sample Transactions</CardTitle>
+          <CardTitle className="text-heading-md">Sample Transactions</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <div className="grid grid-cols-7 gap-2 text-xs font-medium text-muted-foreground border-b pb-2">
+            <div className="grid grid-cols-7 gap-2 border-b pb-2 text-caption font-medium text-muted-foreground">
               <span>Date</span>
               <span>Type</span>
               <span>Asset</span>
@@ -209,9 +216,12 @@ export function ReviewImportStep({
               <span>Exchange</span>
             </div>
             {sampleTransactions.map((tx, index) => (
-              <div key={index} className="grid grid-cols-7 gap-2 text-sm py-2">
+              <div
+                key={index}
+                className="grid grid-cols-7 gap-2 py-2 text-body-md"
+              >
                 <span>{tx.date}</span>
-                <Badge variant="outline" className="text-xs w-fit">
+                <Badge variant="outline" className="w-fit text-caption">
                   {tx.type}
                 </Badge>
                 <span className="font-medium">{tx.asset}</span>
@@ -228,7 +238,7 @@ export function ReviewImportStep({
       {/* Import Settings */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Import Settings</CardTitle>
+          <CardTitle className="text-heading-md">Import Settings</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {importSettings.map((setting, index) => (
@@ -245,11 +255,11 @@ export function ReviewImportStep({
                 <div className="space-y-1">
                   <label
                     htmlFor={setting.id}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="text-body-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     {setting.label}
                   </label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-md text-muted-foreground">
                     {setting.description}
                   </p>
                 </div>
@@ -266,21 +276,21 @@ export function ReviewImportStep({
       {isImporting && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Upload className="h-4 w-4" />
+            <CardTitle className="flex items-center gap-2 text-heading-md">
+              <Upload className="size-4" />
               Importing Transactions
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
+              <div className="flex justify-between text-body-md">
                 <span>Processing transactions...</span>
                 <span>{importProgress}%</span>
               </div>
               <Progress value={importProgress} className="h-2" />
             </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Clock className="h-4 w-4" />
+            <div className="flex items-center gap-2 text-body-md text-muted-foreground">
+              <Clock className="size-4" />
               <span>
                 Estimated time remaining:{" "}
                 {Math.max(0, Math.ceil((100 - importProgress) / 10))} seconds
@@ -302,12 +312,12 @@ export function ReviewImportStep({
         >
           {isImporting ? (
             <>
-              <Database className="h-4 w-4 mr-2 animate-spin" />
+              <Database className="mr-2 size-4 animate-spin" />
               Importing...
             </>
           ) : (
             <>
-              <Upload className="h-4 w-4 mr-2" />
+              <Upload className="mr-2 size-4" />
               Start Import
             </>
           )}

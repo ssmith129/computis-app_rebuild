@@ -205,7 +205,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
     toast({ title: `Rule ${next === "Active" ? "resumed" : "paused"}` });
   };
 
-  const runNow = (id: string) => {
+  const runNow = () => {
     toast({ title: "Rule run started" });
     setTimeout(() => toast({ title: "Rule run complete" }), 800);
   };
@@ -230,10 +230,10 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-0 h-auto font-medium"
+                  className="h-auto p-0 font-medium"
                 >
                   Rule Name
-                  <ArrowUpDown className="ml-1 h-3 w-3" />
+                  <ArrowUpDown className="ml-1 size-3" />
                 </Button>
               </TableHead>
               <TableHead>Type</TableHead>
@@ -278,14 +278,14 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-8 w-8 p-0"
+                      className="size-8 p-0"
                       onClick={() => toggleStatus(rule.id)}
                       aria-label={rule.status === "Active" ? "Pause" : "Resume"}
                     >
                       {rule.status === "Active" ? (
-                        <Pause className="h-4 w-4" />
+                        <Pause className="size-4" />
                       ) : (
-                        <Play className="h-4 w-4" />
+                        <Play className="size-4" />
                       )}
                     </Button>
                     <DropdownMenu>
@@ -293,25 +293,25 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0"
+                          className="size-8 p-0"
                         >
-                          <MoreHorizontal className="h-4 w-4" />
+                          <MoreHorizontal className="size-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => openEdit(rule.id)}>
-                          <Edit className="mr-2 h-4 w-4" />
+                          <Edit className="mr-2 size-4" />
                           Edit Rule
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => runNow(rule.id)}>
-                          <Play className="mr-2 h-4 w-4" />
+                        <DropdownMenuItem onClick={() => runNow()}>
+                          <Play className="mr-2 size-4" />
                           Run Now
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="text-error"
                           onClick={() => confirmDelete(rule.id)}
                         >
-                          <Trash2 className="mr-2 h-4 w-4" />
+                          <Trash2 className="mr-2 size-4" />
                           Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -325,8 +325,8 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
       </div>
 
       {/* Table Footer */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-4 py-2 border-t">
-        <div className="text-sm text-muted-foreground">
+      <div className="flex flex-col gap-4 border-t px-4 py-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="text-body-md text-muted-foreground">
           Showing {Math.min(displayedRules.length, itemsPerPage)} of{" "}
           {filteredRules.length} rules
         </div>
@@ -339,7 +339,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="size-4" />
           </Button>
 
           <div className="flex items-center gap-1">
@@ -351,7 +351,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
                   variant={currentPage === page ? "default" : "outline"}
                   size="sm"
                   onClick={() => setCurrentPage(page)}
-                  className="w-8 h-8 p-0"
+                  className="size-8 p-0"
                 >
                   {page}
                 </Button>
@@ -360,7 +360,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             {totalPages > 5 && (
               <span className="text-muted-foreground">...</span>
             )}
-            <span className="text-sm text-muted-foreground ml-2">
+            <span className="ml-2 text-body-md text-muted-foreground">
               {totalPages}
             </span>
           </div>
@@ -373,7 +373,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             }
             disabled={currentPage === totalPages}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="size-4" />
           </Button>
         </div>
       </div>
@@ -384,7 +384,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             <DialogTitle>Edit Rule</DialogTitle>
           </DialogHeader>
           <div className="space-y-2 py-2">
-            <label htmlFor="rule-name" className="text-sm">
+            <label htmlFor="rule-name" className="text-body-md">
               Rule Name
             </label>
             <Input
@@ -412,7 +412,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete rule?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>

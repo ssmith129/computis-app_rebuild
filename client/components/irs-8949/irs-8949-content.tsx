@@ -30,8 +30,6 @@ import {
   Edit2,
   Trash2,
   CheckCircle,
-  AlertCircle,
-  Clock,
   DollarSign,
 } from "lucide-react";
 import {
@@ -65,7 +63,23 @@ import {
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
-const initialForm8949Data = [
+type Form8949Transaction = {
+  id: string;
+  description: string;
+  dateAcquired: string;
+  dateSold: string;
+  proceeds: number;
+  costBasis: number;
+  adjustments: number;
+  gainLoss: number;
+  type: string;
+  status: string;
+  category: string;
+  date?: string;
+  asset?: string;
+};
+
+const initialForm8949Data: Form8949Transaction[] = [
   {
     id: "1",
     description: "Bitcoin Purchase - Coinbase",
@@ -124,17 +138,19 @@ const getStatusBadge = (status: string) => {
   switch (status) {
     case "Verified":
       return (
-        <Badge className="bg-success-bg text-success-text border-0">{status}</Badge>
+        <Badge className="border-0 bg-success-bg text-success-text">
+          {status}
+        </Badge>
       );
     case "Pending Review":
       return (
-        <Badge className="bg-warning-bg text-warning-text border-0">
+        <Badge className="border-0 bg-warning-bg text-warning-text">
           {status}
         </Badge>
       );
     case "Error":
       return (
-        <Badge className="bg-error-bg text-error-text border-0">{status}</Badge>
+        <Badge className="border-0 bg-error-bg text-error-text">{status}</Badge>
       );
     default:
       return <Badge variant="outline">{status}</Badge>;
@@ -155,8 +171,8 @@ export function Irs8949Content() {
 
   const [data, setData] = useState(initialForm8949Data);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [viewTxn, setViewTxn] = useState<any | null>(null);
-  const [editTxn, setEditTxn] = useState<any | null>(null);
+  const [viewTxn, setViewTxn] = useState<Form8949Transaction | null>(null);
+  const [editTxn, setEditTxn] = useState<Form8949Transaction | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const filteredData = data.filter(
@@ -198,7 +214,7 @@ export function Irs8949Content() {
       <div className="page-titlebar">
         <div className="flex items-center justify-between p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">
+            <h1 className="text-display-lg font-bold text-foreground">
               IRS Form 8949
             </h1>
             <p className="text-muted-foreground">
@@ -221,11 +237,11 @@ export function Irs8949Content() {
               size="sm"
               onClick={() => setFiltersOpen(true)}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               Filters
             </Button>
             <Button onClick={() => toast({ title: "Form 8949 exported" })}>
-              <Download className="h-4 w-4 mr-2" />
+              <Download className="mr-2 size-4" />
               Export Form
             </Button>
           </div>
@@ -243,18 +259,18 @@ export function Irs8949Content() {
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-info" />
+                <DollarSign className="size-4 text-info" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="font-mono text-display-lg font-bold tabular-nums">
                     ${totalProceeds.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-md text-muted-foreground">
                     Total Proceeds
                   </p>
                 </div>
@@ -264,12 +280,12 @@ export function Irs8949Content() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
-                <DollarSign className="h-4 w-4 text-warning" />
+                <DollarSign className="size-4 text-warning" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="font-mono text-display-lg font-bold tabular-nums">
                     ${totalCostBasis.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-body-md text-muted-foreground">
                     Total Cost Basis
                   </p>
                 </div>
@@ -280,15 +296,17 @@ export function Irs8949Content() {
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
                 <DollarSign
-                  className={`h-4 w-4 ${totalGainLoss >= 0 ? "text-green-600" : "text-red-600"}`}
+                  className={`size-4 ${totalGainLoss >= 0 ? "text-green-600" : "text-red-600"}`}
                 />
                 <div>
                   <div
-                    className={`text-2xl font-bold font-mono tabular-nums ${getGainLossColor(totalGainLoss)}`}
+                    className={`font-mono text-display-lg font-bold tabular-nums ${getGainLossColor(totalGainLoss)}`}
                   >
                     ${totalGainLoss.toLocaleString()}
                   </div>
-                  <p className="text-sm text-muted-foreground">Net Gain/Loss</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Net Gain/Loss
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -296,12 +314,14 @@ export function Irs8949Content() {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-purple-600" />
+                <FileText className="size-4 text-purple-600" />
                 <div>
-                  <div className="text-2xl font-bold font-mono tabular-nums">
+                  <div className="font-mono text-display-lg font-bold tabular-nums">
                     {filteredData.length}
                   </div>
-                  <p className="text-sm text-muted-foreground">Transactions</p>
+                  <p className="text-body-md text-muted-foreground">
+                    Transactions
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -311,7 +331,7 @@ export function Irs8949Content() {
         {/* Filter Controls */}
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Type:</span>
+            <span className="text-body-md text-muted-foreground">Type:</span>
             <Button
               variant={filterType === "All" ? "default" : "outline"}
               size="sm"
@@ -336,11 +356,11 @@ export function Irs8949Content() {
           </div>
           {selectedTransactions.length > 0 && (
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
+              <span className="text-body-md text-muted-foreground">
                 {selectedTransactions.length} selected
               </span>
               <Button variant="outline" size="sm">
-                <FileText className="h-4 w-4 mr-2" />
+                <FileText className="mr-2 size-4" />
                 Generate Forms
               </Button>
             </div>
@@ -355,7 +375,7 @@ export function Irs8949Content() {
                 <CardTitle>
                   Part I - Short-term Capital Gains and Losses
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   Assets held one year or less
                 </p>
               </CardHeader>
@@ -427,29 +447,29 @@ export function Irs8949Content() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-8 w-8 p-0"
+                                  className="size-8 p-0"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <MoreHorizontal className="size-4" />
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
                                 <DropdownMenuItem
                                   onClick={() => setViewTxn(transaction)}
                                 >
-                                  <Eye className="mr-2 h-4 w-4" />
+                                  <Eye className="mr-2 size-4" />
                                   View Details
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onClick={() => setEditTxn(transaction)}
                                 >
-                                  <Edit2 className="mr-2 h-4 w-4" />
+                                  <Edit2 className="mr-2 size-4" />
                                   Edit Transaction
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   className="text-error"
                                   onClick={() => setDeleteId(transaction.id)}
                                 >
-                                  <Trash2 className="mr-2 h-4 w-4" />
+                                  <Trash2 className="mr-2 size-4" />
                                   Remove
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
@@ -469,7 +489,7 @@ export function Irs8949Content() {
                 <CardTitle>
                   Part II - Long-term Capital Gains and Losses
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   Assets held more than one year
                 </p>
               </CardHeader>
@@ -541,29 +561,29 @@ export function Irs8949Content() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-8 w-8 p-0"
+                                  className="size-8 p-0"
                                 >
-                                  <MoreHorizontal className="h-4 w-4" />
+                                  <MoreHorizontal className="size-4" />
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
                                 <DropdownMenuItem
                                   onClick={() => setViewTxn(transaction)}
                                 >
-                                  <Eye className="mr-2 h-4 w-4" />
+                                  <Eye className="mr-2 size-4" />
                                   View Details
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onClick={() => setEditTxn(transaction)}
                                 >
-                                  <Edit2 className="mr-2 h-4 w-4" />
+                                  <Edit2 className="mr-2 size-4" />
                                   Edit Transaction
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   className="text-error"
                                   onClick={() => setDeleteId(transaction.id)}
                                 >
-                                  <Trash2 className="mr-2 h-4 w-4" />
+                                  <Trash2 className="mr-2 size-4" />
                                   Remove
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
@@ -582,36 +602,36 @@ export function Irs8949Content() {
         <Card>
           <CardHeader>
             <CardTitle>Form Generation</CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-body-md text-muted-foreground">
               Generate IRS Form 8949 for tax filing
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-wrap gap-4">
               <Button onClick={() => toast({ title: "Form 8949 exported" })}>
-                <Download className="h-4 w-4 mr-2" />
+                <Download className="mr-2 size-4" />
                 Download PDF
               </Button>
               <Button
                 variant="outline"
                 onClick={() => toast({ title: "Form 8949 exported" })}
               >
-                <FileText className="h-4 w-4 mr-2" />
+                <FileText className="mr-2 size-4" />
                 Download CSV
               </Button>
               <Button variant="outline">
-                <Calendar className="h-4 w-4 mr-2" />
+                <Calendar className="mr-2 size-4" />
                 Schedule E-filing
               </Button>
             </div>
-            <div className="p-4 bg-info-bg rounded-lg border border-info/30">
+            <div className="rounded-lg border border-info/30 bg-info-bg p-4">
               <div className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-info mt-0.5" />
+                <CheckCircle className="mt-0.5 size-5 text-info" />
                 <div>
                   <h4 className="font-medium text-info-text">
                     Ready for Filing
                   </h4>
-                  <p className="text-sm text-info-text">
+                  <p className="text-body-md text-info-text">
                     All transactions have been verified and are ready for tax
                     filing. Total net gain: ${totalGainLoss.toLocaleString()}
                   </p>
@@ -666,7 +686,7 @@ export function Irs8949Content() {
             <DialogTitle>Transaction Details</DialogTitle>
           </DialogHeader>
           {viewTxn && (
-            <div className="space-y-2 text-sm">
+            <div className="space-y-2 text-body-md">
               <div>
                 <span className="text-muted-foreground">Date:</span>{" "}
                 {viewTxn.date}
@@ -767,7 +787,7 @@ export function Irs8949Content() {
           <AlertDialogHeader>
             <AlertDialogTitle>Remove transaction?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>

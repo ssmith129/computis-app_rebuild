@@ -42,7 +42,7 @@ export function EnhancedDashboard() {
             <h1 className="text-heading-lg font-bold text-foreground">
               Enhanced Dashboard
             </h1>
-            <p className="text-body-md text-muted-foreground mt-1">
+            <p className="mt-1 text-body-md text-muted-foreground">
               Demonstrating horizontal scrolling layout with fixed header and
               navigation
             </p>
@@ -50,15 +50,15 @@ export function EnhancedDashboard() {
         </div>
 
         {/* Main Content */}
-        <div className="p-4 sm:p-6 space-y-8 no-h-scroll">
+        <div className="no-h-scroll space-y-8 p-4 sm:p-6">
           {/* Section 1: Horizontally Scrollable Portfolio Cards */}
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Portfolio Overview
               </h2>
               <Button variant="outline" size="sm">
-                <Eye className="h-4 w-4 mr-2" />
+                <Eye className="mr-2 size-4" />
                 View All
               </Button>
             </div>
@@ -135,15 +135,15 @@ export function EnhancedDashboard() {
                   <EnhancedCard
                     key={index}
                     minWidth="280px"
-                    className="flex-shrink-0 hover:shadow-lg transition-shadow"
+                    className="shrink-0 transition-shadow hover:shadow-lg"
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between">
-                        <CardTitle className="text-sm font-medium text-gray-600">
+                        <CardTitle className="text-body-md font-medium text-gray-600">
                           {metric.title}
                         </CardTitle>
                         <div
-                          className={`p-2 rounded-lg ${
+                          className={`rounded-lg p-2 ${
                             metric.color === "blue"
                               ? "bg-info-bg"
                               : metric.color === "green"
@@ -156,7 +156,7 @@ export function EnhancedDashboard() {
                           }`}
                         >
                           <IconComponent
-                            className={`h-4 w-4 ${
+                            className={`size-4 ${
                               metric.color === "blue"
                                 ? "text-info"
                                 : metric.color === "green"
@@ -172,11 +172,11 @@ export function EnhancedDashboard() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-2">
+                      <div className="mb-2 font-mono text-display-lg font-bold tabular-nums text-gray-900">
                         {metric.value}
                       </div>
                       <div
-                        className={`text-sm flex items-center gap-1 ${
+                        className={`flex items-center gap-1 text-body-md ${
                           metric.trend === "up"
                             ? "text-success"
                             : metric.trend === "down"
@@ -185,10 +185,10 @@ export function EnhancedDashboard() {
                         }`}
                       >
                         {metric.trend === "up" && (
-                          <TrendingUp className="h-3 w-3" />
+                          <TrendingUp className="size-3" />
                         )}
                         {metric.trend === "down" && (
-                          <TrendingDown className="h-3 w-3" />
+                          <TrendingDown className="size-3" />
                         )}
                         <span>{metric.change}</span>
                       </div>
@@ -201,8 +201,8 @@ export function EnhancedDashboard() {
 
           {/* Section 2: Responsive Grid for Quick Actions (No horizontal scroll) */}
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Quick Actions
               </h2>
             </div>
@@ -242,12 +242,12 @@ export function EnhancedDashboard() {
                 return (
                   <Card
                     key={index}
-                    className="hover:shadow-lg transition-shadow group"
+                    className="group transition-shadow hover:shadow-lg"
                   >
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <div
-                          className={`p-2 rounded-lg transition-colors group-hover:scale-110 ${
+                          className={`rounded-lg p-2 transition-colors group-hover:scale-110 ${
                             action.color === "blue"
                               ? "bg-info-bg group-hover:bg-info-bg/80"
                               : action.color === "green"
@@ -258,7 +258,7 @@ export function EnhancedDashboard() {
                           }`}
                         >
                           <IconComponent
-                            className={`h-5 w-5 ${
+                            className={`size-5 ${
                               action.color === "blue"
                                 ? "text-info"
                                 : action.color === "green"
@@ -269,13 +269,13 @@ export function EnhancedDashboard() {
                             }`}
                           />
                         </div>
-                        <CardTitle className="text-base">
+                        <CardTitle className="text-heading-md">
                           {action.title}
                         </CardTitle>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="mb-4 text-body-md text-gray-600">
                         {action.desc}
                       </p>
                       <Button
@@ -295,8 +295,8 @@ export function EnhancedDashboard() {
 
           {/* Section 3: Horizontally Scrollable Transactions Table */}
           <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-heading-lg font-semibold text-gray-900">
                 Recent Transactions
               </h2>
               <div className="flex gap-2">
@@ -313,16 +313,16 @@ export function EnhancedDashboard() {
               <Table scrollable={true} minWidth="1200px">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[140px]">Date & Time</TableHead>
-                    <TableHead className="w-[100px]">Type</TableHead>
-                    <TableHead className="w-[120px]">Asset</TableHead>
-                    <TableHead className="w-[140px]">Amount</TableHead>
-                    <TableHead className="w-[140px]">Price (USD)</TableHead>
-                    <TableHead className="w-[140px]">Total Value</TableHead>
-                    <TableHead className="w-[120px]">Exchange</TableHead>
-                    <TableHead className="w-[100px]">Status</TableHead>
-                    <TableHead className="w-[120px]">Gain/Loss</TableHead>
-                    <TableHead className="w-[100px]">Actions</TableHead>
+                    <TableHead className="w-table-lg">Date & Time</TableHead>
+                    <TableHead className="w-table-sm">Type</TableHead>
+                    <TableHead className="w-table-md">Asset</TableHead>
+                    <TableHead className="w-table-lg">Amount</TableHead>
+                    <TableHead className="w-table-lg">Price (USD)</TableHead>
+                    <TableHead className="w-table-lg">Total Value</TableHead>
+                    <TableHead className="w-table-md">Exchange</TableHead>
+                    <TableHead className="w-table-sm">Status</TableHead>
+                    <TableHead className="w-table-md">Gain/Loss</TableHead>
+                    <TableHead className="w-table-sm">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -361,7 +361,7 @@ export function EnhancedDashboard() {
 
                     return (
                       <TableRow key={i} className="hover:bg-gray-50">
-                        <TableCell className="font-mono text-xs">
+                        <TableCell className="font-mono text-caption">
                           2024-01-{String(15 + i).padStart(2, "0")}
                           <br />
                           <span className="text-gray-500">
@@ -416,10 +416,10 @@ export function EnhancedDashboard() {
                         <TableCell>
                           <div className="flex gap-1">
                             <Button variant="ghost" size="sm">
-                              <Eye className="h-3 w-3" />
+                              <Eye className="size-3" />
                             </Button>
                             <Button variant="ghost" size="sm">
-                              <Download className="h-3 w-3" />
+                              <Download className="size-3" />
                             </Button>
                           </div>
                         </TableCell>
@@ -433,16 +433,16 @@ export function EnhancedDashboard() {
 
           {/* Section 4: Mixed Content - Charts with Horizontal Scrolling */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="mb-4 text-heading-lg font-semibold text-gray-900">
               Analytics & Insights
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               {/* Left: Price History Chart with horizontal scrolling */}
               <EnhancedCard scrollable={true} minWidth="500px">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <PieChart className="h-5 w-5" />
+                    <PieChart className="size-5" />
                     Portfolio Performance (12 Months)
                   </CardTitle>
                 </CardHeader>
@@ -462,9 +462,9 @@ export function EnhancedDashboard() {
                       return (
                         <div
                           key={i}
-                          className="flex flex-col items-center gap-2 min-w-[60px]"
+                          className="flex min-w-[60px] flex-col items-center gap-2"
                         >
-                          <div className="text-xs text-gray-600 font-medium">
+                          <div className="text-caption font-medium text-gray-600">
                             {month}
                           </div>
                           <div
@@ -474,14 +474,14 @@ export function EnhancedDashboard() {
                             style={{ height: `${height}px` }}
                             title={`${month}: $${value.toFixed(0)}`}
                           />
-                          <div className="text-xs font-medium text-center">
+                          <div className="text-center text-caption font-medium">
                             ${(value / 1000).toFixed(1)}k
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="border-t pt-4 text-sm text-gray-600">
+                  <div className="border-t pt-4 text-body-md text-gray-600">
                     Drag or scroll horizontally to view all months
                   </div>
                 </CardContent>
@@ -528,18 +528,18 @@ export function EnhancedDashboard() {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0"
+                        className="flex items-center justify-between border-b border-gray-100 py-2 last:border-0"
                       >
                         <div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-body-md text-gray-600">
                             {stat.label}
                           </div>
-                          <div className="text-xs text-gray-400">
+                          <div className="text-caption text-gray-400">
                             {stat.subtext}
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm font-semibold text-gray-900">
+                          <div className="text-body-md font-semibold text-gray-900">
                             {stat.value}
                           </div>
                         </div>

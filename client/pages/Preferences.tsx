@@ -1,4 +1,4 @@
-import { AppLayout } from "@/components/layout/AppLayout";
+import { AppLayout } from "@/components/layout/app-layout";
 import { PreferencesContent } from "@/components/preferences/preferences-content";
 
 export default function Preferences() {

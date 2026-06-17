@@ -138,13 +138,7 @@ const getStatusStyles = (status: string) => {
   }
 };
 
-export function AnomalyIssueDetails({
-  issueId,
-  onClose,
-}: AnomalyIssueDetailsProps) {
-  const [selectedTransactions, setSelectedTransactions] = useState<string[]>(
-    [],
-  );
+export function AnomalyIssueDetails({ onClose }: AnomalyIssueDetailsProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -182,21 +176,21 @@ export function AnomalyIssueDetails({
   return (
     <div className="app-content">
       {/* Sticky Header with Actions */}
-      <div className="sticky top-0 z-10 bg-background border-b shadow-sm">
+      <div className="sticky top-0 z-10 border-b bg-background shadow-sm">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={onClose} className="h-9">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+              <ArrowLeft className="mr-2 size-4" />
             </Button>
             <div className="flex items-center gap-3">
-              <div className="bg-error-bg rounded-lg p-2">
-                <TrendingUp className="h-5 w-5 text-error" />
+              <div className="rounded-lg bg-error-bg p-2">
+                <TrendingUp className="size-5 text-error" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                <h1 className="flex items-center gap-2 text-display-sm font-semibold text-gray-900">
                   Volume Spike Details
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="text-body-md text-gray-500">
                   15 transactions • Bitcoin (BTC)
                 </p>
               </div>
@@ -211,25 +205,25 @@ export function AnomalyIssueDetails({
               onClick={handleIgnore}
               className="h-9 border-gray-300 hover:bg-gray-50"
             >
-              <XCircle className="h-4 w-4 mr-2" />
+              <XCircle className="mr-2 size-4" />
               Ignore Issue
             </Button>
             <Button
               variant="default"
               size="sm"
               onClick={handleApplyRecommendation}
-              className="h-9 w-fit bg-primary hover:bg-primary-hover text-white"
+              className="h-9 w-fit bg-primary text-white hover:bg-primary-hover"
               aria-label="Apply AI recommendation"
             >
-              <Sparkles className="h-4 w-4 mr-2" />
+              <Sparkles className="mr-2 size-4" />
               Apply Recommendation
             </Button>
             <Button
               size="sm"
               onClick={handleResolve}
-              className="h-9 bg-success hover:bg-success/90 text-white"
+              className="h-9 bg-success text-white hover:bg-success/90"
             >
-              <CheckCircle2 className="h-4 w-4 mr-2" />
+              <CheckCircle2 className="mr-2 size-4" />
               Mark as Resolved
             </Button>
           </div>
@@ -238,62 +232,62 @@ export function AnomalyIssueDetails({
 
       {/* Main Content - Responsive Grid */}
       <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-6">
+        <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {/* Issue Information Card - 25% on desktop */}
-          <Card className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
-                <AlertCircle className="h-4 w-4 text-gray-600" />
+          <Card className="border-gray-200 shadow-sm transition-shadow hover:shadow-md">
+            <CardHeader className="px-5 pb-4 pt-5">
+              <CardTitle className="flex items-center gap-2 text-heading-md font-semibold text-gray-900">
+                <AlertCircle className="size-4 text-gray-600" />
                 Issue Information
               </CardTitle>
             </CardHeader>
-            <CardContent className="px-5 pb-5 space-y-3">
+            <CardContent className="space-y-3 px-5 pb-5">
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium uppercase tracking-wide text-gray-500">
                   Type
                 </div>
-                <div className="text-sm font-semibold text-gray-900">
+                <div className="text-body-md font-semibold text-gray-900">
                   {issueData.type}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium uppercase tracking-wide text-gray-500">
                   Detected
                 </div>
-                <div className="text-sm text-gray-700">
+                <div className="text-body-md text-gray-700">
                   {issueData.detected}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium uppercase tracking-wide text-gray-500">
                   Priority
                 </div>
                 <Badge
-                  className={`border text-xs font-medium ${getPriorityStyles(issueData.priority)}`}
+                  className={`border text-caption font-medium ${getPriorityStyles(issueData.priority)}`}
                 >
                   {issueData.priority}
                 </Badge>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium uppercase tracking-wide text-gray-500">
                   Status
                 </div>
                 <Badge
-                  className={`border text-xs font-medium ${getStatusStyles(issueData.status)}`}
+                  className={`border text-caption font-medium ${getStatusStyles(issueData.status)}`}
                 >
                   {issueData.status}
                 </Badge>
               </div>
-              <div className="pt-2 border-t border-gray-100">
+              <div className="border-t border-gray-100 pt-2">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-500">Affected</div>
-                  <div className="text-sm font-semibold text-gray-900">
+                  <div className="text-caption text-gray-500">Affected</div>
+                  <div className="text-body-md font-semibold text-gray-900">
                     {issueData.affected}
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-2">
-                  <div className="text-xs text-gray-500">Asset</div>
-                  <div className="text-sm font-medium text-gray-900">
+                <div className="mt-2 flex items-center justify-between">
+                  <div className="text-caption text-gray-500">Asset</div>
+                  <div className="text-body-md font-medium text-gray-900">
                     {issueData.asset}
                   </div>
                 </div>
@@ -302,43 +296,43 @@ export function AnomalyIssueDetails({
           </Card>
 
           {/* AI Recommendation Card - 25% on desktop */}
-          <Card className="border-blue-200 shadow-sm bg-gradient-to-br from-blue-50 to-white hover:shadow-md transition-shadow">
-            <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-primary" />
+          <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-sm transition-shadow hover:shadow-md">
+            <CardHeader className="px-5 pb-4 pt-5">
+              <CardTitle className="flex items-center gap-2 text-heading-md font-semibold text-gray-900">
+                <Sparkles className="size-4 text-primary" />
                 AI Recommendation
               </CardTitle>
             </CardHeader>
-            <CardContent className="px-5 pb-5 space-y-4">
+            <CardContent className="space-y-4 px-5 pb-5">
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="mb-1.5 text-caption font-medium text-gray-600">
                   Analysis
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-body-md leading-relaxed text-gray-700">
                   {issueData.description}
                 </p>
               </div>
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="mb-1.5 text-caption font-medium text-gray-600">
                   Suggested Action
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-body-md leading-relaxed text-gray-700">
                   {issueData.suggestion}
                 </p>
               </div>
-              <div className="pt-3 border-t border-blue-100">
+              <div className="border-t border-blue-100 pt-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-600">
+                  <span className="text-caption font-medium text-gray-600">
                     Confidence Score
                   </span>
                   <div className="flex items-center gap-2">
-                    <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-2 w-20 overflow-hidden rounded-full bg-gray-200">
                       <div
-                        className="h-full bg-success rounded-full transition-all"
+                        className="h-full rounded-full bg-success transition-all"
                         style={{ width: `${issueData.confidence}%` }}
                       />
                     </div>
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-body-md font-bold text-gray-900">
                       {issueData.confidence}%
                     </span>
                   </div>
@@ -348,9 +342,9 @@ export function AnomalyIssueDetails({
           </Card>
 
           {/* Quick Actions Card - 50% on desktop, spans 2 columns */}
-          <Card className="md:col-span-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900">
+          <Card className="border-gray-200 shadow-sm transition-shadow hover:shadow-md md:col-span-2">
+            <CardHeader className="px-5 pb-4 pt-5">
+              <CardTitle className="text-heading-md font-semibold text-gray-900">
                 Quick Actions
               </CardTitle>
             </CardHeader>
@@ -361,20 +355,20 @@ export function AnomalyIssueDetails({
                   return (
                     <button
                       key={index}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-lg border border-gray-200 transition-all hover:scale-105 hover:shadow-md ${action.color.split(" ")[1]} ${action.color.split(" ")[2]}`}
+                      className={`flex flex-col items-center gap-2 rounded-lg border border-gray-200 p-4 transition-all hover:scale-105 hover:shadow-md ${action.color.split(" ")[1]} ${action.color.split(" ")[2]}`}
                       onClick={() =>
                         toast({ title: `${action.title} initiated` })
                       }
                       aria-label={action.title}
                     >
                       <IconComponent
-                        className={`h-5 w-5 ${action.color.split(" ")[0]}`}
+                        className={`size-5 ${action.color.split(" ")[0]}`}
                       />
                       <div className="text-center">
-                        <div className="text-xs font-semibold text-gray-900">
+                        <div className="text-caption font-semibold text-gray-900">
                           {action.title}
                         </div>
-                        <div className="text-xs text-gray-500 mt-0.5">
+                        <div className="mt-0.5 text-caption text-gray-500">
                           {action.description}
                         </div>
                       </div>
@@ -388,19 +382,19 @@ export function AnomalyIssueDetails({
 
         {/* Affected Transactions - Full Width */}
         <Card className="border-gray-200 shadow-sm">
-          <CardHeader className="px-5 py-4 border-b border-gray-200">
+          <CardHeader className="border-b border-gray-200 px-5 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-base font-semibold text-gray-900">
+                <CardTitle className="text-heading-md font-semibold text-gray-900">
                   Affected Transactions
                 </CardTitle>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="mt-1 text-body-md text-gray-500">
                   Showing {paginatedTransactions.length} of{" "}
                   {affectedTransactions.length} transactions
                 </p>
               </div>
               <Button variant="outline" size="sm" className="h-9">
-                <ExternalLink className="h-4 w-4 mr-2" />
+                <ExternalLink className="mr-2 size-4" />
                 Export List
               </Button>
             </div>
@@ -410,22 +404,22 @@ export function AnomalyIssueDetails({
               <Table>
                 <TableHeader>
                   <TableRow className="bg-gray-50">
-                    <TableHead className="text-xs font-semibold text-gray-600 px-5">
+                    <TableHead className="px-5 text-caption font-semibold text-gray-600">
                       Date
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Type
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Amount
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       FMV (USD)
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Classification
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600 text-right px-5">
+                    <TableHead className="px-5 text-right text-caption font-semibold text-gray-600">
                       Actions
                     </TableHead>
                   </TableRow>
@@ -434,37 +428,37 @@ export function AnomalyIssueDetails({
                   {paginatedTransactions.map((transaction) => (
                     <TableRow
                       key={transaction.id}
-                      className="hover:bg-gray-50 transition-colors"
+                      className="transition-colors hover:bg-gray-50"
                     >
-                      <TableCell className="font-medium text-sm text-gray-900 px-5">
+                      <TableCell className="px-5 text-body-md font-medium text-gray-900">
                         {transaction.date}
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-info-bg text-info-text border-info/30 border text-xs">
+                        <Badge className="border border-info/30 bg-info-bg text-caption text-info-text">
                           {transaction.type}
                         </Badge>
                       </TableCell>
-                      <TableCell className="font-mono text-sm font-semibold text-gray-900">
+                      <TableCell className="font-mono text-body-md font-semibold text-gray-900">
                         {transaction.amount}
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-success-bg text-success-text border-success/30 border text-xs">
+                        <Badge className="border border-success/30 bg-success-bg text-caption text-success-text">
                           {transaction.fmv}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-warning-bg text-warning-text border-warning/30 border text-xs">
+                        <Badge className="border border-warning/30 bg-warning-bg text-caption text-warning-text">
                           {transaction.classification}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-right px-5">
+                      <TableCell className="px-5 text-right">
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-8 w-8 p-0 hover:bg-gray-100"
+                          className="size-8 p-0 hover:bg-gray-100"
                           aria-label="View transaction details"
                         >
-                          <ExternalLink className="h-4 w-4 text-gray-600" />
+                          <ExternalLink className="size-4 text-gray-600" />
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -474,7 +468,7 @@ export function AnomalyIssueDetails({
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between px-5 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-between border-t border-gray-200 px-5 py-4">
               <Button
                 variant="outline"
                 size="sm"
@@ -492,7 +486,7 @@ export function AnomalyIssueDetails({
                       variant={currentPage === page ? "default" : "outline"}
                       size="sm"
                       onClick={() => setCurrentPage(page)}
-                      className="h-9 w-9 p-0"
+                      className="size-9 p-0"
                     >
                       {page}
                     </Button>

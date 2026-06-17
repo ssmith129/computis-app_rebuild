@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -22,9 +21,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
 import {
@@ -101,12 +97,11 @@ interface DashboardSidebarProps {
 export function DashboardSidebar({
   activeItem = "Dashboard",
 }: DashboardSidebarProps) {
-  const { state } = useSidebar();
-  const isCollapsed = state === "collapsed";
+  useSidebar();
 
   return (
-    <Sidebar className="bg-sidebar border-r border-sidebar" collapsible="icon">
-      <SidebarHeader className="p-3 bg-sidebar border-sidebar group-data-[collapsible=icon]:p-1.5">
+    <Sidebar className="border-r border-sidebar bg-sidebar" collapsible="icon">
+      <SidebarHeader className="border-sidebar bg-sidebar p-3 group-data-[collapsible=icon]:p-1.5">
         <div className="flex items-center justify-between gap-2 group-data-[collapsible=icon]:justify-center">
           {/* Logo - hidden when collapsed */}
           <div className="flex items-center overflow-hidden transition-all duration-200 group-data-[collapsible=icon]:w-0 group-data-[collapsible=icon]:opacity-0">
@@ -121,7 +116,7 @@ export function DashboardSidebar({
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="px-4 bg-sidebar text-sidebar-foreground border-sidebar group-data-[collapsible=icon]:px-2">
+      <SidebarContent className="border-sidebar bg-sidebar px-4 text-sidebar-foreground group-data-[collapsible=icon]:px-2">
         {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupContent>
@@ -141,8 +136,8 @@ export function DashboardSidebar({
                       }`}
                     >
                       <Link to={item.href}>
-                        <item.icon className="h-5 w-5" />
-                        <span className="font-semibold text-sm">
+                        <item.icon className="size-5" />
+                        <span className="text-body-md font-semibold">
                           {item.title}
                         </span>
                       </Link>
@@ -158,9 +153,9 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-body-md font-semibold text-sidebar-muted hover:text-white">
                 Reports
-                <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
@@ -181,8 +176,8 @@ export function DashboardSidebar({
                           }`}
                         >
                           <Link to={item.href}>
-                            <item.icon className="h-5 w-5" />
-                            <span className="font-semibold text-sm">
+                            <item.icon className="size-5" />
+                            <span className="text-body-md font-semibold">
                               {item.title}
                             </span>
                           </Link>
@@ -200,9 +195,9 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-body-md font-semibold text-sidebar-muted hover:text-white">
                 Settings
-                <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
@@ -223,8 +218,8 @@ export function DashboardSidebar({
                           }`}
                         >
                           <Link to={item.href}>
-                            <item.icon className="h-5 w-5" />
-                            <span className="font-semibold text-sm">
+                            <item.icon className="size-5" />
+                            <span className="text-body-md font-semibold">
                               {item.title}
                             </span>
                           </Link>
@@ -242,9 +237,9 @@ export function DashboardSidebar({
         <SidebarGroup>
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroupLabel asChild>
-              <CollapsibleTrigger className="flex w-full items-center justify-between text-sidebar-muted hover:text-white font-semibold text-sm">
+              <CollapsibleTrigger className="flex w-full items-center justify-between text-body-md font-semibold text-sidebar-muted hover:text-white">
                 Help & Account
-                <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
@@ -258,8 +253,8 @@ export function DashboardSidebar({
                         className="text-sidebar-muted hover:bg-sidebar-accent hover:text-white"
                       >
                         <Link to={item.href}>
-                          <item.icon className="h-5 w-5" />
-                          <span className="font-semibold text-sm">
+                          <item.icon className="size-5" />
+                          <span className="text-body-md font-semibold">
                             {item.title}
                           </span>
                         </Link>
