@@ -12,6 +12,13 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { AssetSymbol } from "@/components/ui/asset-symbol";
+import { ConfidenceIndicator } from "./confidence-indicator";
+import {
+  sortTransactions,
+  paginationRange,
+  type SortKey,
+  type SortDir,
+} from "./table-utils";
 import {
   Tooltip,
   TooltipContent,
@@ -21,11 +28,12 @@ import {
 import {
   MoreHorizontal,
   ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
   ChevronLeft,
   ChevronRight,
   Check,
   X,
-  AlertTriangle,
   Flag,
   Eye,
 } from "lucide-react";
@@ -135,12 +143,6 @@ const mockTransactions: Transaction[] = [
   },
 ];
 
-const getConfidenceColor = (confidence: number) => {
-  if (confidence >= 70) return "text-success";
-  if (confidence >= 40) return "text-warning";
-  return "text-error";
-};
-
 const getStatusVariant = (
   status: string,
 ): "success" | "warning" | "error" | "pending" => {
@@ -183,7 +185,55 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
   const [selectedTransaction, setSelectedTransaction] =
     useState<Transaction | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortDir, setSortDir] = useState<SortDir>("asc");
   const itemsPerPage = 25;
+
+  // Cycle a column through asc -> desc -> unsorted.
+  const handleSort = (key: SortKey) => {
+    if (sortKey !== key) {
+      setSortKey(key);
+      setSortDir("asc");
+    } else if (sortDir === "asc") {
+      setSortDir("desc");
+    } else {
+      setSortKey(null);
+      setSortDir("asc");
+    }
+    setCurrentPage(1);
+  };
+
+  const ariaSortFor = (key: SortKey): "ascending" | "descending" | "none" =>
+    sortKey === key ? (sortDir === "asc" ? "ascending" : "descending") : "none";
+
+  const renderSortButton = (key: SortKey, label: string) => {
+    const active = sortKey === key;
+    const Caret = active
+      ? sortDir === "asc"
+        ? ArrowUp
+        : ArrowDown
+      : ArrowUpDown;
+    const stateLabel = active
+      ? sortDir === "asc"
+        ? "sorted ascending"
+        : "sorted descending"
+      : "not sorted";
+    return (
+      <Button
+        variant="ghost"
+        size="sm"
+        className="p-0 h-auto font-medium text-xs"
+        onClick={() => handleSort(key)}
+        aria-label={`Sort by ${label}, ${stateLabel}`}
+      >
+        {label}
+        <Caret
+          className={`ml-1 h-3 w-3 ${active ? "text-primary" : ""}`}
+          aria-hidden="true"
+        />
+      </Button>
+    );
+  };
 
   const handleViewDetails = (transaction: Transaction) => {
     setSelectedTransaction(transaction);
@@ -205,11 +255,21 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
     return confidenceMatch && statusMatch;
   });
 
+  // Sort the full filtered set BEFORE paginating so sorting spans all pages.
+  const sortedTransactions = sortKey
+    ? sortTransactions(filteredTransactions, sortKey, sortDir)
+    : filteredTransactions;
+
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const displayedTransactions = filteredTransactions.slice(
+  const displayedTransactions = sortedTransactions.slice(
     startIndex,
     startIndex + itemsPerPage,
+  );
+  const range = paginationRange(
+    currentPage,
+    itemsPerPage,
+    filteredTransactions.length,
   );
 
   const handleSelectAll = (checked: boolean) => {
@@ -247,26 +307,46 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 />
               </TableHead>
               <TableHead className="view-column">View</TableHead>
-              <TableHead className="date-column">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="p-0 h-auto font-medium text-xs"
-                  aria-label="Sort by date"
-                >
-                  Date
-                  <ArrowUpDown className="ml-1 h-3 w-3" />
-                </Button>
+              <TableHead
+                className="date-column"
+                aria-sort={ariaSortFor("date")}
+              >
+                {renderSortButton("date", "Date")}
               </TableHead>
-              <TableHead className="type-column">Type</TableHead>
-              <TableHead className="asset-column">Asset</TableHead>
-              <TableHead className="amount-column">Amount</TableHead>
+              <TableHead
+                className="type-column"
+                aria-sort={ariaSortFor("type")}
+              >
+                {renderSortButton("type", "Type")}
+              </TableHead>
+              <TableHead
+                className="asset-column"
+                aria-sort={ariaSortFor("asset")}
+              >
+                {renderSortButton("asset", "Asset")}
+              </TableHead>
+              <TableHead
+                className="amount-column"
+                aria-sort={ariaSortFor("amount")}
+              >
+                {renderSortButton("amount", "Amount")}
+              </TableHead>
               <TableHead className="fmv-column">FMV (USD)</TableHead>
               <TableHead className="classification-column">
                 AI Classification
               </TableHead>
-              <TableHead className="confidence-column">Confidence</TableHead>
-              <TableHead className="status-column">Status</TableHead>
+              <TableHead
+                className="confidence-column"
+                aria-sort={ariaSortFor("confidence")}
+              >
+                {renderSortButton("confidence", "Confidence")}
+              </TableHead>
+              <TableHead
+                className="status-column"
+                aria-sort={ariaSortFor("status")}
+              >
+                {renderSortButton("status", "Status")}
+              </TableHead>
               <TableHead className="actions-column">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -326,19 +406,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                   </Badge>
                 </TableCell>
                 <TableCell className="confidence-column">
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className={`font-medium text-sm ${getConfidenceColor(transaction.confidence)}`}
-                    >
-                      {transaction.confidence}%
-                    </span>
-                    {transaction.confidence < 40 && (
-                      <AlertTriangle
-                        className="h-3 w-3 text-error"
-                        aria-label="Low confidence"
-                      />
-                    )}
-                  </div>
+                  <ConfidenceIndicator confidence={transaction.confidence} />
                 </TableCell>
                 <TableCell className="status-column">
                   <StatusBadge variant={getStatusVariant(transaction.status)}>
@@ -416,7 +484,8 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
       {/* Table Footer */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-2 py-2 border-t">
         <div className="text-sm text-muted-foreground">
-          Showing {startIndex + 1} of {filteredTransactions.length} transactions
+          Showing {range.start}–{range.end} of {filteredTransactions.length}{" "}
+          transactions
         </div>
 
         <div className="flex flex-wrap items-center gap-2">

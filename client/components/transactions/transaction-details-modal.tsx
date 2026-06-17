@@ -7,6 +7,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { AssetSymbol } from "@/components/ui/asset-symbol";
+import { ConfidenceIndicator } from "./confidence-indicator";
 import { Separator } from "@/components/ui/separator";
 import {
   AlertTriangle,
@@ -34,12 +35,6 @@ interface TransactionDetailsModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
-
-const getConfidenceColor = (confidence: number) => {
-  if (confidence >= 70) return "text-success";
-  if (confidence >= 40) return "text-warning";
-  return "text-error";
-};
 
 const getStatusVariant = (
   status: string,
@@ -234,19 +229,11 @@ export function TransactionDetailsModal({
                   <p className="text-sm text-muted-foreground mb-2">
                     Confidence Score
                   </p>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        "text-2xl font-bold",
-                        getConfidenceColor(transaction.confidence),
-                      )}
-                    >
-                      {transaction.confidence}%
-                    </span>
-                    {transaction.confidence < 40 && (
-                      <AlertTriangle className="h-5 w-5 text-error" />
-                    )}
-                  </div>
+                  <ConfidenceIndicator
+                    confidence={transaction.confidence}
+                    size="lg"
+                    className="justify-end"
+                  />
                 </div>
               </div>
 
