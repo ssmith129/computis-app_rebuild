@@ -193,10 +193,10 @@ export function AnomalyIssueDetails({
                 <TrendingUp className="h-5 w-5 text-error" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                <h1 className="text-display-sm font-semibold text-gray-900 flex items-center gap-2">
                   Volume Spike Details
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="text-body-md text-gray-500">
                   15 transactions • Bitcoin (BTC)
                 </p>
               </div>
@@ -242,58 +242,58 @@ export function AnomalyIssueDetails({
           {/* Issue Information Card - 25% on desktop */}
           <Card className="border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
+              <CardTitle className="text-heading-md font-semibold text-gray-900 flex items-center gap-2">
                 <AlertCircle className="h-4 w-4 text-gray-600" />
                 Issue Information
               </CardTitle>
             </CardHeader>
             <CardContent className="px-5 pb-5 space-y-3">
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium text-gray-500 uppercase tracking-wide">
                   Type
                 </div>
-                <div className="text-sm font-semibold text-gray-900">
+                <div className="text-body-md font-semibold text-gray-900">
                   {issueData.type}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium text-gray-500 uppercase tracking-wide">
                   Detected
                 </div>
-                <div className="text-sm text-gray-700">
+                <div className="text-body-md text-gray-700">
                   {issueData.detected}
                 </div>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium text-gray-500 uppercase tracking-wide">
                   Priority
                 </div>
                 <Badge
-                  className={`border text-xs font-medium ${getPriorityStyles(issueData.priority)}`}
+                  className={`border text-caption font-medium ${getPriorityStyles(issueData.priority)}`}
                 >
                   {issueData.priority}
                 </Badge>
               </div>
               <div className="space-y-1.5">
-                <div className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                <div className="text-caption font-medium text-gray-500 uppercase tracking-wide">
                   Status
                 </div>
                 <Badge
-                  className={`border text-xs font-medium ${getStatusStyles(issueData.status)}`}
+                  className={`border text-caption font-medium ${getStatusStyles(issueData.status)}`}
                 >
                   {issueData.status}
                 </Badge>
               </div>
               <div className="pt-2 border-t border-gray-100">
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-gray-500">Affected</div>
-                  <div className="text-sm font-semibold text-gray-900">
+                  <div className="text-caption text-gray-500">Affected</div>
+                  <div className="text-body-md font-semibold text-gray-900">
                     {issueData.affected}
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <div className="text-xs text-gray-500">Asset</div>
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-caption text-gray-500">Asset</div>
+                  <div className="text-body-md font-medium text-gray-900">
                     {issueData.asset}
                   </div>
                 </div>
@@ -304,31 +304,31 @@ export function AnomalyIssueDetails({
           {/* AI Recommendation Card - 25% on desktop */}
           <Card className="border-blue-200 shadow-sm bg-gradient-to-br from-blue-50 to-white hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900 flex items-center gap-2">
+              <CardTitle className="text-heading-md font-semibold text-gray-900 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-primary" />
                 AI Recommendation
               </CardTitle>
             </CardHeader>
             <CardContent className="px-5 pb-5 space-y-4">
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="text-caption font-medium text-gray-600 mb-1.5">
                   Analysis
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-body-md text-gray-700 leading-relaxed">
                   {issueData.description}
                 </p>
               </div>
               <div>
-                <div className="text-xs font-medium text-gray-600 mb-1.5">
+                <div className="text-caption font-medium text-gray-600 mb-1.5">
                   Suggested Action
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-body-md text-gray-700 leading-relaxed">
                   {issueData.suggestion}
                 </p>
               </div>
               <div className="pt-3 border-t border-blue-100">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-gray-600">
+                  <span className="text-caption font-medium text-gray-600">
                     Confidence Score
                   </span>
                   <div className="flex items-center gap-2">
@@ -338,7 +338,7 @@ export function AnomalyIssueDetails({
                         style={{ width: `${issueData.confidence}%` }}
                       />
                     </div>
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-body-md font-bold text-gray-900">
                       {issueData.confidence}%
                     </span>
                   </div>
@@ -350,7 +350,7 @@ export function AnomalyIssueDetails({
           {/* Quick Actions Card - 50% on desktop, spans 2 columns */}
           <Card className="md:col-span-2 border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-4 px-5 pt-5">
-              <CardTitle className="text-base font-semibold text-gray-900">
+              <CardTitle className="text-heading-md font-semibold text-gray-900">
                 Quick Actions
               </CardTitle>
             </CardHeader>
@@ -371,10 +371,10 @@ export function AnomalyIssueDetails({
                         className={`h-5 w-5 ${action.color.split(" ")[0]}`}
                       />
                       <div className="text-center">
-                        <div className="text-xs font-semibold text-gray-900">
+                        <div className="text-caption font-semibold text-gray-900">
                           {action.title}
                         </div>
-                        <div className="text-xs text-gray-500 mt-0.5">
+                        <div className="text-caption text-gray-500 mt-0.5">
                           {action.description}
                         </div>
                       </div>
@@ -391,10 +391,10 @@ export function AnomalyIssueDetails({
           <CardHeader className="px-5 py-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-base font-semibold text-gray-900">
+                <CardTitle className="text-heading-md font-semibold text-gray-900">
                   Affected Transactions
                 </CardTitle>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-body-md text-gray-500 mt-1">
                   Showing {paginatedTransactions.length} of{" "}
                   {affectedTransactions.length} transactions
                 </p>
@@ -410,22 +410,22 @@ export function AnomalyIssueDetails({
               <Table>
                 <TableHeader>
                   <TableRow className="bg-gray-50">
-                    <TableHead className="text-xs font-semibold text-gray-600 px-5">
+                    <TableHead className="text-caption font-semibold text-gray-600 px-5">
                       Date
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Type
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Amount
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       FMV (USD)
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600">
+                    <TableHead className="text-caption font-semibold text-gray-600">
                       Classification
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-gray-600 text-right px-5">
+                    <TableHead className="text-caption font-semibold text-gray-600 text-right px-5">
                       Actions
                     </TableHead>
                   </TableRow>
@@ -436,24 +436,24 @@ export function AnomalyIssueDetails({
                       key={transaction.id}
                       className="hover:bg-gray-50 transition-colors"
                     >
-                      <TableCell className="font-medium text-sm text-gray-900 px-5">
+                      <TableCell className="font-medium text-body-md text-gray-900 px-5">
                         {transaction.date}
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-info-bg text-info-text border-info/30 border text-xs">
+                        <Badge className="bg-info-bg text-info-text border-info/30 border text-caption">
                           {transaction.type}
                         </Badge>
                       </TableCell>
-                      <TableCell className="font-mono text-sm font-semibold text-gray-900">
+                      <TableCell className="font-mono text-body-md font-semibold text-gray-900">
                         {transaction.amount}
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-success-bg text-success-text border-success/30 border text-xs">
+                        <Badge className="bg-success-bg text-success-text border-success/30 border text-caption">
                           {transaction.fmv}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-warning-bg text-warning-text border-warning/30 border text-xs">
+                        <Badge className="bg-warning-bg text-warning-text border-warning/30 border text-caption">
                           {transaction.classification}
                         </Badge>
                       </TableCell>

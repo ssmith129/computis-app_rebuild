@@ -91,9 +91,9 @@ export function AnomalyIssuesTable({
       {/* Table Header with Search */}
       <div className="p-6 border-b border-border">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Detected Issues</h3>
+          <h3 className="text-heading-lg font-semibold">Detected Issues</h3>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-body-md text-muted-foreground">
               Search Issues...
             </span>
           </div>
@@ -217,7 +217,7 @@ export function AnomalyIssuesTable({
 
       {/* Pagination */}
       <div className="flex items-center justify-between px-6 pb-4">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-body-md text-muted-foreground">
           Showing {issues.length > 0 ? `1-${Math.min(5, issues.length)}` : 0} of{" "}
           {issues.length} issues
         </div>

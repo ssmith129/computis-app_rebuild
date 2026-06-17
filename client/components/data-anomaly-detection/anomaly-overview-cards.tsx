@@ -67,7 +67,7 @@ export function AnomalyOverviewCards() {
                   >
                     <IconComponent className={`h-5 w-5 ${anomaly.iconColor}`} />
                   </div>
-                  <div className="text-3xl font-bold text-foreground">
+                  <div className="text-display-xl font-bold text-foreground">
                     {anomaly.count}
                   </div>
                 </div>
@@ -77,12 +77,12 @@ export function AnomalyOverviewCards() {
                 <h3 className="font-semibold text-foreground">
                   {anomaly.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-body-md text-muted-foreground">
                   {anomaly.description}
                 </p>
                 <Badge
                   variant="secondary"
-                  className={`text-xs ${anomaly.statusColor} border-0`}
+                  className={`text-caption ${anomaly.statusColor} border-0`}
                 >
                   {anomaly.status}
                 </Badge>
