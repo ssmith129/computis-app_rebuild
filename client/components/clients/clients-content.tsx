@@ -327,7 +327,7 @@ export function ClientsContent() {
               Filters
             </Button>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
               onClick={() => setAddOpen(true)}
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -593,7 +593,7 @@ export function ClientsContent() {
                       Manage team access and permissions for this client
                     </p>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
                     <Plus className="h-4 w-4 mr-2" />
                     Add Member
                   </Button>
@@ -948,7 +948,7 @@ export function ClientsContent() {
                 {/* Save Actions */}
                 <div className="flex justify-end gap-3 pt-6 border-t">
                   <Button variant="outline">Cancel</Button>
-                  <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
                     Save Changes
                   </Button>
                 </div>
@@ -998,7 +998,7 @@ export function ClientsContent() {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Roles & Permissions</h2>
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-primary hover:bg-primary-hover text-primary-foreground">
               <Plus className="h-4 w-4 mr-2" />
               Create Role
             </Button>

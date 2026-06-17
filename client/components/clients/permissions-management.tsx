@@ -455,7 +455,7 @@ export function PermissionsManagement() {
               Bulk Assign
             </Button>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
               onClick={() => setCreateRoleOpen(true)}
             >
               <Plus className="h-4 w-4 mr-2" />
@@ -802,7 +802,7 @@ export function PermissionsManagement() {
                 setViewRoleOpen(false);
                 if (selectedRole) handleEditRole(selectedRole);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               <Edit2 className="h-4 w-4 mr-2" />
               Edit Role
@@ -971,7 +971,7 @@ export function PermissionsManagement() {
             </Button>
             <Button
               onClick={editRoleOpen ? handleSaveEdit : handleCreateRole}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               {editRoleOpen ? "Save Changes" : "Create Role"}
             </Button>
@@ -1057,7 +1057,7 @@ export function PermissionsManagement() {
             </Button>
             <Button
               onClick={handleBulkAssign}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               <UserPlus className="h-4 w-4 mr-2" />
               Assign Roles

@@ -361,7 +361,7 @@ export function UsersManagement() {
             </TabsTrigger>
           </TabsList>
           <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-primary hover:bg-primary-hover text-primary-foreground"
             onClick={() => setAddUserOpen(true)}
           >
             <UserPlus className="h-4 w-4 mr-2" />
@@ -502,7 +502,7 @@ export function UsersManagement() {
             </Button>
             <Button
               onClick={handleAddUser}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               <Mail className="h-4 w-4 mr-2" />
               Send Invitation
@@ -570,7 +570,7 @@ export function UsersManagement() {
                 setViewUserOpen(false);
                 if (selectedUser) handleEditUser(selectedUser);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               <Edit2 className="h-4 w-4 mr-2" />
               Edit User
@@ -655,7 +655,7 @@ export function UsersManagement() {
                 toast({ title: "User updated successfully" });
                 setEditUserOpen(false);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               Save Changes
             </Button>

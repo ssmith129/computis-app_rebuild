@@ -13,7 +13,7 @@ const colorMap = {
   blue: {
     bg: "bg-blue-500",
     glow: "shadow-blue-500/50",
-    hover: "bg-blue-600",
+    hover: "bg-primary",
   },
   green: {
     bg: "bg-green-500",

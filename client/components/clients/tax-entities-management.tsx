@@ -472,7 +472,7 @@ export function TaxEntitiesManagement() {
             Export
           </Button>
           <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-primary hover:bg-primary-hover text-primary-foreground"
             onClick={() => setAddEntityOpen(true)}
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -764,7 +764,7 @@ export function TaxEntitiesManagement() {
             </Button>
             <Button
               onClick={handleAddEntity}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               Create Entity
             </Button>
@@ -862,7 +862,7 @@ export function TaxEntitiesManagement() {
             </Button>
             <Button
               onClick={handleSaveEdit}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               Save Changes
             </Button>
@@ -960,7 +960,7 @@ export function TaxEntitiesManagement() {
                 setViewEntityOpen(false);
                 if (selectedEntity) handleEditEntity(selectedEntity);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground"
             >
               <Edit2 className="h-4 w-4 mr-2" />
               Edit Entity

@@ -282,7 +282,7 @@ export default function MyAccount() {
                 <h4 className="font-medium text-gray-900">Payment Method</h4>
                 <div className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center">
+                    <div className="w-8 h-6 bg-primary rounded text-white text-xs flex items-center justify-center">
                       VISA
                     </div>
                     <span className="text-sm">•••• •••• •••• 4567</span>
