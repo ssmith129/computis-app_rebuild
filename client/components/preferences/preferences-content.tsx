@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -18,12 +17,8 @@ import {
   Save,
   Palette,
   Monitor,
-  Smartphone,
   Layout,
-  Bell,
-  Mouse,
   Keyboard,
-  Globe,
   Eye,
   Moon,
   Sun,
@@ -72,14 +67,17 @@ export function PreferencesContent() {
     keyboardNavigation: true,
   });
 
-  const handleSave = async (section: string) => {
+  const handleSave = async () => {
     setIsLoading(true);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
   };
 
-  const updatePreference = (key: string, value: any) => {
+  const updatePreference = <K extends keyof typeof preferences>(
+    key: K,
+    value: (typeof preferences)[K],
+  ) => {
     setPreferences((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -106,15 +104,11 @@ export function PreferencesContent() {
           </div>
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm">
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <RefreshCw className="mr-2 size-4" />
               Reset to Defaults
             </Button>
-            <Button
-              size="sm"
-              onClick={() => handleSave("all")}
-              disabled={isLoading}
-            >
-              <Save className="h-4 w-4 mr-2" />
+            <Button size="sm" onClick={() => handleSave()} disabled={isLoading}>
+              <Save className="mr-2 size-4" />
               {isLoading ? "Saving..." : "Save All"}
             </Button>
           </div>
@@ -134,14 +128,14 @@ export function PreferencesContent() {
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="appearance" className="space-y-6">
             {/* Theme Settings */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Palette className="h-5 w-5" />
+                  <Palette className="size-5" />
                   Theme & Colors
                 </CardTitle>
               </CardHeader>
@@ -158,14 +152,14 @@ export function PreferencesContent() {
                         htmlFor="light"
                         className="flex items-center gap-2"
                       >
-                        <Sun className="h-4 w-4" />
+                        <Sun className="size-4" />
                         Light
                       </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="dark" id="dark" />
                       <Label htmlFor="dark" className="flex items-center gap-2">
-                        <Moon className="h-4 w-4" />
+                        <Moon className="size-4" />
                         Dark
                       </Label>
                     </div>
@@ -175,7 +169,7 @@ export function PreferencesContent() {
                         htmlFor="system"
                         className="flex items-center gap-2"
                       >
-                        <Monitor className="h-4 w-4" />
+                        <Monitor className="size-4" />
                         System
                       </Label>
                     </div>
@@ -191,14 +185,14 @@ export function PreferencesContent() {
                         onClick={() =>
                           updatePreference("colorScheme", scheme.value)
                         }
-                        className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-colors ${
+                        className={`flex flex-col items-center gap-2 rounded-lg border-2 p-3 transition-colors ${
                           preferences.colorScheme === scheme.value
                             ? "border-primary bg-primary/5"
                             : "border-border hover:border-primary/50"
                         }`}
                       >
                         <div
-                          className={`w-6 h-6 rounded-full ${scheme.color}`}
+                          className={`size-6 rounded-full ${scheme.color}`}
                         />
                         <span className="text-body-md font-medium">
                           {scheme.label}
@@ -272,11 +266,8 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => handleSave("appearance")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Appearance
                 </Button>
               </CardContent>
@@ -288,7 +279,7 @@ export function PreferencesContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Layout className="h-5 w-5" />
+                  <Layout className="size-5" />
                   Layout & Navigation
                 </CardTitle>
               </CardHeader>
@@ -376,11 +367,8 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => handleSave("layout")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Layout
                 </Button>
               </CardContent>
@@ -392,7 +380,7 @@ export function PreferencesContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Settings className="h-5 w-5" />
+                  <Settings className="size-5" />
                   Application Behavior
                 </CardTitle>
               </CardHeader>
@@ -449,9 +437,9 @@ export function PreferencesContent() {
                     </div>
                     <div className="flex items-center gap-2">
                       {preferences.soundEffects ? (
-                        <Volume2 className="h-4 w-4" />
+                        <Volume2 className="size-4" />
                       ) : (
-                        <VolumeX className="h-4 w-4" />
+                        <VolumeX className="size-4" />
                       )}
                       <Switch
                         checked={preferences.soundEffects}
@@ -482,7 +470,7 @@ export function PreferencesContent() {
 
                 <div className="space-y-3">
                   <Label>Language & Region</Label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="language">Language</Label>
                       <Select
@@ -527,11 +515,8 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => handleSave("behavior")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Behavior
                 </Button>
               </CardContent>
@@ -543,7 +528,7 @@ export function PreferencesContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Eye className="h-5 w-5" />
+                  <Eye className="size-5" />
                   Accessibility Features
                 </CardTitle>
               </CardHeader>
@@ -599,7 +584,7 @@ export function PreferencesContent() {
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Keyboard className="h-4 w-4" />
+                      <Keyboard className="size-4" />
                       <Switch
                         checked={preferences.keyboardNavigation}
                         onCheckedChange={(checked) =>
@@ -610,37 +595,34 @@ export function PreferencesContent() {
                   </div>
                 </div>
 
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h4 className="font-medium text-blue-900 mb-2">
+                <div className="rounded-lg border border-blue-200 bg-blue-50 p-4">
+                  <h4 className="mb-2 font-medium text-blue-900">
                     Keyboard Shortcuts
                   </h4>
                   <div className="space-y-2 text-body-md text-blue-800">
                     <div className="flex justify-between">
                       <span>Open search</span>
-                      <kbd className="px-2 py-1 bg-info-bg rounded">
+                      <kbd className="rounded bg-info-bg px-2 py-1">
                         Ctrl + K
                       </kbd>
                     </div>
                     <div className="flex justify-between">
                       <span>Navigate tabs</span>
-                      <kbd className="px-2 py-1 bg-info-bg rounded">
+                      <kbd className="rounded bg-info-bg px-2 py-1">
                         Ctrl + 1-9
                       </kbd>
                     </div>
                     <div className="flex justify-between">
                       <span>Save</span>
-                      <kbd className="px-2 py-1 bg-info-bg rounded">
+                      <kbd className="rounded bg-info-bg px-2 py-1">
                         Ctrl + S
                       </kbd>
                     </div>
                   </div>
                 </div>
 
-                <Button
-                  onClick={() => handleSave("accessibility")}
-                  disabled={isLoading}
-                >
-                  <Save className="h-4 w-4 mr-2" />
+                <Button onClick={() => handleSave()} disabled={isLoading}>
+                  <Save className="mr-2 size-4" />
                   Save Accessibility
                 </Button>
               </CardContent>

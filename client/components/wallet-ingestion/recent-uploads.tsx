@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -65,7 +65,7 @@ export function RecentUploads() {
                 <TableRow key={upload.id}>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-muted-foreground" />
+                      <FileText className="size-4 text-muted-foreground" />
                       <span className="font-medium">{upload.fileName}</span>
                     </div>
                   </TableCell>
@@ -80,13 +80,13 @@ export function RecentUploads() {
                   <TableCell>
                     <div className="flex items-center gap-1">
                       <Button variant="ghost" size="sm">
-                        <Eye className="w-4 h-4" />
+                        <Eye className="size-4" />
                       </Button>
                       <Button variant="ghost" size="sm">
-                        <Download className="w-4 h-4" />
+                        <Download className="size-4" />
                       </Button>
                       <Button variant="ghost" size="sm">
-                        <MoreHorizontal className="w-4 h-4" />
+                        <MoreHorizontal className="size-4" />
                       </Button>
                     </div>
                   </TableCell>

@@ -70,7 +70,7 @@ export function PieChart({
             fill={segment.color}
             stroke="white"
             strokeWidth={strokeWidth}
-            className="hover:opacity-80 transition-opacity duration-200"
+            className="transition-opacity duration-200 hover:opacity-80"
           />
         ))}
         {/* Center circle for donut effect */}
@@ -96,10 +96,10 @@ export function ChartLegend({ data, className }: LegendProps) {
       {data.map((item, index) => (
         <div key={index} className="flex items-center gap-2">
           <div
-            className="w-3 h-3 rounded-full border border-black/10"
+            className="size-3 rounded-full border border-black/10"
             style={{ backgroundColor: item.color }}
           />
-          <span className="text-body-md text-gray-600 font-medium">
+          <span className="text-body-md font-medium text-gray-600">
             {item.label}
           </span>
         </div>

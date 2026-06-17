@@ -127,7 +127,7 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Create Merge Rule</DialogTitle>
           <DialogDescription>
@@ -137,7 +137,7 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
 
         <div className="space-y-6">
           {/* Basic Rule Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="ruleName">Rule Name</Label>
               <Input
@@ -206,9 +206,9 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
             </div>
 
             <div className="space-y-3">
-              {conditions.map((condition, index) => (
+              {conditions.map((condition) => (
                 <div key={condition.id} className="flex items-center gap-3">
-                  <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="grid flex-1 grid-cols-1 gap-2 md:grid-cols-3">
                     <Select
                       value={condition.field}
                       onValueChange={(value) =>
@@ -250,7 +250,7 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
                         <Badge variant="outline" className="shrink-0">
                           {condition.value}
                           <X
-                            className="ml-1 h-3 w-3 cursor-pointer"
+                            className="ml-1 size-3 cursor-pointer"
                             onClick={() =>
                               updateCondition(condition.id, { value: "" })
                             }
@@ -286,14 +286,14 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
                     onClick={() => removeCondition(condition.id)}
                     className="shrink-0"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="size-4" />
                   </Button>
                 </div>
               ))}
             </div>
 
             <Button variant="outline" size="sm" onClick={addCondition}>
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="mr-2 size-4" />
               Add Condition
             </Button>
           </div>
@@ -312,7 +312,7 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
             <div className="space-y-3">
               {actions.map((action) => (
                 <div key={action.id} className="flex items-center gap-3">
-                  <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="grid flex-1 grid-cols-1 gap-2 md:grid-cols-2">
                     <Select
                       value={action.type}
                       onValueChange={(value) =>
@@ -399,14 +399,14 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
                     onClick={() => removeAction(action.id)}
                     className="shrink-0"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="size-4" />
                   </Button>
                 </div>
               ))}
             </div>
 
             <Button variant="outline" size="sm" onClick={addAction}>
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="mr-2 size-4" />
               Add Action
             </Button>
           </div>
@@ -429,9 +429,9 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
               </Button>
             </div>
 
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 overflow-x-auto">
+            <div className="flex flex-col items-stretch gap-4 overflow-x-auto md:flex-row md:items-center">
               {/* Before */}
-              <Card className="flex-1 min-w-rule-card">
+              <Card className="min-w-rule-card flex-1">
                 <CardHeader>
                   <CardTitle className="text-heading-md">Before</CardTitle>
                 </CardHeader>
@@ -461,14 +461,14 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
 
               {/* Arrow */}
               <div
-                className="flex items-center justify-center shrink-0 self-center"
+                className="flex shrink-0 items-center justify-center self-center"
                 aria-label="transforms to"
               >
-                <ArrowRight className="h-8 w-8 text-primary" />
+                <ArrowRight className="size-8 text-primary" />
               </div>
 
               {/* After */}
-              <Card className="flex-1 min-w-rule-card">
+              <Card className="min-w-rule-card flex-1">
                 <CardHeader>
                   <CardTitle className="text-heading-md">After</CardTitle>
                 </CardHeader>

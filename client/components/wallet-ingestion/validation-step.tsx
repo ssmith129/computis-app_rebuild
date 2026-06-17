@@ -84,9 +84,9 @@ export function ValidationStep({
   return (
     <div className="space-y-6">
       {/* File Info Header */}
-      <div className="bg-muted/50 rounded-lg p-4">
+      <div className="rounded-lg bg-muted/50 p-4">
         <div className="flex items-center gap-3">
-          <FileText className="h-5 w-5 text-muted-foreground" />
+          <FileText className="size-5 text-muted-foreground" />
           <div>
             <h3 className="font-medium">{fileName}</h3>
             <p className="text-body-md text-muted-foreground">
@@ -99,17 +99,17 @@ export function ValidationStep({
       {/* Validation Results Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-heading-lg font-semibold mb-1">
+          <h3 className="mb-1 text-heading-lg font-semibold">
             Validation Results
           </h3>
           <div className="flex items-center gap-2">
             {!hasFailed && !hasWarnings && (
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <CheckCircle className="size-4 text-green-500" />
             )}
             {hasWarnings && !hasFailed && (
-              <AlertTriangle className="h-4 w-4 text-yellow-500" />
+              <AlertTriangle className="size-4 text-yellow-500" />
             )}
-            {hasFailed && <XCircle className="h-4 w-4 text-red-500" />}
+            {hasFailed && <XCircle className="size-4 text-red-500" />}
             <p className="text-body-md text-muted-foreground">
               {hasFailed
                 ? "Validation failed - please fix errors"
@@ -120,7 +120,7 @@ export function ValidationStep({
           </div>
         </div>
         <Button variant="outline" size="sm" onClick={onReprocess}>
-          <RefreshCw className="h-4 w-4 mr-2" />
+          <RefreshCw className="mr-2 size-4" />
           Reprocess
         </Button>
       </div>
@@ -133,8 +133,8 @@ export function ValidationStep({
             <div key={check.id} className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <IconComponent className={`h-4 w-4 ${check.color}`} />
-                  <span className="font-medium text-body-md">
+                  <IconComponent className={`size-4 ${check.color}`} />
+                  <span className="text-body-md font-medium">
                     {check.title}
                   </span>
                 </div>
@@ -158,12 +158,12 @@ export function ValidationStep({
       </div>
 
       {/* Summary and Actions */}
-      <div className="pt-4 border-t space-y-4">
+      <div className="space-y-4 border-t pt-4">
         <div className="flex items-center justify-between text-body-md">
           <span className="text-muted-foreground">Overall Status:</span>
           <div className="flex items-center gap-2">
-            {!hasFailed && <CheckCircle className="h-4 w-4 text-green-500" />}
-            {hasFailed && <XCircle className="h-4 w-4 text-red-500" />}
+            {!hasFailed && <CheckCircle className="size-4 text-green-500" />}
+            {hasFailed && <XCircle className="size-4 text-red-500" />}
             <span
               className={`font-medium ${hasFailed ? "text-red-600" : "text-green-600"}`}
             >

@@ -10,10 +10,6 @@ import {
   Clock,
 } from "lucide-react";
 
-interface ExportCardsProps {
-  selectedYear: string;
-}
-
 const exportTypes = [
   {
     id: "irs-8949",
@@ -77,39 +73,37 @@ const getStatusIcon = (value: string | number) => {
       case "Complete":
       case "Passed":
       case "Yes":
-        return <CheckCircle className="h-3 w-3 text-green-500" />;
+        return <CheckCircle className="size-3 text-green-500" />;
       case "Never":
-        return <AlertCircle className="h-3 w-3 text-red-500" />;
+        return <AlertCircle className="size-3 text-red-500" />;
       default:
-        return <Clock className="h-3 w-3 text-yellow-500" />;
+        return <Clock className="size-3 text-yellow-500" />;
     }
   }
   return null;
 };
 
-export function ExportCards({ selectedYear }: ExportCardsProps) {
+export function ExportCards() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {exportTypes.map((exportType) => {
         const IconComponent = exportType.icon;
         return (
           <Card
             key={exportType.id}
-            className={`${exportType.borderColor} hover:shadow-md transition-shadow`}
+            className={`${exportType.borderColor} transition-shadow hover:shadow-md`}
           >
             <CardHeader className="pb-4">
               <div className="flex items-start justify-between">
-                <div className={`p-2 rounded-lg ${exportType.bgColor}`}>
-                  <IconComponent
-                    className={`h-6 w-6 ${exportType.iconColor}`}
-                  />
+                <div className={`rounded-lg p-2 ${exportType.bgColor}`}>
+                  <IconComponent className={`size-6 ${exportType.iconColor}`} />
                 </div>
                 <Badge variant="outline" className="text-caption">
                   {exportType.includes}
                 </Badge>
               </div>
               <div>
-                <h3 className="font-semibold text-heading-lg">
+                <h3 className="text-heading-lg font-semibold">
                   {exportType.title}
                 </h3>
                 <p className="text-body-md text-muted-foreground">

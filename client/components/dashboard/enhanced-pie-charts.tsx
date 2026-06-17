@@ -76,8 +76,6 @@ export function AnimatedPieChart({
   const segments = data.map((segment, index) => {
     const percentage = segment.value / total;
     const angle = percentage * 360 * animationProgress;
-    const startAngle = cumulativeAngle;
-    const endAngle = cumulativeAngle + angle;
 
     const isActive = activeSegment === index;
     const adjustedRadius = isActive ? radius + 4 : radius;
@@ -110,7 +108,7 @@ export function AnimatedPieChart({
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className="transform -rotate-90 transition-transform duration-300 hover:scale-105 w-full h-auto max-w-full"
+        className="h-auto w-full max-w-full -rotate-90 transition-transform duration-300 hover:scale-105"
       >
         {/* Background circle */}
         <circle
@@ -154,7 +152,7 @@ export function AnimatedPieChart({
       <div className="absolute inset-0 flex items-center justify-center">
         {centerContent || (
           <div className="text-center">
-            <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
+            <div className="font-mono text-display-lg font-bold tabular-nums text-gray-900">
               {total.toLocaleString()}
             </div>
             <div className="text-caption text-gray-500">Total</div>
@@ -164,13 +162,13 @@ export function AnimatedPieChart({
 
       {/* Active segment tooltip */}
       {activeSegment !== null && (
-        <div className="absolute -top-10 sm:-top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-caption sm:text-body-md animate-in fade-in-0 zoom-in-95 duration-200 z-10 whitespace-nowrap">
+        <div className="absolute -top-10 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-lg bg-gray-900 px-2 py-1.5 text-caption text-white duration-200 animate-in fade-in-0 zoom-in-95 sm:-top-12 sm:px-3 sm:py-2 sm:text-body-md">
           <div className="font-medium">{segments[activeSegment].label}</div>
           <div className="text-caption opacity-75">
             {segments[activeSegment].value.toLocaleString()} (
             {segments[activeSegment].percentage}%)
           </div>
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+          <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
         </div>
       )}
     </div>
@@ -203,7 +201,7 @@ export function EnhancedLegend({
           onMouseEnter={() => interactive && setHoveredItem(index)}
           onMouseLeave={() => interactive && setHoveredItem(null)}
         >
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
             <div
               className={cn(
                 "w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-white shadow-sm transition-transform duration-200 flex-shrink-0",
@@ -212,16 +210,16 @@ export function EnhancedLegend({
               style={{ backgroundColor: item.color }}
             />
             <div className="min-w-0 flex-1">
-              <span className="text-caption sm:text-body-md font-medium text-gray-900 truncate block">
+              <span className="block truncate text-caption font-medium text-gray-900 sm:text-body-md">
                 {item.label}
               </span>
               {item.trend && item.trendValue && (
-                <div className="flex items-center gap-1 mt-0.5 sm:mt-1">
+                <div className="mt-0.5 flex items-center gap-1 sm:mt-1">
                   {item.trend === "up" && (
-                    <TrendingUp className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-green-500 flex-shrink-0" />
+                    <TrendingUp className="size-2.5 shrink-0 text-green-500 sm:size-3" />
                   )}
                   {item.trend === "down" && (
-                    <TrendingDown className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-red-500 flex-shrink-0" />
+                    <TrendingDown className="size-2.5 shrink-0 text-red-500 sm:size-3" />
                   )}
                   <span
                     className={cn(
@@ -237,11 +235,11 @@ export function EnhancedLegend({
               )}
             </div>
           </div>
-          <div className="text-right flex-shrink-0 ml-2">
-            <div className="text-caption sm:text-body-md font-semibold text-gray-900 whitespace-nowrap">
+          <div className="ml-2 shrink-0 text-right">
+            <div className="whitespace-nowrap text-caption font-semibold text-gray-900 sm:text-body-md">
               {item.value.toLocaleString()}
             </div>
-            <div className="text-caption text-gray-500 whitespace-nowrap">
+            <div className="whitespace-nowrap text-caption text-gray-500">
               {Math.round(
                 (item.value / data.reduce((sum, d) => sum + d.value, 0)) * 100,
               )}
@@ -324,50 +322,50 @@ export function EnhancedPieChartSections() {
   );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2 lg:gap-8">
       {/* Gain/Loss Breakdown */}
-      <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <Card className="overflow-hidden transition-shadow duration-300 hover:shadow-xl">
         <CardContent className="p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
+          <div className="mb-4 flex flex-col items-start justify-between gap-3 sm:mb-6 sm:flex-row sm:items-center">
             <div className="min-w-0">
-              <h3 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 truncate">
+              <h3 className="truncate text-heading-md font-bold text-gray-900 sm:text-heading-lg">
                 Gain/Loss Breakdown
               </h3>
-              <p className="text-caption sm:text-body-md text-gray-500">
+              <p className="text-caption text-gray-500 sm:text-body-md">
                 Current tax year performance
               </p>
             </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex shrink-0 items-center gap-2">
               <Badge
                 variant="secondary"
-                className="bg-success-bg text-success-text text-caption"
+                className="bg-success-bg text-caption text-success-text"
               >
-                <TrendingUp className="h-3 w-3 mr-1" />
+                <TrendingUp className="mr-1 size-3" />
                 Net Positive
               </Badge>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 hidden sm:flex"
+                className="hidden size-6 sm:flex"
                 aria-label="Gain/loss chart options"
               >
-                <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                <MoreHorizontal className="size-4 text-gray-400" />
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-center">
+          <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="order-2 sm:order-1">
               <EnhancedLegend data={gainLossData} />
             </div>
-            <div className="order-1 sm:order-2 flex justify-center py-4 sm:py-0">
+            <div className="order-1 flex justify-center py-4 sm:order-2 sm:py-0">
               <AnimatedPieChart
                 data={gainLossData}
                 size={160}
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-heading-lg sm:text-display-sm font-bold text-green-600">
+                    <div className="text-heading-lg font-bold text-green-600 sm:text-display-sm">
                       ${totalGainLoss.toLocaleString()}
                     </div>
                     <div className="text-caption text-gray-500">Net Gain</div>
@@ -380,21 +378,21 @@ export function EnhancedPieChartSections() {
       </Card>
 
       {/* Transaction Status */}
-      <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <Card className="overflow-hidden transition-shadow duration-300 hover:shadow-xl">
         <CardContent className="p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 sm:mb-6">
+          <div className="mb-4 flex flex-col items-start justify-between gap-3 sm:mb-6 sm:flex-row sm:items-center">
             <div className="min-w-0">
-              <h3 className="text-heading-md sm:text-heading-lg font-bold text-gray-900 truncate">
+              <h3 className="truncate text-heading-md font-bold text-gray-900 sm:text-heading-lg">
                 Transaction Status
               </h3>
-              <p className="text-caption sm:text-body-md text-gray-500">
+              <p className="text-caption text-gray-500 sm:text-body-md">
                 Processing pipeline overview
               </p>
             </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="flex shrink-0 items-center gap-2">
               <Badge
                 variant="secondary"
-                className="bg-info-bg text-info-text text-caption"
+                className="bg-info-bg text-caption text-info-text"
               >
                 {Math.round(
                   (transactionStatusData[0].value / totalTransactions) * 100,
@@ -404,26 +402,26 @@ export function EnhancedPieChartSections() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-6 w-6 hidden sm:flex"
+                className="hidden size-6 sm:flex"
                 aria-label="Transaction status chart options"
               >
-                <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                <MoreHorizontal className="size-4 text-gray-400" />
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-center">
+          <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="order-2 sm:order-1">
               <EnhancedLegend data={transactionStatusData} />
             </div>
-            <div className="order-1 sm:order-2 flex justify-center py-4 sm:py-0">
+            <div className="order-1 flex justify-center py-4 sm:order-2 sm:py-0">
               <AnimatedPieChart
                 data={transactionStatusData}
                 size={160}
                 className="w-full max-w-chart-md"
                 centerContent={
                   <div className="text-center">
-                    <div className="text-heading-lg sm:text-display-sm font-bold text-gray-900">
+                    <div className="text-heading-lg font-bold text-gray-900 sm:text-display-sm">
                       {totalTransactions.toLocaleString()}
                     </div>
                     <div className="text-caption text-gray-500">Total Txs</div>

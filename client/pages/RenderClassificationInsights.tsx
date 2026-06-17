@@ -13,7 +13,7 @@ export default function RenderClassificationInsights() {
   return (
     <div
       id="render-root"
-      className="min-h-screen w-full flex items-center justify-center bg-transparent font-sans"
+      className="flex min-h-screen w-full items-center justify-center bg-transparent font-sans"
       style={{ padding: 0 }}
     >
       <div

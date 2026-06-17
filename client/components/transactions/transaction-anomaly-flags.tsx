@@ -43,16 +43,16 @@ export function TransactionAnomalyFlags() {
         return (
           <div
             key={flag.id}
-            className="flex-1 flex items-center gap-3 p-3 border rounded-lg bg-card"
+            className="flex flex-1 items-center gap-3 rounded-lg border bg-card p-3"
           >
-            <div className={`p-2 rounded-full ${flag.iconBg} shrink-0`}>
-              <IconComponent className={`h-4 w-4 ${flag.iconColor}`} />
+            <div className={`rounded-full p-2 ${flag.iconBg} shrink-0`}>
+              <IconComponent className={`size-4 ${flag.iconColor}`} />
             </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="text-body-md font-medium truncate">
+            <div className="min-w-0 flex-1">
+              <h4 className="truncate text-body-md font-medium">
                 {flag.title}
               </h4>
-              <p className="text-caption text-muted-foreground truncate">
+              <p className="truncate text-caption text-muted-foreground">
                 {flag.description}
               </p>
             </div>
@@ -60,7 +60,7 @@ export function TransactionAnomalyFlags() {
               <Button
                 size="sm"
                 variant="link"
-                className="text-primary p-0 h-auto text-body-md shrink-0"
+                className="h-auto shrink-0 p-0 text-body-md text-primary"
               >
                 {flag.actionLabel}
               </Button>

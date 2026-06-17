@@ -46,25 +46,25 @@ export function ClassificationInsights() {
         return (
           <div key={item.level} className="flex items-center gap-4 py-2">
             {/* Icon and Label */}
-            <div className="flex items-center gap-2 min-w-[140px]">
-              <IconComponent className={`h-4 w-4 ${item.color}`} />
+            <div className="flex min-w-[140px] items-center gap-2">
+              <IconComponent className={`size-4 ${item.color}`} />
               <span className="text-body-md font-medium">{item.level}</span>
             </div>
 
             {/* Progress Bar */}
-            <div className="flex-1 min-w-[120px]">
+            <div className="min-w-progress-bar flex-1">
               <Progress value={item.percentage} className="h-2" />
             </div>
 
             {/* Count and Percentage */}
-            <div className="text-body-md text-muted-foreground min-w-[100px] text-right">
+            <div className="min-w-[100px] text-right text-body-md text-muted-foreground">
               {item.count} ({item.percentage}%)
             </div>
 
             {/* Primary Action */}
             <Button
               variant="link"
-              className={`${item.actionColor} p-0 h-auto text-body-md`}
+              className={`${item.actionColor} h-auto p-0 text-body-md`}
             >
               Review
             </Button>
@@ -73,7 +73,7 @@ export function ClassificationInsights() {
       })}
 
       {/* Summary Row */}
-      <div className="flex items-center justify-between pt-2 border-t">
+      <div className="flex items-center justify-between border-t pt-2">
         <span className="text-body-md text-muted-foreground">
           Total Classifications
         </span>

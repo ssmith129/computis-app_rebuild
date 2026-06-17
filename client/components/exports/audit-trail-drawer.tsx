@@ -199,7 +199,7 @@ export function AuditTrailDrawer({
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-overlay transition-opacity duration-300"
+          className="fixed inset-0 z-overlay bg-black/30 transition-opacity duration-300"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -207,7 +207,7 @@ export function AuditTrailDrawer({
 
       {/* Drawer */}
       <div
-        className={`fixed right-0 top-0 h-full w-[450px] bg-background border-l border-border z-drawer flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed right-0 top-0 z-drawer flex h-full w-[450px] flex-col border-l border-border bg-background transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
@@ -216,25 +216,25 @@ export function AuditTrailDrawer({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-border">
+        <div className="flex items-center justify-between border-b border-border p-5">
           <h3 id="drawer-title" className="text-heading-lg font-semibold">
             Audit Trail
           </h3>
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0 hover:bg-accent"
+            className="size-8 p-0 hover:bg-accent"
             onClick={onClose}
             aria-label="Close audit trail drawer"
           >
-            <X className="h-4 w-4" />
+            <X className="size-4" />
           </Button>
         </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-5">
           {entries.length === 0 ? (
-            <div className="text-center py-10 text-muted-foreground">
+            <div className="py-10 text-center text-muted-foreground">
               Select an export to view its audit trail
             </div>
           ) : (
@@ -242,29 +242,29 @@ export function AuditTrailDrawer({
               {entries.map((entry, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-card border border-border rounded-lg"
+                  className="rounded-lg border border-border bg-card p-4"
                 >
-                  <div className="text-caption text-muted-foreground mb-2">
+                  <div className="mb-2 text-caption text-muted-foreground">
                     {entry.time}
                   </div>
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="mb-1 flex items-center gap-2">
                     <span
-                      className={`inline-flex items-center justify-center w-5 h-5 rounded-full ${getIconClass(entry.icon)}`}
+                      className={`inline-flex size-5 items-center justify-center rounded-full ${getIconClass(entry.icon)}`}
                     >
                       {(() => {
                         const IconComponent = getIconComponent(entry.icon);
-                        return <IconComponent className="h-3 w-3" />;
+                        return <IconComponent className="size-3" />;
                       })()}
                     </span>
-                    <span className="font-medium text-body-md">
+                    <span className="text-body-md font-medium">
                       {entry.action}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1 text-caption text-blue-400 mb-2">
-                    <User className="h-3 w-3" />
+                  <div className="mb-2 flex items-center gap-1 text-caption text-blue-400">
+                    <User className="size-3" />
                     <span>{entry.user}</span>
                   </div>
-                  <div className="text-body-md text-muted-foreground pt-2 border-t border-border">
+                  <div className="border-t border-border pt-2 text-body-md text-muted-foreground">
                     {entry.details}
                   </div>
                 </div>
@@ -274,13 +274,13 @@ export function AuditTrailDrawer({
         </div>
 
         {/* Footer */}
-        <div className="flex gap-2 p-4 border-t border-border">
+        <div className="flex gap-2 border-t border-border p-4">
           <Button className="flex-1" variant="default">
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="mr-2 size-4" />
             Export Trail
           </Button>
           <Button className="flex-1" variant="outline">
-            <Printer className="h-4 w-4 mr-2" />
+            <Printer className="mr-2 size-4" />
             Print
           </Button>
         </div>

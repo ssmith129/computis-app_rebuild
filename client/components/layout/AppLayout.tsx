@@ -35,27 +35,27 @@ function AppLayoutInner({ children, activeItem }: AppLayoutProps) {
       : "var(--sidebar-width)";
 
   return (
-    <div className="app-layout-grid min-h-screen w-full max-w-full overflow-x-clip box-border">
+    <div className="app-layout-grid box-border min-h-screen w-full max-w-full overflow-x-clip">
       <DashboardSidebar activeItem={activeItem} />
 
-      <div className="app-layout-right-column flex flex-col min-h-screen min-w-0 max-w-full overflow-x-clip">
+      <div className="app-layout-right-column flex min-h-screen min-w-0 max-w-full flex-col overflow-x-clip">
         {/* Fixed Header - dynamically adjusts left/width based on sidebar state */}
         <div
-          className="header-container-fixed bg-sidebar border-b border-sidebar-border fixed top-0 z-50 overflow-hidden transition-[left,width] duration-200 ease-linear"
+          className="header-container-fixed fixed top-0 z-50 overflow-hidden border-b border-sidebar-border bg-sidebar transition-[left,width] duration-200 ease-linear"
           style={{
             isolation: "isolate",
             left: sidebarOffset,
             width: `calc(100% - ${sidebarOffset})`,
           }}
         >
-          <div className="w-full max-w-content mx-auto overflow-hidden">
+          <div className="mx-auto w-full max-w-content overflow-hidden">
             <DashboardHeader />
           </div>
         </div>
 
         {/* Main Content Area */}
-        <div className="flex flex-1 min-h-0 w-full max-w-content mx-auto overflow-x-clip pt-[3.5rem] box-border">
-          <SidebarInset className="flex flex-col min-w-0 flex-1 w-full max-w-full overflow-x-clip box-border">
+        <div className="mx-auto box-border flex min-h-0 w-full max-w-content flex-1 overflow-x-clip pt-14">
+          <SidebarInset className="box-border flex w-full min-w-0 max-w-full flex-1 flex-col overflow-x-clip">
             {children}
           </SidebarInset>
         </div>

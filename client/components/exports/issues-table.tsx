@@ -96,7 +96,7 @@ export function IssuesTable() {
                 <TableRow key={issue.id}>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <IconComponent className={`h-4 w-4 ${issue.iconColor}`} />
+                      <IconComponent className={`size-4 ${issue.iconColor}`} />
                       <span className="font-medium">{issue.issueType}</span>
                     </div>
                   </TableCell>
@@ -132,9 +132,9 @@ export function IssuesTable() {
       </div>
 
       {issues.length === 0 && (
-        <div className="text-center py-8">
-          <AlertCircle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="text-heading-lg font-medium mb-2">No Issues Found</h3>
+        <div className="py-8 text-center">
+          <AlertCircle className="mx-auto mb-4 size-12 text-muted-foreground" />
+          <h3 className="mb-2 text-heading-lg font-medium">No Issues Found</h3>
           <p className="text-body-md text-muted-foreground">
             All your data is ready for export.
           </p>

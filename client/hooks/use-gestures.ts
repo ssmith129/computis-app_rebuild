@@ -74,8 +74,8 @@ export function useSwipe(
     } as AddEventListenerOptions);
 
     return () => {
-      el.removeEventListener("pointerdown", down as any);
-      window.removeEventListener("pointerup", up as any);
+      el.removeEventListener("pointerdown", down as EventListener);
+      window.removeEventListener("pointerup", up as EventListener);
     };
   }, [onPointerDown, onPointerUp, target]);
 }
@@ -171,10 +171,10 @@ export function usePinch(
     } as AddEventListenerOptions);
 
     return () => {
-      el.removeEventListener("pointerdown", onPointerDown as any);
-      window.removeEventListener("pointermove", onPointerMove as any);
-      window.removeEventListener("pointerup", onPointerUp as any);
-      window.removeEventListener("pointercancel", onPointerUp as any);
+      el.removeEventListener("pointerdown", onPointerDown as EventListener);
+      window.removeEventListener("pointermove", onPointerMove as EventListener);
+      window.removeEventListener("pointerup", onPointerUp as EventListener);
+      window.removeEventListener("pointercancel", onPointerUp as EventListener);
     };
   }, [onPinch, onPinchEnd, onPinchStart, target]);
 }

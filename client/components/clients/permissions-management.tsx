@@ -37,7 +37,6 @@ import {
   Check,
   X,
   Eye,
-  FileEdit,
   Users,
   UserPlus,
   History,
@@ -64,13 +63,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
-interface Permission {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-}
 
 interface Role {
   id: string;
@@ -328,12 +320,12 @@ const mockAuditTrail: AuditEntry[] = [
 
 const getPermissionIcon = (allowed: boolean) => {
   return allowed ? (
-    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-success-bg">
-      <Check className="h-4 w-4 text-success" />
+    <div className="flex size-8 items-center justify-center rounded-full bg-success-bg">
+      <Check className="size-4 text-success" />
     </div>
   ) : (
-    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-error-bg">
-      <X className="h-4 w-4 text-error" />
+    <div className="flex size-8 items-center justify-center rounded-full bg-error-bg">
+      <X className="size-4 text-error" />
     </div>
   );
 };
@@ -451,38 +443,38 @@ export function PermissionsManagement() {
           </TabsList>
           <div className="flex gap-2">
             <Button variant="outline" onClick={() => setAssignRoleOpen(true)}>
-              <UserPlus className="h-4 w-4 mr-2" />
+              <UserPlus className="mr-2 size-4" />
               Bulk Assign
             </Button>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
               onClick={() => setCreateRoleOpen(true)}
             >
-              <Plus className="h-4 w-4 mr-2" />
+              <Plus className="mr-2 size-4" />
               Create Role
             </Button>
           </div>
         </div>
 
         {/* Roles Tab */}
-        <TabsContent value="roles" className="space-y-6 mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <TabsContent value="roles" className="mt-6 space-y-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {mockRoles.map((role) => (
               <Card
                 key={role.id}
-                className="hover:shadow-lg transition-shadow cursor-pointer"
+                className="cursor-pointer transition-shadow hover:shadow-lg"
                 onClick={() => handleViewRole(role)}
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div
-                        className={`p-3 rounded-lg ${getRoleColor(role.color)}`}
+                        className={`rounded-lg p-3 ${getRoleColor(role.color)}`}
                       >
-                        <Shield className="h-6 w-6" />
+                        <Shield className="size-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-heading-lg">
+                        <h3 className="text-heading-lg font-semibold">
                           {role.name}
                         </h3>
                         <p className="text-body-md text-muted-foreground">
@@ -513,7 +505,7 @@ export function PermissionsManagement() {
                       {Object.keys(role.permissions).length}
                     </span>
                   </div>
-                  <div className="pt-2 border-t flex gap-2">
+                  <div className="flex gap-2 border-t pt-2">
                     <Button
                       variant="outline"
                       size="sm"
@@ -523,7 +515,7 @@ export function PermissionsManagement() {
                         handleEditRole(role);
                       }}
                     >
-                      <Edit2 className="h-4 w-4 mr-2" />
+                      <Edit2 className="mr-2 size-4" />
                       Edit
                     </Button>
                     <DropdownMenu>
@@ -534,18 +526,18 @@ export function PermissionsManagement() {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-9 w-9 p-0"
+                          className="size-9 p-0"
                         >
-                          <MoreHorizontal className="h-4 w-4" />
+                          <MoreHorizontal className="size-4" />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={() => handleViewRole(role)}>
-                          <Eye className="mr-2 h-4 w-4" />
+                          <Eye className="mr-2 size-4" />
                           View Details
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          <Users className="mr-2 h-4 w-4" />
+                          <Users className="mr-2 size-4" />
                           View Users
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
@@ -556,7 +548,7 @@ export function PermissionsManagement() {
                             setDeleteDialogOpen(true);
                           }}
                         >
-                          <Trash2 className="mr-2 h-4 w-4" />
+                          <Trash2 className="mr-2 size-4" />
                           Delete Role
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -569,7 +561,7 @@ export function PermissionsManagement() {
         </TabsContent>
 
         {/* Permissions Matrix Tab */}
-        <TabsContent value="matrix" className="space-y-6 mt-6">
+        <TabsContent value="matrix" className="mt-6 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle>Role Permissions Matrix</CardTitle>
@@ -582,13 +574,13 @@ export function PermissionsManagement() {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-64 sticky left-0 bg-background z-10">
+                      <TableHead className="sticky left-0 z-10 w-64 bg-background">
                         Permission
                       </TableHead>
                       {mockRoles.map((role) => (
                         <TableHead key={role.id} className="text-center">
                           <div className="flex flex-col items-center gap-1">
-                            <Shield className="h-4 w-4 text-muted-foreground" />
+                            <Shield className="size-4 text-muted-foreground" />
                             <span className="font-semibold">{role.name}</span>
                           </div>
                         </TableHead>
@@ -602,7 +594,7 @@ export function PermissionsManagement() {
                           <TableRow className="bg-muted/50">
                             <TableCell
                               colSpan={mockRoles.length + 1}
-                              className="font-semibold sticky left-0 bg-muted/50"
+                              className="sticky left-0 bg-muted/50 font-semibold"
                             >
                               {category}
                             </TableCell>
@@ -626,11 +618,11 @@ export function PermissionsManagement() {
                                 >
                                   {role.permissions[permission.id] ? (
                                     <div className="flex justify-center">
-                                      <Check className="h-5 w-5 text-green-600" />
+                                      <Check className="size-5 text-green-600" />
                                     </div>
                                   ) : (
                                     <div className="flex justify-center">
-                                      <X className="h-5 w-5 text-red-400" />
+                                      <X className="size-5 text-red-400" />
                                     </div>
                                   )}
                                 </TableCell>
@@ -648,18 +640,18 @@ export function PermissionsManagement() {
         </TabsContent>
 
         {/* Audit Trail Tab */}
-        <TabsContent value="audit" className="space-y-6 mt-6">
+        <TabsContent value="audit" className="mt-6 space-y-6">
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle>Permission Change History</CardTitle>
-                  <p className="text-body-md text-muted-foreground mt-1">
+                  <p className="mt-1 text-body-md text-muted-foreground">
                     Track all permission and role changes
                   </p>
                 </div>
                 <Button variant="outline" size="sm">
-                  <History className="h-4 w-4 mr-2" />
+                  <History className="mr-2 size-4" />
                   Export History
                 </Button>
               </div>
@@ -683,7 +675,7 @@ export function PermissionsManagement() {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-caption">
+                          <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-caption font-semibold text-white">
                             {entry.user
                               .split(" ")
                               .map((n) => n[0])
@@ -696,7 +688,7 @@ export function PermissionsManagement() {
                         <Badge variant="secondary">{entry.action}</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className="bg-purple-100 text-purple-700 border-0">
+                        <Badge className="border-0 bg-purple-100 text-purple-700">
                           {entry.role}
                         </Badge>
                       </TableCell>
@@ -714,7 +706,7 @@ export function PermissionsManagement() {
 
       {/* View Role Dialog */}
       <Dialog open={viewRoleOpen} onOpenChange={setViewRoleOpen}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-h-[80vh] max-w-4xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Role Details</DialogTitle>
           </DialogHeader>
@@ -722,9 +714,9 @@ export function PermissionsManagement() {
             <div className="space-y-6 py-4">
               <div className="flex items-center gap-4">
                 <div
-                  className={`p-4 rounded-lg ${getRoleColor(selectedRole.color)}`}
+                  className={`rounded-lg p-4 ${getRoleColor(selectedRole.color)}`}
                 >
-                  <Shield className="h-8 w-8" />
+                  <Shield className="size-8" />
                 </div>
                 <div>
                   <h3 className="text-display-sm font-semibold">
@@ -770,17 +762,17 @@ export function PermissionsManagement() {
                 {Object.entries(permissionCategories).map(
                   ([category, permissions]) => (
                     <div key={category} className="space-y-2">
-                      <h5 className="font-medium text-body-md text-muted-foreground">
+                      <h5 className="text-body-md font-medium text-muted-foreground">
                         {category}
                       </h5>
                       <div className="grid grid-cols-2 gap-2">
                         {permissions.map((permission) => (
                           <div
                             key={permission.id}
-                            className="flex items-center justify-between p-3 rounded-lg border"
+                            className="flex items-center justify-between rounded-lg border p-3"
                           >
                             <div>
-                              <div className="font-medium text-body-md">
+                              <div className="text-body-md font-medium">
                                 {permission.name}
                               </div>
                               <div className="text-caption text-muted-foreground">
@@ -808,9 +800,9 @@ export function PermissionsManagement() {
                 setViewRoleOpen(false);
                 if (selectedRole) handleEditRole(selectedRole);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              <Edit2 className="h-4 w-4 mr-2" />
+              <Edit2 className="mr-2 size-4" />
               Edit Role
             </Button>
           </DialogFooter>
@@ -831,7 +823,7 @@ export function PermissionsManagement() {
           }
         }}
       >
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-h-[80vh] max-w-4xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editRoleOpen ? "Edit Role" : "Create New Role"}
@@ -886,9 +878,6 @@ export function PermissionsManagement() {
                   const allEnabled = permissions.every(
                     (p) => newRolePermissions[p.id],
                   );
-                  const someEnabled = permissions.some(
-                    (p) => newRolePermissions[p.id],
-                  );
                   return (
                     <Card key={category}>
                       <CardHeader className="pb-3">
@@ -902,7 +891,7 @@ export function PermissionsManagement() {
                                 toggleCategoryPermissions(category, true)
                               }
                             >
-                              <Lock className="h-4 w-4 mr-1" />
+                              <Lock className="mr-1 size-4" />
                               Enable All
                             </Button>
                             <Button
@@ -912,7 +901,7 @@ export function PermissionsManagement() {
                                 toggleCategoryPermissions(category, false)
                               }
                             >
-                              <Unlock className="h-4 w-4 mr-1" />
+                              <Unlock className="mr-1 size-4" />
                               Disable All
                             </Button>
                           </div>
@@ -922,9 +911,9 @@ export function PermissionsManagement() {
                         {permissions.map((permission) => (
                           <div
                             key={permission.id}
-                            className="flex items-center justify-between p-3 rounded-lg border hover:bg-muted/50 transition-colors"
+                            className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
                           >
-                            <div className="flex items-center gap-3 flex-1">
+                            <div className="flex flex-1 items-center gap-3">
                               <Checkbox
                                 checked={
                                   newRolePermissions[permission.id] || false
@@ -934,7 +923,7 @@ export function PermissionsManagement() {
                                 }
                               />
                               <div>
-                                <div className="font-medium text-body-md">
+                                <div className="text-body-md font-medium">
                                   {permission.name}
                                 </div>
                                 <div className="text-caption text-muted-foreground">
@@ -943,8 +932,8 @@ export function PermissionsManagement() {
                               </div>
                             </div>
                             {newRolePermissions[permission.id] ? (
-                              <Badge className="bg-green-100 text-green-700 border-0">
-                                <Check className="h-3 w-3 mr-1" />
+                              <Badge className="border-0 bg-green-100 text-green-700">
+                                <Check className="mr-1 size-3" />
                                 Enabled
                               </Badge>
                             ) : (
@@ -952,7 +941,7 @@ export function PermissionsManagement() {
                                 variant="outline"
                                 className="text-muted-foreground"
                               >
-                                <X className="h-3 w-3 mr-1" />
+                                <X className="mr-1 size-3" />
                                 Disabled
                               </Badge>
                             )}
@@ -977,7 +966,7 @@ export function PermissionsManagement() {
             </Button>
             <Button
               onClick={editRoleOpen ? handleSaveEdit : handleCreateRole}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
               {editRoleOpen ? "Save Changes" : "Create Role"}
             </Button>
@@ -1005,7 +994,7 @@ export function PermissionsManagement() {
                   {mockRoles.map((role) => (
                     <SelectItem key={role.id} value={role.name}>
                       <div className="flex items-center gap-2">
-                        <Shield className="h-4 w-4" />
+                        <Shield className="size-4" />
                         {role.name}
                       </div>
                     </SelectItem>
@@ -1015,9 +1004,9 @@ export function PermissionsManagement() {
             </div>
             <div className="space-y-2">
               <Label>Selected Users ({selectedUsers.length})</Label>
-              <div className="border rounded-lg p-4 min-h-[100px] max-h-[200px] overflow-y-auto">
+              <div className="max-h-[200px] min-h-[100px] overflow-y-auto rounded-lg border p-4">
                 {selectedUsers.length === 0 ? (
-                  <p className="text-body-md text-muted-foreground text-center py-4">
+                  <p className="py-4 text-center text-body-md text-muted-foreground">
                     No users selected
                   </p>
                 ) : (
@@ -1025,20 +1014,20 @@ export function PermissionsManagement() {
                     {selectedUsers.map((userId) => (
                       <div
                         key={userId}
-                        className="flex items-center justify-between p-2 rounded-lg bg-muted"
+                        className="flex items-center justify-between rounded-lg bg-muted p-2"
                       >
                         <span className="text-body-md">User {userId}</span>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-6 w-6 p-0"
+                          className="size-6 p-0"
                           onClick={() =>
                             setSelectedUsers((prev) =>
                               prev.filter((id) => id !== userId),
                             )
                           }
                         >
-                          <X className="h-4 w-4" />
+                          <X className="size-4" />
                         </Button>
                       </div>
                     ))}
@@ -1046,8 +1035,8 @@ export function PermissionsManagement() {
                 )}
               </div>
             </div>
-            <div className="flex items-start gap-2 p-3 rounded-lg bg-info-bg border border-info/30">
-              <AlertCircle className="h-5 w-5 text-info mt-0.5" />
+            <div className="flex items-start gap-2 rounded-lg border border-info/30 bg-info-bg p-3">
+              <AlertCircle className="mt-0.5 size-5 text-info" />
               <div className="text-body-md text-info-text">
                 <p className="font-medium">Note:</p>
                 <p>
@@ -1063,9 +1052,9 @@ export function PermissionsManagement() {
             </Button>
             <Button
               onClick={handleBulkAssign}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              <UserPlus className="h-4 w-4 mr-2" />
+              <UserPlus className="mr-2 size-4" />
               Assign Roles
             </Button>
           </DialogFooter>

@@ -4,7 +4,7 @@ import { NavItem, NavItemProps } from "./NavItem";
 import { cn } from "@/lib/utils";
 import { Menu, ChevronLeft, ChevronRight } from "lucide-react";
 
-export interface SideNavigationItem extends Omit<NavItemProps, "collapsed"> {}
+export type SideNavigationItem = Omit<NavItemProps, "collapsed">;
 
 export interface SideNavigationProps {
   items: SideNavigationItem[];
@@ -71,14 +71,14 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({
         aria-label="Main navigation"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-3 border-b border-sidebar">
+        <div className="flex items-center justify-between border-b border-sidebar p-3">
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-sidebar-accent md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-md hover:bg-sidebar-accent md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((v) => !v)}
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="size-5" />
           </button>
           <div
             className={cn(
@@ -88,26 +88,26 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({
             aria-hidden={collapsed}
           >
             {logo}
-            {!!title && <span className="font-semibold truncate">{title}</span>}
+            {!!title && <span className="truncate font-semibold">{title}</span>}
           </div>
           <button
             type="button"
-            className="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-sidebar-accent"
+            className="ml-auto inline-flex size-9 items-center justify-center rounded-md hover:bg-sidebar-accent"
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             aria-controls="app-sidenav"
             aria-expanded={!collapsed}
             onClick={() => setCollapsed((c) => !c)}
           >
             {collapsed ? (
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="size-5" />
             ) : (
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="size-5" />
             )}
           </button>
         </div>
 
         {/* Nav items */}
-        <nav id="app-sidenav" className="p-2 space-y-1">
+        <nav id="app-sidenav" className="space-y-1 p-2">
           {items.map((it) => (
             <NavItem key={it.to} {...it} collapsed={collapsed} />
           ))}

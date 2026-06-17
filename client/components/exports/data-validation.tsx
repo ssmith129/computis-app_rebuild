@@ -1,6 +1,6 @@
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, AlertTriangle, Info } from "lucide-react";
+import { CheckCircle, AlertTriangle } from "lucide-react";
 
 const validationItems = [
   {
@@ -58,11 +58,11 @@ export function DataValidation() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-heading-lg font-semibold mb-1">
+          <h3 className="mb-1 text-heading-lg font-semibold">
             Data Validation
           </h3>
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-success" />
+            <CheckCircle className="size-4 text-success" />
             <p className="text-body-md text-muted-foreground">
               Your data has been validated for export
             </p>
@@ -78,8 +78,8 @@ export function DataValidation() {
             <div key={item.id} className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <IconComponent className={`h-4 w-4 ${item.color}`} />
-                  <span className="font-medium text-body-md">{item.title}</span>
+                  <IconComponent className={`size-4 ${item.color}`} />
+                  <span className="text-body-md font-medium">{item.title}</span>
                 </div>
                 {getStatusBadge(item.status)}
               </div>
@@ -102,11 +102,11 @@ export function DataValidation() {
       </div>
 
       {/* Summary */}
-      <div className="pt-4 border-t">
+      <div className="border-t pt-4">
         <div className="flex items-center justify-between text-body-md">
           <span className="text-muted-foreground">Overall Status:</span>
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-success" />
+            <CheckCircle className="size-4 text-success" />
             <span className="font-medium text-success">Ready for Export</span>
           </div>
         </div>

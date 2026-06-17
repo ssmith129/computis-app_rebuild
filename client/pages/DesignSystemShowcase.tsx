@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -51,7 +45,7 @@ export default function DesignSystemShowcase() {
         {/* Typography Section */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">
+            <h2 className="mb-2 text-heading-md font-semibold">
               Typography Scale
             </h2>
             <p className="text-body-sm text-muted-foreground">
@@ -127,7 +121,7 @@ export default function DesignSystemShowcase() {
         {/* Button Section */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">Buttons</h2>
+            <h2 className="mb-2 text-heading-md font-semibold">Buttons</h2>
             <p className="text-body-sm text-muted-foreground">
               Optimized button sizes: Small (32px), Medium (36px), Large (44px)
             </p>
@@ -159,15 +153,15 @@ export default function DesignSystemShowcase() {
                 <Button variant="outline">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="success">
-                  <CheckCircle2 className="h-4 w-4" />
+                  <CheckCircle2 className="size-4" />
                   Success
                 </Button>
                 <Button variant="warning">
-                  <AlertTriangle className="h-4 w-4" />
+                  <AlertTriangle className="size-4" />
                   Warning
                 </Button>
                 <Button variant="destructive">
-                  <XCircle className="h-4 w-4" />
+                  <XCircle className="size-4" />
                   Destructive
                 </Button>
               </CardContent>
@@ -178,7 +172,7 @@ export default function DesignSystemShowcase() {
         {/* Badge Section */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">
+            <h2 className="mb-2 text-heading-md font-semibold">
               Status Badges
             </h2>
             <p className="text-body-sm text-muted-foreground">
@@ -189,19 +183,19 @@ export default function DesignSystemShowcase() {
           <Card className="p-standard">
             <CardContent className="flex flex-wrap gap-3">
               <Badge variant="success">
-                <CheckCircle2 className="h-3 w-3 mr-1" />
+                <CheckCircle2 className="mr-1 size-3" />
                 Verified
               </Badge>
               <Badge variant="warning">
-                <AlertTriangle className="h-3 w-3 mr-1" />
+                <AlertTriangle className="mr-1 size-3" />
                 Pending Review
               </Badge>
               <Badge variant="error">
-                <XCircle className="h-3 w-3 mr-1" />
+                <XCircle className="mr-1 size-3" />
                 Failed
               </Badge>
               <Badge variant="info">
-                <Info className="h-3 w-3 mr-1" />
+                <Info className="mr-1 size-3" />
                 Processing
               </Badge>
               <Badge variant="neutral">Draft</Badge>
@@ -214,7 +208,7 @@ export default function DesignSystemShowcase() {
         {/* Cards Section */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">
+            <h2 className="mb-2 text-heading-md font-semibold">
               Dashboard Cards
             </h2>
             <p className="text-body-sm text-muted-foreground">
@@ -227,16 +221,16 @@ export default function DesignSystemShowcase() {
             {/* Metric Card 1 */}
             <Card className="p-standard">
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between mb-2">
+                <div className="mb-2 flex items-center justify-between">
                   <p className="text-caption text-muted-foreground">
                     Total Portfolio
                   </p>
-                  <Wallet className="h-4 w-4 text-muted-foreground" />
+                  <Wallet className="size-4 text-muted-foreground" />
                 </div>
                 <div className="space-y-1">
                   <p className="text-display-sm font-bold">$1,234,567</p>
                   <div className="flex items-center gap-1 text-success">
-                    <TrendingUp className="h-3 w-3" />
+                    <TrendingUp className="size-3" />
                     <span className="text-caption font-medium">+12.5%</span>
                   </div>
                 </div>
@@ -246,11 +240,11 @@ export default function DesignSystemShowcase() {
             {/* Metric Card 2 */}
             <Card className="p-standard">
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between mb-2">
+                <div className="mb-2 flex items-center justify-between">
                   <p className="text-caption text-muted-foreground">
                     Transactions
                   </p>
-                  <Activity className="h-4 w-4 text-muted-foreground" />
+                  <Activity className="size-4 text-muted-foreground" />
                 </div>
                 <div className="space-y-1">
                   <p className="text-display-sm font-bold">15,243</p>
@@ -264,11 +258,11 @@ export default function DesignSystemShowcase() {
             {/* Metric Card 3 */}
             <Card className="p-standard">
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between mb-2">
+                <div className="mb-2 flex items-center justify-between">
                   <p className="text-caption text-muted-foreground">
                     Active Wallets
                   </p>
-                  <Wallet className="h-4 w-4 text-muted-foreground" />
+                  <Wallet className="size-4 text-muted-foreground" />
                 </div>
                 <div className="space-y-1">
                   <p className="text-display-sm font-bold">24</p>
@@ -282,11 +276,11 @@ export default function DesignSystemShowcase() {
             {/* Metric Card 4 */}
             <Card className="p-standard">
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between mb-2">
+                <div className="mb-2 flex items-center justify-between">
                   <p className="text-caption text-muted-foreground">
                     Tax Liability
                   </p>
-                  <Info className="h-4 w-4 text-muted-foreground" />
+                  <Info className="size-4 text-muted-foreground" />
                 </div>
                 <div className="space-y-1">
                   <p className="text-display-sm font-bold">$45,678</p>
@@ -302,7 +296,7 @@ export default function DesignSystemShowcase() {
         {/* Form Elements */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">
+            <h2 className="mb-2 text-heading-md font-semibold">
               Form Elements
             </h2>
             <p className="text-body-sm text-muted-foreground">
@@ -351,7 +345,7 @@ export default function DesignSystemShowcase() {
         {/* Data Table */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">Data Tables</h2>
+            <h2 className="mb-2 text-heading-md font-semibold">Data Tables</h2>
             <p className="text-body-sm text-muted-foreground">
               Optimized table density: Header (36px), Rows (40px) - 16% more
               content per screen
@@ -365,7 +359,7 @@ export default function DesignSystemShowcase() {
                   Recent Transactions
                 </h3>
                 <Button size="sm" variant="outline">
-                  <Download className="h-4 w-4" />
+                  <Download className="size-4" />
                   Export
                 </Button>
               </div>
@@ -379,7 +373,7 @@ export default function DesignSystemShowcase() {
                   <TableHead className="text-caption">Amount</TableHead>
                   <TableHead className="text-caption">Value (USD)</TableHead>
                   <TableHead className="text-caption">Status</TableHead>
-                  <TableHead className="text-caption text-right">
+                  <TableHead className="text-right text-caption">
                     Actions
                   </TableHead>
                 </TableRow>
@@ -391,10 +385,10 @@ export default function DesignSystemShowcase() {
                   <TableCell className="text-body-sm font-medium">
                     BTC
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     0.5000
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     $25,000.00
                   </TableCell>
                   <TableCell>
@@ -412,10 +406,10 @@ export default function DesignSystemShowcase() {
                   <TableCell className="text-body-sm font-medium">
                     ETH
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     2.5000
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     $6,250.00
                   </TableCell>
                   <TableCell>
@@ -433,10 +427,10 @@ export default function DesignSystemShowcase() {
                   <TableCell className="text-body-sm font-medium">
                     USDT
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     1,000.00
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     $1,000.00
                   </TableCell>
                   <TableCell>
@@ -454,10 +448,10 @@ export default function DesignSystemShowcase() {
                   <TableCell className="text-body-sm font-medium">
                     SOL
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     50.0000
                   </TableCell>
-                  <TableCell className="text-body-sm font-mono">
+                  <TableCell className="font-mono text-body-sm">
                     $4,500.00
                   </TableCell>
                   <TableCell>
@@ -477,7 +471,7 @@ export default function DesignSystemShowcase() {
         {/* Color Palette */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">Color System</h2>
+            <h2 className="mb-2 text-heading-md font-semibold">Color System</h2>
             <p className="text-body-sm text-muted-foreground">
               WCAG 2.1 AA compliant color palette with semantic status colors
             </p>
@@ -493,7 +487,7 @@ export default function DesignSystemShowcase() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-md bg-primary"></div>
+                  <div className="size-12 rounded-md bg-primary"></div>
                   <div>
                     <p className="text-body-sm font-medium">Primary Blue</p>
                     <p className="text-caption text-muted-foreground">
@@ -502,7 +496,7 @@ export default function DesignSystemShowcase() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-md bg-accent"></div>
+                  <div className="size-12 rounded-md bg-accent"></div>
                   <div>
                     <p className="text-body-sm font-medium">Computis Gold</p>
                     <p className="text-caption text-muted-foreground">
@@ -522,7 +516,7 @@ export default function DesignSystemShowcase() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-md bg-success"></div>
+                  <div className="size-12 rounded-md bg-success"></div>
                   <div>
                     <p className="text-body-sm font-medium">Success</p>
                     <p className="text-caption text-muted-foreground">
@@ -531,7 +525,7 @@ export default function DesignSystemShowcase() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-md bg-warning"></div>
+                  <div className="size-12 rounded-md bg-warning"></div>
                   <div>
                     <p className="text-body-sm font-medium">Warning</p>
                     <p className="text-caption text-muted-foreground">
@@ -540,7 +534,7 @@ export default function DesignSystemShowcase() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-md bg-error"></div>
+                  <div className="size-12 rounded-md bg-error"></div>
                   <div>
                     <p className="text-body-sm font-medium">Error</p>
                     <p className="text-caption text-muted-foreground">
@@ -556,7 +550,7 @@ export default function DesignSystemShowcase() {
         {/* Design System Summary */}
         <section className="space-y-4">
           <div>
-            <h2 className="text-heading-md font-semibold mb-2">
+            <h2 className="mb-2 text-heading-md font-semibold">
               Design System Impact
             </h2>
             <p className="text-body-sm text-muted-foreground">
@@ -616,7 +610,7 @@ export default function DesignSystemShowcase() {
         </section>
 
         {/* Documentation Link */}
-        <Card className="p-standard bg-primary-light border-primary">
+        <Card className="p-standard border-primary bg-primary-light">
           <CardContent className="pt-6">
             <div className="flex items-start justify-between">
               <div className="space-y-2">
@@ -631,7 +625,7 @@ export default function DesignSystemShowcase() {
               </div>
               <Button variant="default" size="default">
                 View Docs
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="size-4" />
               </Button>
             </div>
           </CardContent>

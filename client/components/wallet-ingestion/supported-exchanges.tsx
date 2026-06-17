@@ -24,7 +24,7 @@ const exchanges = [
   },
   {
     name: "More",
-    icon: <Plus className="w-6 h-6 text-muted-foreground" />,
+    icon: <Plus className="size-6 text-muted-foreground" />,
     color: "text-muted-foreground",
   },
 ];
@@ -35,13 +35,13 @@ export function SupportedExchanges() {
       <h3 className="text-heading-lg font-medium text-foreground">
         Supported Exchanges & Wallets
       </h3>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {exchanges.map((exchange) => (
           <Card
             key={exchange.name}
-            className="hover:shadow-md transition-shadow cursor-pointer"
+            className="cursor-pointer transition-shadow hover:shadow-md"
           >
-            <CardContent className="p-4 text-center space-y-2">
+            <CardContent className="space-y-2 p-4 text-center">
               <div className="flex justify-center">
                 {typeof exchange.icon === "string" ? (
                   <span className="text-display-lg">{exchange.icon}</span>

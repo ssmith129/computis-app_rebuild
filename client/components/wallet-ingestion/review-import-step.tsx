@@ -5,14 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  FileText,
-  CheckCircle,
-  AlertTriangle,
-  Upload,
-  Clock,
-  Database,
-} from "lucide-react";
+import { FileText, CheckCircle, Upload, Clock, Database } from "lucide-react";
 
 interface ReviewImportStepProps {
   fileName: string;
@@ -138,9 +131,9 @@ export function ReviewImportStep({
   return (
     <div className="space-y-6">
       {/* File Info Header */}
-      <div className="bg-muted/50 rounded-lg p-4">
+      <div className="rounded-lg bg-muted/50 p-4">
         <div className="flex items-center gap-3">
-          <FileText className="h-5 w-5 text-muted-foreground" />
+          <FileText className="size-5 text-muted-foreground" />
           <div>
             <h3 className="font-medium">{fileName}</h3>
             <p className="text-body-md text-muted-foreground">
@@ -153,11 +146,11 @@ export function ReviewImportStep({
       {/* Review Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-heading-lg font-semibold mb-1">
+          <h3 className="mb-1 text-heading-lg font-semibold">
             Review & Import
           </h3>
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-4 w-4 text-green-500" />
+            <CheckCircle className="size-4 text-green-500" />
             <p className="text-body-md text-muted-foreground">
               Data validated and mapped successfully
             </p>
@@ -171,31 +164,31 @@ export function ReviewImportStep({
           <CardTitle className="text-heading-md">Import Summary</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-display-lg font-bold font-mono tabular-nums text-green-600">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-green-600">
                 1,247
               </div>
               <div className="text-body-md text-muted-foreground">
                 Total Transactions
               </div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-display-lg font-bold font-mono tabular-nums text-blue-600">
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-blue-600">
                 8
               </div>
               <div className="text-body-md text-muted-foreground">Assets</div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-display-lg font-bold font-mono tabular-nums text-purple-600">
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-purple-600">
                 4
               </div>
               <div className="text-body-md text-muted-foreground">
                 Exchanges
               </div>
             </div>
-            <div className="text-center p-3 bg-muted/50 rounded-lg">
-              <div className="text-display-lg font-bold font-mono tabular-nums text-orange-600">
+            <div className="rounded-lg bg-muted/50 p-3 text-center">
+              <div className="font-mono text-display-lg font-bold tabular-nums text-orange-600">
                 365
               </div>
               <div className="text-body-md text-muted-foreground">
@@ -213,7 +206,7 @@ export function ReviewImportStep({
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <div className="grid grid-cols-7 gap-2 text-caption font-medium text-muted-foreground border-b pb-2">
+            <div className="grid grid-cols-7 gap-2 border-b pb-2 text-caption font-medium text-muted-foreground">
               <span>Date</span>
               <span>Type</span>
               <span>Asset</span>
@@ -225,10 +218,10 @@ export function ReviewImportStep({
             {sampleTransactions.map((tx, index) => (
               <div
                 key={index}
-                className="grid grid-cols-7 gap-2 text-body-md py-2"
+                className="grid grid-cols-7 gap-2 py-2 text-body-md"
               >
                 <span>{tx.date}</span>
-                <Badge variant="outline" className="text-caption w-fit">
+                <Badge variant="outline" className="w-fit text-caption">
                   {tx.type}
                 </Badge>
                 <span className="font-medium">{tx.asset}</span>
@@ -283,8 +276,8 @@ export function ReviewImportStep({
       {isImporting && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-heading-md flex items-center gap-2">
-              <Upload className="h-4 w-4" />
+            <CardTitle className="flex items-center gap-2 text-heading-md">
+              <Upload className="size-4" />
               Importing Transactions
             </CardTitle>
           </CardHeader>
@@ -297,7 +290,7 @@ export function ReviewImportStep({
               <Progress value={importProgress} className="h-2" />
             </div>
             <div className="flex items-center gap-2 text-body-md text-muted-foreground">
-              <Clock className="h-4 w-4" />
+              <Clock className="size-4" />
               <span>
                 Estimated time remaining:{" "}
                 {Math.max(0, Math.ceil((100 - importProgress) / 10))} seconds
@@ -319,12 +312,12 @@ export function ReviewImportStep({
         >
           {isImporting ? (
             <>
-              <Database className="h-4 w-4 mr-2 animate-spin" />
+              <Database className="mr-2 size-4 animate-spin" />
               Importing...
             </>
           ) : (
             <>
-              <Upload className="h-4 w-4 mr-2" />
+              <Upload className="mr-2 size-4" />
               Start Import
             </>
           )}

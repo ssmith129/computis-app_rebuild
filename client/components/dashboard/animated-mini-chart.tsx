@@ -133,11 +133,11 @@ export function AnimatedMiniChart({
 
   return (
     <div className={cn("relative w-full max-w-chart-sm", className)}>
-      <div className="flex items-end gap-1 sm:gap-1.5 h-12 sm:h-14 p-1">
+      <div className="flex h-12 items-end gap-1 p-1 sm:h-14 sm:gap-1.5">
         {processedData.map((item, index) => (
           <div
             key={index}
-            className="relative group flex-1 min-w-0"
+            className="group relative min-w-0 flex-1"
             onMouseEnter={() => setActiveBar(index)}
             onMouseLeave={() => setActiveBar(null)}
           >
@@ -151,10 +151,10 @@ export function AnimatedMiniChart({
 
             {/* Tooltip */}
             {showTooltip && activeBar === index && (
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-10 animate-in fade-in-0 zoom-in-95 duration-200 pointer-events-none">
-                <div className="bg-gray-900 text-white text-caption rounded-lg px-2 py-1 whitespace-nowrap">
+              <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 duration-200 animate-in fade-in-0 zoom-in-95">
+                <div className="whitespace-nowrap rounded-lg bg-gray-900 px-2 py-1 text-caption text-white">
                   {item.value.toLocaleString()}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                  <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
                 </div>
               </div>
             )}

@@ -116,7 +116,7 @@ export function RecentExports({ onRowClick }: RecentExportsProps = {}) {
               return (
                 <TableRow
                   key={exportItem.id}
-                  className="cursor-pointer hover:bg-accent/50 transition-colors"
+                  className="cursor-pointer transition-colors hover:bg-accent/50"
                   onClick={() => onRowClick?.(exportItem.id)}
                   role="button"
                   tabIndex={0}
@@ -133,7 +133,7 @@ export function RecentExports({ onRowClick }: RecentExportsProps = {}) {
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <IconComponent className="h-4 w-4 text-muted-foreground" />
+                      <IconComponent className="size-4 text-muted-foreground" />
                       {getExportTypeBadge(exportItem.exportType)}
                     </div>
                   </TableCell>
@@ -152,28 +152,28 @@ export function RecentExports({ onRowClick }: RecentExportsProps = {}) {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-8 w-8 p-0"
+                        className="size-8 p-0"
                         disabled={exportItem.status !== "Complete"}
                       >
-                        <Download className="h-4 w-4" />
+                        <Download className="size-4" />
                       </Button>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0"
+                            className="size-8 p-0"
                           >
-                            <MoreHorizontal className="h-4 w-4" />
+                            <MoreHorizontal className="size-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem>
-                            <Eye className="mr-2 h-4 w-4" />
+                            <Eye className="mr-2 size-4" />
                             View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem>
-                            <Download className="mr-2 h-4 w-4" />
+                            <Download className="mr-2 size-4" />
                             Download
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -188,9 +188,9 @@ export function RecentExports({ onRowClick }: RecentExportsProps = {}) {
       </div>
 
       {recentExports.length === 0 && (
-        <div className="text-center py-8">
-          <FileText className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="text-heading-lg font-medium mb-2">
+        <div className="py-8 text-center">
+          <FileText className="mx-auto mb-4 size-12 text-muted-foreground" />
+          <h3 className="mb-2 text-heading-lg font-medium">
             No Recent Exports
           </h3>
           <p className="text-body-md text-muted-foreground">

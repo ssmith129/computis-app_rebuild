@@ -23,11 +23,11 @@ export function DashboardContent() {
     <div className="app-content bg-gray-50">
       {/* Page Header */}
       <div className="page-titlebar">
-        <div className="flex flex-col p-4 sm:p-6 text-left">
+        <div className="flex flex-col p-4 text-left sm:p-6">
           <h1 className="text-heading-lg font-bold text-foreground">
             Dashboard
           </h1>
-          <p className="text-body-md text-muted-foreground mt-1">
+          <p className="mt-1 text-body-md text-muted-foreground">
             View all your key metrics and data here
           </p>
 
@@ -44,7 +44,7 @@ export function DashboardContent() {
                   className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="Admin view - Full access to all dashboard features"
                 >
-                  <Shield className="h-4 w-4" />
+                  <Shield className="size-4" />
                   <span>Admin</span>
                 </TabsTrigger>
                 <TabsTrigger
@@ -52,7 +52,7 @@ export function DashboardContent() {
                   className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="Client view - Limited to client-accessible data"
                 >
-                  <Users className="h-4 w-4" />
+                  <Users className="size-4" />
                   <span>Client</span>
                 </TabsTrigger>
                 <TabsTrigger
@@ -60,7 +60,7 @@ export function DashboardContent() {
                   className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-body-md font-medium transition-all data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow-sm"
                   aria-label="CPA view - Tax preparer tools and client management"
                 >
-                  <Briefcase className="h-4 w-4" />
+                  <Briefcase className="size-4" />
                   <span>CPA</span>
                 </TabsTrigger>
               </TabsList>
@@ -71,38 +71,38 @@ export function DashboardContent() {
 
       {/* Main Content with Loading State */}
       <div
-        className={`p-4 sm:p-6 space-y-4 sm:space-y-6 no-h-scroll transition-opacity duration-300 w-full max-w-full overflow-hidden ${isLoading ? "opacity-50" : "opacity-100"}`}
+        className={`no-h-scroll w-full max-w-full space-y-4 overflow-hidden p-4 transition-opacity duration-300 sm:space-y-6 sm:p-6 ${isLoading ? "opacity-50" : "opacity-100"}`}
       >
         <Tabs value={roleView} className="w-full">
           {/* Admin View */}
           <TabsContent value="admin" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="rounded-lg border border-gray-200 bg-white">
               <Tabs defaultValue="overview" className="w-full">
                 <div className="border-b border-gray-200 px-6">
-                  <TabsList className="h-auto p-0 bg-transparent border-0">
+                  <TabsList className="h-auto border-0 bg-transparent p-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-900">
+                      <span className="text-body-md font-semibold text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="reports"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Reports
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -111,7 +111,7 @@ export function DashboardContent() {
 
                 <TabsContent
                   value="overview"
-                  className="p-4 sm:p-6 space-y-8 mt-0 no-h-scroll"
+                  className="no-h-scroll mt-0 space-y-8 p-4 sm:p-6"
                 >
                   <EnhancedDashboardCards />
                   <TouchZoomContainer className="rounded-lg">
@@ -122,14 +122,14 @@ export function DashboardContent() {
 
                 <TabsContent
                   value="reports"
-                  className="p-6 mt-0 space-y-6 no-h-scroll"
+                  className="no-h-scroll mt-0 space-y-6 p-6"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-info-bg rounded-lg">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-info-bg p-2">
                           <svg
-                            className="h-6 w-6 text-info"
+                            className="size-6 text-info"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -161,14 +161,14 @@ export function DashboardContent() {
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">View Reports</Button>
+                      <Button className="mt-4 w-full">View Reports</Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-success-bg rounded-lg">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-success-bg p-2">
                           <svg
-                            className="h-6 w-6 text-success"
+                            className="size-6 text-success"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -202,16 +202,16 @@ export function DashboardContent() {
                           <span className="font-medium">$25,491</span>
                         </div>
                       </div>
-                      <Button variant="success" className="w-full mt-4">
+                      <Button variant="success" className="mt-4 w-full">
                         View Analysis
                       </Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-purple-100 rounded-lg">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-purple-100 p-2">
                           <svg
-                            className="h-6 w-6 text-purple-600"
+                            className="size-6 text-purple-600"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -243,21 +243,21 @@ export function DashboardContent() {
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">Download Package</Button>
+                      <Button className="mt-4 w-full">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
 
-                <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                <TabsContent value="portfolio" className="mt-0 space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-orange-500"></div>
                             <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
@@ -273,7 +273,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-blue-500"></div>
                             <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
@@ -289,7 +289,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-green-500"></div>
                             <span className="text-body-md font-medium">
                               Other Assets
                             </span>
@@ -306,12 +306,12 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
@@ -319,7 +319,7 @@ export function DashboardContent() {
                             $518,646
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
@@ -327,7 +327,7 @@ export function DashboardContent() {
                             +$127,456 (32.4%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
@@ -335,7 +335,7 @@ export function DashboardContent() {
                             +$45,234 (11.8%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
@@ -355,23 +355,23 @@ export function DashboardContent() {
           <TabsContent value="client" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="rounded-lg border border-gray-200 bg-white">
               <Tabs defaultValue="overview" className="w-full">
                 <div className="border-b border-gray-200 px-6">
-                  <TabsList className="h-auto p-0 bg-transparent border-0">
+                  <TabsList className="h-auto border-0 bg-transparent p-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-900">
+                      <span className="text-body-md font-semibold text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
@@ -380,7 +380,7 @@ export function DashboardContent() {
 
                 <TabsContent
                   value="overview"
-                  className="p-4 sm:p-6 space-y-8 mt-0 no-h-scroll"
+                  className="no-h-scroll mt-0 space-y-8 p-4 sm:p-6"
                 >
                   <EnhancedDashboardCards />
                   <TouchZoomContainer className="rounded-lg">
@@ -388,16 +388,16 @@ export function DashboardContent() {
                   </TouchZoomContainer>
                 </TabsContent>
 
-                <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                <TabsContent value="portfolio" className="mt-0 space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-orange-500"></div>
                             <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
@@ -413,7 +413,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-blue-500"></div>
                             <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
@@ -429,7 +429,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-green-500"></div>
                             <span className="text-body-md font-medium">
                               Other Assets
                             </span>
@@ -446,12 +446,12 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
@@ -459,7 +459,7 @@ export function DashboardContent() {
                             $518,646
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
@@ -467,7 +467,7 @@ export function DashboardContent() {
                             +$127,456 (32.4%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
@@ -475,7 +475,7 @@ export function DashboardContent() {
                             +$45,234 (11.8%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
@@ -495,39 +495,39 @@ export function DashboardContent() {
           <TabsContent value="cpa" className="mt-0 space-y-6">
             <RecentUploads />
 
-            <div className="bg-white rounded-lg border border-gray-200">
+            <div className="rounded-lg border border-gray-200 bg-white">
               <Tabs defaultValue="overview" className="w-full">
                 <div className="border-b border-gray-200 px-6">
-                  <TabsList className="h-auto p-0 bg-transparent border-0">
+                  <TabsList className="h-auto border-0 bg-transparent p-0">
                     <TabsTrigger
                       value="overview"
-                      className="relative px-0 py-3 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-900">
+                      <span className="text-body-md font-semibold text-gray-900">
                         Overview
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="reports"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Reports
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="portfolio"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Portfolio
                       </span>
                     </TabsTrigger>
                     <TabsTrigger
                       value="clients"
-                      className="relative px-0 py-3 ml-5 data-[state=active]:bg-transparent data-[state=active]:shadow-none border-b-2 border-transparent data-[state=active]:border-yellow-400 rounded-none"
+                      className="relative ml-5 rounded-none border-b-2 border-transparent px-0 py-3 data-[state=active]:border-yellow-400 data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                     >
-                      <span className="font-semibold text-body-md text-gray-500">
+                      <span className="text-body-md font-semibold text-gray-500">
                         Client Management
                       </span>
                     </TabsTrigger>
@@ -536,7 +536,7 @@ export function DashboardContent() {
 
                 <TabsContent
                   value="overview"
-                  className="p-4 sm:p-6 space-y-8 mt-0 no-h-scroll"
+                  className="no-h-scroll mt-0 space-y-8 p-4 sm:p-6"
                 >
                   <EnhancedDashboardCards />
                   <TouchZoomContainer className="rounded-lg">
@@ -547,14 +547,14 @@ export function DashboardContent() {
 
                 <TabsContent
                   value="reports"
-                  className="p-6 mt-0 space-y-6 no-h-scroll"
+                  className="no-h-scroll mt-0 space-y-6 p-6"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-info-bg rounded-lg">
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-info-bg p-2">
                           <svg
-                            className="h-6 w-6 text-info"
+                            className="size-6 text-info"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -586,14 +586,14 @@ export function DashboardContent() {
                           <span className="font-medium">2 hours ago</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">View Reports</Button>
+                      <Button className="mt-4 w-full">View Reports</Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-success-bg rounded-lg">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-success-bg p-2">
                           <svg
-                            className="h-6 w-6 text-success"
+                            className="size-6 text-success"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -627,16 +627,16 @@ export function DashboardContent() {
                           <span className="font-medium">$25,491</span>
                         </div>
                       </div>
-                      <Button variant="success" className="w-full mt-4">
+                      <Button variant="success" className="mt-4 w-full">
                         View Analysis
                       </Button>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-purple-100 rounded-lg">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg">
+                      <div className="mb-4 flex items-center gap-3">
+                        <div className="rounded-lg bg-purple-100 p-2">
                           <svg
-                            className="h-6 w-6 text-purple-600"
+                            className="size-6 text-purple-600"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -668,21 +668,21 @@ export function DashboardContent() {
                           <span className="font-medium">2.4 MB</span>
                         </div>
                       </div>
-                      <Button className="w-full mt-4">Download Package</Button>
+                      <Button className="mt-4 w-full">Download Package</Button>
                     </div>
                   </div>
                 </TabsContent>
 
-                <TabsContent value="portfolio" className="p-6 mt-0 space-y-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                <TabsContent value="portfolio" className="mt-0 space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Asset Allocation
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-orange-500"></div>
                             <span className="text-body-md font-medium">
                               Bitcoin (BTC)
                             </span>
@@ -698,7 +698,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-blue-500"></div>
                             <span className="text-body-md font-medium">
                               Ethereum (ETH)
                             </span>
@@ -714,7 +714,7 @@ export function DashboardContent() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                            <div className="size-4 rounded-full bg-green-500"></div>
                             <span className="text-body-md font-medium">
                               Other Assets
                             </span>
@@ -731,12 +731,12 @@ export function DashboardContent() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg border border-gray-200">
-                      <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                    <div className="rounded-lg border border-gray-200 bg-white p-6">
+                      <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                         Performance Summary
                       </h3>
                       <div className="space-y-4">
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Total Portfolio Value
                           </span>
@@ -744,7 +744,7 @@ export function DashboardContent() {
                             $518,646
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Unrealized Gain/Loss
                           </span>
@@ -752,7 +752,7 @@ export function DashboardContent() {
                             +$127,456 (32.4%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Realized Gain/Loss
                           </span>
@@ -760,7 +760,7 @@ export function DashboardContent() {
                             +$45,234 (11.8%)
                           </span>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex items-center justify-between">
                           <span className="text-body-md text-gray-600">
                             Cost Basis
                           </span>
@@ -773,30 +773,30 @@ export function DashboardContent() {
                   </div>
                 </TabsContent>
 
-                <TabsContent value="clients" className="p-6 mt-0 space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="bg-gradient-to-br from-info-bg to-info-bg/80 p-6 rounded-lg border border-info/30">
-                      <div className="flex items-center justify-between mb-2">
+                <TabsContent value="clients" className="mt-0 space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="rounded-lg border border-info/30 bg-gradient-to-br from-info-bg to-info-bg/80 p-6">
+                      <div className="mb-2 flex items-center justify-between">
                         <h4 className="text-body-md font-medium text-info-text">
                           Total Clients
                         </h4>
-                        <Users className="h-4 w-4 text-info" />
+                        <Users className="size-4 text-info" />
                       </div>
                       <p className="text-display-lg font-bold text-info-text">
                         47
                       </p>
-                      <p className="text-caption text-info-text mt-1">
+                      <p className="mt-1 text-caption text-info-text">
                         +3 this month
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-success-bg to-success-bg/80 p-6 rounded-lg border border-success/30">
-                      <div className="flex items-center justify-between mb-2">
+                    <div className="rounded-lg border border-success/30 bg-gradient-to-br from-success-bg to-success-bg/80 p-6">
+                      <div className="mb-2 flex items-center justify-between">
                         <h4 className="text-body-md font-medium text-success-text">
                           Active Returns
                         </h4>
                         <svg
-                          className="h-4 w-4 text-success"
+                          className="size-4 text-success"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -812,18 +812,18 @@ export function DashboardContent() {
                       <p className="text-display-lg font-bold text-success-text">
                         23
                       </p>
-                      <p className="text-caption text-green-700 mt-1">
+                      <p className="mt-1 text-caption text-green-700">
                         In progress
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
-                      <div className="flex items-center justify-between mb-2">
+                    <div className="rounded-lg border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100 p-6">
+                      <div className="mb-2 flex items-center justify-between">
                         <h4 className="text-body-md font-medium text-purple-900">
                           Pending Review
                         </h4>
                         <svg
-                          className="h-4 w-4 text-purple-600"
+                          className="size-4 text-purple-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -839,18 +839,18 @@ export function DashboardContent() {
                       <p className="text-display-lg font-bold text-purple-900">
                         8
                       </p>
-                      <p className="text-caption text-purple-700 mt-1">
+                      <p className="mt-1 text-caption text-purple-700">
                         Needs attention
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-lg border border-orange-200">
-                      <div className="flex items-center justify-between mb-2">
+                    <div className="rounded-lg border border-orange-200 bg-gradient-to-br from-orange-50 to-orange-100 p-6">
+                      <div className="mb-2 flex items-center justify-between">
                         <h4 className="text-body-md font-medium text-warning-text">
                           Completed
                         </h4>
                         <svg
-                          className="h-4 w-4 text-warning"
+                          className="size-4 text-warning"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -866,20 +866,20 @@ export function DashboardContent() {
                       <p className="text-display-lg font-bold text-warning-text">
                         16
                       </p>
-                      <p className="text-caption text-warning-text mt-1">
+                      <p className="mt-1 text-caption text-warning-text">
                         This tax year
                       </p>
                     </div>
                   </div>
 
-                  <div className="bg-white p-6 rounded-lg border border-gray-200">
-                    <h3 className="text-heading-lg font-semibold text-gray-900 mb-4">
+                  <div className="rounded-lg border border-gray-200 bg-white p-6">
+                    <h3 className="mb-4 text-heading-lg font-semibold text-gray-900">
                       Client Portfolio Overview
                     </h3>
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-info-bg rounded-full flex items-center justify-center">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-info-bg">
                             <span className="text-body-md font-semibold text-info-text">
                               JD
                             </span>
@@ -894,15 +894,15 @@ export function DashboardContent() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-caption font-medium rounded">
+                          <span className="rounded bg-yellow-100 px-2 py-1 text-caption font-medium text-yellow-800">
                             In Review
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-success-bg rounded-full flex items-center justify-center">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-success-bg">
                             <span className="text-body-md font-semibold text-success-text">
                               AS
                             </span>
@@ -917,15 +917,15 @@ export function DashboardContent() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-success-bg text-green-800 text-caption font-medium rounded">
+                          <span className="rounded bg-success-bg px-2 py-1 text-caption font-medium text-green-800">
                             Complete
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+                      <div className="flex cursor-pointer items-center justify-between rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                          <div className="flex size-10 items-center justify-center rounded-full bg-purple-100">
                             <span className="text-body-md font-semibold text-purple-900">
                               BJ
                             </span>
@@ -940,7 +940,7 @@ export function DashboardContent() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="px-2 py-1 bg-info-bg text-blue-800 text-caption font-medium rounded">
+                          <span className="rounded bg-info-bg px-2 py-1 text-caption font-medium text-blue-800">
                             In Progress
                           </span>
                         </div>

@@ -214,7 +214,7 @@ export function DataAnomalyDetectionContent() {
               size="sm"
               onClick={() => setFiltersOpen(true)}
             >
-              <Filter className="h-4 w-4 mr-2" />
+              <Filter className="mr-2 size-4" />
               Filters
             </Button>
             <Button
@@ -222,15 +222,15 @@ export function DataAnomalyDetectionContent() {
               size="sm"
               onClick={() => setAlertsOpen(true)}
             >
-              <Settings className="h-4 w-4 mr-2" />
+              <Settings className="mr-2 size-4" />
               Alert Settings
             </Button>
             <Button
               size="sm"
-              className="bg-primary hover:bg-primary-hover text-primary-foreground"
+              className="bg-primary text-primary-foreground hover:bg-primary-hover"
               onClick={() => setConfirmResolveOpen(true)}
             >
-              <CheckCircle className="h-4 w-4 mr-2" />
+              <CheckCircle className="mr-2 size-4" />
               Resolve All
             </Button>
           </div>
@@ -284,7 +284,7 @@ export function DataAnomalyDetectionContent() {
               <Button
                 variant="link"
                 size="sm"
-                className="h-8 text-caption text-blue-600 hover:text-blue-700 p-0"
+                className="h-8 p-0 text-caption text-blue-600 hover:text-blue-700"
                 onClick={() => toast({ title: "Audit trail coming soon" })}
               >
                 View Audit Trail
@@ -295,7 +295,7 @@ export function DataAnomalyDetectionContent() {
       </div>
 
       {/* Main Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Overview Cards */}
         <AnomalyOverviewCards />
 
@@ -322,7 +322,7 @@ export function DataAnomalyDetectionContent() {
               <Label htmlFor="priority">Priority</Label>
               <Select
                 value={priority}
-                onValueChange={(v: any) => setPriority(v)}
+                onValueChange={(v) => setPriority(v as typeof priority)}
               >
                 <SelectTrigger id="priority">
                   <SelectValue placeholder="Select priority" />
@@ -337,7 +337,10 @@ export function DataAnomalyDetectionContent() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="status">Status</Label>
-              <Select value={status} onValueChange={(v: any) => setStatus(v)}>
+              <Select
+                value={status}
+                onValueChange={(v) => setStatus(v as typeof status)}
+              >
                 <SelectTrigger id="status">
                   <SelectValue placeholder="Select status" />
                 </SelectTrigger>
@@ -353,7 +356,7 @@ export function DataAnomalyDetectionContent() {
               <Label htmlFor="issueType">Issue Type</Label>
               <Select
                 value={issueType}
-                onValueChange={(v: any) => setIssueType(v)}
+                onValueChange={(v) => setIssueType(v as typeof issueType)}
               >
                 <SelectTrigger id="issueType">
                   <SelectValue placeholder="Select type" />

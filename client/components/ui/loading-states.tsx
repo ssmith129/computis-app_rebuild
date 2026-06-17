@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
+import { Loader2, type LucideIcon } from "lucide-react";
 
 // Table Loading Skeleton
 export function TableLoadingSkeleton({
@@ -50,7 +50,7 @@ export function CardLoadingSkeleton() {
 // Dashboard Cards Loading
 export function DashboardCardsLoading() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
       {Array.from({ length: 4 }).map((_, i) => (
         <Card key={i}>
           <CardContent className="p-4">
@@ -59,7 +59,7 @@ export function DashboardCardsLoading() {
                 <Skeleton className="h-8 w-16" />
                 <Skeleton className="h-4 w-24" />
               </div>
-              <Skeleton className="h-5 w-5 rounded" />
+              <Skeleton className="size-5 rounded" />
             </div>
           </CardContent>
         </Card>
@@ -94,7 +94,7 @@ export function SpinnerLoading({
 export function PageLoading() {
   return (
     <div className="app-content">
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Header Skeleton */}
         <div className="space-y-2">
           <Skeleton className="h-8 w-64" />
@@ -125,19 +125,19 @@ export function EmptyState({
   description,
   action,
 }: {
-  icon: any;
+  icon: LucideIcon;
   title: string;
   description: string;
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center space-y-4">
-      <div className="p-4 bg-muted rounded-full">
-        <Icon className="h-8 w-8 text-muted-foreground" />
+    <div className="flex flex-col items-center justify-center space-y-4 p-8 text-center">
+      <div className="rounded-full bg-muted p-4">
+        <Icon className="size-8 text-muted-foreground" />
       </div>
       <div className="space-y-2">
         <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-muted-foreground max-w-sm">{description}</p>
+        <p className="max-w-sm text-muted-foreground">{description}</p>
       </div>
       {action && <div>{action}</div>}
     </div>
@@ -155,20 +155,20 @@ export function ErrorState({
   onRetry?: () => void;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center space-y-4">
-      <div className="p-4 bg-red-50 rounded-full">
-        <div className="h-8 w-8 bg-red-500 rounded-full flex items-center justify-center">
-          <span className="text-white text-sm font-bold">!</span>
+    <div className="flex flex-col items-center justify-center space-y-4 p-8 text-center">
+      <div className="rounded-full bg-red-50 p-4">
+        <div className="flex size-8 items-center justify-center rounded-full bg-red-500">
+          <span className="text-sm font-bold text-white">!</span>
         </div>
       </div>
       <div className="space-y-2">
         <h3 className="text-lg font-semibold text-red-900">{title}</h3>
-        <p className="text-red-700 max-w-sm">{description}</p>
+        <p className="max-w-sm text-red-700">{description}</p>
       </div>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+          className="rounded-lg bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600"
         >
           Try Again
         </button>

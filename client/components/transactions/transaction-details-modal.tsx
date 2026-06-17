@@ -77,14 +77,14 @@ const getClassificationBadgeColor = (classification: string) => {
 const getTransactionTypeIcon = (type: string) => {
   switch (type.toLowerCase()) {
     case "receive":
-      return <ArrowDownLeft className="h-5 w-5 text-success" />;
+      return <ArrowDownLeft className="size-5 text-success" />;
     case "send":
-      return <ArrowUpRight className="h-5 w-5 text-error" />;
+      return <ArrowUpRight className="size-5 text-error" />;
     case "swap":
     case "merge":
-      return <RefreshCw className="h-5 w-5 text-info" />;
+      return <RefreshCw className="size-5 text-info" />;
     default:
-      return <RefreshCw className="h-5 w-5 text-gray-600" />;
+      return <RefreshCw className="size-5 text-gray-600" />;
   }
 };
 
@@ -104,7 +104,7 @@ export function TransactionDetailsModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-2xl max-h-[90vh] overflow-y-auto"
+        className="max-h-[90vh] max-w-2xl overflow-y-auto"
         aria-describedby="transaction-details-description"
       >
         <DialogHeader>
@@ -122,9 +122,9 @@ export function TransactionDetailsModal({
         <div className="space-y-6 py-4">
           {/* Transaction Summary Card */}
           <div className="rounded-lg border bg-muted/50 p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <p className="text-body-md text-muted-foreground mb-1">
+                <p className="mb-1 text-body-md text-muted-foreground">
                   Transaction ID
                 </p>
                 <p className="font-mono text-body-md font-medium">
@@ -132,18 +132,18 @@ export function TransactionDetailsModal({
                 </p>
               </div>
               <div>
-                <p className="text-body-md text-muted-foreground mb-1">Date</p>
+                <p className="mb-1 text-body-md text-muted-foreground">Date</p>
                 <p className="font-medium">{transaction.date}</p>
               </div>
               <div>
-                <p className="text-body-md text-muted-foreground mb-1">Type</p>
+                <p className="mb-1 text-body-md text-muted-foreground">Type</p>
                 <div className="flex items-center gap-2">
                   {getTransactionTypeIcon(transaction.type)}
                   <p className="font-medium">{transaction.type}</p>
                 </div>
               </div>
               <div>
-                <p className="text-body-md text-muted-foreground mb-1">
+                <p className="mb-1 text-body-md text-muted-foreground">
                   Status
                 </p>
                 <StatusBadge variant={getStatusVariant(transaction.status)}>
@@ -157,23 +157,23 @@ export function TransactionDetailsModal({
 
           {/* Asset & Amount Information */}
           <div>
-            <h3 className="text-heading-lg font-semibold mb-4">
+            <h3 className="mb-4 text-heading-lg font-semibold">
               Asset Information
             </h3>
             <div className="space-y-4">
-              <div className="flex items-start justify-between p-4 rounded-lg border bg-card">
+              <div className="flex items-start justify-between rounded-lg border bg-card p-4">
                 <div className="space-y-1">
                   <p className="text-body-md text-muted-foreground">Asset</p>
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-display-lg text-orange-500">
                       {transaction.icon}
                     </span>
-                    <span className="font-semibold text-heading-lg">
+                    <span className="text-heading-lg font-semibold">
                       {transaction.asset}
                     </span>
                   </div>
                 </div>
-                <div className="text-right space-y-1">
+                <div className="space-y-1 text-right">
                   <p className="text-body-md text-muted-foreground">Amount</p>
                   <p
                     className={cn(
@@ -186,9 +186,9 @@ export function TransactionDetailsModal({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-4 rounded-lg border bg-card">
-                  <p className="text-body-md text-muted-foreground mb-1">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="rounded-lg border bg-card p-4">
+                  <p className="mb-1 text-body-md text-muted-foreground">
                     Fair Market Value (USD)
                   </p>
                   <p
@@ -200,11 +200,11 @@ export function TransactionDetailsModal({
                     {txIsDebit ? "-" : "+"} {transaction.fmvUsd}
                   </p>
                 </div>
-                <div className="p-4 rounded-lg border bg-card">
-                  <p className="text-body-md text-muted-foreground mb-1">
+                <div className="rounded-lg border bg-card p-4">
+                  <p className="mb-1 text-body-md text-muted-foreground">
                     Transaction Hash
                   </p>
-                  <p className="font-mono text-caption text-muted-foreground break-all">
+                  <p className="break-all font-mono text-caption text-muted-foreground">
                     0x{transaction.id}abc...def{transaction.id}
                   </p>
                 </div>
@@ -216,13 +216,13 @@ export function TransactionDetailsModal({
 
           {/* AI Classification */}
           <div>
-            <h3 className="text-heading-lg font-semibold mb-4">
+            <h3 className="mb-4 text-heading-lg font-semibold">
               AI Classification
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-lg border bg-card">
+              <div className="flex items-center justify-between rounded-lg border bg-card p-4">
                 <div>
-                  <p className="text-body-md text-muted-foreground mb-2">
+                  <p className="mb-2 text-body-md text-muted-foreground">
                     Classification
                   </p>
                   <Badge
@@ -235,7 +235,7 @@ export function TransactionDetailsModal({
                   </Badge>
                 </div>
                 <div className="text-right">
-                  <p className="text-body-md text-muted-foreground mb-2">
+                  <p className="mb-2 text-body-md text-muted-foreground">
                     Confidence Score
                   </p>
                   <div className="flex items-center gap-2">
@@ -248,7 +248,7 @@ export function TransactionDetailsModal({
                       {transaction.confidence}%
                     </span>
                     {transaction.confidence < 40 && (
-                      <AlertTriangle className="h-5 w-5 text-error" />
+                      <AlertTriangle className="size-5 text-error" />
                     )}
                   </div>
                 </div>
@@ -261,7 +261,7 @@ export function TransactionDetailsModal({
                   <span>Medium</span>
                   <span>High</span>
                 </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div className="h-2 overflow-hidden rounded-full bg-muted">
                   <div
                     className={cn(
                       "h-full rounded-full transition-all",
@@ -282,16 +282,16 @@ export function TransactionDetailsModal({
               </div>
 
               {transaction.confidence < 70 && (
-                <div className="p-3 rounded-lg bg-warning-bg border border-warning/30">
+                <div className="rounded-lg border border-warning/30 bg-warning-bg p-3">
                   <div className="flex gap-2">
-                    <AlertTriangle className="h-5 w-5 text-warning flex-shrink-0 mt-0.5" />
+                    <AlertTriangle className="mt-0.5 size-5 shrink-0 text-warning" />
                     <div>
                       <p className="text-body-md font-medium text-warning-text">
                         {transaction.confidence < 40
                           ? "Low Confidence Detection"
                           : "Medium Confidence Detection"}
                       </p>
-                      <p className="text-caption text-warning-text mt-1">
+                      <p className="mt-1 text-caption text-warning-text">
                         This transaction may require manual review to ensure
                         accurate classification.
                       </p>
@@ -306,7 +306,7 @@ export function TransactionDetailsModal({
 
           {/* Additional Details */}
           <div>
-            <h3 className="text-heading-lg font-semibold mb-4">
+            <h3 className="mb-4 text-heading-lg font-semibold">
               Additional Details
             </h3>
             <div className="space-y-3 text-body-md">
@@ -325,12 +325,12 @@ export function TransactionDetailsModal({
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Gas Fee</span>
-                <span className="font-medium font-mono">$2.45</span>
+                <span className="font-mono font-medium">$2.45</span>
               </div>
               <Separator />
               <div className="flex justify-between py-2">
                 <span className="text-muted-foreground">Block Number</span>
-                <span className="font-medium font-mono">
+                <span className="font-mono font-medium">
                   {15000000 + parseInt(transaction.id) * 1000}
                 </span>
               </div>

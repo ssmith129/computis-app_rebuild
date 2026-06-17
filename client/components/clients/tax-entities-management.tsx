@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
@@ -31,7 +31,6 @@ import {
 import {
   Plus,
   Search,
-  Filter,
   Building2,
   MoreHorizontal,
   Edit2,
@@ -195,10 +194,10 @@ const getStatusBadge = (status: TaxEntity["status"]) => {
     "In Progress": "bg-info-bg text-info-text border-0",
   };
   const icons = {
-    Active: <CheckCircle2 className="h-3 w-3 mr-1" />,
-    Inactive: <AlertCircle className="h-3 w-3 mr-1" />,
-    Archived: <Archive className="h-3 w-3 mr-1" />,
-    "In Progress": <TrendingUp className="h-3 w-3 mr-1" />,
+    Active: <CheckCircle2 className="mr-1 size-3" />,
+    Inactive: <AlertCircle className="mr-1 size-3" />,
+    Archived: <Archive className="mr-1 size-3" />,
+    "In Progress": <TrendingUp className="mr-1 size-3" />,
   };
   return (
     <Badge className={variants[status]}>
@@ -357,7 +356,7 @@ export function TaxEntitiesManagement() {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -369,8 +368,8 @@ export function TaxEntitiesManagement() {
                   {mockTaxEntities.length}
                 </p>
               </div>
-              <div className="p-3 bg-info-bg rounded-lg">
-                <Building2 className="h-6 w-6 text-info" />
+              <div className="rounded-lg bg-info-bg p-3">
+                <Building2 className="size-6 text-info" />
               </div>
             </div>
           </CardContent>
@@ -386,8 +385,8 @@ export function TaxEntitiesManagement() {
                   {activeCount}
                 </p>
               </div>
-              <div className="p-3 bg-success-bg rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-success" />
+              <div className="rounded-lg bg-success-bg p-3">
+                <CheckCircle2 className="size-6 text-success" />
               </div>
             </div>
           </CardContent>
@@ -403,8 +402,8 @@ export function TaxEntitiesManagement() {
                   {inProgressCount}
                 </p>
               </div>
-              <div className="p-3 bg-info-bg rounded-lg">
-                <TrendingUp className="h-6 w-6 text-info" />
+              <div className="rounded-lg bg-info-bg p-3">
+                <TrendingUp className="size-6 text-info" />
               </div>
             </div>
           </CardContent>
@@ -420,8 +419,8 @@ export function TaxEntitiesManagement() {
                   {archivedCount}
                 </p>
               </div>
-              <div className="p-3 bg-warning-bg rounded-lg">
-                <Archive className="h-6 w-6 text-warning" />
+              <div className="rounded-lg bg-warning-bg p-3">
+                <Archive className="size-6 text-warning" />
               </div>
             </div>
           </CardContent>
@@ -429,9 +428,9 @@ export function TaxEntitiesManagement() {
       </div>
 
       {/* Search and Filter Bar */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by entity name, tax ID, or client..."
             value={searchTerm}
@@ -468,14 +467,14 @@ export function TaxEntitiesManagement() {
             variant="outline"
             onClick={() => toast({ title: "Export started" })}
           >
-            <Download className="h-4 w-4 mr-2" />
+            <Download className="mr-2 size-4" />
             Export
           </Button>
           <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white"
+            className="bg-blue-600 text-white hover:bg-blue-700"
             onClick={() => setAddEntityOpen(true)}
           >
-            <Plus className="h-4 w-4 mr-2" />
+            <Plus className="mr-2 size-4" />
             Add Entity
           </Button>
         </div>
@@ -485,7 +484,7 @@ export function TaxEntitiesManagement() {
       <Card>
         <CardContent className="p-0">
           {selectedEntities.length > 0 && (
-            <div className="flex items-center justify-between p-4 border-b bg-muted/30">
+            <div className="flex items-center justify-between border-b bg-muted/30 p-4">
               <div className="text-body-md font-medium">
                 {selectedEntities.length}{" "}
                 {selectedEntities.length > 1 ? "entities" : "entity"} selected
@@ -499,7 +498,7 @@ export function TaxEntitiesManagement() {
                   size="sm"
                   onClick={() => setDeleteDialogOpen(true)}
                 >
-                  <Trash2 className="h-4 w-4 mr-2" />
+                  <Trash2 className="mr-2 size-4" />
                   Delete
                 </Button>
               </div>
@@ -533,7 +532,7 @@ export function TaxEntitiesManagement() {
                 <TableRow>
                   <TableCell
                     colSpan={10}
-                    className="text-center py-8 text-muted-foreground"
+                    className="py-8 text-center text-muted-foreground"
                   >
                     No tax entities found
                   </TableCell>
@@ -549,8 +548,8 @@ export function TaxEntitiesManagement() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-info-bg rounded-lg">
-                          <Building2 className="h-4 w-4 text-info" />
+                        <div className="rounded-lg bg-info-bg p-2">
+                          <Building2 className="size-4 text-info" />
                         </div>
                         <div>
                           <div className="font-medium">{entity.entityName}</div>
@@ -573,7 +572,7 @@ export function TaxEntitiesManagement() {
                     <TableCell>{entity.taxYear}</TableCell>
                     <TableCell>
                       <div className="flex items-center gap-1">
-                        <Wallet className="h-4 w-4 text-muted-foreground" />
+                        <Wallet className="size-4 text-muted-foreground" />
                         <span>{entity.walletCount}</span>
                       </div>
                     </TableCell>
@@ -584,39 +583,39 @@ export function TaxEntitiesManagement() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="h-8 w-8 p-0"
+                            className="size-8 p-0"
                           >
-                            <MoreHorizontal className="h-4 w-4" />
+                            <MoreHorizontal className="size-4" />
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem
                             onClick={() => handleViewEntity(entity)}
                           >
-                            <Eye className="mr-2 h-4 w-4" />
+                            <Eye className="mr-2 size-4" />
                             View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             onClick={() => handleEditEntity(entity)}
                           >
-                            <Edit2 className="mr-2 h-4 w-4" />
+                            <Edit2 className="mr-2 size-4" />
                             Edit Entity
                           </DropdownMenuItem>
                           <DropdownMenuItem>
-                            <Wallet className="mr-2 h-4 w-4" />
+                            <Wallet className="mr-2 size-4" />
                             Manage Wallets
                           </DropdownMenuItem>
                           <DropdownMenuItem>
-                            <FileText className="mr-2 h-4 w-4" />
+                            <FileText className="mr-2 size-4" />
                             View Reports
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem>
-                            <Archive className="mr-2 h-4 w-4" />
+                            <Archive className="mr-2 size-4" />
                             Archive
                           </DropdownMenuItem>
                           <DropdownMenuItem className="text-error">
-                            <Trash2 className="mr-2 h-4 w-4" />
+                            <Trash2 className="mr-2 size-4" />
                             Delete
                           </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -764,7 +763,7 @@ export function TaxEntitiesManagement() {
             </Button>
             <Button
               onClick={handleAddEntity}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
               Create Entity
             </Button>
@@ -862,7 +861,7 @@ export function TaxEntitiesManagement() {
             </Button>
             <Button
               onClick={handleSaveEdit}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
               Save Changes
             </Button>
@@ -879,8 +878,8 @@ export function TaxEntitiesManagement() {
           {selectedEntity && (
             <div className="space-y-6 py-4">
               <div className="flex items-center gap-4">
-                <div className="p-4 bg-info-bg rounded-lg">
-                  <Building2 className="h-8 w-8 text-info" />
+                <div className="rounded-lg bg-info-bg p-4">
+                  <Building2 className="size-8 text-info" />
                 </div>
                 <div>
                   <h3 className="text-display-sm font-semibold">
@@ -919,7 +918,7 @@ export function TaxEntitiesManagement() {
                   <p className="font-medium">{selectedEntity.createdDate}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t">
+              <div className="grid grid-cols-2 gap-4 border-t pt-4">
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
@@ -927,11 +926,11 @@ export function TaxEntitiesManagement() {
                         <p className="text-body-md text-muted-foreground">
                           Wallets
                         </p>
-                        <p className="text-display-lg font-bold font-mono tabular-nums">
+                        <p className="font-mono text-display-lg font-bold tabular-nums">
                           {selectedEntity.walletCount}
                         </p>
                       </div>
-                      <Wallet className="h-6 w-6 text-info" />
+                      <Wallet className="size-6 text-info" />
                     </div>
                   </CardContent>
                 </Card>
@@ -942,11 +941,11 @@ export function TaxEntitiesManagement() {
                         <p className="text-body-md text-muted-foreground">
                           Transactions
                         </p>
-                        <p className="text-display-lg font-bold font-mono tabular-nums">
+                        <p className="font-mono text-display-lg font-bold tabular-nums">
                           {selectedEntity.transactionCount.toLocaleString()}
                         </p>
                       </div>
-                      <FileText className="h-6 w-6 text-green-600" />
+                      <FileText className="size-6 text-green-600" />
                     </div>
                   </CardContent>
                 </Card>
@@ -962,9 +961,9 @@ export function TaxEntitiesManagement() {
                 setViewEntityOpen(false);
                 if (selectedEntity) handleEditEntity(selectedEntity);
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              <Edit2 className="h-4 w-4 mr-2" />
+              <Edit2 className="mr-2 size-4" />
               Edit Entity
             </Button>
           </DialogFooter>

@@ -61,26 +61,26 @@ export function RecentUploads() {
         Recent Uploads
       </h2>
 
-      <Card className="border border-gray-200 rounded-lg overflow-hidden">
+      <Card className="overflow-hidden rounded-lg border border-gray-200">
         <Table>
           <TableHeader>
-            <TableRow className="bg-gray-50 border-b border-gray-200">
-              <TableHead className="text-gray-500 font-medium">
+            <TableRow className="border-b border-gray-200 bg-gray-50">
+              <TableHead className="font-medium text-gray-500">
                 File Name
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="font-medium text-gray-500">
                 Exchange/Wallet
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="font-medium text-gray-500">
                 Uploaded
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="font-medium text-gray-500">
                 Status
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="font-medium text-gray-500">
                 Transactions
               </TableHead>
-              <TableHead className="text-gray-500 font-medium">
+              <TableHead className="font-medium text-gray-500">
                 Actions
               </TableHead>
             </TableRow>
@@ -93,7 +93,7 @@ export function RecentUploads() {
               >
                 <TableCell className="py-3">
                   <div className="flex items-center gap-3">
-                    <FileText className="h-4 w-4 text-gray-400" />
+                    <FileText className="size-4 text-gray-400" />
                     <span className="font-medium text-gray-900">
                       {upload.fileName}
                     </span>
@@ -118,27 +118,27 @@ export function RecentUploads() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-11 w-11 touch-target"
+                      className="touch-target size-11"
                       aria-label="Preview upload"
                       {...previewLongPress}
                     >
-                      <Eye className="h-4 w-4 text-gray-400" />
+                      <Eye className="size-4 text-gray-400" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-11 w-11 touch-target"
+                      className="touch-target size-11"
                       aria-label="Download upload"
                     >
-                      <Download className="h-4 w-4 text-gray-400" />
+                      <Download className="size-4 text-gray-400" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-11 w-11 touch-target"
+                      className="touch-target size-11"
                       aria-label="More options"
                     >
-                      <MoreHorizontal className="h-4 w-4 text-gray-400" />
+                      <MoreHorizontal className="size-4 text-gray-400" />
                     </Button>
                   </div>
                 </TableCell>

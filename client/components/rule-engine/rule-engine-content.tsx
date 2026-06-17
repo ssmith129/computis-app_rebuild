@@ -29,7 +29,7 @@ export function RuleEngineContent() {
           </div>
 
           {/* Top Actions */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-4">
+          <div className="mt-4 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             {/* Rule Type Tabs */}
             <Tabs
               value={activeTab}
@@ -52,11 +52,11 @@ export function RuleEngineContent() {
                 size="sm"
                 onClick={() => toast({ title: "Audit log coming soon" })}
               >
-                <FileText className="h-4 w-4 mr-2" />
+                <FileText className="mr-2 size-4" />
                 View Audit Log
               </Button>
               <Button size="sm" onClick={() => setIsCreateModalOpen(true)}>
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="mr-2 size-4" />
                 New Rule
               </Button>
             </div>
@@ -65,7 +65,7 @@ export function RuleEngineContent() {
       </div>
 
       {/* Main Content */}
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         {/* Active Rules Table */}
         <Card>
           <CardHeader>
@@ -78,12 +78,12 @@ export function RuleEngineContent() {
 
         {/* Rule Conflicts */}
         <Card className="p-4">
-          <div className="flex items-center justify-between mb-3">
+          <div className="mb-3 flex items-center justify-between">
             <h2 className="text-heading-lg font-semibold">Rule Conflicts</h2>
             <Button
               variant="ghost"
               size="sm"
-              className="text-muted-foreground hover:text-foreground h-auto p-0"
+              className="h-auto p-0 text-muted-foreground hover:text-foreground"
             >
               View All
             </Button>

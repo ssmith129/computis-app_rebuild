@@ -123,16 +123,16 @@ export function NotificationsDropdown({
           className="relative text-white hover:bg-sidebar-accent"
           aria-label="Open notifications"
         >
-          <Bell className="h-5 w-5" />
+          <Bell className="size-5" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-caption rounded-full h-4 min-w-4 px-1 flex items-center justify-center">
+            <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-caption text-white">
               {unreadCount}
             </span>
           )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-96 p-0">
-        <DropdownMenuLabel className="flex items-center justify-between py-3 px-3">
+        <DropdownMenuLabel className="flex items-center justify-between p-3">
           <span className="font-semibold">Notifications</span>
           {unreadCount > 0 && (
             <button
@@ -163,17 +163,17 @@ export function NotificationsDropdown({
                     onClick={() => handleClick(n)}
                   >
                     <div className="relative">
-                      <Icon className="h-5 w-5" />
+                      <Icon className="size-5" />
                       {!n.read && (
-                        <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-primary" />
+                        <span className="absolute -right-1 -top-1 size-2 rounded-full bg-primary" />
                       )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-body-md font-medium truncate">
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-body-md font-medium">
                         {n.title}
                       </div>
                       {n.description && (
-                        <div className="text-caption text-muted-foreground line-clamp-2">
+                        <div className="line-clamp-2 text-caption text-muted-foreground">
                           {n.description}
                         </div>
                       )}
@@ -188,7 +188,7 @@ export function NotificationsDropdown({
           </div>
         </ScrollArea>
         <DropdownMenuSeparator />
-        <div className="flex items-center justify-between py-2 px-3">
+        <div className="flex items-center justify-between px-3 py-2">
           <Button
             variant="ghost"
             size="sm"

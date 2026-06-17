@@ -46,11 +46,11 @@ export function UploadArea() {
     <Card className="border border-border">
       <CardContent className="p-6">
         {/* Main Upload Section */}
-        <div className="text-center space-y-6">
+        <div className="space-y-6 text-center">
           {/* Icon */}
           <div className="flex justify-center">
-            <div className="w-20 h-20 bg-warning-bg rounded-full flex items-center justify-center">
-              <FileSpreadsheet className="w-8 h-8 text-warning" />
+            <div className="flex size-20 items-center justify-center rounded-full bg-warning-bg">
+              <FileSpreadsheet className="size-8 text-warning" />
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export function UploadArea() {
             <h2 className="text-display-sm font-bold text-foreground">
               Upload CSV Files
             </h2>
-            <p className="text-muted-foreground mt-2">
+            <p className="mt-2 text-muted-foreground">
               Drag and drop your exchange or wallet CSV files here, or click to
               browse your files
             </p>
@@ -79,7 +79,7 @@ export function UploadArea() {
           >
             <div className="space-y-4">
               <div className="flex justify-center">
-                <Upload className="w-10 h-10 text-muted-foreground" />
+                <Upload className="size-10 text-muted-foreground" />
               </div>
               <div className="space-y-2">
                 <p className="text-body-md text-muted-foreground">
@@ -91,7 +91,7 @@ export function UploadArea() {
               </div>
               <div className="flex justify-center">
                 <label htmlFor="file-upload">
-                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                  <Button className="bg-yellow-400 text-black hover:bg-yellow-500">
                     Select Files
                   </Button>
                   <input
@@ -110,17 +110,17 @@ export function UploadArea() {
           {/* Uploaded Files */}
           {uploadedFiles.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-body-md font-medium text-foreground mb-3">
+              <h3 className="mb-3 text-body-md font-medium text-foreground">
                 Selected Files:
               </h3>
               <div className="space-y-2">
                 {uploadedFiles.map((file, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between bg-muted p-2 rounded"
+                    className="flex items-center justify-between rounded bg-muted p-2"
                   >
                     <div className="flex items-center gap-2">
-                      <FileSpreadsheet className="w-4 h-4" />
+                      <FileSpreadsheet className="size-4" />
                       <span className="text-body-md">{file.name}</span>
                     </div>
                     <span className="text-caption text-muted-foreground">

@@ -18,7 +18,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
-  MoreHorizontal,
   ArrowUpDown,
   ChevronLeft,
   ChevronRight,
@@ -28,12 +27,6 @@ import {
   Flag,
   Eye,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
 import {
   TransactionDetailsModal,
@@ -250,11 +243,11 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-0 h-auto font-medium text-caption"
+                  className="h-auto p-0 text-caption font-medium"
                   aria-label="Sort by date"
                 >
                   Date
-                  <ArrowUpDown className="ml-1 h-3 w-3" />
+                  <ArrowUpDown className="ml-1 size-3" />
                 </Button>
               </TableHead>
               <TableHead className="type-column">Type</TableHead>
@@ -285,11 +278,11 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="touch-target h-9 w-9 md:h-7 md:w-7 p-0"
+                    className="touch-target size-9 p-0 md:size-7"
                     onClick={() => handleViewDetails(transaction)}
                     aria-label={`View details for transaction ${transaction.id}`}
                   >
-                    <Eye className="h-4 w-4" />
+                    <Eye className="size-4" />
                   </Button>
                 </TableCell>
                 <TableCell className="date-column">
@@ -300,10 +293,10 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 </TableCell>
                 <TableCell className="asset-column">
                   <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-orange-500 text-body-md">
+                    <span className="font-mono text-body-md text-orange-500">
                       {transaction.icon}
                     </span>
-                    <span className="text-body-md truncate max-w-[120px] md:max-w-[160px]">
+                    <span className="max-w-chart-sm truncate text-body-md md:max-w-chart-md">
                       {transaction.asset}
                     </span>
                   </div>
@@ -318,7 +311,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                   <Badge
                     className={`${getClassificationBadgeColor(
                       transaction.aiClassification,
-                    )} text-caption px-2 py-0.5 whitespace-nowrap`}
+                    )} whitespace-nowrap px-2 py-0.5 text-caption`}
                   >
                     {transaction.aiClassification}
                   </Badge>
@@ -326,13 +319,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                 <TableCell className="confidence-column">
                   <div className="flex items-center gap-1.5">
                     <span
-                      className={`font-medium text-body-md ${getConfidenceColor(transaction.confidence)}`}
+                      className={`text-body-md font-medium ${getConfidenceColor(transaction.confidence)}`}
                     >
                       {transaction.confidence}%
                     </span>
                     {transaction.confidence < 40 && (
                       <AlertTriangle
-                        className="h-3 w-3 text-red-500"
+                        className="size-3 text-red-500"
                         aria-label="Low confidence"
                       />
                     )}
@@ -351,13 +344,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-green-100 hover:text-green-600"
+                            className="touch-target size-9 p-0 hover:bg-green-100 hover:text-green-600 md:size-7"
                             onClick={() =>
                               toast({ title: "Transaction confirmed" })
                             }
                             aria-label={`Confirm transaction ${transaction.id}`}
                           >
-                            <Check className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                            <Check className="size-4 md:size-3.5" />
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -370,13 +363,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-yellow-100 hover:text-yellow-600"
+                            className="touch-target size-9 p-0 hover:bg-yellow-100 hover:text-yellow-600 md:size-7"
                             onClick={() =>
                               toast({ title: "Transaction flagged" })
                             }
                             aria-label={`Flag transaction ${transaction.id}`}
                           >
-                            <Flag className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                            <Flag className="size-4 md:size-3.5" />
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -389,13 +382,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="touch-target h-9 w-9 md:h-7 md:w-7 p-0 hover:bg-red-100 hover:text-red-600"
+                            className="touch-target size-9 p-0 hover:bg-red-100 hover:text-red-600 md:size-7"
                             onClick={() =>
                               toast({ title: "Transaction rejected" })
                             }
                             aria-label={`Reject transaction ${transaction.id}`}
                           >
-                            <X className="h-4 w-4 md:h-3.5 md:w-3.5" />
+                            <X className="size-4 md:size-3.5" />
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -412,13 +405,13 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
       </div>
 
       {/* Table Footer */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-2 py-2 border-t">
+      <div className="flex flex-col gap-4 border-t p-2 lg:flex-row lg:items-center lg:justify-between">
         <div className="text-body-md text-muted-foreground">
           Showing {startIndex + 1} of {filteredTransactions.length} transactions
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-body-md text-muted-foreground whitespace-nowrap">
+          <span className="whitespace-nowrap text-body-md text-muted-foreground">
             Bulk Actions:
           </span>
           <Button
@@ -455,7 +448,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
             onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="size-4" />
           </Button>
 
           <div className="flex items-center gap-1">
@@ -467,7 +460,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
                   variant={currentPage === page ? "default" : "outline"}
                   size="sm"
                   onClick={() => setCurrentPage(page)}
-                  className="w-8 h-8 p-0"
+                  className="size-8 p-0"
                 >
                   {page}
                 </Button>
@@ -476,7 +469,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
             {totalPages > 5 && (
               <span className="text-muted-foreground">...</span>
             )}
-            <span className="text-body-md text-muted-foreground ml-2">
+            <span className="ml-2 text-body-md text-muted-foreground">
               {totalPages}
             </span>
           </div>
@@ -489,7 +482,7 @@ export function TransactionsTable({ filters }: TransactionsTableProps) {
             }
             disabled={currentPage === totalPages}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="size-4" />
           </Button>
         </div>
       </div>

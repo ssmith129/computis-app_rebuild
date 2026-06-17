@@ -36,7 +36,7 @@ export function SidebarToggleButton({ className }: { className?: string }) {
       aria-expanded={isExpanded}
     >
       {/* Animated hamburger icon using three bars */}
-      <div className="relative w-4 h-3.5 flex flex-col justify-between">
+      <div className="relative flex h-3.5 w-4 flex-col justify-between">
         {/* Top bar */}
         <span
           className={cn(

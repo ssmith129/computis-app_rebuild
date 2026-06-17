@@ -38,8 +38,8 @@ export const NavItem: React.FC<NavItemProps> = ({
           : "text-sidebar-muted hover:bg-sidebar-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
       )}
     >
-      <Icon className="h-5 w-5 shrink-0" />
-      {!collapsed && <span className="font-semibold truncate">{label}</span>}
+      <Icon className="size-5 shrink-0" />
+      {!collapsed && <span className="truncate font-semibold">{label}</span>}
       {collapsed && <span className="sr-only">{label}</span>}
     </Link>
   );

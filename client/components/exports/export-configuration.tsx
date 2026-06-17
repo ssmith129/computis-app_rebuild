@@ -52,7 +52,7 @@ export function ExportConfiguration() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-heading-lg font-semibold mb-1">
+        <h3 className="mb-1 text-heading-lg font-semibold">
           Export Configuration
         </h3>
         <p className="text-body-md text-muted-foreground">
@@ -81,7 +81,7 @@ export function ExportConfiguration() {
               />
               <Label
                 htmlFor={option.id}
-                className="text-body-md font-normal cursor-pointer"
+                className="cursor-pointer text-body-md font-normal"
               >
                 {option.label}
               </Label>
@@ -163,10 +163,10 @@ export function ExportConfiguration() {
       </div>
 
       {/* Save Configuration */}
-      <div className="pt-4 border-t">
+      <div className="border-t pt-4">
         <Button
           size="sm"
-          className="bg-yellow-500 hover:bg-yellow-600 text-white"
+          className="bg-yellow-500 text-white hover:bg-yellow-600"
         >
           Save Configuration
         </Button>

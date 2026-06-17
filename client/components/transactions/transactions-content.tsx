@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { TransactionsTable } from "./transactions-table";
 import { TransactionInsightsUnified } from "./transaction-insights-unified";
 import { Filter, Tag, AlertTriangle } from "lucide-react";
@@ -44,12 +44,12 @@ export function TransactionsContent() {
           </div>
         </div>
       </div>
-      <div className="p-4 sm:p-6 space-y-6">
+      <div className="space-y-6 p-4 sm:p-6">
         <div className="space-y-4">
           {/* Filters */}
-          <div className="flex flex-wrap gap-4 mt-5">
+          <div className="mt-5 flex flex-wrap gap-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-body-md text-muted-foreground whitespace-nowrap">
+              <span className="whitespace-nowrap text-body-md text-muted-foreground">
                 Confidence:
               </span>
               {confidenceFilters.map((filter) => {
@@ -74,7 +74,7 @@ export function TransactionsContent() {
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-body-md text-muted-foreground whitespace-nowrap">
+              <span className="whitespace-nowrap text-body-md text-muted-foreground">
                 Status:
               </span>
               {statusFilters.map((filter) => (
@@ -101,7 +101,7 @@ export function TransactionsContent() {
                 className="h-8"
                 onClick={() => toast({ title: "Filters coming soon" })}
               >
-                <Filter className="h-4 w-4 mr-1" />
+                <Filter className="mr-1 size-4" />
                 <span className="hidden sm:inline">Filters</span>
               </Button>
               <Button
@@ -110,7 +110,7 @@ export function TransactionsContent() {
                 className="h-8"
                 onClick={() => toast({ title: "Select transactions to tag." })}
               >
-                <Tag className="h-4 w-4 mr-1" />
+                <Tag className="mr-1 size-4" />
                 <span className="hidden sm:inline">Bulk Tag</span>
               </Button>
               <Button
@@ -125,7 +125,7 @@ export function TransactionsContent() {
                   );
                 }}
               >
-                <AlertTriangle className="h-4 w-4 mr-1" />
+                <AlertTriangle className="mr-1 size-4" />
                 <span className="hidden sm:inline">AI Classify</span>
               </Button>
             </div>
