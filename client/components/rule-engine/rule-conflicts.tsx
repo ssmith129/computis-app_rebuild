@@ -70,16 +70,24 @@ export function RuleConflicts() {
               <div className="flex-1 min-w-0 space-y-2">
                 <div>
                   <h4 className="font-medium">{conflict.title}</h4>
-                  <AlertDescription className="text-sm">
+                  <AlertDescription className="text-body-md">
                     {conflict.description}
                   </AlertDescription>
                 </div>
-                <p className="text-xs opacity-80">{conflict.details}</p>
+                <p className="text-caption opacity-80">{conflict.details}</p>
                 <div className="flex flex-wrap gap-2 pt-1">
-                  <Button size="sm" variant="outline" className="h-7 text-xs">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-7 text-caption"
+                  >
                     {conflict.actionLabel}
                   </Button>
-                  <Button size="sm" variant="ghost" className="h-7 text-xs">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-7 text-caption"
+                  >
                     {conflict.dismissLabel}
                   </Button>
                 </div>
@@ -100,8 +108,10 @@ export function RuleConflicts() {
       {ruleConflicts.length === 0 && (
         <div className="text-center py-8 flex-1">
           <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="text-lg font-medium mb-2">No Rule Conflicts</h3>
-          <p className="text-sm text-muted-foreground">
+          <h3 className="text-heading-lg font-medium mb-2">
+            No Rule Conflicts
+          </h3>
+          <p className="text-body-md text-muted-foreground">
             All your rules are working together without conflicts.
           </p>
         </div>

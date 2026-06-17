@@ -20,7 +20,9 @@ export function RuleEngineContent() {
       <div className="page-titlebar">
         <div className="p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">Rule Engine</h1>
+            <h1 className="text-display-lg font-bold text-foreground">
+              Rule Engine
+            </h1>
             <p className="text-muted-foreground">
               Configure and manage rules to classify and merge transactions
             </p>
@@ -36,7 +38,7 @@ export function RuleEngineContent() {
             >
               <TabsList className="grid w-full grid-cols-5">
                 {ruleTabs.map((tab) => (
-                  <TabsTrigger key={tab} value={tab} className="text-sm">
+                  <TabsTrigger key={tab} value={tab} className="text-body-md">
                     {tab}
                   </TabsTrigger>
                 ))}
@@ -77,7 +79,7 @@ export function RuleEngineContent() {
         {/* Rule Conflicts */}
         <Card className="p-4">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold">Rule Conflicts</h2>
+            <h2 className="text-heading-lg font-semibold">Rule Conflicts</h2>
             <Button
               variant="ghost"
               size="sm"

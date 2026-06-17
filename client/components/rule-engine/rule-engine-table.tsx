@@ -326,7 +326,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
 
       {/* Table Footer */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 px-4 py-2 border-t">
-        <div className="text-sm text-muted-foreground">
+        <div className="text-body-md text-muted-foreground">
           Showing {Math.min(displayedRules.length, itemsPerPage)} of{" "}
           {filteredRules.length} rules
         </div>
@@ -360,7 +360,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             {totalPages > 5 && (
               <span className="text-muted-foreground">...</span>
             )}
-            <span className="text-sm text-muted-foreground ml-2">
+            <span className="text-body-md text-muted-foreground ml-2">
               {totalPages}
             </span>
           </div>
@@ -384,7 +384,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
             <DialogTitle>Edit Rule</DialogTitle>
           </DialogHeader>
           <div className="space-y-2 py-2">
-            <label htmlFor="rule-name" className="text-sm">
+            <label htmlFor="rule-name" className="text-body-md">
               Rule Name
             </label>
             <Input
@@ -412,7 +412,7 @@ export function RuleEngineTable({ activeTab }: RuleEngineTableProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete rule?</AlertDialogTitle>
           </AlertDialogHeader>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-body-md text-muted-foreground">
             This action cannot be undone.
           </p>
           <AlertDialogFooter>

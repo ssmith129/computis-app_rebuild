@@ -181,13 +181,13 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold">Conditions</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="text-heading-lg font-semibold">Conditions</h3>
+                <p className="text-body-md text-muted-foreground">
                   Define when this rule should be applied
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <Label htmlFor="logicalOperator" className="text-sm">
+                <Label htmlFor="logicalOperator" className="text-body-md">
                   Logical Operator:
                 </Label>
                 <Select
@@ -303,8 +303,8 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
           {/* Actions Section */}
           <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-semibold">Actions</h3>
-              <p className="text-sm text-muted-foreground">
+              <h3 className="text-heading-lg font-semibold">Actions</h3>
+              <p className="text-body-md text-muted-foreground">
                 Define what happens when conditions are met
               </p>
             </div>
@@ -417,8 +417,10 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-lg font-semibold">Preview Impact</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="text-heading-lg font-semibold">
+                  Preview Impact
+                </h3>
+                <p className="text-body-md text-muted-foreground">
                   23 transactions will be affected by this rule
                 </p>
               </div>
@@ -431,24 +433,28 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
               {/* Before */}
               <Card className="flex-1 min-w-rule-card">
                 <CardHeader>
-                  <CardTitle className="text-base">Before</CardTitle>
+                  <CardTitle className="text-heading-md">Before</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-body-md text-muted-foreground">
                       Classification:
                     </div>
-                    <div className="text-sm">Unclassified (18)</div>
-                    <div className="text-sm">Transfer (5)</div>
+                    <div className="text-body-md">Unclassified (18)</div>
+                    <div className="text-body-md">Transfer (5)</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Tags:</div>
-                    <div className="text-sm">None (23)</div>
+                    <div className="text-body-md text-muted-foreground">
+                      Tags:
+                    </div>
+                    <div className="text-body-md">None (23)</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Status:</div>
-                    <div className="text-sm">Pending (20)</div>
-                    <div className="text-sm">Needs Review (3)</div>
+                    <div className="text-body-md text-muted-foreground">
+                      Status:
+                    </div>
+                    <div className="text-body-md">Pending (20)</div>
+                    <div className="text-body-md">Needs Review (3)</div>
                   </div>
                 </CardContent>
               </Card>
@@ -464,24 +470,30 @@ export function CreateRuleModal({ open, onOpenChange }: CreateRuleModalProps) {
               {/* After */}
               <Card className="flex-1 min-w-rule-card">
                 <CardHeader>
-                  <CardTitle className="text-base">After</CardTitle>
+                  <CardTitle className="text-heading-md">After</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-body-md text-muted-foreground">
                       Classification:
                     </div>
-                    <div className="text-sm text-success">Income (23)</div>
+                    <div className="text-body-md text-success">Income (23)</div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Tags:</div>
-                    <div className="text-sm text-success">
+                    <div className="text-body-md text-muted-foreground">
+                      Tags:
+                    </div>
+                    <div className="text-body-md text-success">
                       Mining, Income (23)
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Status:</div>
-                    <div className="text-sm text-success">Confirmed (23)</div>
+                    <div className="text-body-md text-muted-foreground">
+                      Status:
+                    </div>
+                    <div className="text-body-md text-success">
+                      Confirmed (23)
+                    </div>
                   </div>
                 </CardContent>
               </Card>
