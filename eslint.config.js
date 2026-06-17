@@ -11,7 +11,7 @@ export default tseslint.config(
     ignores: ["client/components/ui/**", "client/pages/DesignSystemShowcase.tsx"],
     rules: {
       "no-restricted-syntax": [
-        "warn",
+        "error",
         {
           selector: "Literal[value=/\\b(text-(xs|sm|base|lg|xl|2xl|3xl))\\b/]",
           message:
@@ -27,5 +27,17 @@ export default tseslint.config(
       "tailwindcss/no-custom-classname": "off",
     },
     settings: { tailwindcss: { config: "tailwind.config.ts" } },
+  },
+  {
+    // Advisory tailwindcss stylistic rules flag legitimate arbitrary values
+    // (e.g. min-h-[80px], max-h-[80vh]) and custom utility classes that are
+    // outside the design-system token mandate. Disabled globally so the strict
+    // gate enforces the real guardrails (no hardcoded hex / raw font sizes) and
+    // code quality, not these advisory opinions.
+    rules: {
+      "tailwindcss/no-arbitrary-value": "off",
+      "tailwindcss/migration-from-tailwind-2": "off",
+      "tailwindcss/no-custom-classname": "off",
+    },
   },
 );
