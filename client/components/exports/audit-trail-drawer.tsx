@@ -217,7 +217,7 @@ export function AuditTrailDrawer({
       >
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-border">
-          <h3 id="drawer-title" className="text-lg font-semibold">
+          <h3 id="drawer-title" className="text-heading-lg font-semibold">
             Audit Trail
           </h3>
           <Button
@@ -244,7 +244,7 @@ export function AuditTrailDrawer({
                   key={index}
                   className="p-4 bg-card border border-border rounded-lg"
                 >
-                  <div className="text-xs text-muted-foreground mb-2">
+                  <div className="text-caption text-muted-foreground mb-2">
                     {entry.time}
                   </div>
                   <div className="flex items-center gap-2 mb-1">
@@ -256,13 +256,15 @@ export function AuditTrailDrawer({
                         return <IconComponent className="h-3 w-3" />;
                       })()}
                     </span>
-                    <span className="font-medium text-sm">{entry.action}</span>
+                    <span className="font-medium text-body-md">
+                      {entry.action}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-blue-400 mb-2">
+                  <div className="flex items-center gap-1 text-caption text-blue-400 mb-2">
                     <User className="h-3 w-3" />
                     <span>{entry.user}</span>
                   </div>
-                  <div className="text-sm text-muted-foreground pt-2 border-t border-border">
+                  <div className="text-body-md text-muted-foreground pt-2 border-t border-border">
                     {entry.details}
                   </div>
                 </div>

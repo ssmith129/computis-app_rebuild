@@ -45,7 +45,9 @@ export function ExportsContent() {
       <div className="page-titlebar">
         <div className="p-6">
           <div className="space-y-1">
-            <h1 className="text-2xl font-bold text-foreground">Export</h1>
+            <h1 className="text-display-lg font-bold text-foreground">
+              Export
+            </h1>
             <p className="text-muted-foreground">
               Generate IRS 8949, QBO, and CSV files with embedded audit logs
             </p>
@@ -54,7 +56,7 @@ export function ExportsContent() {
           {/* Tax Year Selection and actions */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-4">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-muted-foreground">
+              <span className="text-body-md font-medium text-muted-foreground">
                 Tax Year:
               </span>
               <div className="flex gap-1">

@@ -11,36 +11,40 @@ const validationItems = [
     color: "text-success",
     bgColor: "bg-success",
     icon: CheckCircle,
-    description: "All classifications validated"
+    description: "All classifications validated",
   },
   {
-    id: "fmv-accuracy", 
+    id: "fmv-accuracy",
     title: "FMV Data Accuracy",
     status: "Warning",
     value: 85,
     color: "text-warning",
     bgColor: "bg-warning",
     icon: AlertTriangle,
-    description: "Some pricing data missing"
+    description: "Some pricing data missing",
   },
   {
     id: "ai-confidence",
-    title: "AI Classification Confidence", 
+    title: "AI Classification Confidence",
     status: "Passed",
     value: 92,
     color: "text-success",
     bgColor: "bg-success",
     icon: CheckCircle,
-    description: "High confidence scores"
-  }
+    description: "High confidence scores",
+  },
 ];
 
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "Passed":
-      return <Badge className="bg-success-bg text-success-text">{status}</Badge>;
+      return (
+        <Badge className="bg-success-bg text-success-text">{status}</Badge>
+      );
     case "Warning":
-      return <Badge className="bg-warning-bg text-warning-text">{status}</Badge>;
+      return (
+        <Badge className="bg-warning-bg text-warning-text">{status}</Badge>
+      );
     case "Error":
       return <Badge className="bg-error-bg text-error-text">{status}</Badge>;
     default:
@@ -54,10 +58,14 @@ export function DataValidation() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold mb-1">Data Validation</h3>
+          <h3 className="text-heading-lg font-semibold mb-1">
+            Data Validation
+          </h3>
           <div className="flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-success" />
-            <p className="text-sm text-muted-foreground">Your data has been validated for export</p>
+            <p className="text-body-md text-muted-foreground">
+              Your data has been validated for export
+            </p>
           </div>
         </div>
       </div>
@@ -71,15 +79,17 @@ export function DataValidation() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <IconComponent className={`h-4 w-4 ${item.color}`} />
-                  <span className="font-medium text-sm">{item.title}</span>
+                  <span className="font-medium text-body-md">{item.title}</span>
                 </div>
                 {getStatusBadge(item.status)}
               </div>
 
               {/* Progress Bar */}
               <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">{item.description}</span>
+                <div className="flex justify-between text-body-md">
+                  <span className="text-muted-foreground">
+                    {item.description}
+                  </span>
                   <span className="font-medium">{item.value}%</span>
                 </div>
                 <div className="relative">
@@ -93,7 +103,7 @@ export function DataValidation() {
 
       {/* Summary */}
       <div className="pt-4 border-t">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-body-md">
           <span className="text-muted-foreground">Overall Status:</span>
           <div className="flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-success" />
