@@ -104,14 +104,14 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
         {/* Header Section */}
         <div className="flex items-start justify-between gap-2 mb-3">
           <div className="flex items-center gap-2.5 min-w-0 flex-1">
-            <div className="text-xl leading-none flex-shrink-0">
+            <div className="text-display-sm leading-none flex-shrink-0">
               {wallet.icon}
             </div>
             <div className="min-w-0 flex-1">
-              <h3 className="font-semibold text-sm text-gray-900 truncate">
+              <h3 className="font-semibold text-body-md text-gray-900 truncate">
                 {wallet.name}
               </h3>
-              <p className="text-xs text-gray-500 truncate mt-0.5">
+              <p className="text-caption text-gray-500 truncate mt-0.5">
                 <span>{wallet.type}</span>
                 <span className="text-gray-300 mx-1">•</span>
                 <span className="font-mono">{wallet.address}</span>
@@ -133,14 +133,14 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
           className={`grid grid-cols-2 gap-2 overflow-hidden transition-all duration-300 ${isHovered ? "max-h-24 opacity-100 mb-3" : "max-h-0 opacity-0 mb-0"}`}
         >
           <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
-            <p className="text-xs text-gray-500 truncate">Transactions</p>
-            <p className="text-sm font-semibold text-gray-900 truncate">
+            <p className="text-caption text-gray-500 truncate">Transactions</p>
+            <p className="text-body-md font-semibold text-gray-900 truncate">
               {wallet.transactions}
             </p>
           </div>
           <div className="bg-gray-50 rounded-lg px-2.5 py-2 min-w-0">
-            <p className="text-xs text-gray-500 truncate">Last Sync</p>
-            <p className="text-sm font-semibold text-gray-900 truncate">
+            <p className="text-caption text-gray-500 truncate">Last Sync</p>
+            <p className="text-body-md font-semibold text-gray-900 truncate">
               {wallet.lastSync}
             </p>
           </div>
@@ -151,7 +151,7 @@ function WalletCard({ wallet }: { wallet: (typeof mockWallets)[0] }) {
           <Button
             variant="ghost"
             size="sm"
-            className="h-7 text-xs text-gray-600 hover:text-gray-900 px-2 transition-all min-w-0 truncate"
+            className="h-7 text-caption text-gray-600 hover:text-gray-900 px-2 transition-all min-w-0 truncate"
             onClick={(e) => {
               e.stopPropagation();
               toast({ title: `Syncing ${wallet.name}` });
@@ -202,26 +202,34 @@ export function WalletsContent() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">4</div>
-              <p className="text-sm text-gray-500">Connected Sources</p>
+              <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
+                4
+              </div>
+              <p className="text-body-md text-gray-500">Connected Sources</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">521</div>
-              <p className="text-sm text-gray-500">Total Transactions</p>
+              <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
+                521
+              </div>
+              <p className="text-body-md text-gray-500">Total Transactions</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">3</div>
-              <p className="text-sm text-gray-500">Active Syncing</p>
+              <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
+                3
+              </div>
+              <p className="text-body-md text-gray-500">Active Syncing</p>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4">
-              <div className="text-2xl font-bold font-mono tabular-nums text-gray-900">1h</div>
-              <p className="text-sm text-gray-500">Last Sync</p>
+              <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900">
+                1h
+              </div>
+              <p className="text-body-md text-gray-500">Last Sync</p>
             </CardContent>
           </Card>
         </div>
@@ -239,16 +247,16 @@ export function WalletsContent() {
                 <div className="bg-white rounded-full p-3 mb-3 shadow-sm group-hover:shadow transition-shadow">
                   <Plus className="h-5 w-5 text-gray-600 group-hover:text-gray-900 transition-colors" />
                 </div>
-                <h3 className="font-semibold text-sm text-gray-900 mb-1">
+                <h3 className="font-semibold text-body-md text-gray-900 mb-1">
                   Add New Connection
                 </h3>
-                <p className="text-xs text-gray-500 mb-3">
+                <p className="text-caption text-gray-500 mb-3">
                   Connect wallet or exchange
                 </p>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-7 text-xs border-gray-300 hover:border-gray-400"
+                  className="h-7 text-caption border-gray-300 hover:border-gray-400"
                 >
                   Get Started
                 </Button>
@@ -260,7 +268,7 @@ export function WalletsContent() {
         {/* Recent Activity */}
         <Card className="border-gray-200">
           <CardContent className="p-4">
-            <h3 className="font-semibold text-base text-gray-900 mb-4">
+            <h3 className="font-semibold text-heading-md text-gray-900 mb-4">
               Recent Sync Activity
             </h3>
             <div className="space-y-3">
@@ -270,15 +278,15 @@ export function WalletsContent() {
                     <CheckCircle className="h-3.5 w-3.5 text-success" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       Coinbase Pro sync completed
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       15 new transactions imported
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">1 hour ago</span>
+                <span className="text-caption text-gray-400">1 hour ago</span>
               </div>
               <div className="flex items-center justify-between py-2 border-b border-gray-100">
                 <div className="flex items-center gap-3">
@@ -286,15 +294,15 @@ export function WalletsContent() {
                     <Clock className="h-3.5 w-3.5 text-blue-600 animate-pulse" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       Binance sync in progress
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       Fetching recent transactions...
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">2 hours ago</span>
+                <span className="text-caption text-gray-400">2 hours ago</span>
               </div>
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center gap-3">
@@ -302,15 +310,15 @@ export function WalletsContent() {
                     <CheckCircle className="h-3.5 w-3.5 text-success" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-body-md font-medium text-gray-900">
                       MetaMask wallet connected
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-caption text-gray-500">
                       42 transactions imported
                     </p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-400">3 hours ago</span>
+                <span className="text-caption text-gray-400">3 hours ago</span>
               </div>
             </div>
           </CardContent>

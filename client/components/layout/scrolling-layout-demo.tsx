@@ -84,7 +84,9 @@ export function ScrollingLayoutDemo() {
       {/* Fixed Navigation */}
       <FixedNavigation isOpen={navOpen}>
         <div className="p-4">
-          <div className="text-white font-bold text-lg mb-6">CryptoTax Pro</div>
+          <div className="text-white font-bold text-heading-lg mb-6">
+            CryptoTax Pro
+          </div>
           <nav className="space-y-2">
             {[
               "Dashboard",
@@ -114,7 +116,7 @@ export function ScrollingLayoutDemo() {
       >
         {/* Page Title */}
         <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <h1 className="text-display-lg font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 mt-1">
             View your portfolio metrics and recent activity
           </p>
@@ -124,7 +126,7 @@ export function ScrollingLayoutDemo() {
         <div className="p-4 sm:p-6 space-y-8">
           {/* Section 1: Horizontally Scrollable Cards */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-heading-lg font-semibold text-gray-900 mb-4">
               Portfolio Overview
             </h2>
             <ScrollableCards gap="1.5rem">
@@ -150,16 +152,16 @@ export function ScrollingLayoutDemo() {
                   className="flex-shrink-0"
                 >
                   <CardHeader>
-                    <CardTitle className="text-sm font-medium text-gray-600">
+                    <CardTitle className="text-body-md font-medium text-gray-600">
                       {metric.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold font-mono tabular-nums text-gray-900 mb-1">
+                    <div className="text-display-lg font-bold font-mono tabular-nums text-gray-900 mb-1">
                       {metric.value}
                     </div>
                     <div
-                      className={`text-sm ${
+                      className={`text-body-md ${
                         metric.change.startsWith("+")
                           ? "text-success"
                           : metric.change.startsWith("-")
@@ -177,7 +179,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 2: Responsive Grid (No horizontal scroll) */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-heading-lg font-semibold text-gray-900 mb-4">
               Quick Actions
             </h2>
             <ResponsiveGrid minCardWidth="250px" gap="1.5rem">
@@ -201,10 +203,14 @@ export function ScrollingLayoutDemo() {
               ].map((action, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <CardTitle className="text-base">{action.title}</CardTitle>
+                    <CardTitle className="text-heading-md">
+                      {action.title}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600 mb-4">{action.desc}</p>
+                    <p className="text-body-md text-gray-600 mb-4">
+                      {action.desc}
+                    </p>
                     <Button className="w-full">Get Started</Button>
                   </CardContent>
                 </Card>
@@ -214,7 +220,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 3: Horizontally Scrollable Table */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-heading-lg font-semibold text-gray-900 mb-4">
               Recent Transactions
             </h2>
             <ScrollableTable>
@@ -237,7 +243,7 @@ export function ScrollingLayoutDemo() {
                     <TableRow key={i}>
                       <TableCell>2024-01-{15 + i}</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
+                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-caption">
                           Buy
                         </span>
                       </TableCell>
@@ -247,7 +253,7 @@ export function ScrollingLayoutDemo() {
                       <TableCell>$1,130.75</TableCell>
                       <TableCell>Coinbase</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-caption">
                           Complete
                         </span>
                       </TableCell>
@@ -265,7 +271,7 @@ export function ScrollingLayoutDemo() {
 
           {/* Section 4: Mixed Content */}
           <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-heading-lg font-semibold text-gray-900 mb-4">
               Analytics
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -281,7 +287,7 @@ export function ScrollingLayoutDemo() {
                   >
                     {Array.from({ length: 12 }, (_, i) => (
                       <div key={i} className="flex flex-col items-center gap-2">
-                        <div className="text-xs text-gray-600">
+                        <div className="text-caption text-gray-600">
                           {new Date(2024, i, 1).toLocaleDateString("en", {
                             month: "short",
                           })}
@@ -290,7 +296,7 @@ export function ScrollingLayoutDemo() {
                           className="bg-blue-500 w-8 rounded"
                           style={{ height: `${Math.random() * 100 + 20}px` }}
                         />
-                        <div className="text-xs font-medium">
+                        <div className="text-caption font-medium">
                           ${(Math.random() * 50000 + 20000).toFixed(0)}
                         </div>
                       </div>

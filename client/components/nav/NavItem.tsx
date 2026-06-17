@@ -32,7 +32,7 @@ export const NavItem: React.FC<NavItemProps> = ({
       onClick={onClick}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "group flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
+        "group flex items-center gap-3 rounded-md px-3 py-2 text-body-md transition-colors",
         active
           ? "bg-sidebar-accent text-white"
           : "text-sidebar-muted hover:bg-sidebar-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
