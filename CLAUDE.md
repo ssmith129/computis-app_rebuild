@@ -87,7 +87,7 @@ Defined in both `tsconfig.json` and `vite.config.ts` — keep them in sync.
   - `server/` is the Express app, used for local dev and the self-hosted
     `pnpm start` build.
   - `api/` holds Vercel serverless handlers (`@vercel/node`). Vercel's build
-    (`vercel.json` → `npm run build:client`) only builds the SPA; the `api/`
+    (`vercel.json` → `pnpm run build:client`) only builds the SPA; the `api/`
     functions deploy separately. **Adding a route to one does not add it to the
     other** — replicate logic in both if it must work in dev and on Vercel.
 - Prefer the client. Only add server/api endpoints when logic genuinely must run
